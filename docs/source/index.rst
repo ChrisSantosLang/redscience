@@ -30,7 +30,14 @@ Design advances in redscience until no olympics can be conceived for which a mor
 
 If you choose truth, and cannot find an existing redscience website on which to explore, then you can make your own by… [how to install]
 
-Any effective social science could be used to combat the exploitation that some social groups currently suffer, but could also be used for exploitation. For the security of society, redscience is therefore  `open-source <https://github.com/ChrisSantosLang/redscience/blob/master/LICENSE>`_(Apache license) and accompanied by educational resources so that diverse social groups can make their own versions which they fully understand and control. It is as much a curriculum about coding as it is code. Report bugs/ideas here, contribute code here, contribute as an educator here. 
+Any effective social science could be used to combat the exploitation that some 
+social groups currently suffer, but could also be used for exploitation. For the
+ security of society, redscience is therefore `open-source 
+ <https://github.com/ChrisSantosLang/redscience/blob/master/LICENSE/>`_ and 
+ accompanied by educational resources so that diverse social groups can make 
+ their own versions which they fully understand and control. It is as much a 
+ curriculum about coding as it is code. Report bugs/ideas here, contribute code 
+ here, contribute as an educator here. 
 
 Use Cases
 =========
