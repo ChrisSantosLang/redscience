@@ -14,7 +14,9 @@ Indices and tables
 * :ref:`modindex`
 * :ref:`search`
 
-If you choose Blue Science, then you will believe what you want to believe. If you choose Red Science, then you will learn life-changing truth. There is no turning back, and no telling how deep the rabbit hole may go…
+If you choose Blue Science, then you will believe what you want to believe. If 
+you choose Red Science, then you will learn life-changing truth. There is no 
+turning back, and no telling how deep the rabbit hole may go…
 
 Blue Science says, “Clinical trials are what matter. We can’t clone entire religions, businesses, or states, and manipulate them to form properly controlled clinical trials of potential social policies, so social policies can take root only in opinion.” It says, “History will determine which proposed social technologies or other social changes are safe, but, by then, it will be too late.” 
 
@@ -28,12 +30,13 @@ Design advances in redscience until no olympics can be conceived for which a mor
 
 If you choose truth, and cannot find an existing redscience website on which to explore, then you can make your own by… [how to install]
 
-Any effective social science could be used to combat the exploitation that some social groups currently suffer, but could also be used for exploitation. For the security of society, redscience is therefore open-source (Apache license) and accompanied by educational resources so that diverse social groups can make their own versions which they fully understand and control. It is as much a curriculum about coding as it is code. Report bugs/ideas here, contribute code here, contribute as an educator here. 
+Any effective social science could be used to combat the exploitation that some social groups currently suffer, but could also be used for exploitation. For the security of society, redscience is therefore  `open-source <https://github.com/ChrisSantosLang/redscience/blob/master/LICENSE>`_(Apache license) and accompanied by educational resources so that diverse social groups can make their own versions which they fully understand and control. It is as much a curriculum about coding as it is code. Report bugs/ideas here, contribute code here, contribute as an educator here. 
 
 Use Cases
---------
+=========
 
-1. **Benchmark social designs (e.g. for an AI, or team of humans to make policies or trade stocks).** Rather than serve as pawns in battles for power, establish authority via simulations. You can benchmark different team-sizes, personality ratios, curriculum ratios, and collaboration techniques (e.g. elitism vs pure democracy) on specific olympic events or compare adaptability by benchmarking on diverse combinations of events never encountered before.* For example,   
+
+1. **Benchmark social designs (e.g. for an AI, or team of humans to make policies or trade stocks).** Rather than serve as pawns in battles for power, establish authority via simulations. You can benchmark different team-sizes, personality ratios, curriculum ratios, and collaboration techniques (e.g. elitism vs pure democracy) on specific olympic events or compare adaptability by benchmarking on diverse combinations of events never encountered before. For example,   
 
    #. Identify the most comprehensive olympics via the comparison page, identify the top team for that olympics via its leaderboard, and identify an essential member of that team using its Members tab.
    #. Clone the team to create a new contender, and slightly modify one dimensions of the personality of the cloned essential member (e.g. make the clone less extreme)
