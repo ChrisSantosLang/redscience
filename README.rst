@@ -1,16 +1,16 @@
-Welcome to redscience!
-======================================
+redscience
+==========
 
 If you choose Blue Science, then you will believe what you want to believe. If 
 you choose Red Science, then you will learn life-changing truth. There is no 
 turning back, and no telling how deep the rabbit hole may go…
 
-Blue Science says, “Clinical trials are what matter. We can’t clone entire 
-religions, businesses, or states, and manipulate them to form properly 
-controlled clinical trials of potential social policies, so social policies 
-can take root only in opinion.” It says, “History will determine which proposed 
-social technologies or other social changes are safe, but, by then, it will be 
-too late.” 
+  Blue Science says, “Clinical trials are what matter. We can’t clone entire 
+  religions, businesses, or states, and manipulate them to form properly 
+  controlled clinical trials of potential social policies, so social policies 
+  can take root only in opinion.” It says, “History will determine which proposed 
+  social technologies or other social changes are safe, but, by then, it will be 
+  too late.” 
 
 A perfect clinical trial would require cloning the entire universe at least 
 twice: The exact proposed patient would receive the exact proposed treatment 
@@ -20,12 +20,12 @@ Science treats simplification as an excuse to defer to subjective
 opinion--perhaps to the democratically-aggregated opinion of a minority (e.g. 
 of those who are currently alive, or of those with PhDs).
 
-Red Science says, “A model oversimplifies only if a more reliable model is 
-readily available.” In other words, instead of letting subjective opinions 
-decide which clinical trials to fund, let pre-clinical trials drive the 
-clinical research agenda. Before serving as non-voluntary subjects in “natural 
-experiments” of history, run increasingly-sophisticated simulations, putting 
-the *least-expensive objective process* in the driver’s seat.
+  Red Science says, “A model oversimplifies only if a more reliable model is 
+  readily available.” In other words, instead of letting subjective opinions 
+  decide which clinical trials to fund, let pre-clinical trials drive the 
+  clinical research agenda. Before serving as non-voluntary subjects in “natural 
+  experiments” of history, run increasingly-sophisticated simulations, putting 
+  the *least-expensive objective process* in the driver’s seat.
 
 `Fold-It <https://fold.it/>`_ and `BridgeDesigner 
 <https://bridgedesigner.org/>`_ facilitate pre-clinical science in the domains 
@@ -44,8 +44,12 @@ which redscience can expose design-flaws in our inherited Blue-engineered
 social institutions is so shocking that a warning is merited: Ignorance may 
 cause more damage in the long-run, but truth has a sting!
 
-If you choose truth, and cannot find an existing redscience website on which 
-to explore, then you can make your own by… [how to install]
+Next Steps
+----------
+
+You can learn more via the documentation. If you choose truth, 
+and cannot find an existing redscience website on which to explore, then you 
+can make your own by… [how to install]
 
 Any effective social science could be used to combat the exploitation that some 
 social groups currently suffer, but could also be used for exploitation. For 
