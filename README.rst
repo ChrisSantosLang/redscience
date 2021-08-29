@@ -58,6 +58,6 @@ the security of society, redscience is `open-source
 <https://github.com/ChrisSantosLang/redscience/blob/master/LICENSE/>`_ and 
 accompanied by educational resources so that diverse social groups can make 
 their own versions which they fully understand and control. It is as much a 
-curriculum about coding as it is code. Report bugs/ideas here, contribute code 
+curriculum about coding as it is code. Report bugs/ideas `here <https://github.com/ChrisSantosLang/redscience/issues>`_, contribute code 
 here, contribute as an educator here. 
 
