@@ -425,7 +425,11 @@ def category(*members, name="Categorized") -> "Category":
         if not isinstance(member, Categorized):
             raise TypeError("""'{member}' object cannot be interpreted as a 
                 Categorized""".format(member=type(member).__name__))
-        if member.name not in classdict:
+        if member.name in classdict:
+            if classdict[member.name] != member.value:
+                raise TypeError("""Attemped to reuse key: '{name}'
+                    """.format(name=member.name))
+        else:
             classdict[member.name] = member.value   
     category = Category.__new__(Category, name, (Categorized,), classdict)
     category.__module__=__name__
@@ -487,9 +491,8 @@ class Color(Categorized):
     # TRANSLATOR: Color of game piece as in "Move: Gray circle to (2,1)"
     GRAY = collections.namedtuple("ColorValue", "STR HEX")(_("gray"), "#929591")
 
-
-PlayerColor = category(Color[0:4], name="PlayerColor")
-   
+PlayerColor = category(Color[0:4], name="PlayerColor")  
+    
     
 class Layout(enum.IntEnum):
     """Layout constants. E.g.:
