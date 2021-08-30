@@ -1,15 +1,12 @@
 .. include:: ../../README.rst
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
    :caption: Contents:
    :name: mastertoc
 
    usecases
    api
-   babelwrap
-   category
-   const
 
 Indices and tables
 ==================
