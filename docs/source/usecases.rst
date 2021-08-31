@@ -8,7 +8,9 @@ Use Cases
    team-sizes, personality ratios, curriculum ratios, and collaboration 
    techniques (e.g. elitism vs pure democracy) on specific olympic events or 
    compare adaptability by benchmarking on diverse combinations of events 
-   never encountered before. For example,   
+   never encountered before 
+   (see `math <https://figshare.com/articles/dataset/Varieties_of_Elitism/7052264>`_  
+   estimating potential gains from better-informed social engineering). For example,   
 
    #. Identify the most comprehensive olympics via the comparison page, 
       identify the top team for that olympics via its leaderboard, and 
