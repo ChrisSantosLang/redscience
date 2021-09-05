@@ -51,7 +51,7 @@ don’t have to follow the suggestions of the pseudocode. If you have
 a better idea, please share it with us, so we can suggest it to future 
 coders.
 
-This project is divided into `Releases <releases>`_. Each builds upon the previous. 
+This project is divided into :doc:`releases`. Each builds upon the previous. 
 This curriculum provides Requirements, a Testing Plan, and Potential 
 Mockups for each Release. Together, these documents communicate the 
 scope of the Release.  
@@ -63,8 +63,8 @@ skills later, but our first priority is to make sure we are on the
 same page, so feel free to follow the "How to" articles to the letter.
 
 Start by reviewing the Requirements, a Testing Plan, and Potential 
-Mockups for the first Release (`Command Line Tic-Tic-Toe <commandline>`_), then begin 
-with `How to Setup Youy Development Environment <devenvironment>`_.
+Mockups for the first Release (:doc:`commandline`), then begin 
+with :doc:`devenvironment`.
 
 
 .. toctree::
