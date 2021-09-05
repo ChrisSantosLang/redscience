@@ -15,5 +15,3 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
-
-redscience has its documentation hosted on Read the Docs.
