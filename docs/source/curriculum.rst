@@ -3,10 +3,10 @@ Curriculum
 
 Not only is the `code <https://github.com/ChrisSantosLang/redscience>`_ 
 of redscience opensource, but a number of pre-code resources are 
-provided openly as well, and the openness of redscience is tested by 
-forming all of the resources into a curriculum and testing the ability 
-of diverse students to complete that curriculum (i.e. to fully master
-the project).
+provided openly as well, and their openness is tested by forming all 
+of the resources into a curriculum and testing the ability of diverse 
+students (armed with the curriculum) to rebuild redscience as they 
+see fit.
 
 Software development is typically divided into jobs or tasks:
  
