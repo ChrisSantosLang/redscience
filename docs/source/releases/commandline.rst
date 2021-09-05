@@ -53,4 +53,7 @@ end the game or restart at any time.
 Potential Mockups
 -----------------
 
+.. figure:: images/commandline.png
+
+   Each move adds a new section to the bottom...
 
