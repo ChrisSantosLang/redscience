@@ -1,5 +1,5 @@
-redscience
-==========
+redscience API
+=============
 
 .. toctree::
    :maxdepth: 4
