@@ -24,7 +24,7 @@ http://babel.pocoo.org/en/latest/api/lists.html:
   print(format_percent(-12345.6789))
   print(format_unit(-12345.6789, "second"))
   print(format_datetime(datetime.datetime.now()))
-  chipmunks = format_list(["Alvin", "Simon", "Theodore"])))
+  chipmunks = format_list(["Alvin", "Simon", "Theodore"])
 
 Examples of using a NamedTuple (e.g. Game) or Category (e.g.
 Command) to get strings that display differently depending on
@@ -63,436 +63,37 @@ that do not get translated:
 import collections
 import enum
 import functools
-import gettext
 import itertools
-import locale
-import logging
-from typing import Callable, Iterable, List, NamedTuple, Optional, Tuple, Union
+from typing import (
+    Any,
+    Callable,
+    Dict,
+    Iterable,
+    List,
+    NamedTuple,
+    Optional,
+    Tuple,
+    Union,
+)
 
-import babel.core
-import babel.dates
-import babel.lists
-import babel.numbers
-import babel.units
+import babelwrap
+import category
 import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
 
-_DOMAIN = "games"
-_LANG_DIR = "\\Users\\Chris.santos-lang\\locales"
-_LOG_DIR = "\\Users\\chris.santos-lang\\logs"
-_SOURCE_LANGUAGE = "en"
 
-logger = logging.getLogger()
-# if not logger.hasHandlers():
-#     log_format = logging.Formatter("%(asctime)s:%(levelname)s:%(message)s")
-#     log_file = logging.FileHandler("{0}/{1}.log".format(_LOG_DIR, _DOMAIN))
-#     log_file.setFormatter(log_format)
-#     logger.addHandler(log_file)
-#     log_console = logging.StreamHandler()
-#     log_console.setFormatter(log_format)
-#     logger.addHandler(log_console) # remove this to log only to file
-#     logger.setLevel('DEBUG') # use INFO when no longer debugging
-
-
-# Keep this before setting Enums, so their values will be in the
+# Keep theses before setting Enums, so their values will be in the
 # language from which they can be translated
 def _(message: str) -> str:
     return message
 
 
-def format_list(items: List[str]) -> str:
+def format_list(items: List[Any]) -> str:
     return str(items)
 
 
-# for mypy
-format_decimal = format_percent = format_datetime = format_unit = None
-
-# def setlang(*langs: str) -> babel.core.Locale:
-#   """Sets the language of _() and returns the associated babel.core.Locale.
-
-#   If no supported match can be found for langs, it will default to the
-#       locale of the machine or to SOURCE_LANGUAGE, so 'setlang("")' would
-#       restore to default.
-
-#   Args:
-#       *langs (str): locale names in order of preference. e.g. "en_US"
-
-#   Returns: The babel.core.Locale associated with the set langauge. It will
-#       keep any previously set locale if no parameters are passed, so
-#       'setlang()' is the getter.
-#   """
-
-#   if hasattr(setlang, "_locale") and not langs:
-#       return setlang._locale
-
-#   # append related languages
-#   languages = list(langs)
-#   for lang in filter(bool, langs):
-#       try:
-#           parsed = babel.core.Locale.parse(lang.replace("-", "_"))
-#       except (babel.core.UnknownLocaleError, ValueError) as e:
-#           logging.warning(f"Cannot parse language '{lang}'")
-#       languages.append(parsed.language)
-
-#   # append the language of the local machine
-#   language_code, encoding = locale.getdefaultlocale()
-#   languages.append(str(language_code)[0:2])
-
-#   # choose the first language with qualifying .mo file
-#   folder = ""
-#   for lang in languages:
-#       path = gettext.find(_DOMAIN, _LANG_DIR, [lang])
-#       if path:
-#           folder = path.split(_LANG_DIR + "\\")[1].split("\\")[0]
-#           break
-
-#   global _
-#   try:
-#       _ = gettext.translation(_DOMAIN, _LANG_DIR, [folder]).gettext
-#   except (FileNotFoundError) as e:
-#       logging.error(
-#           "No {domain}.mo found in {dir}".format(
-#               domain=_DOMAIN,
-#               dir=_LANG_DIR,
-#           )
-#       )
-#       _ = lambda x: x
-
-#   try:
-#       new_locale = babel.core.Locale.parse(lang.replace("-", "_"))
-#   except (babel.core.UnknownLocaleError, ValueError) as e:
-#       logging.warning(f"No locale found for '{lang}'")
-#       new_locale = babel.core.Locale(_SOURCE_LANGUAGE)
-
-#   folderisnew = (not hasattr(setlang, "_folder")) or (setlang._folder != folder)
-#   if (langs and list(langs)[0]) or folderisnew:
-#       setlang._locale, setlang._folder = new_locale, folder
-#       logging.debug(
-#           "{locale} {path}".format(
-#               path=path,
-#               locale=repr(setlang._locale),
-#           )
-#       )
-
-#   global format_list
-#   format_list = functools.partial(babel.lists.format_list, locale=new_locale)
-#   format_list.__doc__ = "\n".join(
-#       [
-#           "    Default locale from setlang(); otherwise:",
-#           babel.lists.format_list.__doc__,
-#       ],
-#   )
-
-#   global format_decimal
-#   format_decimal = functools.partial(
-#       babel.numbers.format_decimal,
-#       locale=new_locale,
-#   )
-#   format_decimal.__doc__ = "\n".join(
-#       [
-#           "    Default locale from setlang(); otherwise:",
-#           babel.numbers.format_decimal.__doc__,
-#       ],
-#   )
-
-#   global format_percent
-#   format_percent = functools.partial(
-#       babel.numbers.format_percent,
-#       locale=new_locale,
-#   )
-#   format_percent.__doc__ = "\n".join(
-#       [
-#           "    Default locale from setlang(); otherwise:",
-#           babel.numbers.format_percent.__doc__,
-#       ],
-#   )
-
-#   global format_datetime
-#   format_datetime = functools.partial(
-#       babel.dates.format_datetime,
-#       locale=new_locale,
-#   )
-#   format_datetime.__doc__ = "\n".join(
-#       [
-#           "    Default locale from setlang(); otherwise:",
-#           babel.dates.format_datetime.__doc__,
-#       ],
-#   )
-
-#   global format_unit
-#   format_unit = functools.partial(babel.units.format_unit, locale=new_locale)
-#   format_unit.__doc__ = "\n".join(
-#       [
-#           "    Default locale from setlang(); otherwise:",
-#           babel.units.format_unit.__doc__,
-#       ],
-#   )
-#   return setlang._locale
-
-
-class Category(enum.EnumMeta):
-    """MetaClass for Categorized (not for public use)."""
-
-    def __contains__(self, item):
-        """Check if item is in self"""
-        return (
-            isinstance(item, enum.Enum)
-            and hasattr(self, item.name)
-            and item.value == self[item.name].value
-        )
-
-    def __and__(self, other):
-        """Intersection"""
-        if not isinstance(other, collections.abc.Iterable):
-            other = [other]
-        return category(member for member in other if member in self)
-
-    def __rand__(self, other):
-        """Intersection (from right)"""
-        return self & other
-
-    def __or__(self, other):
-        """Union"""
-        if not isinstance(other, collections.abc.Iterable):
-            other = [other]
-        union = list(self)
-        for member in other:
-            if isinstance(member, Categorized) and member not in self:
-                union.append(member)
-        return category(union)
-
-    def __ror__(self, other):
-        """Union (from right)"""
-        return self | other
-
-    def __sub__(self, other):
-        """Difference"""
-        return category(x for x in self if x not in (self & other))
-
-    def __xor__(self, other):
-        """Symmetric difference"""
-        return (self | other) - (self & other)
-
-    def __rxor__(self, other):
-        """Symmetric difference (from right)"""
-        return self ^ other
-
-    def __str__(self):
-        return format_list(list(self))
-
-    def __repr__(self):
-        return f"<category {self.__name__}>"
-
-    def __getitem__(self, indexOrSlice):
-        if isinstance(indexOrSlice, (int, slice)):
-            return list(self)[indexOrSlice]
-        else:
-            return enum.EnumMeta.__getitem__(self, indexOrSlice)
-
-    def __bool__(self):
-        return len(self) > 0
-
-    def __hash__(self):
-        return hash(repr(self))
-
-    def __eq__(self, other):
-        """Equality"""
-        if isinstance(other, Category):
-            return self >= other and other >= self
-        else:
-            return enum.EnumMeta.__eq__(self, other)
-
-    def __neq__(self, other):
-        """Inequality"""
-        return not (self == other)
-
-    def __ge__(self, other):
-        """Check if all of other are in self"""
-        if not isinstance(other, collections.abc.Iterable):
-            other = [other]
-        return all(member in self for member in other)
-
-    def __le__(self, other):
-        """Check if all of self are in other"""
-        if not isinstance(other, collections.abc.Iterable):
-            other = [other]
-        return all(member in other for member in self)
-
-    def __lt__(self, other):
-        """Is proper subset"""
-        return self <= other and not self >= other
-
-    def __gt__(self, other):
-        """Is proper superset"""
-        return self >= other and not self <= other
-
-
-class Categorized(enum.Enum, metaclass=Category):
-    """Derive from this class to define a new Category. e.g.:
-
-        class BoardOption(Categorized):
-            HASH = collections.namedtuple("BoardValue", "STR AX")(
-                _("a hash"),
-                hash_board,
-            )
-
-    This creates a BoardOption Category with only one member: BoardOption.HASH.
-    BoardOption.HASH has two attributes, STR and AX. The AX is a function named
-    "hash_board".
-
-    If a member has an attribute named "STR", then that's how that member will
-    print; if it has an attribute named "CALL", then that's what will call when
-    that member is fed arguments; if the CALL is a tuple class
-    (e.g. NamedTuple), then feeding arguments to that member will transform it
-    into an instance of that tuple class. The translation function, _(), is
-    applied to print and all attribute gets.
-
-    See https://docs.python.org/3/library/enum.html for information
-    about Enums in general.
-
-    Categories support set functions. e.g. each of the following is True:
-
-        isinstance(Color, Category)
-        isinstance(Color.BLACK, Categorized)
-        PlayerColor < Color
-        PlayerColor.BLACK == Color.BLACK
-        Color.BLACK in (PlayerColor - (Color.WHITE, PlayerColor.PINK))
-        (PlayerColor ^ Color) >= (PlayerColor | Color.GRAY) - (Color & PlayerColor)
-
-    "&"  yeilds set intersection
-    "|"  yeilds set union
-    "-"  yeilds set difference
-    "^"  yeilds set symmetric difference
-    "==" means members have the same names and values
-    ">=" means contains
-    ">"  means is proper superset
-    "<"  means is proper subset
-
-    Raises: AttributeError upon attempt to add, delete, or change a member
-        attribute
-    """
-
-    def __getattr__(self, name):
-        if (
-            name == "_value_"
-            or not hasattr(self, "_value_")
-            or not hasattr(self._value_, name)
-        ):
-            return enum.Enum.__getattribute__(self, name)
-        else:
-            return _(getattr(self._value_, name))
-
-    def __setattr__(self, name, new_value):
-        if (
-            name == "_value_"
-            or not hasattr(self, "_value_")
-            or not hasattr(self._value_, name)
-        ):
-            enum.Enum.__setattr__(self, name, new_value)
-        else:
-            raise AttributeError(
-                "Can't change attribute (name: {name}) "
-                "of {enum}".format(name=name, enum=repr(self))
-            )
-
-    def __delattr__(self, name):
-        if hasattr(self, "_value_") and hasattr(self._value_, name):
-            raise AttributeError(
-                "Can't delete attribute (name: {name}) "
-                "of {enum}".format(name=name, enum=repr(self))
-            )
-        else:
-            enum.Enum.__delattr__(self, name)
-
-    def __dir__(self):
-        result = enum.Enum.__dir__(self)
-        for name in dir(self._value_):
-            if name not in result:
-                result.append(name)
-        return sorted(result)
-
-    def __str__(self):
-        return self.STR if hasattr(self, "STR") else _(str(self.value))
-
-    def __hash__(self):
-        return hash(repr(self))
-
-    def __reduce_ex__(self):
-        return enum.Enum.__reduce_ex__(self)
-
-    def __call__(self, *args, **kwargs):
-        if hasattr(self, "CALL"):
-            if hasattr(self.CALL, "__base__") and self.CALL.__base__ == tuple:
-                obj = object.__new__(self.__class__)
-                obj._value_ = self.CALL(*args, **kwargs)
-                obj._name_ = self.name
-                return obj
-            else:
-                return self.CALL(self, *args, **kwargs)
-        else:
-            return self
-
-    def __eq__(self, other):
-        """To support call that creates new instance"""
-        return (self.name == other.name) and (self.value == other.value)
-
-    def __neq__(self, other):
-        """To support call that creates new instance"""
-        return not (self == other)
-
-    def __int__(self):
-        return list(type(self)).index(self)
-
-
-def category(*members: List[Categorized], name: str = "Categorized") -> "Category":
-    """Generate Category from members of other Categories. e.g.:
-
-    category(Color.BLACK, Marker.CIRCLE)
-    """
-
-    members = (members[0],) if len(members) == 1 else members
-    classdict = Category.__prepare__(name, (Categorized,))
-    for member in members:
-        if not isinstance(member, Categorized):
-            raise TypeError(
-                """'{member}' object cannot be interpreted as a Categorized""".format(
-                    member=type(member).__name__
-                )
-            )
-        if member.name in classdict:
-            if classdict[member.name] != member.value:
-                raise TypeError(
-                    f"""Attemped to reuse key: '{member.name}'"""
-                )
-        else:
-            classdict[member.name] = member.value
-    category = Category.__new__(Category, name, (Categorized,), classdict)
-    category.__module__ = __name__
-    category.__qualname__ = Categorized.__qualname__
-    bases: List[Category] = []
-    for member in reversed(members):
-        member_bases = getattr(member, "_catbases_", [member.__class__])
-        for base in member_bases:
-            if base not in bases:
-                bases.insert(0, base)
-                names = [item.name for item in list(base)]
-                for attr in list(base.__dict__):
-                    if attr not in enum.Enum.__dict__ and attr not in names:
-                        setattr(category, attr, getattr(base, attr))
-    category._catbases_ = bases if name == "Categorized" else [category]
-    if len(bases) == 1:
-        category.__doc__ = bases[0].__doc__
-    else:
-        base_list = format_list([base.__name__ for base in category._catbases_])
-        category.__doc__ = """A Category derived from
-            {bases}""".format(
-            bases=base_list
-        )
-    return category
-
-
-class Color(Categorized):
+class Color(category.Categorized):
     """Color used in a game. E.g.
 
       Color.BLACK
@@ -501,6 +102,8 @@ class Color(Categorized):
       STR: A localized str to name the color. How the Color prints.
       HEX: A str of the hex code to communicate the Color to computers.
     """
+
+    _ignore_ = "ColorValue"
 
     class ColorValue(NamedTuple):
         STR: str
@@ -534,7 +137,7 @@ class Color(Categorized):
     GRAY = ColorValue(STR=_("gray"), HEX="#929591")
 
 
-PlayerColor = category(list(Color)[0:4], name="PlayerColor")
+PlayerColor = category.category(*Color[0:4], name="PlayerColor")  # type: ignore[misc]
 
 
 class Layout(enum.IntEnum):
@@ -549,7 +152,7 @@ class Layout(enum.IntEnum):
     MARKER_MARGIN = 8
 
 
-class Command(Categorized):
+class Command(category.Categorized):
     """Command from user to the application. E.g.:
 
       Command.NEW
@@ -559,6 +162,8 @@ class Command(Categorized):
       KEY (str): A localized shortcut key. Each Command tests == to
         its key as well as to itself, so Command.NEW=="n" in English
     """
+
+    _ignore_ = "CommandValue"
 
     class CommandValue(NamedTuple):
         STR: str
@@ -583,14 +188,14 @@ class Command(Categorized):
         return (
             other.lower() == self.KEY
             if type(other) is str
-            else Categorized.__eq__(self, other)
+            else category.Categorized.__eq__(self, other)
         )
 
     def __ne__(self: "Command", other) -> bool:
         return not self.__eq__(other)
 
 
-class PlayersOption(Categorized):
+class PlayersOption(category.Categorized):
     """Category of game by number/type of players. E.g.:
 
       PlayersOption.TWO
@@ -599,6 +204,8 @@ class PlayersOption(Categorized):
       str: A localized str to name the Category. How the PlayerOption prints.
       num_players: The (int) number of regular players.
     """
+
+    _ignore_ = "PlayersValue"
 
     class PlayersValue(NamedTuple):
         STR: str
@@ -611,13 +218,15 @@ class PlayersOption(Categorized):
     THREE = PlayersValue(STR=_("3-Player"), NUM=3)
 
 
-class Marker(Categorized):
+class Marker(category.Categorized):
     """Category of game piece by what marker is use to display it.
 
     Attributes:
       STR: A localized str to name the marker. How the Marker prints.
       CODE: The str used in pyplot for the marker.
     """
+
+    _ignore_ = "MarkerValue"
 
     class MarkerValue(NamedTuple):
         STR: str
@@ -627,7 +236,7 @@ class Marker(Categorized):
     CIRCLE = MarkerValue(STR=_("circle"), CODE="o")
 
 
-class StalemateOption(Categorized):
+class StalemateOption(category.Categorized):
     """The rule that determines how game ends if there is a stalemate.
     Prints localized str."""
 
@@ -635,7 +244,7 @@ class StalemateOption(Categorized):
     DRAW = _("stalemate draws")
 
 
-class ColorOption(Categorized):
+class ColorOption(category.Categorized):
     """The rule that determines how game ends if there is a stalemate.
     Prints localized str."""
 
@@ -643,8 +252,10 @@ class ColorOption(Categorized):
     ASSIGNED = _("Assigned Colors")
 
 
-class BoardOption(Categorized):
+class BoardOption(category.Categorized):
     """A type of board on which to play a game. Prints localized str. """
+
+    _ignore_ = "BoardValue"
 
     class BoardValue(NamedTuple):
         STR: str
@@ -675,7 +286,7 @@ class BoardOption(Categorized):
     HASH = BoardValue(STR=_("a hash"), AX=hash_board)
 
 
-class Directions(Categorized):
+class Directions(category.Categorized):
     """Categories of ways in which to move or build in square-tiled space. E.g:
 
       Directions.DIAGONAL(2)  # returns [(1,1), (1,-1), (-1,1), (-1,-1)]
@@ -693,29 +304,31 @@ class Directions(Categorized):
       A list of relative coordinates (tuples)
     """
 
+    _ignore_ = "DirectionsValue"
+
     class DirectionsValue(NamedTuple):
         STR: str
         CALL: Callable[[int], tuple]
 
     @functools.lru_cache(maxsize=8)
-    def any_direction(self: Directions, dimensions: int):
+    def any_direction(self: "Directions", dimensions: int):
         zero = tuple([0] * dimensions)
         unfiltered = itertools.product([1, 0, -1], repeat=dimensions)
         return tuple([np.array(x) for x in unfiltered if x != zero])
 
     @functools.lru_cache(maxsize=8)
-    def orthogonal(self: Directions, dimensions: int):
+    def orthogonal(self: "Directions", dimensions: int):
         return tuple(np.identity(dimensions, dtype=int))
 
     @functools.lru_cache(maxsize=8)
-    def diagonal(self: Directions, dimensions: int):
+    def diagonal(self: "Directions", dimensions: int):
         orthogonals = list(map(tuple, self.orthogonal(dimensions)))
         return tuple(
             [x for x in self.any_direction(dimensions) if tuple(x) not in orthogonals]
         )
 
     @functools.lru_cache(maxsize=8)
-    def knight(self: Directions, dimensions: int):
+    def knight(self: "Directions", dimensions: int):
         spots = []
         for spot in itertools.product([2, 1, 0, -1, -2], repeat=dimensions):
             inring = (spot.count(2) + spot.count(-2)) == 1
@@ -737,7 +350,7 @@ class Directions(Categorized):
     KNIGHT = DirectionsValue(STR=_("knight move"), CALL=knight)
 
 
-class Outcome(Categorized):
+class Outcome(category.Categorized):
     """Function to apply localized formatting to strings. E.g:
 
       Outcome.VICTORY(players=["Player 1"])
@@ -749,12 +362,14 @@ class Outcome(Categorized):
       The localized formated string.
     """
 
+    _ignore_ = "FormatValue"
+
     class FormatValue(NamedTuple):
         STR: str
         FORMAT: str
-        CALL: Callable[[List[str]], str]
+        CALL: Callable[["Outcome", List[str]], str]
 
-    def formatter(self: Outcome, players: List[str]) -> str:
+    def formatter(self: "Outcome", players: List[str]) -> str:
         return self.FORMAT.format(players=format_list(players))
 
     # TRANSLATOR: Labels {winners} as the winner(s) of a game
@@ -766,8 +381,10 @@ class Outcome(Categorized):
     )
 
 
-class CheckOption(Categorized):
+class CheckOption(category.Categorized):
     """Game rules checked at the end of each move. Prints localized str. """
+
+    _ignore_ = "PatternCheck"
 
     class PatternCheck(NamedTuple):
         STR: str
@@ -799,7 +416,7 @@ class PieceRules(NamedTuple):
     INITIAL_RESERVES: Tuple[int, ...]
 
     @property
-    def RESERVES_STR(self: PieceRules) -> str:
+    def RESERVES_STR(self: "PieceRules") -> str:
         """A constant localized str describing initial reserves for the
         piece. E.g.:
 
@@ -812,7 +429,7 @@ class PieceRules(NamedTuple):
             by_color.append(
                 _("{number} {color}").format(
                     number=self.INITIAL_RESERVES[index],
-                    color=str(list(Color)[index]).lower(),
+                    color=str(Color[index]).lower(),  # type: ignore[misc]
                 ),
             )
 
@@ -821,7 +438,7 @@ class PieceRules(NamedTuple):
         return _("{list} start in reserve").format(list=format_list(by_color))
 
     @property
-    def STRS(self: PieceRules) -> Tuple[str, ...]:
+    def STRS(self: "PieceRules") -> Tuple[str, ...]:
         """Get tuple of strings describing the rules for the piece. E.g.:
 
         piece.STRS
@@ -829,7 +446,7 @@ class PieceRules(NamedTuple):
         lines = [self.RESERVES_STR]
         return tuple(lines)
 
-    def __str__(self: PieceRules) -> str:
+    def __str__(self: "PieceRules") -> str:
         return "/n".join(self.STRS)
 
 
@@ -888,7 +505,7 @@ class Game(NamedTuple):
             lines.append(
                 _("{shape}: {rules}")
                 .format(
-                    shape=str(Marker[index]),
+                    shape=str(Marker[index]),  # type: ignore[misc]
                     rules=format_list(list(self.PIECES[index].STRS)),
                 )
                 .capitalize()
@@ -905,7 +522,7 @@ class Game(NamedTuple):
 
         game.RULES
         """
-        rule_list = list(self.MOVE_CHECKS)
+        rule_list: List[Union[CheckOption, StalemateOption]] = list(self.MOVE_CHECKS)
         rule_list.append(self.STALEMATE)
         # TRANSLATOR: Labels {rules} as rules of a game
         #  e.g. "Rules: First 3-same-color-in-a-row wins and stalemate draws"
@@ -934,7 +551,7 @@ class Game(NamedTuple):
         return (spot_size * Layout.POINTS_PER_INCH - Layout.MARKER_MARGIN) ** 2
 
 
-class DefaultName(Categorized):
+class DefaultName(category.Categorized):
     """Default names for players. Prints localized str. """
 
     # TRANSLATOR: Default name for a player in a game (independent of order)
@@ -950,7 +567,7 @@ class DefaultName(Categorized):
     PLAYER_FOUR = _("Player 4")
 
 
-class PlayerType(Categorized):
+class PlayerType(category.Categorized):
     """Types of players. Prints localized str. """
 
     # TRANSLATOR: A type of player in a game
@@ -975,7 +592,7 @@ class Placement(NamedTuple):
     COLOR: Color = Color.BLACK
     MARKER: Marker = Marker.CIRCLE
 
-    def __str__(self: Placement) -> str:
+    def __str__(self: "Placement") -> str:
         # TRANSLATOR: Names a placement in a game e.g. "Black circle to (1,2)"
         return (
             _("{color} {shape} to {destination}")
@@ -989,14 +606,14 @@ class Jump(NamedTuple):
     FROM: Tuple[int, ...]
     TO: Tuple[int, ...]
 
-    def __str__(self: Jump) -> str:
+    def __str__(self: "Jump") -> str:
         # TRANSLATOR: Names a move in a game e.g. "(2,3) to (1,2)
         return _("{origin} to {destination}").format(
             origin=self.FROM, destination=self.TO
         )
 
 
-class Move(Categorized):
+class Move(category.Categorized):
     """A type of move in a game. Prints localized str. Examples:
 
       Move.PASS
@@ -1013,9 +630,11 @@ class Move(Categorized):
       FROM (in JUMP only): Tuple of integers specifying the origin coordinates.
     """
 
+    _ignore_ = "MoveValue"
+
     class MoveValue(NamedTuple):
         STR: str
-        CALL: Union[Jump, Placement]
+        CALL: Any
 
     # TRANSLATOR: Move in a game when the player forfeits their turn
     PASS = _("Pass")
@@ -1040,7 +659,8 @@ class Move(Categorized):
 # otherwise the strings will get translated upon declaration, and that will
 # prevent us from changing language later (since we will have lost the original
 # strings)
-# x = setlang("")
+setlang = babelwrap.SetLang(globals())
+setlang("")
 
 
 # defaults['misc']['title'] = _('Command Line Tic-Tac-Toe')
