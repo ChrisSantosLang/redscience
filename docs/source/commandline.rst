@@ -4,6 +4,10 @@ Command Line Tic-Tac-Toe
 Requirements
 ------------
 
+*(Various words are underlined in this first set of requirements to 
+give a sense of what an ontology would have to include. Note that 
+it would have to include more than what is bolded here!)* 
+
 Write a program that allows two **humans** (sharing the same keyboard) 
 to play **Tic-Tac-Toe** at the **command prompt**, with **options** 
 at any point to **quit**, **undo the last move**, or 
@@ -19,12 +23,12 @@ automatically pass).
 The program should contain the following **rules** as a **constant**, 
 and the rules should determine how **play** proceeds: 
 
-  Played on **hash** (**3,3**)
-  **2-Player**
-  **Assigned Colors**
-  **Circle**: 5 **black** and 4 **white** start in **reserve**
-  **First 3-same-color-in-a-row** **wins**
-  Stalemate **draws**
+* Played on **hash** (**3,3**)
+* **2-Player**
+* **Assigned Colors**
+* **Circle**: 5 **black** and 4 **white** start in **reserve**
+* **First 3-same-color-in-a-row** **wins**
+* Stalemate **draws**
 
 In general, a game move is either a pass, a 
 **request to call it a draw**, **agreement**/**rejection** of such a 
