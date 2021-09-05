@@ -1,3 +1,4 @@
+==========
 Curriculum
 ==========
 
@@ -10,26 +11,32 @@ see fit.
 
 Software development is typically divided into jobs or tasks:
  
-* **Business Analysis/Ontology**: Anticipate what users will desire 
+Business Analysis/Ontology:
+  Anticipate what users will desire 
   as the platform evolves. Decide what to calculate/monitor, and how 
   to define entities (e.g. games, users, bots, etc). Document the 
   workflows to be tested.
-* **UI Design**: Anticipate the diversity of direct users 
+UI Design: 
+  Anticipate the diversity of direct users 
   (differences in training, devices, interests, etc.) Choose 
   phrasings, colors, shapes/fonts, sizes, patterns, widgets, layouts
   and navigation. Document mock-ups and the wording of messages.
-* **Database Architecture**: Anticipate potential reuse of 
+Database Architecture: 
+  Anticipate potential reuse of 
   information. Choose names for database tables and columns, and 
   document their definitions and indexes.
-* **Software Architecture**: Anticipate code 
+Software Architecture: 
+  Anticipate code 
   writing/fixing/enhancing/evolving. Establish code languages and 
   tools for editing, debugging, deploying, and versioning code. 
   Divide the planned code into logical (reusable) units, and create 
   technical documentation and automated tests for each.
-* **Pseudocoding**: Rewrite the documentation of each code unit as 
+Pseudocoding: 
+  Rewrite the documentation of each code unit as 
   ordered “To do” comments. Identify code units to be employed from 
   existing code libraries.
-* **Coding**: Write, test, debug, and deploy the code.
+Coding: 
+  Write, test, debug, and deploy the code.
 
 This curriculum assumes that you might wish only to code. You can expect 
 it to provide the completed deliverables for all other tasks. 
@@ -51,7 +58,7 @@ don’t have to follow the suggestions of the pseudocode. If you have
 a better idea, please share it with us, so we can suggest it to future 
 coders.
 
-This project is divided into :doc:`releases/releases`. Each builds upon the previous. 
+This project is divided into :doc:`/releases/releases`. Each builds upon the previous. 
 This curriculum provides Requirements, a Testing Plan, and Potential 
 Mockups for each Release. Together, these documents communicate the 
 scope of the Release.  
@@ -63,7 +70,7 @@ skills later, but our first priority is to make sure we are on the
 same page, so feel free to follow the "How to" articles to the letter.
 
 Start by reviewing the Requirements, a Testing Plan, and Potential 
-Mockups for the first Release (:doc:`releases/commandline`), then begin 
+Mockups for the first Release (:doc:`/releases/commandline`), then begin 
 with :doc:`devenvironment`.
 
 
