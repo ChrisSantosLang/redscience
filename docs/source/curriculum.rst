@@ -65,3 +65,12 @@ same page, so feel free to follow the "How to" articles to the letter.
 After reviewing the Requirements, a Testing Plan, and Potential 
 Mockups for the first Release (Command Line Tic-Tic-Toe), begin 
 with How to Setup You Development Environment.
+
+
+.. toctree::
+   :maxdepth: 4
+
+   commandline
+   devenvironment
+   releases
+
