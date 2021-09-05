@@ -47,7 +47,7 @@ cause more damage in the long-run, but truth has its own sting!
 Next Steps
 ----------
 
-You can learn more via the documentation. If you choose truth, 
+You can learn more via the 'documentation <https://chrissantoslang-redscience.readthedocs.io/en/latest/index.html>`_. If you choose truth, 
 and cannot find an existing redscience website on which to explore, then you 
 can make your own by… 
 
