@@ -146,17 +146,16 @@ class Categorized(enum.Enum, metaclass=Category):
                 AX: Callable[[matplotlib.figure.Figure, tuple], 
                     matplotlib.axes.Axes]
             HASH = BoardValue(STR=_("a hash"), AX=hash_board)
-
-    This assumes the existence of a function named ``hash_board``. It 
-    creates a ``Category`` named ``BoardOption`` with only one member, 
-    ``BoardOption.HASH``, which has two attributes: 
-    ``BoardOption.HASH.STR`` and ``BoardOption.HASH.AX`` (where 
-    ``BoardOption.HASH.AX`` is the ``hash_board`` function).
     
     Raises:
         AttributeError: Upon attempt to add, delete, or change a member
             or an attribute of a member of a ``Category``.
 
+    The above example assumes the existence of a function named ``hash_board``. 
+    It creates a ``Category`` named ``BoardOption`` with only one member, 
+    ``BoardOption.HASH``, which has two attributes: ``BoardOption.HASH.STR`` 
+    and ``BoardOption.HASH.AX`` (which is the ``hash_board`` function).
+    
     If a member has an attribute named "STR", then that's how that member will
     print. The translation function, ``_()``, is applied when printing and when
     getting any attributes (see the ``babelwrap`` module). For the above example, 
@@ -186,7 +185,7 @@ class Categorized(enum.Enum, metaclass=Category):
             PASS = _("Pass")
             JUMP = MoveValue(STR=_("Reposition"), CALL=Jump)
     
-    ...there are only two *kinds* of moves, and 
+    ...there are only two *kinds* of moves, so 
     ``ipywidgets.Dropdown(options=Move)`` would yield a dropdown with only 
     two options (displayed as the locale translations of "Pass" and 
     "Reposition"), but the following would yield a dropdown with four 
@@ -227,17 +226,26 @@ class Categorized(enum.Enum, metaclass=Category):
         PlayerColor.BLACK == Color.BLACK
         Color.BLACK in (PlayerColor - (Color.WHITE, PlayerColor.PINK))
         (PlayerColor ^ Color) >= (PlayerColor | Color.GRAY) - (Color & PlayerColor)
-
-    :&:  yeilds set intersection
-    :|:  yeilds set union
-    :-:  yeilds set difference
-    :^:  yeilds set symmetric difference
-    :==: means members have the same names and values
-    :>=: means contains
-    :>:  means is proper superset
-    :<:  means is proper subset
+    
+    &  
+        yeilds a Category composed of the set intersection
+    |  
+        yeilds a Category composed of the set union
+    -  
+        yeilds a Category composed of the set difference
+    ^  
+        yeilds a Category composed of the set symmetric difference
+    == 
+        tests whether members have the same names and values
+    >= 
+        tests whether a Category contains certain member(s)
+    >  
+        test whether a Category is a proper superset 
+    <  
+        test whether a Category is a proper subset
         
-    Categories inherit from Enums. Learn about Enums at 
+    Categories inherit from Enums. Learn about ``_ignore_`` and 
+    other features inherited from Enum at 
     https://docs.python.org/3/library/enum.html.
     """
 
