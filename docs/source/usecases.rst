@@ -74,16 +74,16 @@ Use Cases
    in the *Volunteer* game depends upon prevailing social norms: 
 
    #. Create a private universe in which you train all tools to play 
-      Volunteer via turn-taking (i.e. “You volunteered last time, now it’s 
+      *Volunteer* via turn-taking (i.e. “You volunteered last time, now it’s 
       my turn”). Confirm that the social norms of that universe push all 
       tools towards turn-taking.
    #. Create a separate private universe in which you train all tools to 
-      play Volunteer via caste (i.e. whoever got the better deal last time 
+      play *Volunteer* via caste (i.e. whoever got the better deal last time 
       gets it again). Confirm that the social norms of that universe push 
       all tools towards a caste system (i.e. turn-taking backfires). 
    #. Create a third private universe composed half of players copied from 
       the turn-taking universe and half of players copied from the caste 
-      universe. Which norm survives a Volunteer tournament? Similarly test 
+      universe. Which norm survives a *Volunteer* tournament? Similarly test 
       other population ratios to find the minimum ratio for the other norm 
       to survive. 
 
