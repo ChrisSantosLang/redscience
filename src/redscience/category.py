@@ -148,24 +148,24 @@ class Categorized(enum.Enum, metaclass=Category):
             HASH = BoardValue(STR=_("a hash"), AX=hash_board)
 
     This assumes the existence of a function named named ``hash_board``. It 
-    creates a ``Category`` named ``BoardOption`` with only one member: 
-    ``BoardOption.HASH``. ``BoardOption.HASH`` has two attributes, 
+    creates a ``Category`` named ``BoardOption`` with only one member, 
+    ``BoardOption.HASH``, which has two attributes: 
     ``BoardOption.HASH.STR`` and ``BoardOption.HASH.AX`` (where 
     ``BoardOption.HASH.AX`` is the ``hash_board`` function).
     
     Raises: 
-        ``AttributeError`` upon attempt to add, delete, or change a member
+        AttributeError upon attempt to add, delete, or change a member
         or an attribute of a member of a ``Category``.
 
     If a member has an attribute named "STR", then that's how that member will
     print. The translation function, ``_()``, is applied when printing and when
     getting any attributes (see the ``babelwrap`` module). For the above example, 
-    the following would print "a hash" in the language of the set locale ::
+    the following would print "a hash" in the language of the set locale::
     
         str(BoardOption.HASH)
     
-    If a member has an attribute named "CALL", then that's what will call when
-    that member is called; if the CALL is a tuple class (e.g. ``NamedTuple``), 
+    If a member has an attribute named "CALL", then it will be invoked when
+    that member is called. If the CALL is a tuple class (e.g. ``NamedTuple``), 
     then calling that member will transform that member's attributes into 
     the attributes of an instance of that tuple class (initialized with the 
     called parameters). For example, assuming the following::
@@ -188,15 +188,17 @@ class Categorized(enum.Enum, metaclass=Category):
     
     ...there are only two *kinds* of moves, and 
     ``ipywidgets.Dropdown(options=Move)`` would yield a dropdown with only 
-    two options (the locale translations of "Pass" and "Reposition"), but the 
-    following would yield a dropdown with four moves::
+    two options (displayed as the locale translations of "Pass" and 
+    "Reposition"), but the following would yield a dropdown with four 
+    options, displayed as the the locale translations of "(0,0) to (1,1)", 
+    "(1,1) to (2,3)", "(1,1) to (0,0)", and "Pass"::
     
         ipywidgets.Dropdown(options=(
             Move.JUMP(FROM=(0,0), TO=(1,1)),
             Move.JUMP(FROM=(1,1), TO=(2,3)),
             Move.JUMP(FROM=(1,1), TO=(0,0)),
             Move.PASS,
-        )
+        ))
 
     Categories support set operations. For example, assuming the following::
     
@@ -226,16 +228,16 @@ class Categorized(enum.Enum, metaclass=Category):
         Color.BLACK in (PlayerColor - (Color.WHITE, PlayerColor.PINK))
         (PlayerColor ^ Color) >= (PlayerColor | Color.GRAY) - (Color & PlayerColor)
 
-    :&:  yeilds set intersection
-    :|:  yeilds set union
-    :-:  yeilds set difference
-    :^:  yeilds set symmetric difference
-    :==: means members have the same names and values
-    :>=: means contains
-    :>:  means is proper superset
-    :<:  means is proper subset
+    &:  yeilds set intersection
+    |:  yeilds set union
+    -:  yeilds set difference
+    ^:  yeilds set symmetric difference
+    ==: means members have the same names and values
+    >=: means contains
+    >:  means is proper superset
+    <:  means is proper subset
         
-    Categories inherit from Enums. To learn about Enums, see 
+    Categories inherit from Enums. Learn about Enums at 
     https://docs.python.org/3/library/enum.html.
     """
 
@@ -317,7 +319,7 @@ def category(*members: Iterable[Categorized], name: str = "Categorized") -> type
         category(Color.BLACK, Marker.CIRCLE)
         
     Raises: 
-        ``TypeError`` upon attempt to combine non-equal members with the 
+        TypeError upon attempt to combine non-equal members with the 
         same name.
     """
 
