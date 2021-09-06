@@ -27,32 +27,41 @@ _SOURCE_LANGUAGE = "en"
 
 class SetLang:
     """
-    Installs the setlang function. e.g.::
+    Sets-up functions for internationalization. e.g.::
     
       import babelwrap
       setlang = babelwrap.SetLang(globals())
 
     Args:
+      globals_dict (dict): The namespace for the function. 
+
+    Returns: 
+      A function for getting/setting the ``babel.core.Locale``.
+      
+    Assuming the name of the module where you executed the above was
+    ``const``, ``const.setlang()`` would then have the following 
+    parameters and return:
+    
+    Args:
       *langs (str): locale names (e.g. "en_US") in order of preference. 
 
     Returns: 
       The ``babel.core.Locale`` associated with whichever language gets set. 
-      The previously set locale remains if no parameters are passed, so
+      When called with no parameters, the previously set locale remains, so
       ``setlang()`` with no parameters is the getter.
-      
-    Assuming the name of the module where you executed the above was
-    ``const``, a call to ``const.setlang()`` as follows would then
-    install the ``_()`` function and babel functions for the first 
-    locale it could match::
+    
+    For example, the following would set-up the ``_()`` function and the
+    babel functions in ``const`` for the first locale it could match::
 
-      const.setlang("zh_CN", "es_MX", "ar_TN", "en_US")
+      const.setlang("zh_Hans_HK", "zh_HK", "en_CA", "ar_TN")
 
-    ... however, it is more typical to install them for the default 
-    locale like this::
+    That form is useful for testing. Otherwise, it is more typical to set 
+    to the default locale by calling with parameter(s) guaranteed to have 
+    no match::
 
       const.setlang("")
 
-    The babel functions are then used as follows::
+    Either way, the babel functions are then used as follows::
 
       print(const.format_decimal(-12345.6789))
       print(const.format_percent(-12345.6789))
