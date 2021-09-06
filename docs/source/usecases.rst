@@ -2,15 +2,16 @@ Use Cases
 =========
 
 
-1. **Benchmark social designs (e.g. for an AI, or team of humans to make 
+1. **Benchmark social designs (e.g. for an AI or team of humans to make 
    policies or trade stocks).** Rather than serve as pawns in battles for 
    power, establish authority via simulations. You can benchmark different 
    team-sizes, personality ratios, curriculum ratios, and collaboration 
-   techniques (e.g. elitism vs pure democracy) on specific olympic events or 
+   techniques (e.g. elitism vs pure democracy) on specific games or 
    compare adaptability by benchmarking on diverse combinations of events 
-   never encountered before 
-   (see `math <https://figshare.com/articles/dataset/Varieties_of_Elitism/7052264>`_  
-   estimating potential gains from better-informed social engineering). For example,   
+   never encountered before (`rougher previous simulations <https://figshare.
+   com/articles/dataset/Varieties_of_Elitism/7052264>`_ estimate opportunity 
+   to advance the current rate of social progress by 3 to 25 times!). For 
+   example,   
 
    #. Identify the most comprehensive olympics via the comparison page, 
       identify the top team for that olympics via its leaderboard, and 
@@ -25,10 +26,10 @@ Use Cases
       strength?
 
    Note that the most comprehensive olympics will include cooperative games 
-   (like the Public Goods game), alliance games (like Risk), deception games 
-   (like Hide and Seek), and probabilistic games (like Poker), as well as 
-   traditionally competitive games (like Chess), so this approach to hedges 
-   against the potential for any real-world game (e.g. stock trading) to 
+   (like the *Public Goods game*), alliance games (like *Risk*), deception 
+   games (like *Hide and Seek*), and probabilistic games (like *Poker*), 
+   as well as traditionally competitive games (like *Chess*), so this approach 
+   hedges against the potential for any real-world game (e.g. stock trading) to 
    shift in any of these directions.
 
 2. **Find the skills of the future.** We create more comprehensive olympics by 
@@ -67,10 +68,10 @@ Use Cases
       a religious teacher, or an algorithm encoded in a scripture or law, 
       etc.)?
 
-   WARNING: This can be humbling! But humility might come in handy...
+.. warning:: This can be humbling! But humility might come in handy...
 
 4. **Elevate reality above experimentation.** For example, the best strategy 
-   in the Volunteer game depends upon prevailing social norms: 
+   in the *Volunteer* game depends upon prevailing social norms: 
 
    #. Create a private universe in which you train all tools to play 
       Volunteer via turn-taking (i.e. “You volunteered last time, now it’s 
