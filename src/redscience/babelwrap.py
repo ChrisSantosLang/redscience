@@ -1,34 +1,11 @@
 #!/usr/bin/env python3
-"""Application-specific wrapper for babel.
+"""
+An application-specific wrapper for babel.
 
-To use this module, execute the following in the module where you
-want your internationalization to happen (after setting enums):
-
-  import babelwrap
-  setlang = babelwrap.SetLang(globals())
-  setlang("")
-
-Assuming the name of the module where you executed the above was
-"const", a call to setlang() as follows sets the first locale it
-can match:
-
-  const.setlang("zh_CN", "es_MX", "ar_TN", "en_US")
-
-... however, it is more typical to restore the default like this:
-
-  const.setlang("")
-
-Either call to setlang() sets the locale for these babel functions
-described at http://babel.pocoo.org/en/latest/api/numbers.html,
+see http://babel.pocoo.org/en/latest/api/numbers.html,
 http://babel.pocoo.org/en/latest/api/units.html,
 http://babel.pocoo.org/en/latest/api/dates.html, and
-http://babel.pocoo.org/en/latest/api/lists.html:
-
-  print(const.format_decimal(-12345.6789))
-  print(const.format_percent(-12345.6789))
-  print(const.format_unit(-12345.6789, "second"))
-  print(const.format_datetime(datetime.datetime.now()))
-  chipmunks = const.format_list(["Alvin", "Simon", "Theodore"])
+http://babel.pocoo.org/en/latest/api/lists.html
 """
 
 import functools
@@ -48,23 +25,40 @@ _DOMAIN = "games"
 _LANG_DIR = "\\Users\\Chris.santos-lang\\locales"
 _SOURCE_LANGUAGE = "en"
 
-# for mypy
-# _ = format_list = format_decimal = format_percent = format_datetime = format_unit = None
-
-
 class SetLang:
-    """Sets the language of _() and returns the associated babel.core.Locale.
+    """
+    Installs the setlang function. e.g.::
+    
+      import babelwrap
+      setlang = babelwrap.SetLang(globals())
 
-    If no supported match can be found for langs, it will default to the
-      locale of the machine or to SOURCE_LANGUAGE, so 'setlang("")' would
-      restore to default.
+    Assuming the name of the module where you executed the above was
+    ``const``, a call to ``const.setlang()`` as follows would then
+    install the ``_()`` function and babel function for the first 
+    locale it can match::
+
+      const.setlang("zh_CN", "es_MX", "ar_TN", "en_US")
+
+    ... however, it is more typical to install for the default 
+    locale like this::
+
+      const.setlang("")
+
+    The babel functions are then used as follows::
+
+      print(const.format_decimal(-12345.6789))
+      print(const.format_percent(-12345.6789))
+      print(const.format_unit(-12345.6789, "second"))
+      print(const.format_datetime(datetime.datetime.now()))
+      chipmunks = const.format_list(["Alvin", "Simon", "Theodore"])
 
     Args:
       *langs (str): locale names in order of preference. e.g. "en_US"
 
-    Returns: The babel.core.Locale associated with the set langauge. It will
+    Returns: 
+      The babel.core.Locale associated with the set langauge. It will
       keep any previously set locale if no parameters are passed, so
-      'setlang()' is the getter.
+      ``setlang()`` is the getter.
     """
 
     _locale: str = ""
@@ -73,14 +67,15 @@ class SetLang:
     def __init__(self: "SetLang", globals_dict):
         self.globals_dict = globals_dict
 
-    def install(self: "SetLang", function):
+    def _install(self: "SetLang", function):
+        """Used by SetLang internally to install each babel function"""
         wrapper = functools.partial(function, locale=SetLang._locale)
         wrapper.__doc__ = "\n".join(
             ["    Default locale from setlang(); otherwise:", function.__doc__],
         )
         self.globals_dict[function.__name__] = wrapper
 
-    def __call__(self: "SetLang", *langs: str) -> babel.core.Locale:
+    def __call__(self: "SetLang", *langs: str) -> babel.core.Locale:        
         if SetLang._locale and not langs:
             return SetLang._locale
 
@@ -136,9 +131,9 @@ class SetLang:
                 )
             )
 
-        self.install(babel.lists.format_list)
-        self.install(babel.numbers.format_decimal)
-        self.install(babel.dates.format_datetime)
-        self.install(babel.numbers.format_percent)
-        self.install(babel.units.format_unit)
+        self._install(babel.lists.format_list)
+        self._install(babel.numbers.format_decimal)
+        self._install(babel.dates.format_datetime)
+        self._install(babel.numbers.format_percent)
+        self._install(babel.units.format_unit)
         return SetLang._locale
