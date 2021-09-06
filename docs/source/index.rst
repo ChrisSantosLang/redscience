@@ -6,6 +6,7 @@
    :name: mastertoc
 
    usecases
+   play
    curriculum
    modules
 
