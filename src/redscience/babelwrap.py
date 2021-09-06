@@ -68,7 +68,7 @@ class SetLang:
       print(const.format_percent(-12345.6789))
       print(const.format_unit(-12345.6789, "second"))
       print(const.format_datetime(datetime.datetime.now()))
-      chipmunks = const.format_list(["Alvin", "Simon", "Theodore"])
+      print(const.format_list(["Alvin", "Simon", "Theodore"]))
       
     """
 
