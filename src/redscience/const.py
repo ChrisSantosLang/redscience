@@ -1,34 +1,13 @@
 #!/usr/bin/env python3
 """Contains redscience constants plus functions for internationalization.
 
-Most constants in this module are encoded as a Category (a kind of
-Enum defined in this module) or as a NamedTuple. Each displays in the
-locale set via "setlang()", provided there are translations in an .mo
-file (named _DOMAIN) in a folder of _LANG_DIR matching the desired locale.
+Most constants in this module are encoded as a Category (see the 
+category module) or as a NamedTuple. Each displays in the
+locale set via ``setlang()`` (provided an .mo file for that locale can 
+be found in the appropriate folder). Regarding internationalization,
+see the babelwrap module.
 
-A call to setlang() as follows sets the first locale it can match:
-
-  setlang("zh_CN", "es_MX", "ar_TN", "en_US")
-
-... however, it is more typical to force the default like this:
-
-  setlang("")
-
-Either call to setlang() sets the locale for these babel functions
-described at http://babel.pocoo.org/en/latest/api/numbers.html,
-http://babel.pocoo.org/en/latest/api/units.html,
-http://babel.pocoo.org/en/latest/api/dates.html, and
-http://babel.pocoo.org/en/latest/api/lists.html:
-
-  print(format_decimal(-12345.6789))
-  print(format_percent(-12345.6789))
-  print(format_unit(-12345.6789, "second"))
-  print(format_datetime(datetime.datetime.now()))
-  chipmunks = format_list(["Alvin", "Simon", "Theodore"])
-
-Examples of using a NamedTuple (e.g. Game) or Category (e.g.
-Command) to get strings that display differently depending on
-the set locale:
+Examples::
 
   ttt=Game()
   print(ttt.RULES)
@@ -39,9 +18,6 @@ the set locale:
       tooltip=Command.QUIT.TOOLTIP,
       icon=Command.QUIT.ICON,
   )
-
-Example using attributes (such as Color "HEX" and Marker "CODE")
-that do not get translated:
 
   import matplotlib.pyplot as plt
   fig = plt.figure(1,(
@@ -94,13 +70,13 @@ def format_list(items: List[Any]) -> str:
 
 
 class Color(category.Categorized):
-    """Color used in a game. E.g.
+    """Color used in a game. E.g.::
 
-      Color.BLACK
+        Color.BLACK
 
     Attributes:
-      STR: A localized str to name the color. How the Color prints.
-      HEX: A str of the hex code to communicate the Color to computers.
+        STR (str): A localized name. How the Color prints.
+        HEX (str): A hex code to communicate the Color to computers.
     """
 
     _ignore_ = "ColorValue"
@@ -141,9 +117,9 @@ PlayerColor = category.category(*Color[0:4], name="PlayerColor")  # type: ignore
 
 
 class Layout(enum.IntEnum):
-    """Layout constants. E.g.:
+    """Layout constants. E.g.::
 
-    Layout.POINTS_PER_INCH
+      Layout.POINTS_PER_INCH
     """
 
     FIGURE_WIDTH = 5
@@ -153,14 +129,17 @@ class Layout(enum.IntEnum):
 
 
 class Command(category.Categorized):
-    """Command from user to the application. E.g.:
+    """Command from user to the application. E.g.::
 
-      Command.NEW
+        Command.NEW
 
     Attributes:
-      STR: A localized str. How the Command prints.
-      KEY (str): A localized shortcut key. Each Command tests == to
-        its key as well as to itself, so Command.NEW=="n" in English
+        STR (str): A localized name. How the Command prints.
+        KEY (str): A localized shortcut key. 
+    
+    Each Command tests == to its key as well as to itself. In English::
+    
+        Command.NEW == "n"
     """
 
     _ignore_ = "CommandValue"
@@ -196,13 +175,13 @@ class Command(category.Categorized):
 
 
 class PlayersOption(category.Categorized):
-    """Category of game by number/type of players. E.g.:
+    """Category of game by number/type of players. E.g.::
 
-      PlayersOption.TWO
+        PlayersOption.TWO
 
     Attributes:
-      str: A localized str to name the Category. How the PlayerOption prints.
-      num_players: The (int) number of regular players.
+        STR (str): A localized name. How the PlayerOption prints.
+        NUM (int): The number of regular players.
     """
 
     _ignore_ = "PlayersValue"
@@ -219,11 +198,13 @@ class PlayersOption(category.Categorized):
 
 
 class Marker(category.Categorized):
-    """Category of game piece by what marker is use to display it.
+    """Category of game piece by what marker is use to display it. E.g.::
+    
+        Marker.CIRCLE
 
     Attributes:
-      STR: A localized str to name the marker. How the Marker prints.
-      CODE: The str used in pyplot for the marker.
+        STR: A localized str to name the marker. How the Marker prints.
+        CODE: The str used in pyplot for the marker.
     """
 
     _ignore_ = "MarkerValue"
@@ -237,23 +218,38 @@ class Marker(category.Categorized):
 
 
 class StalemateOption(category.Categorized):
-    """The rule that determines how game ends if there is a stalemate.
-    Prints localized str."""
+    """Category of game by stalemate end it. E.g.::
+    
+        StalemateOption.DRAW
+
+    Prints localized str.
+    """
 
     # TRANSLATOR: Game rule that the game ends in a draw if there is a stalemate
     DRAW = _("stalemate draws")
 
 
 class ColorOption(category.Categorized):
-    """The rule that determines how game ends if there is a stalemate.
-    Prints localized str."""
+     """Category of game by how it treats colors. E.g.::
+    
+        ColorOption.ASSIGNED
+
+    Prints localized str.
+    """
 
     # TRANSLATOR: Game rule that each player is assigned their own unique color
     ASSIGNED = _("Assigned Colors")
 
 
 class BoardOption(category.Categorized):
-    """A type of board on which to play a game. Prints localized str. """
+    """Category of game board. E.g.::
+    
+        BoardOption.HASH
+
+    Attributes:
+        STR: A localized str to name the marker. How the BoardOption prints.
+        CODE: The str used in pyplot for the marker.
+    """
 
     _ignore_ = "BoardValue"
 
