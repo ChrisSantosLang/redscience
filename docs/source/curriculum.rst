@@ -75,7 +75,7 @@ with :doc:`devenvironment`.
 
 
 .. toctree::
-   :maxdepth: 4
+   :maxdepth: 2
 
    /source/releases/commandline
    devenvironment
