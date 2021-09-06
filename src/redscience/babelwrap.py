@@ -39,14 +39,15 @@ class SetLang:
       A function for getting/setting the ``babel.core.Locale``.
       
     Assuming the name of the module where you executed the above was
-    ``const``, ``const.setlang()`` would then have the following 
-    parameters and return:
+    ``const``, it would set-up the following:
+
+    **const.setlangs(*langs: str) -> babel.core.Locale**
     
     Args:
       *langs (str): locale names (e.g. "en_US") in order of preference. 
 
     Returns: 
-      The ``babel.core.Locale`` associated with whichever language gets set. 
+      The ``babel.core.Locale`` associated with whichever language got set. 
       When called with no parameters, the previously set locale remains, so
       ``setlang()`` with no parameters is the getter.
     
