@@ -2,10 +2,10 @@
 """
 An application-specific wrapper for babel.
 
-see http://babel.pocoo.org/en/latest/api/numbers.html,
+(also see http://babel.pocoo.org/en/latest/api/numbers.html,
 http://babel.pocoo.org/en/latest/api/units.html,
 http://babel.pocoo.org/en/latest/api/dates.html, and
-http://babel.pocoo.org/en/latest/api/lists.html
+http://babel.pocoo.org/en/latest/api/lists.html)
 """
 
 import functools
@@ -32,14 +32,22 @@ class SetLang:
       import babelwrap
       setlang = babelwrap.SetLang(globals())
 
+    Args:
+      *langs (str): locale names (e.g. "en_US") in order of preference. 
+
+    Returns: 
+      The ``babel.core.Locale`` associated with whichever language gets set. 
+      The previously set locale remains if no parameters are passed, so
+      ``setlang()`` with no parameters is the getter.
+      
     Assuming the name of the module where you executed the above was
     ``const``, a call to ``const.setlang()`` as follows would then
-    install the ``_()`` function and babel function for the first 
-    locale it can match::
+    install the ``_()`` function and babel functions for the first 
+    locale it could match::
 
       const.setlang("zh_CN", "es_MX", "ar_TN", "en_US")
 
-    ... however, it is more typical to install for the default 
+    ... however, it is more typical to install them for the default 
     locale like this::
 
       const.setlang("")
@@ -51,14 +59,7 @@ class SetLang:
       print(const.format_unit(-12345.6789, "second"))
       print(const.format_datetime(datetime.datetime.now()))
       chipmunks = const.format_list(["Alvin", "Simon", "Theodore"])
-
-    Args:
-      *langs (str): locale names in order of preference. e.g. "en_US"
-
-    Returns: 
-      The babel.core.Locale associated with the set langauge. It will
-      keep any previously set locale if no parameters are passed, so
-      ``setlang()`` is the getter.
+      
     """
 
     _locale: str = ""
