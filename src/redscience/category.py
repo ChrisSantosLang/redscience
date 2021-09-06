@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Class and functions for Category (a kind of Enum)
+Classes and functions for defining categories.
 """
 
 import collections
@@ -19,12 +19,20 @@ from typing import (
 
 
 def _(message: str) -> str:
-    """temporary for type hints (to be redefined for localization)"""
+    """
+    The name to be used for the function that returns the 
+    localized version of a str. Defined here only 
+    temporarily for type hints (to be redefined elsewhere).
+    """
     return message
 
 
 def format_list(items: List[Any]) -> str:
-    """temporary for type hints (to be redefined for localization)"""
+    """
+    The name to be used for the function that returns the 
+    localized string to describe a list. Defined here only 
+    temporarily for type hints (to be redefined elsewhere).
+    """
     return str(items)
 
 
@@ -128,29 +136,88 @@ class Category(enum.EnumMeta):
 
 
 class Categorized(enum.Enum, metaclass=Category):
-    """Derive from this class to define a new Category. e.g.:
+    """
+    Derive from this class to define a new Category. e.g.::
 
         class BoardOption(Categorized):
-            HASH = collections.namedtuple("BoardValue", "STR AX")(
-                _("a hash"),
-                hash_board,
-            )
+            _ignore_ = "BoardValue"
+            class BoardValue(NamedTuple):
+                STR: str
+                AX: Callable[[matplotlib.figure.Figure, tuple], 
+                    matplotlib.axes.Axes]
+            HASH = BoardValue(STR=_("a hash"), AX=hash_board)
 
-    This creates a BoardOption Category with only one member: BoardOption.HASH.
-    BoardOption.HASH has two attributes, STR and AX. The AX is a function named
-    "hash_board".
+    This assumes the existence of a function named named ``hash_board``. It 
+    creates a ``Category`` named ``BoardOption`` with only one member: 
+    ``BoardOption.HASH``. ``BoardOption.HASH`` has two attributes, 
+    ``BoardOption.HASH.STR`` and ``BoardOption.HASH.AX`` (where 
+    ``BoardOption.HASH.AX`` is the ``hash_board`` function).
+    
+    Raises: 
+        ``AttributeError`` upon attempt to add, delete, or change a member
+        or an attribute of a member of a ``Category``.
 
     If a member has an attribute named "STR", then that's how that member will
-    print; if it has an attribute named "CALL", then that's what will call when
-    that member is fed arguments; if the CALL is a tuple class
-    (e.g. NamedTuple), then feeding arguments to that member will transform it
-    into an instance of that tuple class. The translation function, _(), is
-    applied to print and all attribute gets.
+    print. The translation function, ``_()``, is applied when printing and when
+    getting any attributes (see the ``babelwrap`` module). For the above example, 
+    the following would print "a hash" in the language of the set locale ::
+    
+        str(BoardOption.HASH)
+    
+    If a member has an attribute named "CALL", then that's what will call when
+    that member is called; if the CALL is a tuple class (e.g. ``NamedTuple``), 
+    then calling that member will transform that member's attributes into 
+    the attributes of an instance of that tuple class (initialized with the 
+    called parameters). For example, assuming the following::
+    
+        class Jump(NamedTuple):
+            FROM: Tuple[int, ...]
+            TO: Tuple[int, ...]
+            def __str__(self: "Jump") -> str:
+                return _("{origin} to {destination}").format(
+                    origin=self.FROM, destination=self.TO
+                )
 
-    See https://docs.python.org/3/library/enum.html for information
-    about Enums in general.
+        class Move(Categorized):
+            _ignore_ = "MoveValue"
+            class MoveValue(NamedTuple):
+                STR: str
+                CALL: Any
+            PASS = _("Pass")
+            JUMP = MoveValue(STR=_("Reposition"), CALL=Jump)
+    
+    ...there are only two *kinds* of moves, and 
+    ``ipywidgets.Dropdown(options=Move)`` would yield a dropdown with only 
+    two options (the locale translations of "Pass" and "Reposition"), but the 
+    following would yield a dropdown with four moves::
+    
+        ipywidgets.Dropdown(options=(
+            Move.JUMP(FROM=(0,0), TO=(1,1)),
+            Move.JUMP(FROM=(1,1), TO=(2,3)),
+            Move.JUMP(FROM=(1,1), TO=(0,0)),
+            Move.PASS,
+        )
 
-    Categories support set functions. e.g. each of the following is True:
+    Categories support set operations. For example, assuming the following::
+    
+        class Color(Categorized):
+            _ignore_ = "ColorValue"
+            class ColorValue(NamedTuple):
+                STR: str
+                HEX: str
+            BLACK = ColorValue(STR=_("black"), HEX="#000000")
+            WHITE = ColorValue(STR=_("white"), HEX="#ffffff")
+            PINK = ColorValue(STR=_("pink"), HEX="#ff81c0")
+            YELLOW = ColorValue(STR=_("yellow"), HEX="#ffff14")
+            ORANGE = ColorValue(STR=_("orange"), HEX="#fdaa48")
+            BLUE = ColorValue(STR=_("blue"), HEX="#95d0fc")
+            PURPLE = ColorValue(STR=_("purple"), HEX="#bf77f6")
+            GREEN = ColorValue(STR=_("green"), HEX="#96f97b")
+            GRAY = ColorValue(STR=_("gray"), HEX="#929591")
+
+        PlayerColor = category(*Color[0:4], name="PlayerColor")
+        
+    ...each of the following is True::
 
         isinstance(Color, Category)
         isinstance(Color.BLACK, Categorized)
@@ -159,17 +226,17 @@ class Categorized(enum.Enum, metaclass=Category):
         Color.BLACK in (PlayerColor - (Color.WHITE, PlayerColor.PINK))
         (PlayerColor ^ Color) >= (PlayerColor | Color.GRAY) - (Color & PlayerColor)
 
-    "&"  yeilds set intersection
-    "|"  yeilds set union
-    "-"  yeilds set difference
-    "^"  yeilds set symmetric difference
-    "==" means members have the same names and values
-    ">=" means contains
-    ">"  means is proper superset
-    "<"  means is proper subset
-
-    Raises: AttributeError upon attempt to add, delete, or change a member
-        attribute
+    :&:  yeilds set intersection
+    :|:  yeilds set union
+    :-:  yeilds set difference
+    :^:  yeilds set symmetric difference
+    :==: means members have the same names and values
+    :>=: means contains
+    :>:  means is proper superset
+    :<:  means is proper subset
+        
+    Categories inherit from Enums. To learn about Enums, see 
+    https://docs.python.org/3/library/enum.html.
     """
 
     def __getattr__(self, name):
@@ -245,9 +312,13 @@ class Categorized(enum.Enum, metaclass=Category):
 
 
 def category(*members: Iterable[Categorized], name: str = "Categorized") -> type:
-    """Generate Category from members of other Categories. e.g.:
+    """Generate Category from members of other Categories. e.g.::
 
-    category(Color.BLACK, Marker.CIRCLE)
+        category(Color.BLACK, Marker.CIRCLE)
+        
+    Raises: 
+        ``TypeError`` upon attempt to combine non-equal members with the 
+        same name.
     """
 
     members = (members[0],) if len(members) == 1 else members
