@@ -39,7 +39,7 @@ specially-patterned regions of the board to display special rules for
 those regions. If a game has phases, hover over the title to preview 
 rules for future phases.
 
-For some games (e.g. "Hide and Seek"), different elements are visible 
+For some games (e.g. *Hide and Seek*), different elements are visible 
 to different players...
 
 Advancing Social Science
@@ -53,9 +53,8 @@ from inventing personalities, teams, and games that are in some way
 Clicking the "Login/Change User" button in the upper right corner allows 
 you to login or create a new account. As a logged-in user, you will see 
 a "Copy" button on game and player pages. You can click them to create 
-new games and players. If your inventions challenge the rest of the 
-community, then those inventions advance social science (which may 
-be used to engineer social institutions which are better in some way).
+new games and players. If your inventions challenge the rest of the user
+community, then those inventions advance social science.
 
 .. toctree::
    :maxdepth: 2
