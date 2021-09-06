@@ -153,9 +153,9 @@ class Categorized(enum.Enum, metaclass=Category):
     ``BoardOption.HASH.STR`` and ``BoardOption.HASH.AX`` (where 
     ``BoardOption.HASH.AX`` is the ``hash_board`` function).
     
-    Raises: 
-        AttributeError upon attempt to add, delete, or change a member
-        or an attribute of a member of a ``Category``.
+    Raises:
+        AttributeError: Upon attempt to add, delete, or change a member
+            or an attribute of a member of a ``Category``.
 
     If a member has an attribute named "STR", then that's how that member will
     print. The translation function, ``_()``, is applied when printing and when
@@ -228,14 +228,14 @@ class Categorized(enum.Enum, metaclass=Category):
         Color.BLACK in (PlayerColor - (Color.WHITE, PlayerColor.PINK))
         (PlayerColor ^ Color) >= (PlayerColor | Color.GRAY) - (Color & PlayerColor)
 
-    &:  yeilds set intersection
-    |:  yeilds set union
-    -:  yeilds set difference
-    ^:  yeilds set symmetric difference
-    ==: means members have the same names and values
-    >=: means contains
-    >:  means is proper superset
-    <:  means is proper subset
+    :&:  yeilds set intersection
+    :|:  yeilds set union
+    :-:  yeilds set difference
+    :^:  yeilds set symmetric difference
+    :==: means members have the same names and values
+    :>=: means contains
+    :>:  means is proper superset
+    :<:  means is proper subset
         
     Categories inherit from Enums. Learn about Enums at 
     https://docs.python.org/3/library/enum.html.
@@ -319,8 +319,8 @@ def category(*members: Iterable[Categorized], name: str = "Categorized") -> type
         category(Color.BLACK, Marker.CIRCLE)
         
     Raises: 
-        TypeError upon attempt to combine non-equal members with the 
-        same name.
+        TypeError: Upon attempt to combine non-equal members with the 
+            same name.
     """
 
     members = (members[0],) if len(members) == 1 else members
