@@ -147,7 +147,7 @@ class Categorized(enum.Enum, metaclass=Category):
                     matplotlib.axes.Axes]
             HASH = BoardValue(STR=_("a hash"), AX=hash_board)
 
-    This assumes the existence of a function named named ``hash_board``. It 
+    This assumes the existence of a function named ``hash_board``. It 
     creates a ``Category`` named ``BoardOption`` with only one member, 
     ``BoardOption.HASH``, which has two attributes: 
     ``BoardOption.HASH.STR`` and ``BoardOption.HASH.AX`` (where 
