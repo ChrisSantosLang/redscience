@@ -6,7 +6,7 @@ Most constants in this module are encoded as a ``Category`` (see the
 locale set via ``setlang()`` (provided an .mo file for that locale can 
 be found in the appropriate folder). See the ``babelwrap`` module 
 regarding internationalization. Use ``setrelease()`` to change the 
-release (and thus which Category members display).
+release (and thus *which* Category members display).
 
 Examples::
 
@@ -55,9 +55,9 @@ from typing import (
 
 # import babelwrap
 # import category
-import matplotlib
-import matplotlib.pyplot as plt
-import numpy as np
+# import matplotlib
+# import matplotlib.pyplot as plt
+# import numpy as np
 
 #!pip install portion
 #import portion as P
