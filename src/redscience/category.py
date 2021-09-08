@@ -141,16 +141,22 @@ class Categorized(enum.Enum, metaclass=Category):
                 STR: str
                 AX: Callable[[matplotlib.figure.Figure, tuple], 
                     matplotlib.axes.Axes]
-            HASH = BoardValue(STR=_("a hash"), AX=hash_board)
+                RELEASES: portion.interval.Interval = -P.empty()
+            HASH = BoardValue(STR = _("a hash"), AX = hash_board)
+            SQUARES = BoardValue(
+                STR = _("squares"), 
+                AX = squares_board,
+                RELEASES = P.closed(release("1.5.0"), P.inf),
+            )
     
     Raises:
         AttributeError: Upon attempt to add, delete, or change a member
             or an attribute of a member of a ``Category``.
 
-    The above example assumes the existence of a function named ``hash_board``. 
-    It creates a ``Category`` named ``BoardOption`` with only one member, 
-    ``BoardOption.HASH``, which has two attributes: ``BoardOption.HASH.STR`` 
-    and ``BoardOption.HASH.AX`` (which is the ``hash_board`` function).
+    The above example assumes the existence of functions named ``hash_board``
+    and ``squares_board``. It creates a ``Category`` named ``BoardOption`` with 
+    two members, ``BoardOption.HASH`` and 'BoardOption.SQUARES``, each of which 
+    has three attributes: ``STR``, ``AX`` and ``RELEASES``. 
     
     If a member has an attribute named "STR", then that's how that member will
     print. The translation function, ``_()``, is applied when printing and when
@@ -159,6 +165,12 @@ class Categorized(enum.Enum, metaclass=Category):
     
     >>> str(BoardOption.HASH)
     'a hash'
+    
+    If a member has an attribute named "RELEASES", then that member will appear
+    in the list only for those releases. For the above example, 
+    ``ipywidgets.Dropdown(options=BoardOption)`` would yield a dropdown with 
+    only the "a hash" option in ``release("1.0.0")``, but with *both* "a hash"
+    *and* "squares" in ``release("1.5.0")`` and above.
     
     If a member has an attribute named "CALL", then it will be invoked when
     that member is called. If the CALL is a tuple class (e.g. ``NamedTuple``), 
@@ -179,6 +191,7 @@ class Categorized(enum.Enum, metaclass=Category):
             class MoveValue(NamedTuple):
                 STR: str
                 CALL: Any
+                RELEASES: portion.interval.Interval = -P.empty()
             PASS = _("Pass")
             JUMP = MoveValue(STR=_("Reposition"), CALL=Jump)
     
@@ -203,6 +216,7 @@ class Categorized(enum.Enum, metaclass=Category):
             class ColorValue(NamedTuple):
                 STR: str
                 HEX: str
+                RELEASES: portion.interval.Interval = -P.empty()
             BLACK = ColorValue(STR=_("black"), HEX="#000000")
             WHITE = ColorValue(STR=_("white"), HEX="#ffffff")
             PINK = ColorValue(STR=_("pink"), HEX="#ff81c0")
@@ -233,14 +247,14 @@ class Categorized(enum.Enum, metaclass=Category):
     >>> (PlayerColor ^ Color) >= (PlayerColor | Color.GRAY) - (Color & PlayerColor)
     True
     
-    ``&``: yeilds a Category composed of the set intersection
-    ``|``: yeilds a Category composed of the set union
-    ``-``: yeilds a Category composed of the set difference
-    ``^``: yeilds a Category composed of the set symmetric difference
-    ``==``: tests whether members have the same names and values
-    ``>=``: tests whether a Category contains certain member(s)
-    ``>``: test whether a Category is a proper superset 
-    ``<``: test whether a Category is a proper subset
+    :``&``: yeilds a Category composed of the set intersection
+    :``|``: yeilds a Category composed of the set union
+    :``-``: yeilds a Category composed of the set difference
+    :``^``: yeilds a Category composed of the set symmetric difference
+    :``==``: tests whether members have the same names and values
+    :``>=``: tests whether a Category contains certain member(s)
+    :``>``: test whether a Category is a proper superset 
+    :``<``: test whether a Category is a proper subset
         
     Categories inherit ``_ignore_`` (and more) from Enums.
     
