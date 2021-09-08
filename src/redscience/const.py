@@ -57,7 +57,7 @@ import babelwrap
 import category
 # import matplotlib
 # import matplotlib.pyplot as plt
-# import numpy as np
+import numpy as np
 
 #!pip install portion
 #import portion as P
@@ -75,13 +75,14 @@ import category
   
 
 def release(name:str, min_parts:int=3) -> Tuple[Union[int,str], ...]:
-    """Translates a release name into sortable tuples. E.g.::
+    """Translates a release name into sortable tuples. E.g.:
     
-        release("1.0.1")
+    >>> release("1.0.1")
+    (1, 0, 1)
       
     Args:
-        name: The release name (e.g. "1.0.1.alpha")
-        min_parts: The minimum parts for the tuple. Default is 3.
+        name (str): The release name (e.g. "1.0.1.alpha")
+        min_parts (int): The minimum parts for the tuple. Default is 3.
         
     Returns:
         A tuple with one part per dot-delimitted part of the name (padded with
@@ -93,44 +94,48 @@ def release(name:str, min_parts:int=3) -> Tuple[Union[int,str], ...]:
     return tuple(int(part) if part.isnumeric() else part for part in parts)
   
 def isreleased(obj: Any)->bool:
-    """Test whether an object is released. E.g.::
+    """Tests whether an object is released. E.g.::
     
-        filter(isreleased, Color)
+    >>>isreleased(Color.BLACK)
+    True
     
     Args:
-        obj: The object in question
+        obj (object): The object in question
         
     Returns:
         True if the object is in the release that was set
         
     This function assumes that objects that might not be release have an
-    atrribute named "RELEASES" with all the releases in which to return True
+    attribute named "RELEASES" containing all the releases in which to return 
+    True.
     """
     return not hasattr(obj, "RELEASES") or _release in obj.RELEASES
   
-# def setrelease(name: Optional[str]=None)->str:
-#     """Get or set the release. E.g.::
+def setrelease(name: Optional[str]=None)->str:
+    """Get or set the release. E.g.::
     
-#         setrelease("1.1.0")
+    >>> setrelease("1.1.0")
+    (1, 1, 0)
     
-#     Args:
-#         name: The name of the release to set. If "", setrelease will set to 
-#             the version named in setup.cfg. If None, the previously set 
-#             release will be retained. Default to None.
+    Args:
+        name (str): The name of the release to set. If "", setrelease will set to 
+            the version named in setup.cfg. If None, the previously set 
+            release will be retained. Default to None.
         
-#     Returns:
-#         The set release.
+    Returns:
+        The set release as a tuple.
         
-#     This function stores the release in _release
-#     """
-#     global _release
-#     if _release and name==None: return _release
-#     if name and len(name) > 0: 
-#         _release = release(name)
-#     else:
-#         # get from setup.cfg
-#         _release = release("1.0.0")
-#     return _release
+    Note:
+        This function stores the release in _release
+    """
+    global _release
+    if _release and name==None: return _release
+    if name and len(name) > 0: 
+        _release = release(name)
+    else:
+        # get from setup.cfg
+        _release = release("1.0.0")
+    return _release
   
 # setrelease()
  
