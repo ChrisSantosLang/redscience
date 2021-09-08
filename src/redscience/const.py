@@ -55,7 +55,7 @@ from typing import (
 
 import babelwrap
 import category
-import matplotlib
+# import matplotlib
 # import matplotlib.pyplot as plt
 # import numpy as np
 
