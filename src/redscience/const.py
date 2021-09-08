@@ -459,25 +459,25 @@ class Outcome(category.Categorized):
     )
 
 
-class CheckOption(category.Categorized):
-    """Game rules checked at the end of each move. Prints localized str. """
+# class CheckOption(category.Categorized):
+#     """Game rules checked at the end of each move. Prints localized str. """
 
-    _ignore_ = "PatternCheck"
+#     _ignore_ = "PatternCheck"
 
-    class PatternCheck(NamedTuple):
-        STR: str
-        PATTERN: str
-        DIRECTIONS: Directions
-        OUTCOME: Outcome
+#     class PatternCheck(NamedTuple):
+#         STR: str
+#         PATTERN: str
+#         DIRECTIONS: Directions
+#         OUTCOME: Outcome
 
-    # TRANSLATOR: Game rule to award the win to any player that aranges three
-    # pieces of the same color in a row
-    THREE_SAME_COLOR_IN_ROW_WINS = PatternCheck(
-        STR=_("first 3-same-color-in-a-row wins"),
-        PATTERN="CCC",
-        DIRECTIONS=Directions.ANY,
-        OUTCOME=Outcome.VICTORY,
-    )
+#     # TRANSLATOR: Game rule to award the win to any player that aranges three
+#     # pieces of the same color in a row
+#     THREE_SAME_COLOR_IN_ROW_WINS = PatternCheck(
+#         STR=_("first 3-same-color-in-a-row wins"),
+#         PATTERN="CCC",
+#         DIRECTIONS=Directions.ANY,
+#         OUTCOME=Outcome.VICTORY,
+#     )
 
 
 class PieceRules(NamedTuple):
