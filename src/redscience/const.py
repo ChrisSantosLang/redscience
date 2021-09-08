@@ -53,8 +53,8 @@ from typing import (
     Union,
 )
 
-# import babelwrap
-# import category
+import babelwrap
+import category
 # import matplotlib
 # import matplotlib.pyplot as plt
 # import numpy as np
@@ -88,26 +88,25 @@ def release(name:str, min_parts:int=3) -> Tuple[Union[int,str], ...]:
         zeros if necessary to achieve min_parts). Unlike strings, the tuples 
         will sort correctly (the integer parts will be integers).
     """
-    
     parts = name.split(".")
     parts.extend(["0"]*(min_parts-len(parts)))
     return tuple(int(part) if part.isnumeric() else part for part in parts)
   
-# def isreleased(obj: Any)->bool:
-#     """Test whether an object is released. E.g.::
+def isreleased(obj: Any)->bool:
+    """Test whether an object is released. E.g.::
     
-#         filter(isreleased, Color)
+        filter(isreleased, Color)
     
-#     Args:
-#         obj: The object in question
+    Args:
+        obj: The object in question
         
-#     Returns:
-#         True if the object is in the release that was set
+    Returns:
+        True if the object is in the release that was set
         
-#     This function assumes that objects that might not be release have an
-#     atrribute named "RELEASES" with all the releases in which to return True
-#     """
-#     return not hasattr(obj, "RELEASES") or _release in obj.RELEASES
+    This function assumes that objects that might not be release have an
+    atrribute named "RELEASES" with all the releases in which to return True
+    """
+    return not hasattr(obj, "RELEASES") or _release in obj.RELEASES
   
 # def setrelease(name: Optional[str]=None)->str:
 #     """Get or set the release. E.g.::
