@@ -5,7 +5,8 @@ Most constants in this module are encoded as a Category (see the
 category module) or as a NamedTuple. Each displays in the
 locale set via ``setlang()`` (provided an .mo file for that locale can 
 be found in the appropriate folder). Regarding internationalization,
-see the babelwrap module.
+see the babelwrap module. Use ``setrelease()`` to change the release 
+(thus changing which Category members display).
 
 Examples::
 
@@ -36,77 +37,77 @@ Examples::
 
 """
 
-import collections
-import enum
-import functools
-import itertools
-from typing import (
-    Any,
-    Callable,
-    Dict,
-    Iterable,
-    List,
-    NamedTuple,
-    Optional,
-    Tuple,
-    Union,
-)
+# import collections
+# import enum
+# import functools
+# import itertools
+# from typing import (
+#     Any,
+#     Callable,
+#     Dict,
+#     Iterable,
+#     List,
+#     NamedTuple,
+#     Optional,
+#     Tuple,
+#     Union,
+# )
 
-import babelwrap
-import category
-import matplotlib
-import matplotlib.pyplot as plt
-import numpy as np
+# import babelwrap
+# import category
+# import matplotlib
+# import matplotlib.pyplot as plt
+# import numpy as np
 
 #!pip install portion
 #import portion as P
 
-_release: Optional[Tuple[Union[int,str], ...]] = None  # for type hint 
+# _release: Optional[Tuple[Union[int,str], ...]] = None  # for type hint 
 
 # Keep theses before setting Enums, so their values will be in the
 # language from which they can be translated
-def _(message: str) -> str:
-    return message
+# def _(message: str) -> str:
+#     return message
 
 
-def format_list(items: List[Any]) -> str:
-    return str(items)
+# def format_list(items: List[Any]) -> str:
+#     return str(items)
   
 
-def release(name:str, min_parts:int=3) -> Tuple[Union[int,str], ...]:
-    """Translates a release name into sortable tuples. E.g.::
+# def release(name:str, min_parts:int=3) -> Tuple[Union[int,str], ...]:
+#     """Translates a release name into sortable tuples. E.g.::
     
-        release("1.0.1")
+#         release("1.0.1")
       
-    Args:
-        name: The release name (e.g. "1.0.1.alpha")
-        min_parts: The minimum parts for the tuple. Default is 3.
+#     Args:
+#         name: The release name (e.g. "1.0.1.alpha")
+#         min_parts: The minimum parts for the tuple. Default is 3.
         
-    Returns:
-        A tuple with one part per dot-delimitted part of the name (padded with
-        zeros if necessary to achieve min_parts). Unlike strings, the tuples 
-        will sort correctly (the integer parts will be integers).
-    """
+#     Returns:
+#         A tuple with one part per dot-delimitted part of the name (padded with
+#         zeros if necessary to achieve min_parts). Unlike strings, the tuples 
+#         will sort correctly (the integer parts will be integers).
+#     """
     
-    parts = name.split(".")
-    parts.extend(["0"]*(min_parts-len(parts)))
-    return tuple(int(part) if part.isnumeric() else part for part in parts)
+#     parts = name.split(".")
+#     parts.extend(["0"]*(min_parts-len(parts)))
+#     return tuple(int(part) if part.isnumeric() else part for part in parts)
   
-def isreleased(obj: Any)->bool:
-    """Test whether an object is released. E.g.::
+# def isreleased(obj: Any)->bool:
+#     """Test whether an object is released. E.g.::
     
-        filter(isreleased, Color)
+#         filter(isreleased, Color)
     
-    Args:
-        obj: The object in question
+#     Args:
+#         obj: The object in question
         
-    Returns:
-        True if the object is in the release that was set
+#     Returns:
+#         True if the object is in the release that was set
         
-    This function assumes that objects that might not be release have an
-    atrribute named "RELEASES" with all the releases in which to return True
-    """
-    return not hasattr(obj, "RELEASES") or _release in obj.RELEASES
+#     This function assumes that objects that might not be release have an
+#     atrribute named "RELEASES" with all the releases in which to return True
+#     """
+#     return not hasattr(obj, "RELEASES") or _release in obj.RELEASES
   
 # def setrelease(name: Optional[str]=None)->str:
 #     """Get or set the release. E.g.::
@@ -721,8 +722,8 @@ def isreleased(obj: Any)->bool:
 # otherwise the strings will get translated upon declaration, and that will
 # prevent us from changing language later (since we will have lost the original
 # strings)
-setlang = babelwrap.SetLang(globals())
-setlang("")
+# setlang = babelwrap.SetLang(globals())
+# setlang("")
 
 # defaults['misc']['title'] = _('Command Line Tic-Tac-Toe')
 
