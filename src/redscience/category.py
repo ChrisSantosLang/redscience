@@ -155,13 +155,15 @@ class Categorized(enum.Enum, metaclass=Category):
 
     The above example assumes the existence of functions named ``hash_board``
     and ``squares_board``. It creates a ``Category`` named ``BoardOption`` with 
-    two members, ``BoardOption.HASH`` and 'BoardOption.SQUARES``, each of which 
+    two members, ``BoardOption.HASH`` and ``BoardOption.SQUARES``, each of which 
     has three attributes: ``STR``, ``AX`` and ``RELEASES``. 
     
     If a member has an attribute named "STR", then that's how that member will
     print. The translation function, ``_()``, is applied when printing and when
-    getting any attributes (see the ``babelwrap`` module). For the above example, 
-    the following would return "a hash" in the language of the set locale:
+    getting any attributes (see the ``babelwrap`` module). 
+    
+    For the above example, the following would return "a hash" automatically
+    translated to the set locale:
     
     >>> str(BoardOption.HASH)
     'a hash'
@@ -169,13 +171,13 @@ class Categorized(enum.Enum, metaclass=Category):
     If a member has an attribute named "RELEASES", then that member will appear
     in the list for only those releases. Given the above example, 
     ``ipywidgets.Dropdown(options=BoardOption)`` would yield a dropdown with 
-    only an "a hash" option in ``release("1.0.0")``, but with *both* "a hash"
+    only an "a hash" option in ``release("1.0.0")``, but with both "a hash"
     *and* "squares" in ``release("1.5.0")`` and above.
     
     If a member has an attribute named "CALL", then it will be invoked when
-    that member is called. If the CALL is a tuple class (e.g. ``NamedTuple``), 
+    that member is called. If the CALL is a ``tuple`` class (e.g. ``NamedTuple``), 
     then calling that member will transform that member's attributes into 
-    the attributes of an instance of that tuple class (initialized with the 
+    the attributes of an instance of that ``tuple`` class (initialized with the 
     called parameters). For example, assuming the following::
     
         class Jump(NamedTuple):
@@ -191,15 +193,13 @@ class Categorized(enum.Enum, metaclass=Category):
             class MoveValue(NamedTuple):
                 STR: str
                 CALL: Any
-                RELEASES: portion.interval.Interval = -P.empty()
             PASS = _("Pass")
             JUMP = MoveValue(STR=_("Reposition"), CALL=Jump)
     
-    ...there are only two *kinds* of moves, so 
-    ``ipywidgets.Dropdown(options=Move)`` would yield a dropdown with only 
+    ...``ipywidgets.Dropdown(options=Move)`` would yield a dropdown with only 
     two options (displayed as the locale translations of "Pass" and 
     "Reposition"), but the following would yield a dropdown with four 
-    options:  the locale translations of "(0,0) to (1,1)", 
+    options: the locale translations of "(0,0) to (1,1)", 
     "(1,1) to (2,3)", "(1,1) to (0,0)", and "Pass"::
     
         ipywidgets.Dropdown(options=(
@@ -216,7 +216,6 @@ class Categorized(enum.Enum, metaclass=Category):
             class ColorValue(NamedTuple):
                 STR: str
                 HEX: str
-                RELEASES: portion.interval.Interval = -P.empty()
             BLACK = ColorValue(STR=_("black"), HEX="#000000")
             WHITE = ColorValue(STR=_("white"), HEX="#ffffff")
             PINK = ColorValue(STR=_("pink"), HEX="#ff81c0")
@@ -229,32 +228,45 @@ class Categorized(enum.Enum, metaclass=Category):
 
         PlayerColor = category(*Color[0:4], name="PlayerColor")
 
-    >>> isinstance(Color, Category)
+    Check type:
+    >>> isinstance(Color, Category) and isinstance(Color.BLACK, Categorized)
     True
     
-    >>> isinstance(Color.BLACK, Categorized)
-    True
-    
-    >>> PlayerColor < Color
-    True
-    
+    Test equality:    
     >>> PlayerColor.BLACK == Color.BLACK
     True
     
-    >>> Color.BLACK in (PlayerColor - (Color.WHITE, PlayerColor.PINK))
+    Introspect:  
+    >>> Color.BLACK in PlayerColor
     True
     
-    >>> (PlayerColor ^ Color) >= (PlayerColor | Color.GRAY) - (Color & PlayerColor)
+    Test for containment:
+    >>> Color >= PlayerColor
     True
     
-    | ``&``  yeilds a Category composed of the set intersection
-    | ``|``  yeilds a Category composed of the set union
-    | ``-``  yeilds a Category composed of the set difference
-    | ``^``  yeilds a Category composed of the set symmetric difference
-    | ``==`` tests whether members have the same names and values
-    | ``>=`` tests whether a Category contains certain member(s)
-    | ``>``  test whether a Category is a proper superset 
-    | ``<``  test whether a Category is a proper subset
+    Test for proper subset:
+    >>> PlayerColor < Color
+    True
+    
+    Slice:
+    >>> str(Color[:6:2])
+    'black, pink and orange' 
+    
+    Set difference:
+    >>> str(Color - PlayerColor)
+    'orange, blue, purple, green and gray'
+    
+    Set intersection:
+    >>> str(PlayerColor & Color[:6:2])
+    'black and pink'
+    
+    Set union: 
+    >>> str(Color[:6:2] | (PlayerColor - Color.YELLOW))
+    'black, white, pink and orange'
+    
+    Set symmetric difference: 
+    >>> str(Color[:6:2] ^ (PlayerColor - Color.YELLOW))
+    'white and orange'
         
     Categories inherit ``_ignore_`` (and more) from ``Enum``.
     
