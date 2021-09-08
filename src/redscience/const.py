@@ -323,109 +323,109 @@ class ColorOption(category.Categorized):
     ASSIGNED = _("Assigned Colors")
 
 
-class BoardOption(category.Categorized):
-    """Category of game board. E.g.::
+# class BoardOption(category.Categorized):
+#     """Category of game board. E.g.::
     
-        BoardOption.HASH
+#         BoardOption.HASH
 
-    Attributes:
-        STR: A localized str to name the marker. How the BoardOption prints.
-        CODE: The str used in pyplot for the marker.
-    """
+#     Attributes:
+#         STR: A localized str to name the marker. How the BoardOption prints.
+#         CODE: The str used in pyplot for the marker.
+#     """
 
-    _ignore_ = "BoardValue"
+#     _ignore_ = "BoardValue"
 
-    class BoardValue(NamedTuple):
-        STR: str
-        AX: Callable[[matplotlib.figure.Figure, tuple], matplotlib.axes.Axes]
+#     class BoardValue(NamedTuple):
+#         STR: str
+#         AX: Callable[[matplotlib.figure.Figure, tuple], matplotlib.axes.Axes]
 
-    def hash_board(fig: matplotlib.figure.Figure, dims: tuple) -> matplotlib.axes.Axes:
-        """Tic-Tac-Toe board"""
-        rows, cols = dims[0], dims[1]
-        gs = fig.add_gridspec(1, 1)
-        ax = fig.add_subplot(gs[0, 0])
-        ax.patch.set_alpha(0.0)
-        ax.spines["top"].set_visible(False)
-        ax.spines["bottom"].set_visible(False)
-        ax.spines["right"].set_visible(False)
-        ax.spines["left"].set_visible(False)
-        ax.xaxis.set_ticks_position("none")
-        ax.xaxis.set_ticklabels([""])
-        ax.yaxis.set_ticks_position("none")
-        ax.yaxis.set_ticklabels([""])
-        ax.grid(True)
-        ax.xaxis.set_ticks(np.arange(0.5, cols + 0.5, 1))
-        ax.yaxis.set_ticks(np.arange(0.5, rows + 0.5, 1))
-        plt.xlim(cols + 0.5, 0.5)
-        plt.ylim(0.5, rows + 0.5)
-        return ax
+#     def hash_board(fig: matplotlib.figure.Figure, dims: tuple) -> matplotlib.axes.Axes:
+#         """Tic-Tac-Toe board"""
+#         rows, cols = dims[0], dims[1]
+#         gs = fig.add_gridspec(1, 1)
+#         ax = fig.add_subplot(gs[0, 0])
+#         ax.patch.set_alpha(0.0)
+#         ax.spines["top"].set_visible(False)
+#         ax.spines["bottom"].set_visible(False)
+#         ax.spines["right"].set_visible(False)
+#         ax.spines["left"].set_visible(False)
+#         ax.xaxis.set_ticks_position("none")
+#         ax.xaxis.set_ticklabels([""])
+#         ax.yaxis.set_ticks_position("none")
+#         ax.yaxis.set_ticklabels([""])
+#         ax.grid(True)
+#         ax.xaxis.set_ticks(np.arange(0.5, cols + 0.5, 1))
+#         ax.yaxis.set_ticks(np.arange(0.5, rows + 0.5, 1))
+#         plt.xlim(cols + 0.5, 0.5)
+#         plt.ylim(0.5, rows + 0.5)
+#         return ax
 
-    # TRANSLATOR: The type of board used for Tic-Tac-Toe, as in "Played on a hash (3,3)"
-    HASH = BoardValue(STR=_("a hash"), AX=hash_board)
+#     # TRANSLATOR: The type of board used for Tic-Tac-Toe, as in "Played on a hash (3,3)"
+#     HASH = BoardValue(STR=_("a hash"), AX=hash_board)
 
 
-class Directions(category.Categorized):
-    """Categories of ways in which to move or build in square-tiled space. E.g:
+# class Directions(category.Categorized):
+#     """Categories of ways in which to move or build in square-tiled space. E.g:
 
-      Directions.DIAGONAL(2)  # returns [(1,1), (1,-1), (-1,1), (-1,-1)]
-      Directions.DIAGONAL.call.cache_info()  # to get cache_info
+#       Directions.DIAGONAL(2)  # returns [(1,1), (1,-1), (-1,1), (-1,-1)]
+#       Directions.DIAGONAL.call.cache_info()  # to get cache_info
 
-    Args:
-      dimensions: The (int) number of dimensions in the space
+#     Args:
+#       dimensions: The (int) number of dimensions in the space
 
-    Attributes:
-      str: A localized str to name the type of directions. How the Directions
-        prints.
-      call: The bound method that yields the tuples.
+#     Attributes:
+#       str: A localized str to name the type of directions. How the Directions
+#         prints.
+#       call: The bound method that yields the tuples.
 
-    Returns:
-      A list of relative coordinates (tuples)
-    """
+#     Returns:
+#       A list of relative coordinates (tuples)
+#     """
 
-    _ignore_ = "DirectionsValue"
+#     _ignore_ = "DirectionsValue"
 
-    class DirectionsValue(NamedTuple):
-        STR: str
-        CALL: Callable[[int], tuple]
+#     class DirectionsValue(NamedTuple):
+#         STR: str
+#         CALL: Callable[[int], tuple]
 
-    @functools.lru_cache(maxsize=8)
-    def any_direction(self: "Directions", dimensions: int):
-        zero = tuple([0] * dimensions)
-        unfiltered = itertools.product([1, 0, -1], repeat=dimensions)
-        return tuple([np.array(x) for x in unfiltered if x != zero])
+#     @functools.lru_cache(maxsize=8)
+#     def any_direction(self: "Directions", dimensions: int):
+#         zero = tuple([0] * dimensions)
+#         unfiltered = itertools.product([1, 0, -1], repeat=dimensions)
+#         return tuple([np.array(x) for x in unfiltered if x != zero])
 
-    @functools.lru_cache(maxsize=8)
-    def orthogonal(self: "Directions", dimensions: int):
-        return tuple(np.identity(dimensions, dtype=int))
+#     @functools.lru_cache(maxsize=8)
+#     def orthogonal(self: "Directions", dimensions: int):
+#         return tuple(np.identity(dimensions, dtype=int))
 
-    @functools.lru_cache(maxsize=8)
-    def diagonal(self: "Directions", dimensions: int):
-        orthogonals = list(map(tuple, self.orthogonal(dimensions)))
-        return tuple(
-            [x for x in self.any_direction(dimensions) if tuple(x) not in orthogonals]
-        )
+#     @functools.lru_cache(maxsize=8)
+#     def diagonal(self: "Directions", dimensions: int):
+#         orthogonals = list(map(tuple, self.orthogonal(dimensions)))
+#         return tuple(
+#             [x for x in self.any_direction(dimensions) if tuple(x) not in orthogonals]
+#         )
 
-    @functools.lru_cache(maxsize=8)
-    def knight(self: "Directions", dimensions: int):
-        spots = []
-        for spot in itertools.product([2, 1, 0, -1, -2], repeat=dimensions):
-            inring = (spot.count(2) + spot.count(-2)) == 1
-            orthogonal = spot.count(0) >= (dimensions - 1)
-            if inring and not orthogonal:
-                spots.append(np.array(spot))
-        return tuple(spots)
+#     @functools.lru_cache(maxsize=8)
+#     def knight(self: "Directions", dimensions: int):
+#         spots = []
+#         for spot in itertools.product([2, 1, 0, -1, -2], repeat=dimensions):
+#             inring = (spot.count(2) + spot.count(-2)) == 1
+#             orthogonal = spot.count(0) >= (dimensions - 1)
+#             if inring and not orthogonal:
+#                 spots.append(np.array(spot))
+#         return tuple(spots)
 
-    # TRANSLATOR: Category of directions in which chess queen can move
-    ANY = DirectionsValue(STR=_("any direction"), CALL=any_direction)
+#     # TRANSLATOR: Category of directions in which chess queen can move
+#     ANY = DirectionsValue(STR=_("any direction"), CALL=any_direction)
 
-    # TRANSLATOR: Category of directions in which chess bishop can move
-    DIAGONAL = DirectionsValue(STR=_("diagonal"), CALL=diagonal)
+#     # TRANSLATOR: Category of directions in which chess bishop can move
+#     DIAGONAL = DirectionsValue(STR=_("diagonal"), CALL=diagonal)
 
-    # TRANSLATOR: Category of directions in which chess rook can move
-    ORTHOGONAL = DirectionsValue(STR=_("orthogonal"), CALL=orthogonal)
+#     # TRANSLATOR: Category of directions in which chess rook can move
+#     ORTHOGONAL = DirectionsValue(STR=_("orthogonal"), CALL=orthogonal)
 
-    # TRANSLATOR: Category of directions in which chess knight can move
-    KNIGHT = DirectionsValue(STR=_("knight move"), CALL=knight)
+#     # TRANSLATOR: Category of directions in which chess knight can move
+#     KNIGHT = DirectionsValue(STR=_("knight move"), CALL=knight)
 
 
 class Outcome(category.Categorized):
@@ -528,105 +528,105 @@ class PieceRules(NamedTuple):
         return "/n".join(self.STRS)
 
 
-class Game(NamedTuple):
-    """A game definition. E.g.:
+# class Game(NamedTuple):
+#     """A game definition. E.g.:
 
-        Game()  # To use all defaults (i.e. Tic-Tac-Toe)
+#         Game()  # To use all defaults (i.e. Tic-Tac-Toe)
 
-    Attributes:
-        PLAYERS: If specified, determines the PlayersOption. Default is 2-Player.
-        COLOR: If specified, determines the ColorOption. Default is Assigned
-            Colors.
-        BOARD: If specified, determines the BoardOption. Default is hash.
-        DIMENSIONS: If specified, determines the dimensions of the board as a
-            tuple of integers. Default is (3,3).
-        PIECES: If specified, determines piece-specific rules as a tuple of
-            PieceRules. Default is to have only one type of piece (circle) with
-            5 black and 4 white starting in reserve.
-        MOVE_CHECKS: If specified, list rules that are checked at the end of
-            each move as tuple of CheckOptions. Can be None. Default is to award
-            the win to any player that gets three of the same color in a row.
-        STALEMATE: If specified, determines the StalemateOption. Default is that
-            stalemate results in a draw.
-    """
+#     Attributes:
+#         PLAYERS: If specified, determines the PlayersOption. Default is 2-Player.
+#         COLOR: If specified, determines the ColorOption. Default is Assigned
+#             Colors.
+#         BOARD: If specified, determines the BoardOption. Default is hash.
+#         DIMENSIONS: If specified, determines the dimensions of the board as a
+#             tuple of integers. Default is (3,3).
+#         PIECES: If specified, determines piece-specific rules as a tuple of
+#             PieceRules. Default is to have only one type of piece (circle) with
+#             5 black and 4 white starting in reserve.
+#         MOVE_CHECKS: If specified, list rules that are checked at the end of
+#             each move as tuple of CheckOptions. Can be None. Default is to award
+#             the win to any player that gets three of the same color in a row.
+#         STALEMATE: If specified, determines the StalemateOption. Default is that
+#             stalemate results in a draw.
+#     """
 
-    PLAYERS: PlayersOption = PlayersOption.TWO
-    COLOR: ColorOption = ColorOption.ASSIGNED
-    BOARD: BoardOption = BoardOption.HASH
-    DIMENSIONS: Tuple[int, ...] = (3, 3)
-    PIECES: Tuple[PieceRules, ...] = (PieceRules(INITIAL_RESERVES=(5, 4)),)
-    MOVE_CHECKS: Union[Tuple[()], Tuple[CheckOption, ...]] = (
-        CheckOption.THREE_SAME_COLOR_IN_ROW_WINS,
-    )
-    STALEMATE: StalemateOption = StalemateOption.DRAW
+#     PLAYERS: PlayersOption = PlayersOption.TWO
+#     COLOR: ColorOption = ColorOption.ASSIGNED
+#     BOARD: BoardOption = BoardOption.HASH
+#     DIMENSIONS: Tuple[int, ...] = (3, 3)
+#     PIECES: Tuple[PieceRules, ...] = (PieceRules(INITIAL_RESERVES=(5, 4)),)
+#     MOVE_CHECKS: Union[Tuple[()], Tuple[CheckOption, ...]] = (
+#         CheckOption.THREE_SAME_COLOR_IN_ROW_WINS,
+#     )
+#     STALEMATE: StalemateOption = StalemateOption.DRAW
 
-    @property
-    def STRS(self: "Game") -> Tuple[str, ...]:
-        """A constant tuple of localized strings describing the game. E.g:
+#     @property
+#     def STRS(self: "Game") -> Tuple[str, ...]:
+#         """A constant tuple of localized strings describing the game. E.g:
 
-        game.STRS
-        """
-        lines = []
-        # TRANSLATOR: Line defining a game board e.g. "Played on hash (3,3)" for
-        # Tic-Tac-Toe where {board} is "hash" and {dimensions} is "(3,3)"
-        lines.append(
-            _("Played on {board} {dimensions}").format(
-                dimensions=str(self.DIMENSIONS),
-                board=str(self.BOARD),
-            )
-        )
-        lines.append(str(self.PLAYERS))
-        lines.append(str(self.COLOR))
-        for index in range(len(self.PIECES)):
-            # TRANSLATOR: Line defining rules for a type of game piece/card
-            # e.g. "Circle: Immobile, 5 black and 4 white start in reserve"
-            lines.append(
-                _("{shape}: {rules}")
-                .format(
-                    shape=str(Marker[index]),  # type: ignore[misc]
-                    rules=format_list(list(self.PIECES[index].STRS)),
-                )
-                .capitalize()
-            )
-        for rule in self.MOVE_CHECKS:
-            lines.append(str(rule).capitalize())
-        lines.append(str(self.STALEMATE).capitalize())
-        return tuple(lines)
+#         game.STRS
+#         """
+#         lines = []
+#         # TRANSLATOR: Line defining a game board e.g. "Played on hash (3,3)" for
+#         # Tic-Tac-Toe where {board} is "hash" and {dimensions} is "(3,3)"
+#         lines.append(
+#             _("Played on {board} {dimensions}").format(
+#                 dimensions=str(self.DIMENSIONS),
+#                 board=str(self.BOARD),
+#             )
+#         )
+#         lines.append(str(self.PLAYERS))
+#         lines.append(str(self.COLOR))
+#         for index in range(len(self.PIECES)):
+#             # TRANSLATOR: Line defining rules for a type of game piece/card
+#             # e.g. "Circle: Immobile, 5 black and 4 white start in reserve"
+#             lines.append(
+#                 _("{shape}: {rules}")
+#                 .format(
+#                     shape=str(Marker[index]),  # type: ignore[misc]
+#                     rules=format_list(list(self.PIECES[index].STRS)),
+#                 )
+#                 .capitalize()
+#             )
+#         for rule in self.MOVE_CHECKS:
+#             lines.append(str(rule).capitalize())
+#         lines.append(str(self.STALEMATE).capitalize())
+#         return tuple(lines)
 
-    @property
-    def RULES(self: "Game") -> str:
-        """A constant localized str describing the move checks and stalemate
-        rules. E.g:
+#     @property
+#     def RULES(self: "Game") -> str:
+#         """A constant localized str describing the move checks and stalemate
+#         rules. E.g:
 
-        game.RULES
-        """
-        rule_list: List[Union[CheckOption, StalemateOption]] = list(self.MOVE_CHECKS)
-        rule_list.append(self.STALEMATE)
-        # TRANSLATOR: Labels {rules} as rules of a game
-        #  e.g. "Rules: First 3-same-color-in-a-row wins and stalemate draws"
-        return _("Rules: {rules}").format(
-            rules=str(format_list(rule_list)).capitalize(),
-        )
+#         game.RULES
+#         """
+#         rule_list: List[Union[CheckOption, StalemateOption]] = list(self.MOVE_CHECKS)
+#         rule_list.append(self.STALEMATE)
+#         # TRANSLATOR: Labels {rules} as rules of a game
+#         #  e.g. "Rules: First 3-same-color-in-a-row wins and stalemate draws"
+#         return _("Rules: {rules}").format(
+#             rules=str(format_list(rule_list)).capitalize(),
+#         )
 
-    def __str__(self: "Game") -> str:
-        return "\n".join(self.STRS)
+#     def __str__(self: "Game") -> str:
+#         return "\n".join(self.STRS)
 
-    def AXES(self, fig: matplotlib.figure.Figure) -> matplotlib.axes.Axes:
-        """A constant matplotlib.axes.Axes for this game. E.g.:
+#     def AXES(self, fig: matplotlib.figure.Figure) -> matplotlib.axes.Axes:
+#         """A constant matplotlib.axes.Axes for this game. E.g.:
 
-            game.AXES(fig=plt.figure(1,(FIGURE_HEIGHT, FIGURE_WIDTH)))
+#             game.AXES(fig=plt.figure(1,(FIGURE_HEIGHT, FIGURE_WIDTH)))
 
-        Args:
-            fig: The Matplotlib.figure.Figure of the Axes
-        """
-        return self.BOARD.AX(fig, self.DIMENSIONS)
+#         Args:
+#             fig: The Matplotlib.figure.Figure of the Axes
+#         """
+#         return self.BOARD.AX(fig, self.DIMENSIONS)
 
-    @property
-    def MARKER_SIZE(self) -> float:
-        """MARKER_SIZE: A constant int size for markers in this game"""
-        figure_max = max(Layout.FIGURE_HEIGHT, Layout.FIGURE_WIDTH)
-        spot_size = figure_max / max(self.DIMENSIONS)
-        return (spot_size * Layout.POINTS_PER_INCH - Layout.MARKER_MARGIN) ** 2
+#     @property
+#     def MARKER_SIZE(self) -> float:
+#         """MARKER_SIZE: A constant int size for markers in this game"""
+#         figure_max = max(Layout.FIGURE_HEIGHT, Layout.FIGURE_WIDTH)
+#         spot_size = figure_max / max(self.DIMENSIONS)
+#         return (spot_size * Layout.POINTS_PER_INCH - Layout.MARKER_MARGIN) ** 2
 
 
 class DefaultName(category.Categorized):
