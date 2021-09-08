@@ -178,7 +178,7 @@ class Categorized(enum.Enum, metaclass=Category):
     that member is called. If the CALL is a ``tuple`` class (e.g. ``NamedTuple``), 
     then calling that member will transform that member's attributes into 
     the attributes of an instance of that ``tuple`` class (initialized with the 
-    called parameters). For example, assuming the following::
+    called parameters). For example::
     
         class Jump(NamedTuple):
             FROM: Tuple[int, ...]
@@ -196,11 +196,11 @@ class Categorized(enum.Enum, metaclass=Category):
             PASS = _("Pass")
             JUMP = MoveValue(STR=_("Reposition"), CALL=Jump)
     
-    ...``ipywidgets.Dropdown(options=Move)`` would yield a dropdown with only 
-    two options (displayed as the locale translations of "Pass" and 
-    "Reposition"), but the following would yield a dropdown with four 
-    options: the locale translations of "(0,0) to (1,1)", 
-    "(1,1) to (2,3)", "(1,1) to (0,0)", and "Pass"::
+    Assuming the above, ``ipywidgets.Dropdown(options=Move)`` would yield a 
+    dropdown with only two options (displayed as the locale translations of 
+    "Pass" and "Reposition"), but the following would yield a dropdown with 
+    the locale translations of "(0,0) to (1,1)",  "(1,1) to (2,3)", 
+    "(1,1) to (0,0)", and "Pass"::
     
         ipywidgets.Dropdown(options=(
             Move.JUMP(FROM=(0,0), TO=(1,1)),
@@ -237,6 +237,11 @@ class Categorized(enum.Enum, metaclass=Category):
     
     >>> PlayerColor.BLACK == Color.BLACK
     True
+    
+    ...but equal members can have different contexts! 
+    
+    >>> str(type(PlayerColor.BLACK))
+    'black, white, pink and yellow'
     
     Introspect:  
     
