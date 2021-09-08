@@ -200,132 +200,132 @@ class Color(category.Categorized):
     GRAY = ColorValue(STR=_("gray"), HEX="#929591")
 
 
-PlayerColor = category.category(*Color[0:4], name="PlayerColor")  # type: ignore[misc]
+# PlayerColor = category.category(*Color[0:4], name="PlayerColor")  # type: ignore[misc]
 
 
-# class Layout(enum.IntEnum):
-#     """Layout constants. E.g.::
+class Layout(enum.IntEnum):
+    """Layout constants. E.g.::
 
-#       Layout.POINTS_PER_INCH
-#     """
+      Layout.POINTS_PER_INCH
+    """
 
-#     FIGURE_WIDTH = 5
-#     FIGURE_HEIGHT = 5
-#     POINTS_PER_INCH = 54
-#     MARKER_MARGIN = 8
+    FIGURE_WIDTH = 5
+    FIGURE_HEIGHT = 5
+    POINTS_PER_INCH = 54
+    MARKER_MARGIN = 8
 
 
-# class Command(category.Categorized):
-#     """Command from user to the application. E.g.::
+class Command(category.Categorized):
+    """Command from user to the application. E.g.::
 
-#         Command.NEW
+        Command.NEW
 
-#     Attributes:
-#         STR (str): A localized name. How the Command prints.
-#         KEY (str): A localized shortcut key. 
+    Attributes:
+        STR (str): A localized name. How the Command prints.
+        KEY (str): A localized shortcut key. 
     
-#     Each Command tests == to its key as well as to itself. In English::
+    Each Command tests == to its key as well as to itself. In English::
     
-#         Command.NEW == "n"
-#     """
+        Command.NEW == "n"
+    """
 
-#     _ignore_ = "CommandValue"
+    _ignore_ = "CommandValue"
 
-#     class CommandValue(NamedTuple):
-#         STR: str
-#         KEY: str
+    class CommandValue(NamedTuple):
+        STR: str
+        KEY: str
 
-#     # TRANSLATOR: This is the command to start a new game (e.g. button text).
-#     # TRANSLATOR: This is the shortcut key to start a new game.
-#     # It should match the key listed in the prompt.
-#     NEW = CommandValue(STR=_("Play New"), KEY=_("n"))
+    # TRANSLATOR: This is the command to start a new game (e.g. button text).
+    # TRANSLATOR: This is the shortcut key to start a new game.
+    # It should match the key listed in the prompt.
+    NEW = CommandValue(STR=_("Play New"), KEY=_("n"))
 
-#     # TRANSLATOR: This is the command to end the application (e.g. button text).
-#     # TRANSLATOR: This is the shortcut key to end the application.
-#     # It should match the key listed in the prompt.
-#     QUIT = CommandValue(STR=_("Quit"), KEY=_("q"))
+    # TRANSLATOR: This is the command to end the application (e.g. button text).
+    # TRANSLATOR: This is the shortcut key to end the application.
+    # It should match the key listed in the prompt.
+    QUIT = CommandValue(STR=_("Quit"), KEY=_("q"))
 
-#     # TRANSLATOR: This is the command to reverse last user input (e.g. button text).
-#     # TRANSLATOR: This is the shortcut key to back-up by one user input.
-#     # It should match the key listed in the prompt.
-#     UNDO = CommandValue(STR=_("Back"), KEY=_("z"))
+    # TRANSLATOR: This is the command to reverse last user input (e.g. button text).
+    # TRANSLATOR: This is the shortcut key to back-up by one user input.
+    # It should match the key listed in the prompt.
+    UNDO = CommandValue(STR=_("Back"), KEY=_("z"))
 
-#     def __eq__(self: "Command", other) -> bool:
-#         return (
-#             other.lower() == self.KEY
-#             if type(other) is str
-#             else category.Categorized.__eq__(self, other)
-#         )
+    def __eq__(self: "Command", other) -> bool:
+        return (
+            other.lower() == self.KEY
+            if type(other) is str
+            else category.Categorized.__eq__(self, other)
+        )
 
-#     def __ne__(self: "Command", other) -> bool:
-#         return not self.__eq__(other)
-
-
-# class PlayersOption(category.Categorized):
-#     """Category of game by number/type of players. E.g.::
-
-#         PlayersOption.TWO
-
-#     Attributes:
-#         STR (str): A localized name. How the PlayerOption prints.
-#         NUM (int): The number of regular players.
-#     """
-
-#     _ignore_ = "PlayersValue"
-
-#     class PlayersValue(NamedTuple):
-#         STR: str
-#         NUM: int
-
-#     # TRANSLATOR: Category to describe games with two regular players
-#     TWO = PlayersValue(STR=_("2-Player"), NUM=2)
-
-#     # TRANSLATOR: Category to describe games with three regular players
-#     THREE = PlayersValue(STR=_("3-Player"), NUM=3)
+    def __ne__(self: "Command", other) -> bool:
+        return not self.__eq__(other)
 
 
-# class Marker(category.Categorized):
-#     """Category of game piece by what marker is use to display it. E.g.::
+class PlayersOption(category.Categorized):
+    """Category of game by number/type of players. E.g.::
+
+        PlayersOption.TWO
+
+    Attributes:
+        STR (str): A localized name. How the PlayerOption prints.
+        NUM (int): The number of regular players.
+    """
+
+    _ignore_ = "PlayersValue"
+
+    class PlayersValue(NamedTuple):
+        STR: str
+        NUM: int
+
+    # TRANSLATOR: Category to describe games with two regular players
+    TWO = PlayersValue(STR=_("2-Player"), NUM=2)
+
+    # TRANSLATOR: Category to describe games with three regular players
+    THREE = PlayersValue(STR=_("3-Player"), NUM=3)
+
+
+class Marker(category.Categorized):
+    """Category of game piece by what marker is use to display it. E.g.::
     
-#         Marker.CIRCLE
+        Marker.CIRCLE
 
-#     Attributes:
-#         STR: A localized str to name the marker. How the Marker prints.
-#         CODE: The str used in pyplot for the marker.
-#     """
+    Attributes:
+        STR: A localized str to name the marker. How the Marker prints.
+        CODE: The str used in pyplot for the marker.
+    """
 
-#     _ignore_ = "MarkerValue"
+    _ignore_ = "MarkerValue"
 
-#     class MarkerValue(NamedTuple):
-#         STR: str
-#         CODE: str
+    class MarkerValue(NamedTuple):
+        STR: str
+        CODE: str
 
-#     # TRANSLATOR: Description of the pyplot marker
-#     CIRCLE = MarkerValue(STR=_("circle"), CODE="o")
+    # TRANSLATOR: Description of the pyplot marker
+    CIRCLE = MarkerValue(STR=_("circle"), CODE="o")
 
 
-# class StalemateOption(category.Categorized):
-#     """Category of game by stalemate end it. E.g.::
+class StalemateOption(category.Categorized):
+    """Category of game by stalemate end it. E.g.::
     
-#         StalemateOption.DRAW
+        StalemateOption.DRAW
 
-#     Prints localized str.
-#     """
+    Prints localized str.
+    """
 
-#     # TRANSLATOR: Game rule that the game ends in a draw if there is a stalemate
-#     DRAW = _("stalemate draws")
+    # TRANSLATOR: Game rule that the game ends in a draw if there is a stalemate
+    DRAW = _("stalemate draws")
 
 
-# class ColorOption(category.Categorized):
-#      """Category of game by how it treats colors. E.g.::
+class ColorOption(category.Categorized):
+     """Category of game by how it treats colors. E.g.::
     
-#         ColorOption.ASSIGNED
+        ColorOption.ASSIGNED
 
-#     Prints localized str.
-#     """
+    Prints localized str.
+    """
 
-#     # TRANSLATOR: Game rule that each player is assigned their own unique color
-#     ASSIGNED = _("Assigned Colors")
+    # TRANSLATOR: Game rule that each player is assigned their own unique color
+    ASSIGNED = _("Assigned Colors")
 
 
 # class BoardOption(category.Categorized):
