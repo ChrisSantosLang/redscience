@@ -161,15 +161,15 @@ class Categorized(enum.Enum, metaclass=Category):
     If a member has an attribute named "STR", then that's how that member will
     print. The translation function, ``_()``, is applied when printing and when
     getting any attributes (see the ``babelwrap`` module). For the above example, 
-    the following would print "a hash" in the language of the set locale::
+    the following would return "a hash" in the language of the set locale:
     
     >>> str(BoardOption.HASH)
     'a hash'
     
     If a member has an attribute named "RELEASES", then that member will appear
-    in the list only for those releases. For the above example, 
+    in the list for only those releases. Given the above example, 
     ``ipywidgets.Dropdown(options=BoardOption)`` would yield a dropdown with 
-    only the "a hash" option in ``release("1.0.0")``, but with *both* "a hash"
+    only an "a hash" option in ``release("1.0.0")``, but with *both* "a hash"
     *and* "squares" in ``release("1.5.0")`` and above.
     
     If a member has an attribute named "CALL", then it will be invoked when
@@ -199,7 +199,7 @@ class Categorized(enum.Enum, metaclass=Category):
     ``ipywidgets.Dropdown(options=Move)`` would yield a dropdown with only 
     two options (displayed as the locale translations of "Pass" and 
     "Reposition"), but the following would yield a dropdown with four 
-    options, displayed as the the locale translations of "(0,0) to (1,1)", 
+    options:  the locale translations of "(0,0) to (1,1)", 
     "(1,1) to (2,3)", "(1,1) to (0,0)", and "Pass"::
     
         ipywidgets.Dropdown(options=(
@@ -247,16 +247,16 @@ class Categorized(enum.Enum, metaclass=Category):
     >>> (PlayerColor ^ Color) >= (PlayerColor | Color.GRAY) - (Color & PlayerColor)
     True
     
-    :``&``: yeilds a Category composed of the set intersection
-    :``|``: yeilds a Category composed of the set union
-    :``-``: yeilds a Category composed of the set difference
-    :``^``: yeilds a Category composed of the set symmetric difference
-    :``==``: tests whether members have the same names and values
-    :``>=``: tests whether a Category contains certain member(s)
-    :``>``: test whether a Category is a proper superset 
-    :``<``: test whether a Category is a proper subset
+    | ``&``  yeilds a Category composed of the set intersection
+    | ``|``  yeilds a Category composed of the set union
+    | ``-``  yeilds a Category composed of the set difference
+    | ``^``  yeilds a Category composed of the set symmetric difference
+    | ``==`` tests whether members have the same names and values
+    | ``>=`` tests whether a Category contains certain member(s)
+    | ``>``  test whether a Category is a proper superset 
+    | ``<``  test whether a Category is a proper subset
         
-    Categories inherit ``_ignore_`` (and more) from Enums.
+    Categories inherit ``_ignore_`` (and more) from ``Enum``.
     
     References:
         https://docs.python.org/3/library/enum.html.
