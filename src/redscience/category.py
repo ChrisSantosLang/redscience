@@ -36,31 +36,37 @@ def format_list(items: List[Any]) -> str:
     return str(items)
 
 
+def isreleased(obj) -> bool:
+    """
+    The name to be used for the function that tests whether
+    an object has been released. Defined here only 
+    temporarily for type hints (to be redefined elsewhere).
+    """
+    return True
+
+
 class Category(enum.EnumMeta):
     """MetaClass for Categorized (not for public use)."""
 
     _catbases_: List["Category"] = []
 
-    def __contains__(self, item):
-        """Check if item is in self"""
+    def __contains__(self, item):  # Check if item is in self
         return (
             isinstance(item, enum.Enum)
             and hasattr(self, item.name)
             and item.value == self[item.name].value
+            and isreleased(self[item.name])
         )
 
-    def __and__(self, other):
-        """Intersection"""
+    def __and__(self, other):  # Intersection
         if not isinstance(other, collections.abc.Iterable):
             other = [other]
         return category(member for member in other if member in self)
 
-    def __rand__(self, other):
-        """Intersection (from right)"""
+    def __rand__(self, other):  # Intersection (from right)
         return self & other
 
-    def __or__(self, other):
-        """Union"""
+    def __or__(self, other):  # Union
         if not isinstance(other, collections.abc.Iterable):
             other = [other]
         union = list(self)
@@ -69,33 +75,29 @@ class Category(enum.EnumMeta):
                 union.append(member)
         return category(union)
 
-    def __ror__(self, other):
-        """Union (from right)"""
+    def __ror__(self, other):  # Union (from right)
         return self | other
 
-    def __sub__(self, other):
-        """Difference"""
+    def __sub__(self, other):  # Difference
         return category(x for x in self if x not in (self & other))
 
-    def __xor__(self, other):
-        """Symmetric difference"""
+    def __xor__(self, other):  # Symmetric difference
         return (self | other) - (self & other)
 
-    def __rxor__(self, other):
-        """Symmetric difference (from right)"""
+    def __rxor__(self, other):  # Symmetric difference (from right)
         return self ^ other
 
     def __str__(self):
-        return format_list(list(self))
+        return format_list(list(filter(isreleased(self))))
 
     def __repr__(self):
         return f"<category {self.__name__}>"
 
-    def __getitem__(self, indexOrSlice):
-        if isinstance(indexOrSlice, (int, slice)):
-            return list(self)[indexOrSlice]
+    def __getitem__(self, index):
+        if isinstance(index, (int, slice)):
+            return list(filter(isreleased(self)))[index]
         else:
-            return enum.EnumMeta.__getitem__(self, indexOrSlice)
+            return enum.EnumMeta.__getitem__(self, index)
 
     def __bool__(self):
         return len(self) > 0
@@ -103,35 +105,29 @@ class Category(enum.EnumMeta):
     def __hash__(self):
         return hash(repr(self))
 
-    def __eq__(self, other):
-        """Equality"""
+    def __eq__(self, other):  # Equality
         if isinstance(other, Category):
             return self >= other and other >= self
         else:
             return enum.EnumMeta.__eq__(self, other)
 
-    def __neq__(self, other):
-        """Inequality"""
+    def __neq__(self, other):  # Inequality
         return not (self == other)
 
-    def __ge__(self, other):
-        """Check if all of other are in self"""
+    def __ge__(self, other):  # Check if all of other are in self
         if not isinstance(other, collections.abc.Iterable):
             other = [other]
         return all(member in self for member in other)
 
-    def __le__(self, other):
-        """Check if all of self are in other"""
+    def __le__(self, other):  # Check if all of self are in other
         if not isinstance(other, collections.abc.Iterable):
             other = [other]
         return all(member in other for member in self)
 
-    def __lt__(self, other):
-        """Is proper subset"""
+    def __lt__(self, other):  # Is proper subset
         return self <= other and not self >= other
 
-    def __gt__(self, other):
-        """Is proper superset"""
+    def __gt__(self, other):  # Is proper superset
         return self >= other and not self <= other
 
 
@@ -161,7 +157,8 @@ class Categorized(enum.Enum, metaclass=Category):
     getting any attributes (see the ``babelwrap`` module). For the above example, 
     the following would print "a hash" in the language of the set locale::
     
-        str(BoardOption.HASH)
+    >>> str(BoardOption.HASH)
+    'a hash'
     
     If a member has an attribute named "CALL", then it will be invoked when
     that member is called. If the CALL is a tuple class (e.g. ``NamedTuple``), 
@@ -217,36 +214,38 @@ class Categorized(enum.Enum, metaclass=Category):
             GRAY = ColorValue(STR=_("gray"), HEX="#929591")
 
         PlayerColor = category(*Color[0:4], name="PlayerColor")
-        
-    ...each of the following is True::
 
-        isinstance(Color, Category)
-        isinstance(Color.BLACK, Categorized)
-        PlayerColor < Color
-        PlayerColor.BLACK == Color.BLACK
-        Color.BLACK in (PlayerColor - (Color.WHITE, PlayerColor.PINK))
-        (PlayerColor ^ Color) >= (PlayerColor | Color.GRAY) - (Color & PlayerColor)
+    >>> isinstance(Color, Category)
+    True
     
-    &  
-        yeilds a Category composed of the set intersection
-    |  
-        yeilds a Category composed of the set union
-    -  
-        yeilds a Category composed of the set difference
-    ^  
-        yeilds a Category composed of the set symmetric difference
-    == 
-        tests whether members have the same names and values
-    >= 
-        tests whether a Category contains certain member(s)
-    >  
-        test whether a Category is a proper superset 
-    <  
-        test whether a Category is a proper subset
+    >>> isinstance(Color.BLACK, Categorized)
+    True
+    
+    >>> PlayerColor < Color
+    True
+    
+    >>> PlayerColor.BLACK == Color.BLACK
+    True
+    
+    >>> Color.BLACK in (PlayerColor - (Color.WHITE, PlayerColor.PINK))
+    True
+    
+    >>> (PlayerColor ^ Color) >= (PlayerColor | Color.GRAY) - (Color & PlayerColor)
+    True
+    
+    ``&``: yeilds a Category composed of the set intersection
+    ``|``: yeilds a Category composed of the set union
+    ``-``: yeilds a Category composed of the set difference
+    ``^``: yeilds a Category composed of the set symmetric difference
+    ``==``: tests whether members have the same names and values
+    ``>=``: tests whether a Category contains certain member(s)
+    ``>``: test whether a Category is a proper superset 
+    ``<``: test whether a Category is a proper subset
         
-    Categories inherit from Enums. Learn about ``_ignore_`` and 
-    other features inherited from Enum at 
-    https://docs.python.org/3/library/enum.html.
+    Categories inherit ``_ignore_`` (and more) from Enums.
+    
+    References:
+        https://docs.python.org/3/library/enum.html.
     """
 
     def __getattr__(self, name):
