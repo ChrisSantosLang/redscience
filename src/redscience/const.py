@@ -5,7 +5,7 @@ Most constants in this module are encoded as a Category (see the
 category module) or as a NamedTuple. Each displays in the
 locale set via ``setlang()`` (provided an .mo file for that locale can 
 be found in the appropriate folder). Regarding internationalization,
-see the babelwrap module. Use ``setrelease()`` to change the release 
+see the ``babelwrap`` module. Use ``setrelease()`` to change the release 
 (thus changing which Category members display).
 
 Examples::
@@ -37,21 +37,21 @@ Examples::
 
 """
 
-# import collections
-# import enum
-# import functools
-# import itertools
-# from typing import (
-#     Any,
-#     Callable,
-#     Dict,
-#     Iterable,
-#     List,
-#     NamedTuple,
-#     Optional,
-#     Tuple,
-#     Union,
-# )
+import collections
+import enum
+import functools
+import itertools
+from typing import (
+    Any,
+    Callable,
+    Dict,
+    Iterable,
+    List,
+    NamedTuple,
+    Optional,
+    Tuple,
+    Union,
+)
 
 # import babelwrap
 # import category
