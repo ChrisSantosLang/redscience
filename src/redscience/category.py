@@ -229,42 +229,52 @@ class Categorized(enum.Enum, metaclass=Category):
         PlayerColor = category(*Color[0:4], name="PlayerColor")
 
     Check type:
+    
     >>> isinstance(Color, Category) and isinstance(Color.BLACK, Categorized)
     True
     
-    Test equality:    
+    Test equality: 
+    
     >>> PlayerColor.BLACK == Color.BLACK
     True
     
     Introspect:  
+    
     >>> Color.BLACK in PlayerColor
     True
     
     Test for containment:
+    
     >>> Color >= PlayerColor
     True
     
     Test for proper subset:
+    
     >>> PlayerColor < Color
     True
     
     Slice:
+    
     >>> str(Color[:6:2])
     'black, pink and orange' 
     
     Set difference:
+    
     >>> str(Color - PlayerColor)
     'orange, blue, purple, green and gray'
     
     Set intersection:
+    
     >>> str(PlayerColor & Color[:6:2])
     'black and pink'
     
     Set union: 
+    
     >>> str(Color[:6:2] | (PlayerColor - Color.YELLOW))
     'black, white, pink and orange'
     
     Set symmetric difference: 
+    
     >>> str(Color[:6:2] ^ (PlayerColor - Color.YELLOW))
     'white and orange'
         
