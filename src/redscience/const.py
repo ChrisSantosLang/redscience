@@ -95,9 +95,9 @@ def release(name:str, min_parts:int=3) -> Tuple[Union[int,str], ...]:
         min_parts (int): The minimum parts for the tuple. Default is 3.
         
     Returns:
-        A tuple with one part per dot-delimitted part of the name (padded with
-        zeros if necessary to achieve min_parts). Unlike strings, the tuples 
-        will sort correctly (the integer parts will be integers).
+        A tuple with one member per dot-delimitted part of the name (padded with 
+        as many zeros as necessary to achieve min_parts). The numeric parts are 
+        integers so, the tuples sort correctly (unlike string names).
     """
     parts = name.split(".")
     parts.extend(["0"]*(min_parts-len(parts)))
@@ -116,28 +116,28 @@ def isreleased(obj: Any)->bool:
         True if the object is in the release that was set
         
     Note:
-        This function assumes that objects that might not be release have an
-        attribute named "RELEASES" containing all the releases in which to 
-        return True.
+        This function assumes that any object which might not be releases has 
+        an attribute named "RELEASES" containing all the releases in which it 
+        is released.
     """
     return not hasattr(obj, "RELEASES") or _release in obj.RELEASES
   
 def setrelease(name: Optional[str]=None)->str:
-    """Get or set the release. E.g.::
+    """Get or set the release. E.g.:
     
     >>> setrelease("1.1.0")
     (1, 1, 0)
     
     Args:
-        name (str): The name of the release to set. If "", setrelease will set to 
-            the version named in setup.cfg. If None, the previously set 
-            release will be retained. Default to None.
+        name (str): The name of the release to set. ``setrelease("")`` will set to 
+            the version named in ``setup.cfg``. If ``None``, the previously set 
+            release will be retained. Default to ``None``.
         
     Returns:
-        The set release as a tuple.
+        The release as a tuple. ``setrelease()`` is the getter.
         
     Note:
-        This function stores the release in _release
+        This function stores the release in ``_release``
     """
     global _release
     if _release and name==None: return _release
@@ -164,6 +164,11 @@ class Color(category.Categorized):
     _ignore_ = "ColorValue"
 
     class ColorValue(NamedTuple):
+        """
+        Attributes:
+            STR (str): A localized name. How the Color prints.
+            HEX (str): A hex code to communicate the Color to computers.
+        """
         STR: str
         HEX: str
 
@@ -195,7 +200,7 @@ class Color(category.Categorized):
     GRAY = ColorValue(STR=_("gray"), HEX="#929591")
 
 
-# PlayerColor = category.category(*Color[0:4], name="PlayerColor")  # type: ignore[misc]
+PlayerColor = category.category(*Color[0:4], name="PlayerColor")  # type: ignore[misc]
 
 
 # class Layout(enum.IntEnum):
