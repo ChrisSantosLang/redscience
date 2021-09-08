@@ -428,35 +428,35 @@ class ColorOption(category.Categorized):
 #     KNIGHT = DirectionsValue(STR=_("knight move"), CALL=knight)
 
 
-class Outcome(category.Categorized):
-    """Function to apply localized formatting to strings. E.g:
+# class Outcome(category.Categorized):
+#     """Function to apply localized formatting to strings. E.g:
 
-      Outcome.VICTORY(players=["Player 1"])
+#       Outcome.VICTORY(players=["Player 1"])
 
-    Args:
-      **kwargs: a string for each bookmark in the str
+#     Args:
+#       **kwargs: a string for each bookmark in the str
 
-    Returns:
-      The localized formated string.
-    """
+#     Returns:
+#       The localized formated string.
+#     """
 
-    _ignore_ = "FormatValue"
+#     _ignore_ = "FormatValue"
 
-    class FormatValue(NamedTuple):
-        STR: str
-        FORMAT: str
-        CALL: Callable[["Outcome", List[str]], str]
+#     class FormatValue(NamedTuple):
+#         STR: str
+#         FORMAT: str
+#         CALL: Callable[["Outcome", List[str]], str]
 
-    def formatter(self: "Outcome", players: List[str]) -> str:
-        return self.FORMAT.format(players=format_list(players))
+#     def formatter(self: "Outcome", players: List[str]) -> str:
+#         return self.FORMAT.format(players=format_list(players))
 
-    # TRANSLATOR: Labels {winners} as the winner(s) of a game
-    #  e.g. "Victory: Player 1 and Player 3"
-    VICTORY = FormatValue(
-        STR=_("Victory"),
-        FORMAT=_("Victory: {players}"),
-        CALL=formatter,
-    )
+#     # TRANSLATOR: Labels {winners} as the winner(s) of a game
+#     #  e.g. "Victory: Player 1 and Player 3"
+#     VICTORY = FormatValue(
+#         STR=_("Victory"),
+#         FORMAT=_("Victory: {players}"),
+#         CALL=formatter,
+#     )
 
 
 # class CheckOption(category.Categorized):
@@ -480,52 +480,52 @@ class Outcome(category.Categorized):
 #     )
 
 
-class PieceRules(NamedTuple):
-    """Rules for a type of piece in a game. E.g.:
+# class PieceRules(NamedTuple):
+#     """Rules for a type of piece in a game. E.g.:
 
-        PieceRules(INITIAL_RESERVES=(5,4))
+#         PieceRules(INITIAL_RESERVES=(5,4))
 
-    Attributes:
-        INITIAL_RESERVES: A tuple indicating the number in initial reserves
-            of each color, e.g. (5, 4) means 5 of the first color, and 4 of
-            the second.
-    """
+#     Attributes:
+#         INITIAL_RESERVES: A tuple indicating the number in initial reserves
+#             of each color, e.g. (5, 4) means 5 of the first color, and 4 of
+#             the second.
+#     """
 
-    INITIAL_RESERVES: Tuple[int, ...]
+#     INITIAL_RESERVES: Tuple[int, ...]
 
-    @property
-    def RESERVES_STR(self: "PieceRules") -> str:
-        """A constant localized str describing initial reserves for the
-        piece. E.g.:
+#     @property
+#     def RESERVES_STR(self: "PieceRules") -> str:
+#         """A constant localized str describing initial reserves for the
+#         piece. E.g.:
 
-        piece.RESERVES_STR
-        """
-        by_color = []
-        for index in range(len(self.INITIAL_RESERVES)):
-            # TRANSLATOR: Part of a list of amounts of game pieces.
-            # e.g. "5 black" in "5 black and 4 white start in reserve"
-            by_color.append(
-                _("{number} {color}").format(
-                    number=self.INITIAL_RESERVES[index],
-                    color=str(Color[index]).lower(),  # type: ignore[misc]
-                ),
-            )
+#         piece.RESERVES_STR
+#         """
+#         by_color = []
+#         for index in range(len(self.INITIAL_RESERVES)):
+#             # TRANSLATOR: Part of a list of amounts of game pieces.
+#             # e.g. "5 black" in "5 black and 4 white start in reserve"
+#             by_color.append(
+#                 _("{number} {color}").format(
+#                     number=self.INITIAL_RESERVES[index],
+#                     color=str(Color[index]).lower(),  # type: ignore[misc]
+#                 ),
+#             )
 
-        # TRANSLATOR: The rule for how many to have in reserve when a game
-        # begins.. E.g. "5 black and 2 white start in reserve"
-        return _("{list} start in reserve").format(list=format_list(by_color))
+#         # TRANSLATOR: The rule for how many to have in reserve when a game
+#         # begins.. E.g. "5 black and 2 white start in reserve"
+#         return _("{list} start in reserve").format(list=format_list(by_color))
 
-    @property
-    def STRS(self: "PieceRules") -> Tuple[str, ...]:
-        """Get tuple of strings describing the rules for the piece. E.g.:
+#     @property
+#     def STRS(self: "PieceRules") -> Tuple[str, ...]:
+#         """Get tuple of strings describing the rules for the piece. E.g.:
 
-        piece.STRS
-        """
-        lines = [self.RESERVES_STR]
-        return tuple(lines)
+#         piece.STRS
+#         """
+#         lines = [self.RESERVES_STR]
+#         return tuple(lines)
 
-    def __str__(self: "PieceRules") -> str:
-        return "/n".join(self.STRS)
+#     def __str__(self: "PieceRules") -> str:
+#         return "/n".join(self.STRS)
 
 
 # class Game(NamedTuple):
