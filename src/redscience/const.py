@@ -55,24 +55,34 @@ from typing import (
 
 import babelwrap
 import category
-# import matplotlib
+import matplotlib
 # import matplotlib.pyplot as plt
-import numpy as np
+# import numpy as np
 
 #!pip install portion
 #import portion as P
 
-# _release: Optional[Tuple[Union[int,str], ...]] = None  # for type hint 
+_release: Optional[Tuple[Union[int,str], ...]] = None  # for type hint 
 
 # Keep theses before setting Enums, so their values will be in the
 # language from which they can be translated
-# def _(message: str) -> str:
-#     return message
+def _(message: str) -> str:
+    """
+    The name to be used for the function that returns the 
+    localized version of a str. Defined here only 
+    temporarily for type hints (to be redefined elsewhere).
+    """
+    return message
 
 
-# def format_list(items: List[Any]) -> str:
-#     return str(items)
-  
+def format_list(items: List[Any]) -> str:
+    """
+    The name to be used for the function that returns the 
+    localized string to describe a list. Defined here only 
+    temporarily for type hints (to be redefined elsewhere).
+    """
+    return str(items)
+
 
 def release(name:str, min_parts:int=3) -> Tuple[Union[int,str], ...]:
     """Translates a release name into sortable tuples. E.g.:
@@ -137,7 +147,7 @@ def setrelease(name: Optional[str]=None)->str:
         _release = release("1.0.0")
     return _release
   
-# setrelease()
+setrelease()
  
 
 # class Color(category.Categorized):
