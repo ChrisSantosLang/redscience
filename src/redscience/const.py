@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """Contains redscience constants plus functions for internationalization.
 
-Most constants in this module are encoded as a Category (see the 
-category module) or as a NamedTuple. Each displays in the
+Most constants in this module are encoded as a ``Category`` (see the 
+``category`` module) or as a ``NamedTuple``. Each displays in the
 locale set via ``setlang()`` (provided an .mo file for that locale can 
-be found in the appropriate folder). Regarding internationalization,
-see the ``babelwrap`` module. Use ``setrelease()`` to change the release 
-(thus changing which Category members display).
+be found in the appropriate folder). See the ``babelwrap`` module 
+regarding internationalization. Use ``setrelease()`` to change the 
+release (and thus which Category members display).
 
 Examples::
 
@@ -53,11 +53,11 @@ from typing import (
     Union,
 )
 
-# import babelwrap
-# import category
-# import matplotlib
-# import matplotlib.pyplot as plt
-# import numpy as np
+import babelwrap
+import category
+import matplotlib
+import matplotlib.pyplot as plt
+import numpy as np
 
 #!pip install portion
 #import portion as P
@@ -74,24 +74,24 @@ from typing import (
 #     return str(items)
   
 
-# def release(name:str, min_parts:int=3) -> Tuple[Union[int,str], ...]:
-#     """Translates a release name into sortable tuples. E.g.::
+def release(name:str, min_parts:int=3) -> Tuple[Union[int,str], ...]:
+    """Translates a release name into sortable tuples. E.g.::
     
-#         release("1.0.1")
+        release("1.0.1")
       
-#     Args:
-#         name: The release name (e.g. "1.0.1.alpha")
-#         min_parts: The minimum parts for the tuple. Default is 3.
+    Args:
+        name: The release name (e.g. "1.0.1.alpha")
+        min_parts: The minimum parts for the tuple. Default is 3.
         
-#     Returns:
-#         A tuple with one part per dot-delimitted part of the name (padded with
-#         zeros if necessary to achieve min_parts). Unlike strings, the tuples 
-#         will sort correctly (the integer parts will be integers).
-#     """
+    Returns:
+        A tuple with one part per dot-delimitted part of the name (padded with
+        zeros if necessary to achieve min_parts). Unlike strings, the tuples 
+        will sort correctly (the integer parts will be integers).
+    """
     
-#     parts = name.split(".")
-#     parts.extend(["0"]*(min_parts-len(parts)))
-#     return tuple(int(part) if part.isnumeric() else part for part in parts)
+    parts = name.split(".")
+    parts.extend(["0"]*(min_parts-len(parts)))
+    return tuple(int(part) if part.isnumeric() else part for part in parts)
   
 # def isreleased(obj: Any)->bool:
 #     """Test whether an object is released. E.g.::
