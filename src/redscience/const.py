@@ -629,116 +629,116 @@ class PieceRules(NamedTuple):
 #         return (spot_size * Layout.POINTS_PER_INCH - Layout.MARKER_MARGIN) ** 2
 
 
-class DefaultName(category.Categorized):
-    """Default names for players. Prints localized str. """
+# class DefaultName(category.Categorized):
+#     """Default names for players. Prints localized str. """
 
-    # TRANSLATOR: Default name for a player in a game (independent of order)
-    PLAYER_ONE = _("Player 1")
+#     # TRANSLATOR: Default name for a player in a game (independent of order)
+#     PLAYER_ONE = _("Player 1")
 
-    # TRANSLATOR: Default name for a player in a game (independent of order)
-    PLAYER_TWO = _("Player 2")
+#     # TRANSLATOR: Default name for a player in a game (independent of order)
+#     PLAYER_TWO = _("Player 2")
 
-    # TRANSLATOR: Default name for a player in a game (independent of order)
-    PLAYER_THREE = _("Player 3")
+#     # TRANSLATOR: Default name for a player in a game (independent of order)
+#     PLAYER_THREE = _("Player 3")
 
-    # TRANSLATOR: Default name for a player in a game (independent of order)
-    PLAYER_FOUR = _("Player 4")
-
-
-class PlayerType(category.Categorized):
-    """Types of players. Prints localized str. """
-
-    # TRANSLATOR: A type of player in a game
-    HUMAN = _("Human")
+#     # TRANSLATOR: Default name for a player in a game (independent of order)
+#     PLAYER_FOUR = _("Player 4")
 
 
-class Player(NamedTuple):
-    """A player definition. E.g.:
+# class PlayerType(category.Categorized):
+#     """Types of players. Prints localized str. """
 
-        Player()  # To use all defaults (i.e. human)
-
-    Attributes:
-        TYPE: If specified, determines the PlayerType. Default is Human.
-    """
-
-    TYPE: PlayerType = PlayerType.HUMAN
+#     # TRANSLATOR: A type of player in a game
+#     HUMAN = _("Human")
 
 
-class Placement(NamedTuple):
+# class Player(NamedTuple):
+#     """A player definition. E.g.:
 
-    TO: Tuple[int, ...]
-    COLOR: Color = Color.BLACK
-    MARKER: Marker = Marker.CIRCLE
+#         Player()  # To use all defaults (i.e. human)
 
-    def __str__(self: "Placement") -> str:
-        # TRANSLATOR: Names a placement in a game e.g. "Black circle to (1,2)"
-        return (
-            _("{color} {shape} to {destination}")
-            .format(color=self.COLOR, shape=self.MARKER, destination=self.TO)
-            .capitalize()
-        )
+#     Attributes:
+#         TYPE: If specified, determines the PlayerType. Default is Human.
+#     """
+
+#     TYPE: PlayerType = PlayerType.HUMAN
 
 
-class Jump(NamedTuple):
+# class Placement(NamedTuple):
 
-    FROM: Tuple[int, ...]
-    TO: Tuple[int, ...]
+#     TO: Tuple[int, ...]
+#     COLOR: Color = Color.BLACK
+#     MARKER: Marker = Marker.CIRCLE
 
-    def __str__(self: "Jump") -> str:
-        # TRANSLATOR: Names a move in a game e.g. "(2,3) to (1,2)
-        return _("{origin} to {destination}").format(
-            origin=self.FROM, destination=self.TO
-        )
+#     def __str__(self: "Placement") -> str:
+#         # TRANSLATOR: Names a placement in a game e.g. "Black circle to (1,2)"
+#         return (
+#             _("{color} {shape} to {destination}")
+#             .format(color=self.COLOR, shape=self.MARKER, destination=self.TO)
+#             .capitalize()
+#         )
 
 
-class Move(category.Categorized):
-    """A type of move in a game. Prints localized str. Examples:
+# class Jump(NamedTuple):
 
-      Move.PASS
-      Move.PLACE(COLOR=Color.WHITE, MARKER=Marker.CIRCLE, TO=(2,3))
-      Move.JUMP(FROM=(1,1), TO=(2,3))
+#     FROM: Tuple[int, ...]
+#     TO: Tuple[int, ...]
 
-    Attributes:
-      TO (in JUMP and PLACE only): Tuple of integers specifying the
-        destination coordinates.
-      COLOR (in PLACE only): Color enum specifying the color to be placed.
-        Default is Color.BLACK
-      MARKER (in PLACE only): Marker enum specifying the shape to be placed.
-        Default is Marker.CIRCLE
-      FROM (in JUMP only): Tuple of integers specifying the origin coordinates.
-    """
+#     def __str__(self: "Jump") -> str:
+#         # TRANSLATOR: Names a move in a game e.g. "(2,3) to (1,2)
+#         return _("{origin} to {destination}").format(
+#             origin=self.FROM, destination=self.TO
+#         )
 
-    _ignore_ = "MoveValue"
 
-    class MoveValue(NamedTuple):
-        STR: str
-        CALL: Any
+# class Move(category.Categorized):
+#     """A type of move in a game. Prints localized str. Examples:
 
-    # TRANSLATOR: Move in a game when the player forfeits their turn
-    PASS = _("Pass")
+#       Move.PASS
+#       Move.PLACE(COLOR=Color.WHITE, MARKER=Marker.CIRCLE, TO=(2,3))
+#       Move.JUMP(FROM=(1,1), TO=(2,3))
 
-    # TRANSLATOR: Move in a game when the player adds a piece or card
-    PLACE = MoveValue(STR=_("Place from reserves"), CALL=Placement)
+#     Attributes:
+#       TO (in JUMP and PLACE only): Tuple of integers specifying the
+#         destination coordinates.
+#       COLOR (in PLACE only): Color enum specifying the color to be placed.
+#         Default is Color.BLACK
+#       MARKER (in PLACE only): Marker enum specifying the shape to be placed.
+#         Default is Marker.CIRCLE
+#       FROM (in JUMP only): Tuple of integers specifying the origin coordinates.
+#     """
 
-    # TRANSLATOR: Move in a game from one spot to another
-    JUMP = MoveValue(STR=_("Reposition"), CALL=Jump)
+#     _ignore_ = "MoveValue"
 
-    # TRANSLATOR: Move in a game when the player offers a voluntary draw
-    OFFER = _("Offer to draw")
+#     class MoveValue(NamedTuple):
+#         STR: str
+#         CALL: Any
 
-    # TRANSLATOR: Move in a game when the player accepts an offer to draw
-    AGREE = _("Agree to draw")
+#     # TRANSLATOR: Move in a game when the player forfeits their turn
+#     PASS = _("Pass")
 
-    # TRANSLATOR: Move in a game when the player rejects an offer to draw
-    REFUSE = _("Refuse to draw")
+#     # TRANSLATOR: Move in a game when the player adds a piece or card
+#     PLACE = MoveValue(STR=_("Place from reserves"), CALL=Placement)
+
+#     # TRANSLATOR: Move in a game from one spot to another
+#     JUMP = MoveValue(STR=_("Reposition"), CALL=Jump)
+
+#     # TRANSLATOR: Move in a game when the player offers a voluntary draw
+#     OFFER = _("Offer to draw")
+
+#     # TRANSLATOR: Move in a game when the player accepts an offer to draw
+#     AGREE = _("Agree to draw")
+
+#     # TRANSLATOR: Move in a game when the player rejects an offer to draw
+#     REFUSE = _("Refuse to draw")
 
 
 # Delay this set to default language until after all constants are declared;
 # otherwise the strings will get translated upon declaration, and that will
 # prevent us from changing language later (since we will have lost the original
 # strings)
-setlang = babelwrap.SetLang(globals())
-setlang("")
+# setlang = babelwrap.SetLang(globals())
+# setlang("")
 
 # defaults['misc']['title'] = _('Command Line Tic-Tac-Toe')
 
