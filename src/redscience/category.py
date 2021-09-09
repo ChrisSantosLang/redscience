@@ -139,7 +139,7 @@ class Category(enum.EnumMeta):
         return self ^ other
 
     def __str__(self):
-        return babelwrap.format_list(list(filter(inversion(self))))
+        return babelwrap.functions.format_list(list(filter(inversion(self))))
 
     def __repr__(self):
         return f"<category {self.__name__}>"
@@ -211,7 +211,7 @@ class Categorized(enum.Enum, metaclass=Category):
     
     Categories behave differently in different locales. If a member has an 
     attribute named "STR", then that's how that member will print. The translation 
-    function, ``babelwrap._()``, is applied when printing and when getting any 
+    function, ``babelwrap.functions._()``, is applied when printing and when getting any 
     attributes (see the ``babelwrap`` module). For example, given the above, the 
     following would return "a hash" automatically translated into the language of 
     the set locale:
@@ -345,7 +345,7 @@ class Categorized(enum.Enum, metaclass=Category):
         ):
             return enum.Enum.__getattribute__(self, name)
         else:
-            return babelwrap._(getattr(self._value_, name))
+            return babelwrap.functions._(getattr(self._value_, name))
 
     def __setattr__(self, name, new_value):
         if (
@@ -377,7 +377,7 @@ class Categorized(enum.Enum, metaclass=Category):
         return sorted(result)
 
     def __str__(self):
-        return self.STR if hasattr(self, "STR") else babelwrap._(str(self.value))
+        return self.STR if hasattr(self, "STR") else babelwrap.functions._(str(self.value))
 
     def __hash__(self):
         return hash(repr(self))
@@ -451,7 +451,7 @@ def category(*members: Iterable[Categorized], name: str = "Categorized") -> type
     if len(bases) == 1:
         category.__doc__ = bases[0].__doc__
     else:
-        base_list = babelwrap.format_list([base.__name__ for base in catbases])
+        base_list = babelwrap.functions.format_list([base.__name__ for base in catbases])
         category.__doc__ = """A Category derived from
           {bases}""".format(
             bases=base_list
