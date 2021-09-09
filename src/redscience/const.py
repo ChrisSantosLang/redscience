@@ -64,92 +64,23 @@ import category
 
 _release: Optional[Tuple[Union[int,str], ...]] = None  # for type hint 
 
-# Keep theses before setting Enums, so their values will be in the
+# def format_list(items: List[Any]) -> str:
+#     """Defined for type hint, then replaced by babelwrap.
+#     """
+#     return str(items)
+  
+babelwrap.setlang()
+for name, function in babelwrap.functions.items():
+    globals()[name] = function
+          
+          
+# Keep this before setting Enums, so their values will be in the
 # language from which they can be translated
 def _(message: str) -> str:
-    """
-    The name to be used for the function that returns the 
-    localized version of a str. Defined here only 
-    temporarily for type hints (to be redefined elsewhere).
+    """Defined for type hint, then replaced by babelwrap.
     """
     return message
 
-
-def format_list(items: List[Any]) -> str:
-    """
-    The name to be used for the function that returns the 
-    localized string to describe a list. Defined here only 
-    temporarily for type hints (to be redefined elsewhere).
-    """
-    return str(items)
-
-
-def release(name:str, min_parts:int=3) -> Tuple[Union[int,str], ...]:
-    """Translates a release name into sortable tuples. E.g.:
-    
-    >>> release("1.0.1")
-    (1, 0, 1)
-      
-    Args:
-        name (str): The release name (e.g. "1.0.1.alpha")
-        min_parts (int): The minimum parts for the tuple. Default is 3.
-        
-    Returns:
-        A tuple with one member per dot-delimitted part of the name (padded with 
-        as many zeros as necessary to achieve min_parts). The numeric parts are 
-        integers so, the tuples sort correctly (unlike string names).
-    """
-    parts = name.split(".")
-    parts.extend(["0"]*(min_parts-len(parts)))
-    return tuple(int(part) if part.isnumeric() else part for part in parts)
-  
-def isreleased(obj: Any)->bool:
-    """Tests whether an object is released. E.g.:
-    
-    >>> isreleased(Color.BLACK)
-    True
-    
-    Args:
-        obj (object): The object in question
-        
-    Returns:
-        True if the object is in the release that was set
-        
-    Note:
-        This function assumes that any object which might not be releases has 
-        an attribute named "RELEASES" containing all the releases in which it 
-        is released.
-    """
-    return not hasattr(obj, "RELEASES") or _release in obj.RELEASES
-  
-def setrelease(name: Optional[str]=None)->str:
-    """Get or set the release. E.g.:
-    
-    >>> setrelease("1.1.0")
-    (1, 1, 0)
-    
-    Args:
-        name (str): The name of the release to set. ``setrelease("")`` will set to 
-            the version named in ``setup.cfg``. If ``None``, the previously set 
-            release will be retained. Default to ``None``.
-        
-    Returns:
-        The release as a tuple. ``setrelease()`` is the getter.
-        
-    Note:
-        This function stores the release in ``_release``
-    """
-    global _release
-    if _release and name==None: return _release
-    if name and len(name) > 0: 
-        _release = release(name)
-    else:
-        # get from setup.cfg
-        _release = release("1.0.0")
-    return _release
-  
-setrelease()
- 
 
 class Color(category.Categorized):
     """Color used in a game. E.g.::
@@ -738,12 +669,11 @@ class ColorOption(category.Categorized):
 #     REFUSE = _("Refuse to draw")
 
 
-# Delay this set to default language until after all constants are declared;
-# otherwise the strings will get translated upon declaration, and that will
-# prevent us from changing language later (since we will have lost the original
-# strings)
-# setlang = babelwrap.SetLang(globals())
-# setlang("")
+# Delay this until after all constants are declared; otherwise the strings will
+# get translated upon declaration, and that will prevent us from changing 
+# language later (since we will have lost the original strings)
+_ = babelwrap.functions._
+
 
 # defaults['misc']['title'] = _('Command Line Tic-Tac-Toe')
 
