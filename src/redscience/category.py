@@ -4,7 +4,9 @@ Classes and functions for defining categories.
 """
 
 import collections
+import configparser
 import enum
+import os
 from typing import (
     Any,
     Callable,
@@ -16,34 +18,83 @@ from typing import (
     Tuple,
     Union,
 )
+ 
+import babelwrap
 
+CONFIG_PATH = "../../setup.cfg"
+VERSION_SECTION = "metadata"
+VERSION_OPTION = "version"
 
-def _(message: str) -> str:
+_version: Optional[Tuple[Union[int,str], ...]] = None  
+
+def version(name:str, min_parts:int=3) -> Tuple[Union[int,str], ...]:
+    """Translates a version name into sortable tuples. E.g.:
+    
+    >>> version("1.0.1")
+    (1, 0, 1)
+      
+    Args:
+        name (str): The version name (e.g. "1.0.1.alpha")
+        min_parts (int): The minimum parts for the tuple. Default is 3.
+        
+    Returns:
+        A tuple with one member per dot-delimitted part of the name (padded with 
+        as many zeros as necessary to achieve min_parts). The numeric parts are 
+        integers so, the tuples sort correctly (unlike string names).
     """
-    The name to be used for the function that returns the 
-    localized version of a str. Defined here only 
-    temporarily for type hints (to be redefined elsewhere).
+    parts = name.split(".")
+    parts.extend(["0"]*(min_parts-len(parts)))
+    return tuple(int(part) if part.isnumeric() else part for part in parts)
+  
+def setvers(name: Optional[str]=None)->str:
+    """Get or set the version. E.g.:
+    
+    >>> setvers("1.1.0")
+    (1, 1, 0)
+    
+    Args:
+        name (str): The name of the version to set. ``setvers("")`` will set to 
+            the version named in ``setup.cfg``. If ``None``, the previously set 
+            version will be retained. Default to ``None``.
+        
+    Returns:
+        The version as a tuple. ``setvers()`` is the getter.
+        
+    Note:
+        This function stores the set version in ``_version``
     """
-    return message
+    global _version
+    if _version and name==None: return _version
+    if name and len(name) > 0: 
+        _version = version(name)
+    elif os.path.exists(CONFIG_PATH):
+        parser = configparser.ConfigParser()
+        parser.read(CONFIG_PATH)
+        if (parser.has_section(VERSION_SECTION) 
+            and parser.has_option(VERSION_SECTION, VERSION_OPTION)):
+            _version = version(parser.get(VERSION_SECTION, VERSION_OPTION))
+    _version = _version or version("1.0.0")     
+    return _version
+  
+setvers()
 
-
-def format_list(items: List[Any]) -> str:
+def inversion(obj: Any)->bool:
+    """Tests whether an object is in the version. E.g.:
+    
+    >>> inversion(Color.BLACK)
+    True
+    
+    Args:
+        obj (object): The object in question
+        
+    Returns:
+        True if the object is in the version that was set
+        
+    Note:
+        This function assumes that any object which might not be in a version has 
+        an attribute named "VERSIONS" which contains all versions that contain it.
     """
-    The name to be used for the function that returns the 
-    localized string to describe a list. Defined here only 
-    temporarily for type hints (to be redefined elsewhere).
-    """
-    return str(items)
-
-
-def isreleased(obj) -> bool:
-    """
-    The name to be used for the function that tests whether
-    an object has been released. Defined here only 
-    temporarily for type hints (to be redefined elsewhere).
-    """
-    return True
-
+    return not hasattr(obj, "VERSIONS") or _version in obj.VERSIONS
 
 class Category(enum.EnumMeta):
     """MetaClass for Categorized (not for public use)."""
@@ -55,7 +106,7 @@ class Category(enum.EnumMeta):
             isinstance(item, enum.Enum)
             and hasattr(self, item.name)
             and item.value == self[item.name].value
-            and isreleased(self[item.name])
+            and inversion(self[item.name])
         )
 
     def __and__(self, other):  # Intersection
@@ -88,14 +139,14 @@ class Category(enum.EnumMeta):
         return self ^ other
 
     def __str__(self):
-        return format_list(list(filter(isreleased(self))))
+        return babelwrap.format_list(list(filter(inversion(self))))
 
     def __repr__(self):
         return f"<category {self.__name__}>"
 
     def __getitem__(self, index):
         if isinstance(index, (int, slice)):
-            return list(filter(isreleased(self)))[index]
+            return list(filter(inversion(self)))[index]
         else:
             return enum.EnumMeta.__getitem__(self, index)
 
@@ -141,12 +192,12 @@ class Categorized(enum.Enum, metaclass=Category):
                 STR: str
                 AX: Callable[[matplotlib.figure.Figure, tuple], 
                     matplotlib.axes.Axes]
-                RELEASES: portion.interval.Interval = -P.empty()
+                VERSIONS: portion.interval.Interval = -P.empty()
             HASH = BoardValue(STR = _("a hash"), AX = hash_board)
             SQUARES = BoardValue(
                 STR = _("squares"), 
                 AX = squares_board,
-                RELEASES = P.closed(release("1.5.0"), P.inf),
+                VERSIONS = P.closed(version("1.5.0"), P.inf),
             )
     
     Raises:
@@ -156,29 +207,31 @@ class Categorized(enum.Enum, metaclass=Category):
     The above example assumes the existence of functions named ``hash_board``
     and ``squares_board``. It creates a ``Category`` named ``BoardOption`` with 
     two members, ``BoardOption.HASH`` and ``BoardOption.SQUARES``, each of which 
-    has three attributes: ``STR``, ``AX`` and ``RELEASES``. 
+    has three attributes: ``STR``, ``AX`` and ``VERSIONS``. 
     
-    If a member has an attribute named "STR", then that's how that member will
-    print. The translation function, ``_()``, is applied when printing and when
-    getting any attributes (see the ``babelwrap`` module). 
-    
-    For the above example, the following would return "a hash" automatically
-    translated to the set locale:
+    Categories behave differently in different locales. If a member has an 
+    attribute named "STR", then that's how that member will print. The translation 
+    function, ``babelwrap._()``, is applied when printing and when getting any 
+    attributes (see the ``babelwrap`` module). For example, given the above, the 
+    following would return "a hash" automatically translated into the language of 
+    the set locale:
     
     >>> str(BoardOption.HASH)
     'a hash'
     
-    If a member has an attribute named "RELEASES", then that member will appear
-    in the list for only those releases. Given the above example, 
-    ``ipywidgets.Dropdown(options=BoardOption)`` would yield a dropdown with 
-    only an "a hash" option in ``release("1.0.0")``, but with both "a hash"
-    *and* "squares" in ``release("1.5.0")`` and above.
+    Categories also behave differently in different versions. If a member has an 
+    attribute named "VERSIONS", then that member will appear in the list for only 
+    those versions. For example, ``ipywidgets.Dropdown(options=BoardOption)`` 
+    would yield a dropdown with only an "a hash" option in ``version("1.0.0")``, 
+    but would yield a dropdown with options for both "a hash" and "squares" in 
+    ``version("1.5.0")`` and above.
     
-    If a member has an attribute named "CALL", then it will be invoked when
-    that member is called. If the CALL is a ``tuple`` class (e.g. ``NamedTuple``), 
-    then calling that member will transform that member's attributes into 
-    the attributes of an instance of that ``tuple`` class (initialized with the 
-    called parameters). For example::
+    It is often the case that all members of a ``Category`` have the same attributes, 
+    but not always. If a member has an attribute named "CALL", then the value of 
+    that attribute will be invoked when that member is called. If the CALL is a 
+    ``tuple`` class (e.g. ``NamedTuple``), then calling that member will transform 
+    that member's attributes into the attributes of an instance of that ``tuple`` 
+    class (initialized with the called parameters). For example::
     
         class Jump(NamedTuple):
             FROM: Tuple[int, ...]
@@ -196,18 +249,11 @@ class Categorized(enum.Enum, metaclass=Category):
             PASS = _("Pass")
             JUMP = MoveValue(STR=_("Reposition"), CALL=Jump)
     
-    Assuming the above, ``ipywidgets.Dropdown(options=Move)`` would yield a 
-    dropdown with only two options (displayed as the locale translations of 
-    "Pass" and "Reposition"), but the following would yield a dropdown with 
-    the locale translations of "(0,0) to (1,1)",  "(1,1) to (2,3)", 
-    "(1,1) to (0,0)", and "Pass"::
-    
-        ipywidgets.Dropdown(options=(
-            Move.JUMP(FROM=(0,0), TO=(1,1)),
-            Move.JUMP(FROM=(1,1), TO=(2,3)),
-            Move.JUMP(FROM=(1,1), TO=(0,0)),
-            Move.PASS,
-        ))
+    In this example, the ``Move`` Category has three *kinds* of members: There is 
+    one member ``Move.PASS`` that has no attributes, one member ``Move.JUMP`` that 
+    has ``STR`` and ``CALL`` attributes, and infinite members of the form
+    ``Move.JUMP(FROM=(0,0), TO=(1,1))`` each of which has ``FROM`` and ``TO``
+    attributes.
 
     Categories support set operations. For example, assuming the following::
     
@@ -240,8 +286,10 @@ class Categorized(enum.Enum, metaclass=Category):
     
     ...but equal members can have different contexts! 
     
-    >>> str(type(PlayerColor.BLACK))
-    'black, white, pink and yellow'
+    >>> print(type(PlayerColor.BLACK))
+        print(type(Color.BLACK))
+    black, white, pink and yellow
+    black, white, pink, yellow, orange, blue, purple, green and gray
     
     Introspect:  
     
@@ -297,7 +345,7 @@ class Categorized(enum.Enum, metaclass=Category):
         ):
             return enum.Enum.__getattribute__(self, name)
         else:
-            return _(getattr(self._value_, name))
+            return babelwrap._(getattr(self._value_, name))
 
     def __setattr__(self, name, new_value):
         if (
@@ -329,7 +377,7 @@ class Categorized(enum.Enum, metaclass=Category):
         return sorted(result)
 
     def __str__(self):
-        return self.STR if hasattr(self, "STR") else _(str(self.value))
+        return self.STR if hasattr(self, "STR") else babelwrap._(str(self.value))
 
     def __hash__(self):
         return hash(repr(self))
@@ -403,7 +451,7 @@ def category(*members: Iterable[Categorized], name: str = "Categorized") -> type
     if len(bases) == 1:
         category.__doc__ = bases[0].__doc__
     else:
-        base_list = format_list([base.__name__ for base in catbases])
+        base_list = babelwrap.format_list([base.__name__ for base in catbases])
         category.__doc__ = """A Category derived from
           {bases}""".format(
             bases=base_list
