@@ -164,9 +164,9 @@ def _install(function):
 def setlang(*langs: str) -> babel.core.Locale:   
     """Gets/sets locale for language functions. E.g.::
     
-        setlang("zh_Hans_HK", "zh_HK", "en_CA", "ar_TN")
-        for name, function in babelwrapper.functions.items():
+        for name, function in babelwrap.functions.items():
             globals()[name] = function
+        setlang("zh_Hans_HK", "zh_HK", "en_CA", "ar_TN")
     
     Args:
         *langs (str): locale names (e.g. "en_US") in order of preference. 
@@ -256,3 +256,6 @@ def setlang(*langs: str) -> babel.core.Locale:
     _install(babel.numbers.format_percent)
     _install(babel.units.format_unit)
     return _locale
+
+setlang()
+functions["setlang"] = setlang
