@@ -62,23 +62,17 @@ import category
 #!pip install portion
 #import portion as P
 
-_release: Optional[Tuple[Union[int,str], ...]] = None  # for type hint 
-
 # def format_list(items: List[Any]) -> str:
-#     """Defined for type hint, then replaced by babelwrap.
-#     """
+#     """Defined for type hint, then replaced by babelwrap."""
 #     return str(items)
   
-babelwrap.setlang()
 for name, function in babelwrap.functions.items():
     globals()[name] = function
-          
           
 # Keep this before setting Enums, so their values will be in the
 # language from which they can be translated
 def _(message: str) -> str:
-    """Defined for type hint, then replaced by babelwrap.
-    """
+    """Defined for type hint, then replaced at bottom."""
     return message
 
 
