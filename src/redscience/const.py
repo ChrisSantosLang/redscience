@@ -56,7 +56,7 @@ from typing import (
 import category
 # import matplotlib
 # import matplotlib.pyplot as plt
-# import numpy as np
+import numpy as np
 
 #!pip install portion
 #import portion as P
