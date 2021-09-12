@@ -208,9 +208,9 @@ class Categorized(enum.Enum, metaclass=Category):
                 VERSIONS = P.closed(version("1.5.0"), P.inf),
             )
     
-    Raises:
-        AttributeError: Upon attempt to add, delete, or change a member
-            or an attribute of a member of a ``Category``.
+    Raises: 
+        TypeError: Upon attempt to combine non-equal members with the 
+            same name when uniquify is False.
 
     The above example assumes the existence of functions named ``hash_board``
     and ``squares_board``. It creates a ``Category`` named ``BoardOption`` with 
@@ -219,8 +219,8 @@ class Categorized(enum.Enum, metaclass=Category):
     
     The classic example of a Category is the values in a dropdown. Categories 
     behave differently in different locales. If a member has an attribute named 
-    "STR", then that's how that member will print. The translation function, 
-    ``babelwrap.functions._()``, is applied when printing and when getting any 
+    ``STR``, then that's how that member will print. The translation function, 
+    ``babelwrap._()``, is applied when printing and when getting any 
     attributes (see the ``babelwrap`` module). For example, given the above, the 
     following would return "a hash" automatically translated into the language of 
     the set locale:
@@ -229,16 +229,16 @@ class Categorized(enum.Enum, metaclass=Category):
     'a hash'
     
     Categories also behave differently in different versions. If a member has an 
-    attribute named "VERSIONS", then that member will appear in the list for only 
+    attribute named ``VERSIONS``, then that member will appear in the list for only 
     those versions. For example, in ``version("1.0.0")``, 
     ``ipywidgets.Dropdown(options=BoardOption)`` would yield a dropdown with 
     only the locale translation of "a hash", but would yield a dropdown with 
     options for both "a hash" and "squares" in ``version("1.5.0")`` and above.
     
-    If a member has an attribute named "CALL", then the value of that attribute 
+    If a member has an attribute named ``CALL``, then the value of that attribute 
     will be invoked when that member is called. If the CALL is a ``tuple`` class 
     (e.g. ``NamedTuple``), then that member is a "factory member", and calling it 
-    will return a new ``Categorized`` with attributes of that ``tuple`` class 
+    will return a new ``Categorized`` with the attributes of that ``tuple`` class 
     (initialized with the called parameters). For example::
     
         class Jump(NamedTuple):
@@ -260,41 +260,22 @@ class Categorized(enum.Enum, metaclass=Category):
         jumps = (Move.JUMP(FROM=(1,2), TO=dest) for dest in ((3,1), (3,3), (2,4)))  
         Option = ctg(*jumps, name="Option", uniquify=True) | Move.PASS
     
-    In this example, the ``Move`` Category has two members: There is 
+    In this example, the ``Move`` category has two members: There is 
     one member ``Move.PASS`` that has no attributes, and one factory member 
     ``Move.JUMP`` that has ``STR`` and ``CALL`` attributes. The factory member
-    is used to create the ``Options`` Category which includes ``Option.PASS``,
+    is used to create the ``Options`` category which includes ``Option.PASS``,
     ``Option.JUMP``, ``Option.JUMP1`` and ``Option.JUMP2``. ``Option.PASS`` 
-    has the same attributes as ``Move.PASS`` (in fact they are equal); each of 
+    has the same attributes as ``Move.PASS`` (in fact, they are equal); each of 
     the "JUMP" members of Options  has ``FROM`` and ``TO`` attributes.
 
-    >>> print(Move, Option, sep="\n")
+    >>> print(Move, Option, sep="\\n")
     Pass and Reposition
     (1,2) to (3,1), (1,2) to (3,3), (1,2) to (2,4) and Pass
     
-    Categories support set operations. For example, assuming the following::
+    Categories support set operations. You can check type:
     
-        class Color(Categorized):
-            _ignore_ = "ColorValue"
-            class ColorValue(NamedTuple):
-                STR: str
-                HEX: str
-            BLACK = ColorValue(STR=_("black"), HEX="#000000")
-            WHITE = ColorValue(STR=_("white"), HEX="#ffffff")
-            PINK = ColorValue(STR=_("pink"), HEX="#ff81c0")
-            YELLOW = ColorValue(STR=_("yellow"), HEX="#ffff14")
-            ORANGE = ColorValue(STR=_("orange"), HEX="#fdaa48")
-            BLUE = ColorValue(STR=_("blue"), HEX="#95d0fc")
-            PURPLE = ColorValue(STR=_("purple"), HEX="#bf77f6")
-            GREEN = ColorValue(STR=_("green"), HEX="#96f97b")
-            GRAY = ColorValue(STR=_("gray"), HEX="#929591")
-
-        PlayerColor = ctg(*Color[0:4], name="PlayerColor")
-
-    Check type:
-    
-    >>> isinstance(Move, Category) and isinstance(Move.PASS, Categorized)
-    True
+    >>> isinstance(Move, Category), isinstance(Move.PASS, Categorized)
+    True, True
     
     Test equality: 
     
@@ -303,7 +284,7 @@ class Categorized(enum.Enum, metaclass=Category):
     
     ...but equal members can have different contexts! 
     
-    >>> print(type(Move.PASS), type(Option.PASS), sep="\n"))
+    >>> print(type(Move.PASS), type(Option.PASS), sep="\\n"))
     Pass and Reposition
     (1,2) to (3,1), (1,2) to (3,3), (1,2) to (2,4) and Pass
     
@@ -451,7 +432,7 @@ def ctg(
   ) -> type:
     """Generate Category from members of other Categories. e.g.::
 
-        category(Color.BLACK, Marker.CIRCLE)
+        ctg(Color.BLACK, Marker.CIRCLE)
         
     Args:
         *members: The members for the new Category.
@@ -460,9 +441,7 @@ def ctg(
             member names. Useful with factory members. Defaults to False
 
     Returns: 
-        The ``babel.core.Locale`` associated with whichever language got set. 
-        When called with no parameters, the previously set locale remains, so
-        ``setlang()`` with no parameters is the getter.
+        The Category.
     
     Raises: 
         TypeError: Upon attempt to combine non-equal members with the 
