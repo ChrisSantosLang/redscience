@@ -209,8 +209,7 @@ class Categorized(enum.Enum, metaclass=Category):
             )
     
     Raises: 
-        TypeError: Upon attempt to combine non-equal members with the 
-            same name when uniquify is False.
+        AttributeError: Upon attempt to add, delete or change member. 
 
     The above example assumes the existence of functions named ``hash_board``
     and ``squares_board``. It creates a ``Category`` named ``BoardOption`` with 
