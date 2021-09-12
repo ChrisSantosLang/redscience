@@ -53,7 +53,6 @@ from typing import (
     Union,
 )
 
-import babelwrap
 import category
 # import matplotlib
 # import matplotlib.pyplot as plt
@@ -66,8 +65,17 @@ import category
 #     """Defined for type hint, then replaced by babelwrap."""
 #     return str(items)
   
-for name, function in babelwrap.functions.items():
-    globals()[name] = function
+setlang = category.babelwrap.setlang
+setvers = category.setvers
+format_list = category.babelwrap.format_list
+format_decimal = category.babelwrap.format_decimal
+format_percent = category.babelwrap.format_percent
+format_unit = category.babelwrap.format_unit
+format_datetime = category.babelwrap.format_datetime
+version=category.version
+
+# for name, function in babelwrap.functions.items():
+#     globals()[name] = function
           
 # Keep this before setting Enums, so their values will be in the
 # language from which they can be translated
@@ -84,6 +92,7 @@ class Color(category.Categorized):
     Attributes:
         STR (str): A localized name. How the Color prints.
         HEX (str): A hex code to communicate the Color to computers.
+        VERSIONS: The versions which offer this color.
     """
 
     _ignore_ = "ColorValue"
@@ -96,6 +105,7 @@ class Color(category.Categorized):
         """
         STR: str
         HEX: str
+        VERSIONS: Tuple[Any, ...] = (version("1.0.0"), version("1.5.0"))
 
     # TRANSLATOR: Color of game piece as in "Move: Black circle to (2,1)"
     BLACK = ColorValue(STR=_("black"), HEX="#000000")
@@ -110,7 +120,7 @@ class Color(category.Categorized):
     YELLOW = ColorValue(STR=_("yellow"), HEX="#ffff14")
 
     # TRANSLATOR: Color of game piece as in "Move: Orange circle to (2,1)"
-    ORANGE = ColorValue(STR=_("orange"), HEX="#fdaa48")
+    ORANGE = ColorValue(STR=_("orange"), HEX="#fdaa48", VERSIONS=(version("1.5.0"),))
 
     # TRANSLATOR: Color of game piece as in "Move: Blue circle to (2,1)"
     BLUE = ColorValue(STR=_("blue"), HEX="#95d0fc")
@@ -125,7 +135,7 @@ class Color(category.Categorized):
     GRAY = ColorValue(STR=_("gray"), HEX="#929591")
 
 
-# PlayerColor = category.category(*Color[0:4], name="PlayerColor")  # type: ignore[misc]
+PlayerColor = category.ctg(*Color[0:4], name="PlayerColor")  # type: ignore[misc]
 
 
 class Layout(enum.IntEnum):
@@ -242,7 +252,7 @@ class StalemateOption(category.Categorized):
 
 
 class ColorOption(category.Categorized):
-     """Category of game by how it treats colors. E.g.::
+    """Category of game by how it treats colors. E.g.::
     
         ColorOption.ASSIGNED
 
@@ -594,79 +604,79 @@ class ColorOption(category.Categorized):
 #     TYPE: PlayerType = PlayerType.HUMAN
 
 
-# class Placement(NamedTuple):
+class Placement(NamedTuple):
 
-#     TO: Tuple[int, ...]
-#     COLOR: Color = Color.BLACK
-#     MARKER: Marker = Marker.CIRCLE
+    TO: Tuple[int, ...]
+    COLOR: Color = Color.BLACK
+    MARKER: Marker = Marker.CIRCLE
 
-#     def __str__(self: "Placement") -> str:
-#         # TRANSLATOR: Names a placement in a game e.g. "Black circle to (1,2)"
-#         return (
-#             _("{color} {shape} to {destination}")
-#             .format(color=self.COLOR, shape=self.MARKER, destination=self.TO)
-#             .capitalize()
-#         )
-
-
-# class Jump(NamedTuple):
-
-#     FROM: Tuple[int, ...]
-#     TO: Tuple[int, ...]
-
-#     def __str__(self: "Jump") -> str:
-#         # TRANSLATOR: Names a move in a game e.g. "(2,3) to (1,2)
-#         return _("{origin} to {destination}").format(
-#             origin=self.FROM, destination=self.TO
-#         )
+    def __str__(self: "Placement") -> str:
+        # TRANSLATOR: Names a placement in a game e.g. "Black circle to (1,2)"
+        return (
+            _("{color} {shape} to {destination}")
+            .format(color=self.COLOR, shape=self.MARKER, destination=self.TO)
+            .capitalize()
+        )
 
 
-# class Move(category.Categorized):
-#     """A type of move in a game. Prints localized str. Examples:
+class Jump(NamedTuple):
 
-#       Move.PASS
-#       Move.PLACE(COLOR=Color.WHITE, MARKER=Marker.CIRCLE, TO=(2,3))
-#       Move.JUMP(FROM=(1,1), TO=(2,3))
+    FROM: Tuple[int, ...]
+    TO: Tuple[int, ...]
 
-#     Attributes:
-#       TO (in JUMP and PLACE only): Tuple of integers specifying the
-#         destination coordinates.
-#       COLOR (in PLACE only): Color enum specifying the color to be placed.
-#         Default is Color.BLACK
-#       MARKER (in PLACE only): Marker enum specifying the shape to be placed.
-#         Default is Marker.CIRCLE
-#       FROM (in JUMP only): Tuple of integers specifying the origin coordinates.
-#     """
+    def __str__(self: "Jump") -> str:
+        # TRANSLATOR: Names a move in a game e.g. "(2,3) to (1,2)
+        return _("{origin} to {destination}").format(
+            origin=self.FROM, destination=self.TO
+        )
 
-#     _ignore_ = "MoveValue"
 
-#     class MoveValue(NamedTuple):
-#         STR: str
-#         CALL: Any
+class Move(category.Categorized):
+    """A type of move in a game. Prints localized str. Examples:
 
-#     # TRANSLATOR: Move in a game when the player forfeits their turn
-#     PASS = _("Pass")
+      Move.PASS
+      Move.PLACE(COLOR=Color.WHITE, MARKER=Marker.CIRCLE, TO=(2,3))
+      Move.JUMP(FROM=(1,1), TO=(2,3))
 
-#     # TRANSLATOR: Move in a game when the player adds a piece or card
-#     PLACE = MoveValue(STR=_("Place from reserves"), CALL=Placement)
+    Attributes:
+      TO (in JUMP and PLACE only): Tuple of integers specifying the
+        destination coordinates.
+      COLOR (in PLACE only): Color enum specifying the color to be placed.
+        Default is Color.BLACK
+      MARKER (in PLACE only): Marker enum specifying the shape to be placed.
+        Default is Marker.CIRCLE
+      FROM (in JUMP only): Tuple of integers specifying the origin coordinates.
+    """
 
-#     # TRANSLATOR: Move in a game from one spot to another
-#     JUMP = MoveValue(STR=_("Reposition"), CALL=Jump)
+    _ignore_ = "MoveValue"
 
-#     # TRANSLATOR: Move in a game when the player offers a voluntary draw
-#     OFFER = _("Offer to draw")
+    class MoveValue(NamedTuple):
+        STR: str
+        CALL: Any
 
-#     # TRANSLATOR: Move in a game when the player accepts an offer to draw
-#     AGREE = _("Agree to draw")
+    # TRANSLATOR: Move in a game when the player forfeits their turn
+    PASS = _("Pass")
 
-#     # TRANSLATOR: Move in a game when the player rejects an offer to draw
-#     REFUSE = _("Refuse to draw")
+    # TRANSLATOR: Move in a game when the player adds a piece or card
+    PLACE = MoveValue(STR=_("Place from reserves"), CALL=Placement)
+
+    # TRANSLATOR: Move in a game from one spot to another
+    JUMP = MoveValue(STR=_("Reposition"), CALL=Jump)
+
+    # TRANSLATOR: Move in a game when the player offers a voluntary draw
+    OFFER = _("Offer to draw")
+
+    # TRANSLATOR: Move in a game when the player accepts an offer to draw
+    AGREE = _("Agree to draw")
+
+    # TRANSLATOR: Move in a game when the player rejects an offer to draw
+    REFUSE = _("Refuse to draw")
 
 
 # Delay this until after all constants are declared; otherwise the strings will
 # get translated upon declaration, and that will prevent us from changing 
 # language later (since we will have lost the original strings)
-_ = babelwrap.functions._
+_ = category.babelwrap._
 
 
 # defaults['misc']['title'] = _('Command Line Tic-Tac-Toe')

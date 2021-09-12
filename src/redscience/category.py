@@ -7,6 +7,7 @@ import collections
 import configparser
 import enum
 import os
+import re
 from typing import (
     Any,
     Callable,
@@ -34,7 +35,7 @@ def version(name:str, min_parts:int=3) -> Tuple[Union[int,str], ...]:
     (1, 0, 1)
       
     Args:
-        name (str): The version name (e.g. "1.0.1.alpha")
+        name (str): The version name (e.g. "1.0.1")
         min_parts (int): The minimum parts for the tuple. Default is 3.
         
     Returns:
@@ -112,7 +113,7 @@ class Category(enum.EnumMeta):
     def __and__(self, other):  # Intersection
         if not isinstance(other, collections.abc.Iterable):
             other = [other]
-        return category(member for member in other if member in self)
+        return ctg(member for member in other if member in self)
 
     def __rand__(self, other):  # Intersection (from right)
         return self & other
@@ -124,13 +125,13 @@ class Category(enum.EnumMeta):
         for member in other:
             if isinstance(member, Categorized) and member not in self:
                 union.append(member)
-        return category(union)
+        return ctg(union)
 
     def __ror__(self, other):  # Union (from right)
         return self | other
 
     def __sub__(self, other):  # Difference
-        return category(x for x in self if x not in (self & other))
+        return ctg(x for x in self if x not in (self & other))
 
     def __xor__(self, other):  # Symmetric difference
         return (self | other) - (self & other)
@@ -139,14 +140,21 @@ class Category(enum.EnumMeta):
         return self ^ other
 
     def __str__(self):
-        return babelwrap.functions.format_list(list(filter(inversion(self))))
+        return babelwrap.format_list(list(self))
 
     def __repr__(self):
         return f"<category {self.__name__}>"
 
+    def __iter__(self):  # filter version in list
+        return filter(inversion, enum.EnumMeta.__iter__(self))
+
+    def __dir__(self):  # filter version in dir
+        return [name for name in enum.EnumMeta.__dir__(self)
+            if name[0]=="_" or inversion(self[name])]
+
     def __getitem__(self, index):
         if isinstance(index, (int, slice)):
-            return list(filter(inversion(self)))[index]
+            return list(self)[index]
         else:
             return enum.EnumMeta.__getitem__(self, index)
 
@@ -209,9 +217,10 @@ class Categorized(enum.Enum, metaclass=Category):
     two members, ``BoardOption.HASH`` and ``BoardOption.SQUARES``, each of which 
     has three attributes: ``STR``, ``AX`` and ``VERSIONS``. 
     
-    Categories behave differently in different locales. If a member has an 
-    attribute named "STR", then that's how that member will print. The translation 
-    function, ``babelwrap.functions._()``, is applied when printing and when getting any 
+    The classic example of a Category is the values in a dropdown. Categories 
+    behave differently in different locales. If a member has an attribute named 
+    "STR", then that's how that member will print. The translation function, 
+    ``babelwrap.functions._()``, is applied when printing and when getting any 
     attributes (see the ``babelwrap`` module). For example, given the above, the 
     following would return "a hash" automatically translated into the language of 
     the set locale:
@@ -221,17 +230,16 @@ class Categorized(enum.Enum, metaclass=Category):
     
     Categories also behave differently in different versions. If a member has an 
     attribute named "VERSIONS", then that member will appear in the list for only 
-    those versions. For example, ``ipywidgets.Dropdown(options=BoardOption)`` 
-    would yield a dropdown with only an "a hash" option in ``version("1.0.0")``, 
-    but would yield a dropdown with options for both "a hash" and "squares" in 
-    ``version("1.5.0")`` and above.
+    those versions. For example, in ``version("1.0.0")``, 
+    ``ipywidgets.Dropdown(options=BoardOption)`` would yield a dropdown with 
+    only the locale translation of "a hash", but would yield a dropdown with 
+    options for both "a hash" and "squares" in ``version("1.5.0")`` and above.
     
-    It is often the case that all members of a ``Category`` have the same attributes, 
-    but not always. If a member has an attribute named "CALL", then the value of 
-    that attribute will be invoked when that member is called. If the CALL is a 
-    ``tuple`` class (e.g. ``NamedTuple``), then calling that member will transform 
-    that member's attributes into the attributes of an instance of that ``tuple`` 
-    class (initialized with the called parameters). For example::
+    If a member has an attribute named "CALL", then the value of that attribute 
+    will be invoked when that member is called. If the CALL is a ``tuple`` class 
+    (e.g. ``NamedTuple``), then that member is a "factory member", and calling it 
+    will return a new ``Categorized`` with attributes of that ``tuple`` class 
+    (initialized with the called parameters). For example::
     
         class Jump(NamedTuple):
             FROM: Tuple[int, ...]
@@ -248,13 +256,22 @@ class Categorized(enum.Enum, metaclass=Category):
                 CALL: Any
             PASS = _("Pass")
             JUMP = MoveValue(STR=_("Reposition"), CALL=Jump)
-    
-    In this example, the ``Move`` Category has three *kinds* of members: There is 
-    one member ``Move.PASS`` that has no attributes, one member ``Move.JUMP`` that 
-    has ``STR`` and ``CALL`` attributes, and infinite members of the form
-    ``Move.JUMP(FROM=(0,0), TO=(1,1))`` each of which has ``FROM`` and ``TO``
-    attributes.
 
+        jumps = (Move.JUMP(FROM=(1,2), TO=dest) for dest in ((3,1), (3,3), (2,4)))  
+        Option = ctg(*jumps, name="Option", uniquify=True) | Move.PASS
+    
+    In this example, the ``Move`` Category has two members: There is 
+    one member ``Move.PASS`` that has no attributes, and one factory member 
+    ``Move.JUMP`` that has ``STR`` and ``CALL`` attributes. The factory member
+    is used to create the ``Options`` Category which includes ``Option.PASS``,
+    ``Option.JUMP``, ``Option.JUMP1`` and ``Option.JUMP2``. ``Option.PASS`` 
+    has the same attributes as ``Move.PASS`` (in fact they are equal); each of 
+    the "JUMP" members of Options  has ``FROM`` and ``TO`` attributes.
+
+    >>> print(Move, Option, sep="\n")
+    Pass and Reposition
+    (1,2) to (3,1), (1,2) to (3,3), (1,2) to (2,4) and Pass
+    
     Categories support set operations. For example, assuming the following::
     
         class Color(Categorized):
@@ -272,65 +289,59 @@ class Categorized(enum.Enum, metaclass=Category):
             GREEN = ColorValue(STR=_("green"), HEX="#96f97b")
             GRAY = ColorValue(STR=_("gray"), HEX="#929591")
 
-        PlayerColor = category(*Color[0:4], name="PlayerColor")
+        PlayerColor = ctg(*Color[0:4], name="PlayerColor")
 
     Check type:
     
-    >>> isinstance(Color, Category) and isinstance(Color.BLACK, Categorized)
+    >>> isinstance(Move, Category) and isinstance(Move.PASS, Categorized)
     True
     
     Test equality: 
     
-    >>> PlayerColor.BLACK == Color.BLACK
+    >>> Option.PASS == Move.PASS
     True
     
     ...but equal members can have different contexts! 
     
-    >>> print(type(PlayerColor.BLACK))
-        print(type(Color.BLACK))
-    black, white, pink and yellow
-    black, white, pink, yellow, orange, blue, purple, green and gray
+    >>> print(type(Move.PASS), type(Option.PASS), sep="\n"))
+    Pass and Reposition
+    (1,2) to (3,1), (1,2) to (3,3), (1,2) to (2,4) and Pass
     
     Introspect:  
     
-    >>> Color.BLACK in PlayerColor
-    True
+    >>> Option.PASS in Move, Option.JUMP in Move
+    True, False
+
+    Set difference:
+    
+    >>> str(Option - Move)
+    '(1,2) to (3,1), (1,2) to (3,3) and (1,2) to (2,4)'
+
+    Set intersection:
+    
+    >>> str(Option & Move)
+    'Pass'
+
+    Set union: 
+    
+    >>> str(Option | Move)
+    '(1,2) to (3,1), (1,2) to (3,3), (1,2) to (2,4), Pass and Reposition'
+    
+    Set symmetric difference: 
+    
+    >>> str(Option ^ Move)
+    '(1,2) to (3,1), (1,2) to (3,3), (1,2) to (2,4) and Reposition'
     
     Test for containment:
     
-    >>> Color >= PlayerColor
+    >>> Option >= (Move - Move.JUMP)
     True
     
     Test for proper subset:
     
-    >>> PlayerColor < Color
+    >>> (Move - Move.JUMP) < Option
     True
-    
-    Slice:
-    
-    >>> str(Color[:6:2])
-    'black, pink and orange' 
-    
-    Set difference:
-    
-    >>> str(Color - PlayerColor)
-    'orange, blue, purple, green and gray'
-    
-    Set intersection:
-    
-    >>> str(PlayerColor & Color[:6:2])
-    'black and pink'
-    
-    Set union: 
-    
-    >>> str(Color[:6:2] | (PlayerColor - Color.YELLOW))
-    'black, white, pink and orange'
-    
-    Set symmetric difference: 
-    
-    >>> str(Color[:6:2] ^ (PlayerColor - Color.YELLOW))
-    'white and orange'
-        
+           
     Categories inherit ``_ignore_`` (and more) from ``Enum``.
     
     References:
@@ -345,7 +356,7 @@ class Categorized(enum.Enum, metaclass=Category):
         ):
             return enum.Enum.__getattribute__(self, name)
         else:
-            return babelwrap.functions._(getattr(self._value_, name))
+            return babelwrap._(getattr(self._value_, name))
 
     def __setattr__(self, name, new_value):
         if (
@@ -372,15 +383,15 @@ class Categorized(enum.Enum, metaclass=Category):
     def __dir__(self):
         result = enum.Enum.__dir__(self)
         for name in dir(self._value_):
-            if name not in result:
+            if name not in result and name[0]!="_":
                 result.append(name)
         return sorted(result)
 
     def __str__(self):
-        return self.STR if hasattr(self, "STR") else babelwrap.functions._(str(self.value))
+        return self.STR if hasattr(self, "STR") else babelwrap._(str(self.value))
 
     def __hash__(self):
-        return hash(repr(self))
+        return hash(self.name)
 
     def __reduce_ex__(self):
         return enum.Enum.__reduce_ex__(self)
@@ -408,18 +419,61 @@ class Categorized(enum.Enum, metaclass=Category):
     def __int__(self):
         return list(type(self)).index(self)
 
+    def __or__(self, other):  # Union
+        return ctg(self) | other
 
-def category(*members: Iterable[Categorized], name: str = "Categorized") -> type:
+
+def _uniquify(name: str, collection: Iterable[str])-> str:
+    """Make name unique by adding small int to end, E.g.:
+
+    >>> _uniquify("JUMP1", ["JUMP1"]) 
+    'JUMP2'
+        
+    Arg: 
+        name (str): The name to be made unique 
+        collection: The collection in which to be unique
+    
+    Return:
+        A name that is not already in the collection and that ends in the 
+            smallest positive integer suffix required to make it unique.
+    """
+    counter = 1
+    while name in collection:
+        name = re.fullmatch(r"(\w+\D)(\d*)", name).group(1) + str(counter)
+        counter += 1
+    return name
+
+
+def ctg(
+  *members: Iterable[Categorized], 
+  name: str = "Categorized", 
+  uniquify: bool = False,
+  ) -> type:
     """Generate Category from members of other Categories. e.g.::
 
         category(Color.BLACK, Marker.CIRCLE)
         
+    Args:
+        *members: The members for the new Category.
+        name (str): The name of the new Category. Defaults to "Categorized"
+        uniquify (bool): If true, name collisions will be resolved by altering the 
+            member names. Useful with factory members. Defaults to False
+
+    Returns: 
+        The ``babel.core.Locale`` associated with whichever language got set. 
+        When called with no parameters, the previously set locale remains, so
+        ``setlang()`` with no parameters is the getter.
+    
     Raises: 
         TypeError: Upon attempt to combine non-equal members with the 
-            same name.
+            same name when uniquify is False.
     """
 
-    members = (members[0],) if len(members) == 1 else members
+    if len(members) == 1:
+        if isinstance(members[0], Iterable):
+            members = tuple(members[0])
+        else:
+            member = (members[0],)
     classdict = Category.__prepare__(name, (Categorized,))
     for member in members:
         if not isinstance(member, Categorized):
@@ -428,9 +482,10 @@ def category(*members: Iterable[Categorized], name: str = "Categorized") -> type
                     member=type(member).__name__
                 )
             )
-        if member.name in classdict:
-            if classdict[member.name] != member.value:
-                raise TypeError(f"""Attemped to reuse key: '{member.name}'""")
+        elif uniquify:
+            classdict[_uniquify(str(member.name), classdict)] = member.value  # type: ignore[index]
+        elif member.name in classdict:
+            raise TypeError(f"""Attemped to reuse key: '{member.name}'""")
         else:
             classdict[member.name] = member.value  # type: ignore[index]
     category = Category.__new__(Category, name, (Categorized,), classdict)  # type: ignore[call-overload]
@@ -451,7 +506,7 @@ def category(*members: Iterable[Categorized], name: str = "Categorized") -> type
     if len(bases) == 1:
         category.__doc__ = bases[0].__doc__
     else:
-        base_list = babelwrap.functions.format_list([base.__name__ for base in catbases])
+        base_list = babelwrap.format_list([base.__name__ for base in catbases])
         category.__doc__ = """A Category derived from
           {bases}""".format(
             bases=base_list
