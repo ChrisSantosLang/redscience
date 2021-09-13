@@ -127,7 +127,7 @@ PlayerColor = category.ctg(*Color[0:4], name="PlayerColor")  # type: ignore[misc
 class Layout(enum.IntEnum):
     """Layout constants. E.g.::
 
-      Layout.POINTS_PER_INCH
+        Layout.POINTS_PER_INCH
     """
 
     FIGURE_WIDTH = 5
@@ -240,11 +240,20 @@ class StalemateOption(category.Categorized):
     
         StalemateOption.DRAW
 
-    Prints localized str.
+    **StalemateValue Attributes:**
+    
+        :STR (str):  A localized name. How the StalemateOption prints.
+        :VERSIONS (Iterable): The versions which offer this marker.
     """
 
+    _ignore_ = "StalemateValue"
+
+    class StalemateValue(NamedTuple):
+        STR: str
+        VERSIONS: Iterable = P.open(-P.inf, P.inf)
+          
     # TRANSLATOR: Game rule that the game ends in a draw if there is a stalemate
-    DRAW = _("stalemate draws")
+    DRAW = StalemateValue(STR=_("stalemate draws"),)
 
 
 class ColorOption(category.Categorized):
@@ -252,11 +261,20 @@ class ColorOption(category.Categorized):
     
         ColorOption.ASSIGNED
 
-    Prints localized str.
+    **ColorOptionValue Attributes:**
+    
+        :STR (str):  A localized name. How the ColorOption prints.
+        :VERSIONS (Iterable): The versions which offer this marker.
     """
 
+    _ignore_ = "ColorOptionValue"
+
+    class ColorOptionValue(NamedTuple):
+        STR: str
+        VERSIONS: Iterable = P.open(-P.inf, P.inf)
+          
     # TRANSLATOR: Game rule that each player is assigned their own unique color
-    ASSIGNED = _("Assigned Colors")
+    ASSIGNED = ColorOptionValue(STR=_("Assigned Colors"),)
 
 
 class BoardOption(category.Categorized):
@@ -267,7 +285,8 @@ class BoardOption(category.Categorized):
     **BoardValue Attributes**:
     
         :STR (str): A localized name the marker. How the BoardOption prints.
-        :CODE (str): The str used in pyplot for the marker.
+        :AX (Callable): Function to return matplotlib.axes.Axes, given 
+            a matplotlib.figure.Figure and tuple of dimensions.
         :VERSIONS (Iterable): The versions which offer this option.
     """
 
@@ -303,68 +322,68 @@ class BoardOption(category.Categorized):
     HASH = BoardValue(STR=_("a hash"), AX=_hash_board)
 
 
-# class Directions(category.Categorized):
-#     """Categories of ways in which to move or build in square-tiled space. E.g:
+class Directions(category.Categorized):
+    """Categories of ways in which to move or build in square-tiled space. E.g:
 
-#       Directions.DIAGONAL(2)  # returns [(1,1), (1,-1), (-1,1), (-1,-1)]
-#       Directions.DIAGONAL.call.cache_info()  # to get cache_info
+      Directions.DIAGONAL(2)  # returns [(1,1), (1,-1), (-1,1), (-1,-1)]
+      Directions.DIAGONAL.call.cache_info()  # to get cache_info
 
-#     Args:
-#       dimensions: The (int) number of dimensions in the space
+    Args:
+      dimensions: The (int) number of dimensions in the space
 
-#     Attributes:
-#       str: A localized str to name the type of directions. How the Directions
-#         prints.
-#       call: The bound method that yields the tuples.
+    Attributes:
+      str: A localized str to name the type of directions. How the Directions
+        prints.
+      call: The bound method that yields the tuples.
 
-#     Returns:
-#       A list of relative coordinates (tuples)
-#     """
+    Returns:
+      A list of relative coordinates (tuples)
+    """
 
-#     _ignore_ = "DirectionsValue"
+    _ignore_ = "DirectionsValue"
 
-#     class DirectionsValue(NamedTuple):
-#         STR: str
-#         CALL: Callable[[int], tuple]
+    class DirectionsValue(NamedTuple):
+        STR: str
+        CALL: Callable[[int], tuple]
 
-#     @functools.lru_cache(maxsize=8)
-#     def any_direction(self: "Directions", dimensions: int):
-#         zero = tuple([0] * dimensions)
-#         unfiltered = itertools.product([1, 0, -1], repeat=dimensions)
-#         return tuple([np.array(x) for x in unfiltered if x != zero])
+    @functools.lru_cache(maxsize=8)
+    def any_direction(self: "Directions", dimensions: int):
+        zero = tuple([0] * dimensions)
+        unfiltered = itertools.product([1, 0, -1], repeat=dimensions)
+        return tuple([np.array(x) for x in unfiltered if x != zero])
 
-#     @functools.lru_cache(maxsize=8)
-#     def orthogonal(self: "Directions", dimensions: int):
-#         return tuple(np.identity(dimensions, dtype=int))
+    @functools.lru_cache(maxsize=8)
+    def orthogonal(self: "Directions", dimensions: int):
+        return tuple(np.identity(dimensions, dtype=int))
 
-#     @functools.lru_cache(maxsize=8)
-#     def diagonal(self: "Directions", dimensions: int):
-#         orthogonals = list(map(tuple, self.orthogonal(dimensions)))
-#         return tuple(
-#             [x for x in self.any_direction(dimensions) if tuple(x) not in orthogonals]
-#         )
+    @functools.lru_cache(maxsize=8)
+    def diagonal(self: "Directions", dimensions: int):
+        orthogonals = list(map(tuple, self.orthogonal(dimensions)))
+        return tuple(
+            [x for x in self.any_direction(dimensions) if tuple(x) not in orthogonals]
+        )
 
-#     @functools.lru_cache(maxsize=8)
-#     def knight(self: "Directions", dimensions: int):
-#         spots = []
-#         for spot in itertools.product([2, 1, 0, -1, -2], repeat=dimensions):
-#             inring = (spot.count(2) + spot.count(-2)) == 1
-#             orthogonal = spot.count(0) >= (dimensions - 1)
-#             if inring and not orthogonal:
-#                 spots.append(np.array(spot))
-#         return tuple(spots)
+    @functools.lru_cache(maxsize=8)
+    def knight(self: "Directions", dimensions: int):
+        spots = []
+        for spot in itertools.product([2, 1, 0, -1, -2], repeat=dimensions):
+            inring = (spot.count(2) + spot.count(-2)) == 1
+            orthogonal = spot.count(0) >= (dimensions - 1)
+            if inring and not orthogonal:
+                spots.append(np.array(spot))
+        return tuple(spots)
 
-#     # TRANSLATOR: Category of directions in which chess queen can move
-#     ANY = DirectionsValue(STR=_("any direction"), CALL=any_direction)
+    # TRANSLATOR: Category of directions in which chess queen can move
+    ANY = DirectionsValue(STR=_("any direction"), CALL=any_direction)
 
-#     # TRANSLATOR: Category of directions in which chess bishop can move
-#     DIAGONAL = DirectionsValue(STR=_("diagonal"), CALL=diagonal)
+    # TRANSLATOR: Category of directions in which chess bishop can move
+    DIAGONAL = DirectionsValue(STR=_("diagonal"), CALL=diagonal)
 
-#     # TRANSLATOR: Category of directions in which chess rook can move
-#     ORTHOGONAL = DirectionsValue(STR=_("orthogonal"), CALL=orthogonal)
+    # TRANSLATOR: Category of directions in which chess rook can move
+    ORTHOGONAL = DirectionsValue(STR=_("orthogonal"), CALL=orthogonal)
 
-#     # TRANSLATOR: Category of directions in which chess knight can move
-#     KNIGHT = DirectionsValue(STR=_("knight move"), CALL=knight)
+    # TRANSLATOR: Category of directions in which chess knight can move
+    KNIGHT = DirectionsValue(STR=_("knight move"), CALL=knight)
 
 
 # class Outcome(category.Categorized):
