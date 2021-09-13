@@ -84,7 +84,7 @@ class Color(category.Categorized):
 
         Color.BLACK
 
-    Attributes
+    **Attributes**:
         :STR (str): A localized name. How the Color prints.
         :HEX (str): A hex code to communicate the Color to computers.
         :VERSIONS (Interval): The versions which offer this color.
@@ -258,9 +258,9 @@ class BoardOption(category.Categorized):
     
         BoardOption.HASH
 
-    Attributes:
-        STR: A localized str to name the marker. How the BoardOption prints.
-        CODE: The str used in pyplot for the marker.
+    **Attributes**:
+        :STR: A localized str to name the marker. How the BoardOption prints.
+        :CODE: The str used in pyplot for the marker.
     """
 
     _ignore_ = "BoardValue"
@@ -269,8 +269,8 @@ class BoardOption(category.Categorized):
         STR: str
         AX: Callable[[matplotlib.figure.Figure, tuple], matplotlib.axes.Axes]
 
-    def hash_board(fig: matplotlib.figure.Figure, dims: tuple) -> matplotlib.axes.Axes:
-        """Tic-Tac-Toe board"""
+    def _hash_board(fig: matplotlib.figure.Figure, dims: tuple) -> matplotlib.axes.Axes:
+        # Tic-Tac-Toe board
         rows, cols = dims[0], dims[1]
         gs = fig.add_gridspec(1, 1)
         ax = fig.add_subplot(gs[0, 0])
@@ -291,7 +291,7 @@ class BoardOption(category.Categorized):
         return ax
 
     # TRANSLATOR: The type of board used for Tic-Tac-Toe, as in "Played on a hash (3,3)"
-    HASH = BoardValue(STR=_("a hash"), AX=hash_board)
+    HASH = BoardValue(STR=_("a hash"), AX=_hash_board)
 
 
 # class Directions(category.Categorized):
