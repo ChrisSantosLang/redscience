@@ -294,304 +294,304 @@ class BoardOption(category.Categorized):
     HASH = BoardValue(STR=_("a hash"), AX=_hash_board)
 
 
-# class Directions(category.Categorized):
-#     """Categories of ways in which to move or build in square-tiled space. E.g:
+class Directions(category.Categorized):
+    """Categories of ways in which to move or build in square-tiled space. E.g:
 
-#       Directions.DIAGONAL(2)  # returns [(1,1), (1,-1), (-1,1), (-1,-1)]
-#       Directions.DIAGONAL.call.cache_info()  # to get cache_info
+      Directions.DIAGONAL(2)  # returns [(1,1), (1,-1), (-1,1), (-1,-1)]
+      Directions.DIAGONAL.call.cache_info()  # to get cache_info
 
-#     Args:
-#       dimensions: The (int) number of dimensions in the space
+    Args:
+      dimensions: The (int) number of dimensions in the space
 
-#     Attributes:
-#       str: A localized str to name the type of directions. How the Directions
-#         prints.
-#       call: The bound method that yields the tuples.
-
-#     Returns:
-#       A list of relative coordinates (tuples)
-#     """
+    Attributes:
+      str: A localized str to name the type of directions. How the Directions
+        prints.
+      call: The bound method that yields the tuples.
+
+    Returns:
+      A list of relative coordinates (tuples)
+    """
 
-#     _ignore_ = "DirectionsValue"
+    _ignore_ = "DirectionsValue"
 
-#     class DirectionsValue(NamedTuple):
-#         STR: str
-#         CALL: Callable[[int], tuple]
+    class DirectionsValue(NamedTuple):
+        STR: str
+        CALL: Callable[[int], tuple]
 
-#     @functools.lru_cache(maxsize=8)
-#     def any_direction(self: "Directions", dimensions: int):
-#         zero = tuple([0] * dimensions)
-#         unfiltered = itertools.product([1, 0, -1], repeat=dimensions)
-#         return tuple([np.array(x) for x in unfiltered if x != zero])
+    @functools.lru_cache(maxsize=8)
+    def any_direction(self: "Directions", dimensions: int):
+        zero = tuple([0] * dimensions)
+        unfiltered = itertools.product([1, 0, -1], repeat=dimensions)
+        return tuple([np.array(x) for x in unfiltered if x != zero])
 
-#     @functools.lru_cache(maxsize=8)
-#     def orthogonal(self: "Directions", dimensions: int):
-#         return tuple(np.identity(dimensions, dtype=int))
+    @functools.lru_cache(maxsize=8)
+    def orthogonal(self: "Directions", dimensions: int):
+        return tuple(np.identity(dimensions, dtype=int))
 
-#     @functools.lru_cache(maxsize=8)
-#     def diagonal(self: "Directions", dimensions: int):
-#         orthogonals = list(map(tuple, self.orthogonal(dimensions)))
-#         return tuple(
-#             [x for x in self.any_direction(dimensions) if tuple(x) not in orthogonals]
-#         )
+    @functools.lru_cache(maxsize=8)
+    def diagonal(self: "Directions", dimensions: int):
+        orthogonals = list(map(tuple, self.orthogonal(dimensions)))
+        return tuple(
+            [x for x in self.any_direction(dimensions) if tuple(x) not in orthogonals]
+        )
 
-#     @functools.lru_cache(maxsize=8)
-#     def knight(self: "Directions", dimensions: int):
-#         spots = []
-#         for spot in itertools.product([2, 1, 0, -1, -2], repeat=dimensions):
-#             inring = (spot.count(2) + spot.count(-2)) == 1
-#             orthogonal = spot.count(0) >= (dimensions - 1)
-#             if inring and not orthogonal:
-#                 spots.append(np.array(spot))
-#         return tuple(spots)
-
-#     # TRANSLATOR: Category of directions in which chess queen can move
-#     ANY = DirectionsValue(STR=_("any direction"), CALL=any_direction)
-
-#     # TRANSLATOR: Category of directions in which chess bishop can move
-#     DIAGONAL = DirectionsValue(STR=_("diagonal"), CALL=diagonal)
-
-#     # TRANSLATOR: Category of directions in which chess rook can move
-#     ORTHOGONAL = DirectionsValue(STR=_("orthogonal"), CALL=orthogonal)
-
-#     # TRANSLATOR: Category of directions in which chess knight can move
-#     KNIGHT = DirectionsValue(STR=_("knight move"), CALL=knight)
-
-
-# class Outcome(category.Categorized):
-#     """Function to apply localized formatting to strings. E.g:
-
-#       Outcome.VICTORY(players=["Player 1"])
+    @functools.lru_cache(maxsize=8)
+    def knight(self: "Directions", dimensions: int):
+        spots = []
+        for spot in itertools.product([2, 1, 0, -1, -2], repeat=dimensions):
+            inring = (spot.count(2) + spot.count(-2)) == 1
+            orthogonal = spot.count(0) >= (dimensions - 1)
+            if inring and not orthogonal:
+                spots.append(np.array(spot))
+        return tuple(spots)
+
+    # TRANSLATOR: Category of directions in which chess queen can move
+    ANY = DirectionsValue(STR=_("any direction"), CALL=any_direction)
+
+    # TRANSLATOR: Category of directions in which chess bishop can move
+    DIAGONAL = DirectionsValue(STR=_("diagonal"), CALL=diagonal)
+
+    # TRANSLATOR: Category of directions in which chess rook can move
+    ORTHOGONAL = DirectionsValue(STR=_("orthogonal"), CALL=orthogonal)
+
+    # TRANSLATOR: Category of directions in which chess knight can move
+    KNIGHT = DirectionsValue(STR=_("knight move"), CALL=knight)
+
+
+class Outcome(category.Categorized):
+    """Function to apply localized formatting to strings. E.g:
+
+      Outcome.VICTORY(players=["Player 1"])
 
-#     Args:
-#       **kwargs: a string for each bookmark in the str
+    Args:
+      **kwargs: a string for each bookmark in the str
 
-#     Returns:
-#       The localized formated string.
-#     """
-
-#     _ignore_ = "FormatValue"
-
-#     class FormatValue(NamedTuple):
-#         STR: str
-#         FORMAT: str
-#         CALL: Callable[["Outcome", List[str]], str]
-
-#     def formatter(self: "Outcome", players: List[str]) -> str:
-#         return self.FORMAT.format(players=format_list(players))
-
-#     # TRANSLATOR: Labels {winners} as the winner(s) of a game
-#     #  e.g. "Victory: Player 1 and Player 3"
-#     VICTORY = FormatValue(
-#         STR=_("Victory"),
-#         FORMAT=_("Victory: {players}"),
-#         CALL=formatter,
-#     )
-
-
-# class CheckOption(category.Categorized):
-#     """Game rules checked at the end of each move. Prints localized str. """
-
-#     _ignore_ = "PatternCheck"
-
-#     class PatternCheck(NamedTuple):
-#         STR: str
-#         PATTERN: str
-#         DIRECTIONS: Directions
-#         OUTCOME: Outcome
-
-#     # TRANSLATOR: Game rule to award the win to any player that aranges three
-#     # pieces of the same color in a row
-#     THREE_SAME_COLOR_IN_ROW_WINS = PatternCheck(
-#         STR=_("first 3-same-color-in-a-row wins"),
-#         PATTERN="CCC",
-#         DIRECTIONS=Directions.ANY,
-#         OUTCOME=Outcome.VICTORY,
-#     )
-
-
-# class PieceRules(NamedTuple):
-#     """Rules for a type of piece in a game. E.g.:
-
-#         PieceRules(INITIAL_RESERVES=(5,4))
-
-#     Attributes:
-#         INITIAL_RESERVES: A tuple indicating the number in initial reserves
-#             of each color, e.g. (5, 4) means 5 of the first color, and 4 of
-#             the second.
-#     """
-
-#     INITIAL_RESERVES: Tuple[int, ...]
-
-#     @property
-#     def RESERVES_STR(self: "PieceRules") -> str:
-#         """A constant localized str describing initial reserves for the
-#         piece. E.g.:
-
-#         piece.RESERVES_STR
-#         """
-#         by_color = []
-#         for index in range(len(self.INITIAL_RESERVES)):
-#             # TRANSLATOR: Part of a list of amounts of game pieces.
-#             # e.g. "5 black" in "5 black and 4 white start in reserve"
-#             by_color.append(
-#                 _("{number} {color}").format(
-#                     number=self.INITIAL_RESERVES[index],
-#                     color=str(Color[index]).lower(),  # type: ignore[misc]
-#                 ),
-#             )
-
-#         # TRANSLATOR: The rule for how many to have in reserve when a game
-#         # begins.. E.g. "5 black and 2 white start in reserve"
-#         return _("{list} start in reserve").format(list=format_list(by_color))
-
-#     @property
-#     def STRS(self: "PieceRules") -> Tuple[str, ...]:
-#         """Get tuple of strings describing the rules for the piece. E.g.:
-
-#         piece.STRS
-#         """
-#         lines = [self.RESERVES_STR]
-#         return tuple(lines)
-
-#     def __str__(self: "PieceRules") -> str:
-#         return "/n".join(self.STRS)
-
-
-# class Game(NamedTuple):
-#     """A game definition. E.g.:
-
-#         Game()  # To use all defaults (i.e. Tic-Tac-Toe)
-
-#     Attributes:
-#         PLAYERS: If specified, determines the PlayersOption. Default is 2-Player.
-#         COLOR: If specified, determines the ColorOption. Default is Assigned
-#             Colors.
-#         BOARD: If specified, determines the BoardOption. Default is hash.
-#         DIMENSIONS: If specified, determines the dimensions of the board as a
-#             tuple of integers. Default is (3,3).
-#         PIECES: If specified, determines piece-specific rules as a tuple of
-#             PieceRules. Default is to have only one type of piece (circle) with
-#             5 black and 4 white starting in reserve.
-#         MOVE_CHECKS: If specified, list rules that are checked at the end of
-#             each move as tuple of CheckOptions. Can be None. Default is to award
-#             the win to any player that gets three of the same color in a row.
-#         STALEMATE: If specified, determines the StalemateOption. Default is that
-#             stalemate results in a draw.
-#     """
-
-#     PLAYERS: PlayersOption = PlayersOption.TWO
-#     COLOR: ColorOption = ColorOption.ASSIGNED
-#     BOARD: BoardOption = BoardOption.HASH
-#     DIMENSIONS: Tuple[int, ...] = (3, 3)
-#     PIECES: Tuple[PieceRules, ...] = (PieceRules(INITIAL_RESERVES=(5, 4)),)
-#     MOVE_CHECKS: Union[Tuple[()], Tuple[CheckOption, ...]] = (
-#         CheckOption.THREE_SAME_COLOR_IN_ROW_WINS,
-#     )
-#     STALEMATE: StalemateOption = StalemateOption.DRAW
-
-#     @property
-#     def STRS(self: "Game") -> Tuple[str, ...]:
-#         """A constant tuple of localized strings describing the game. E.g:
-
-#         game.STRS
-#         """
-#         lines = []
-#         # TRANSLATOR: Line defining a game board e.g. "Played on hash (3,3)" for
-#         # Tic-Tac-Toe where {board} is "hash" and {dimensions} is "(3,3)"
-#         lines.append(
-#             _("Played on {board} {dimensions}").format(
-#                 dimensions=str(self.DIMENSIONS),
-#                 board=str(self.BOARD),
-#             )
-#         )
-#         lines.append(str(self.PLAYERS))
-#         lines.append(str(self.COLOR))
-#         for index in range(len(self.PIECES)):
-#             # TRANSLATOR: Line defining rules for a type of game piece/card
-#             # e.g. "Circle: Immobile, 5 black and 4 white start in reserve"
-#             lines.append(
-#                 _("{shape}: {rules}")
-#                 .format(
-#                     shape=str(Marker[index]),  # type: ignore[misc]
-#                     rules=format_list(list(self.PIECES[index].STRS)),
-#                 )
-#                 .capitalize()
-#             )
-#         for rule in self.MOVE_CHECKS:
-#             lines.append(str(rule).capitalize())
-#         lines.append(str(self.STALEMATE).capitalize())
-#         return tuple(lines)
-
-#     @property
-#     def RULES(self: "Game") -> str:
-#         """A constant localized str describing the move checks and stalemate
-#         rules. E.g:
-
-#         game.RULES
-#         """
-#         rule_list: List[Union[CheckOption, StalemateOption]] = list(self.MOVE_CHECKS)
-#         rule_list.append(self.STALEMATE)
-#         # TRANSLATOR: Labels {rules} as rules of a game
-#         #  e.g. "Rules: First 3-same-color-in-a-row wins and stalemate draws"
-#         return _("Rules: {rules}").format(
-#             rules=str(format_list(rule_list)).capitalize(),
-#         )
-
-#     def __str__(self: "Game") -> str:
-#         return "\n".join(self.STRS)
-
-#     def AXES(self, fig: matplotlib.figure.Figure) -> matplotlib.axes.Axes:
-#         """A constant matplotlib.axes.Axes for this game. E.g.:
-
-#             game.AXES(fig=plt.figure(1,(FIGURE_HEIGHT, FIGURE_WIDTH)))
-
-#         Args:
-#             fig: The Matplotlib.figure.Figure of the Axes
-#         """
-#         return self.BOARD.AX(fig, self.DIMENSIONS)
-
-#     @property
-#     def MARKER_SIZE(self) -> float:
-#         """MARKER_SIZE: A constant int size for markers in this game"""
-#         figure_max = max(Layout.FIGURE_HEIGHT, Layout.FIGURE_WIDTH)
-#         spot_size = figure_max / max(self.DIMENSIONS)
-#         return (spot_size * Layout.POINTS_PER_INCH - Layout.MARKER_MARGIN) ** 2
-
-
-# class DefaultName(category.Categorized):
-#     """Default names for players. Prints localized str. """
-
-#     # TRANSLATOR: Default name for a player in a game (independent of order)
-#     PLAYER_ONE = _("Player 1")
-
-#     # TRANSLATOR: Default name for a player in a game (independent of order)
-#     PLAYER_TWO = _("Player 2")
-
-#     # TRANSLATOR: Default name for a player in a game (independent of order)
-#     PLAYER_THREE = _("Player 3")
-
-#     # TRANSLATOR: Default name for a player in a game (independent of order)
-#     PLAYER_FOUR = _("Player 4")
-
-
-# class PlayerType(category.Categorized):
-#     """Types of players. Prints localized str. """
-
-#     # TRANSLATOR: A type of player in a game
-#     HUMAN = _("Human")
-
-
-# class Player(NamedTuple):
-#     """A player definition. E.g.:
-
-#         Player()  # To use all defaults (i.e. human)
-
-#     Attributes:
-#         TYPE: If specified, determines the PlayerType. Default is Human.
-#     """
-
-#     TYPE: PlayerType = PlayerType.HUMAN
+    Returns:
+      The localized formated string.
+    """
+
+    _ignore_ = "FormatValue"
+
+    class FormatValue(NamedTuple):
+        STR: str
+        FORMAT: str
+        CALL: Callable[["Outcome", List[str]], str]
+
+    def formatter(self: "Outcome", players: List[str]) -> str:
+        return self.FORMAT.format(players=format_list(players))
+
+    # TRANSLATOR: Labels {winners} as the winner(s) of a game
+    #  e.g. "Victory: Player 1 and Player 3"
+    VICTORY = FormatValue(
+        STR=_("Victory"),
+        FORMAT=_("Victory: {players}"),
+        CALL=formatter,
+    )
+
+
+class CheckOption(category.Categorized):
+    """Game rules checked at the end of each move. Prints localized str. """
+
+    _ignore_ = "PatternCheck"
+
+    class PatternCheck(NamedTuple):
+        STR: str
+        PATTERN: str
+        DIRECTIONS: Directions
+        OUTCOME: Outcome
+
+    # TRANSLATOR: Game rule to award the win to any player that aranges three
+    # pieces of the same color in a row
+    THREE_SAME_COLOR_IN_ROW_WINS = PatternCheck(
+        STR=_("first 3-same-color-in-a-row wins"),
+        PATTERN="CCC",
+        DIRECTIONS=Directions.ANY,
+        OUTCOME=Outcome.VICTORY,
+    )
+
+
+class PieceRules(NamedTuple):
+    """Rules for a type of piece in a game. E.g.:
+
+        PieceRules(INITIAL_RESERVES=(5,4))
+
+    Attributes:
+        INITIAL_RESERVES: A tuple indicating the number in initial reserves
+            of each color, e.g. (5, 4) means 5 of the first color, and 4 of
+            the second.
+    """
+
+    INITIAL_RESERVES: Tuple[int, ...]
+
+    @property
+    def RESERVES_STR(self: "PieceRules") -> str:
+        """A constant localized str describing initial reserves for the
+        piece. E.g.:
+
+        piece.RESERVES_STR
+        """
+        by_color = []
+        for index in range(len(self.INITIAL_RESERVES)):
+            # TRANSLATOR: Part of a list of amounts of game pieces.
+            # e.g. "5 black" in "5 black and 4 white start in reserve"
+            by_color.append(
+                _("{number} {color}").format(
+                    number=self.INITIAL_RESERVES[index],
+                    color=str(Color[index]).lower(),  # type: ignore[misc]
+                ),
+            )
+
+        # TRANSLATOR: The rule for how many to have in reserve when a game
+        # begins.. E.g. "5 black and 2 white start in reserve"
+        return _("{list} start in reserve").format(list=format_list(by_color))
+
+    @property
+    def STRS(self: "PieceRules") -> Tuple[str, ...]:
+        """Get tuple of strings describing the rules for the piece. E.g.:
+
+        piece.STRS
+        """
+        lines = [self.RESERVES_STR]
+        return tuple(lines)
+
+    def __str__(self: "PieceRules") -> str:
+        return "/n".join(self.STRS)
+
+
+class Game(NamedTuple):
+    """A game definition. E.g.:
+
+        Game()  # To use all defaults (i.e. Tic-Tac-Toe)
+
+    Attributes:
+        PLAYERS: If specified, determines the PlayersOption. Default is 2-Player.
+        COLOR: If specified, determines the ColorOption. Default is Assigned
+            Colors.
+        BOARD: If specified, determines the BoardOption. Default is hash.
+        DIMENSIONS: If specified, determines the dimensions of the board as a
+            tuple of integers. Default is (3,3).
+        PIECES: If specified, determines piece-specific rules as a tuple of
+            PieceRules. Default is to have only one type of piece (circle) with
+            5 black and 4 white starting in reserve.
+        MOVE_CHECKS: If specified, list rules that are checked at the end of
+            each move as tuple of CheckOptions. Can be None. Default is to award
+            the win to any player that gets three of the same color in a row.
+        STALEMATE: If specified, determines the StalemateOption. Default is that
+            stalemate results in a draw.
+    """
+
+    PLAYERS: PlayersOption = PlayersOption.TWO
+    COLOR: ColorOption = ColorOption.ASSIGNED
+    BOARD: BoardOption = BoardOption.HASH
+    DIMENSIONS: Tuple[int, ...] = (3, 3)
+    PIECES: Tuple[PieceRules, ...] = (PieceRules(INITIAL_RESERVES=(5, 4)),)
+    MOVE_CHECKS: Union[Tuple[()], Tuple[CheckOption, ...]] = (
+        CheckOption.THREE_SAME_COLOR_IN_ROW_WINS,
+    )
+    STALEMATE: StalemateOption = StalemateOption.DRAW
+
+    @property
+    def STRS(self: "Game") -> Tuple[str, ...]:
+        """A constant tuple of localized strings describing the game. E.g:
+
+        game.STRS
+        """
+        lines = []
+        # TRANSLATOR: Line defining a game board e.g. "Played on hash (3,3)" for
+        # Tic-Tac-Toe where {board} is "hash" and {dimensions} is "(3,3)"
+        lines.append(
+            _("Played on {board} {dimensions}").format(
+                dimensions=str(self.DIMENSIONS),
+                board=str(self.BOARD),
+            )
+        )
+        lines.append(str(self.PLAYERS))
+        lines.append(str(self.COLOR))
+        for index in range(len(self.PIECES)):
+            # TRANSLATOR: Line defining rules for a type of game piece/card
+            # e.g. "Circle: Immobile, 5 black and 4 white start in reserve"
+            lines.append(
+                _("{shape}: {rules}")
+                .format(
+                    shape=str(Marker[index]),  # type: ignore[misc]
+                    rules=format_list(list(self.PIECES[index].STRS)),
+                )
+                .capitalize()
+            )
+        for rule in self.MOVE_CHECKS:
+            lines.append(str(rule).capitalize())
+        lines.append(str(self.STALEMATE).capitalize())
+        return tuple(lines)
+
+    @property
+    def RULES(self: "Game") -> str:
+        """A constant localized str describing the move checks and stalemate
+        rules. E.g:
+
+        game.RULES
+        """
+        rule_list: List[Union[CheckOption, StalemateOption]] = list(self.MOVE_CHECKS)
+        rule_list.append(self.STALEMATE)
+        # TRANSLATOR: Labels {rules} as rules of a game
+        #  e.g. "Rules: First 3-same-color-in-a-row wins and stalemate draws"
+        return _("Rules: {rules}").format(
+            rules=str(format_list(rule_list)).capitalize(),
+        )
+
+    def __str__(self: "Game") -> str:
+        return "\n".join(self.STRS)
+
+    def AXES(self, fig: matplotlib.figure.Figure) -> matplotlib.axes.Axes:
+        """A constant matplotlib.axes.Axes for this game. E.g.:
+
+            game.AXES(fig=plt.figure(1,(FIGURE_HEIGHT, FIGURE_WIDTH)))
+
+        Args:
+            fig: The Matplotlib.figure.Figure of the Axes
+        """
+        return self.BOARD.AX(fig, self.DIMENSIONS)
+
+    @property
+    def MARKER_SIZE(self) -> float:
+        """MARKER_SIZE: A constant int size for markers in this game"""
+        figure_max = max(Layout.FIGURE_HEIGHT, Layout.FIGURE_WIDTH)
+        spot_size = figure_max / max(self.DIMENSIONS)
+        return (spot_size * Layout.POINTS_PER_INCH - Layout.MARKER_MARGIN) ** 2
+
+
+class DefaultName(category.Categorized):
+    """Default names for players. Prints localized str. """
+
+    # TRANSLATOR: Default name for a player in a game (independent of order)
+    PLAYER_ONE = _("Player 1")
+
+    # TRANSLATOR: Default name for a player in a game (independent of order)
+    PLAYER_TWO = _("Player 2")
+
+    # TRANSLATOR: Default name for a player in a game (independent of order)
+    PLAYER_THREE = _("Player 3")
+
+    # TRANSLATOR: Default name for a player in a game (independent of order)
+    PLAYER_FOUR = _("Player 4")
+
+
+class PlayerType(category.Categorized):
+    """Types of players. Prints localized str. """
+
+    # TRANSLATOR: A type of player in a game
+    HUMAN = _("Human")
+
+
+class Player(NamedTuple):
+    """A player definition. E.g.:
+
+        Player()  # To use all defaults (i.e. human)
+
+    Attributes:
+        TYPE: If specified, determines the PlayerType. Default is Human.
+    """
+
+    TYPE: PlayerType = PlayerType.HUMAN
 
 
 class Placement(NamedTuple):
