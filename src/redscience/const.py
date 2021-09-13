@@ -79,10 +79,10 @@ class Color(category.Categorized):
 
         Color.BLACK
 
-    **ColorValue Attributes:**
+    **ColorValue Attribut**
         :STR (str): A localized name. How the Color prints.
         :HEX (str): A hex code to communicate the Color to computers.
-        :VERSIONS (portion.Interval): The versions which offer this color.
+        :VERSIONS (Iterable): The versions which offer this color.
     """
 
     _ignore_ = "ColorValue"
@@ -90,7 +90,7 @@ class Color(category.Categorized):
     class ColorValue(NamedTuple):
         STR: str
         HEX: str
-        VERSIONS: P.interval.Interval = P.open(-P.inf, P.inf)
+        VERSIONS: Iterable = P.open(-P.inf, P.inf)
 
     # TRANSLATOR: Color of game piece as in "Move: Black circle to (2,1)"
     BLACK = ColorValue(STR=_("black"), HEX="#000000")
