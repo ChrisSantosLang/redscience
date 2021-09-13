@@ -3,11 +3,11 @@
 and versioning.
 
 Most constants in this module are encoded as a ``Category`` (see the 
-``category`` module) or as a ``NamedTuple``. Each displays in the
+``category`` module) or as a ``NamedTuple``. Each displays only members 
+in the version set via ``setvers()`` and in the
 locale set via ``setlang()`` (provided an .mo file for that locale can 
-be found in the appropriate folder). See the ``babelwrap`` module 
-regarding internationalization. Use ``setrelease()`` to change the 
-release (and thus *which* Category members display).
+be found in the appropriate folder--see the ``babelwrap`` module 
+regarding internationalization). 
 
 Examples::
 
@@ -90,7 +90,7 @@ class Color(category.Categorized):
     class ColorValue(NamedTuple):
         STR: str
         HEX: str
-        VERSIONS: portion.interval.Interval = -P.empty()
+        # VERSIONS: portion.interval.Interval = -P.empty()
 
     # TRANSLATOR: Color of game piece as in "Move: Black circle to (2,1)"
     BLACK = ColorValue(STR=_("black"), HEX="#000000")
