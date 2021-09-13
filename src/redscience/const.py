@@ -74,50 +74,50 @@ def _(message: str) -> str:
     """Defined for type hint, then replaced at bottom."""
     return message
 
-# class Color(category.Categorized):
-#     """Color used in a game. E.g.::
+class Color(category.Categorized):
+    """Color used in a game. E.g.::
 
-#         Color.BLACK
+        Color.BLACK
 
-#     **ColorValue Attributes:**
-#         :STR (str): A localized name. How the Color prints.
-#         :HEX (str): A hex code to communicate the Color to computers.
-#         :VERSIONS (portion.Interval): The versions which offer this color.
-#     """
+    **ColorValue Attributes:**
+        :STR (str): A localized name. How the Color prints.
+        :HEX (str): A hex code to communicate the Color to computers.
+        :VERSIONS (portion.Interval): The versions which offer this color.
+    """
 
-#     _ignore_ = "ColorValue"
+    _ignore_ = "ColorValue"
 
-#     class ColorValue(NamedTuple):
-#         STR: str
-#         HEX: str
-#         VERSIONS: portion.interval.Interval = -P.empty()
+    class ColorValue(NamedTuple):
+        STR: str
+        HEX: str
+        VERSIONS: portion.interval.Interval = -P.empty()
 
-#     # TRANSLATOR: Color of game piece as in "Move: Black circle to (2,1)"
-#     BLACK = ColorValue(STR=_("black"), HEX="#000000")
+    # TRANSLATOR: Color of game piece as in "Move: Black circle to (2,1)"
+    BLACK = ColorValue(STR=_("black"), HEX="#000000")
 
-#     # TRANSLATOR: Color of game piece as in "Move: White circle to (2,1)"
-#     WHITE = ColorValue(STR=_("white"), HEX="#ffffff")
+    # TRANSLATOR: Color of game piece as in "Move: White circle to (2,1)"
+    WHITE = ColorValue(STR=_("white"), HEX="#ffffff")
 
-#     # TRANSLATOR: Color of game piece as in "Move: Pink circle to (2,1)"
-#     PINK = ColorValue(STR=_("pink"), HEX="#ff81c0")
+    # TRANSLATOR: Color of game piece as in "Move: Pink circle to (2,1)"
+    PINK = ColorValue(STR=_("pink"), HEX="#ff81c0")
 
-#     # TRANSLATOR: Color of game piece as in "Move: Yellow circle to (2,1)"
-#     YELLOW = ColorValue(STR=_("yellow"), HEX="#ffff14")
+    # TRANSLATOR: Color of game piece as in "Move: Yellow circle to (2,1)"
+    YELLOW = ColorValue(STR=_("yellow"), HEX="#ffff14")
 
-#     # TRANSLATOR: Color of game piece as in "Move: Orange circle to (2,1)"
-#     ORANGE = ColorValue(STR=_("orange"), HEX="#fdaa48", VERSIONS=(version("1.5.0"),))
+    # TRANSLATOR: Color of game piece as in "Move: Orange circle to (2,1)"
+    ORANGE = ColorValue(STR=_("orange"), HEX="#fdaa48", VERSIONS=(version("1.5.0"),))
 
-#     # TRANSLATOR: Color of game piece as in "Move: Blue circle to (2,1)"
-#     BLUE = ColorValue(STR=_("blue"), HEX="#95d0fc")
+    # TRANSLATOR: Color of game piece as in "Move: Blue circle to (2,1)"
+    BLUE = ColorValue(STR=_("blue"), HEX="#95d0fc")
 
-#     # TRANSLATOR: Color of game piece as in "Move: Purple circle to (2,1)"
-#     PURPLE = ColorValue(STR=_("purple"), HEX="#bf77f6")
+    # TRANSLATOR: Color of game piece as in "Move: Purple circle to (2,1)"
+    PURPLE = ColorValue(STR=_("purple"), HEX="#bf77f6")
 
-#     # TRANSLATOR: Color of game piece as in "Move: Green circle to (2,1)"
-#     GREEN = ColorValue(STR=_("green"), HEX="#96f97b")
+    # TRANSLATOR: Color of game piece as in "Move: Green circle to (2,1)"
+    GREEN = ColorValue(STR=_("green"), HEX="#96f97b")
 
-#     # TRANSLATOR: Color of game piece as in "Move: Gray circle to (2,1)"
-#     GRAY = ColorValue(STR=_("gray"), HEX="#929591")
+    # TRANSLATOR: Color of game piece as in "Move: Gray circle to (2,1)"
+    GRAY = ColorValue(STR=_("gray"), HEX="#929591")
 
 
 # PlayerColor = category.ctg(*Color[0:4], name="PlayerColor")  # type: ignore[misc]
