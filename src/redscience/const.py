@@ -90,7 +90,7 @@ class Color(category.Categorized):
     class ColorValue(NamedTuple):
         STR: str
         HEX: str
-        # VERSIONS: portion.interval.Interval = -P.empty()
+        VERSIONS: portion.interval.Interval = P.open(-P.inf, P.inf)
 
     # TRANSLATOR: Color of game piece as in "Move: Black circle to (2,1)"
     BLACK = ColorValue(STR=_("black"), HEX="#000000")
@@ -105,7 +105,7 @@ class Color(category.Categorized):
     YELLOW = ColorValue(STR=_("yellow"), HEX="#ffff14")
 
     # TRANSLATOR: Color of game piece as in "Move: Orange circle to (2,1)"
-    ORANGE = ColorValue(STR=_("orange"), HEX="#fdaa48", VERSIONS=(version("1.5.0"),))
+    ORANGE = ColorValue(STR=_("orange"), HEX="#fdaa48")
 
     # TRANSLATOR: Color of game piece as in "Move: Blue circle to (2,1)"
     BLUE = ColorValue(STR=_("blue"), HEX="#95d0fc")
