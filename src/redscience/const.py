@@ -638,16 +638,16 @@ class DefaultName(category.Categorized):
         VERSIONS: Iterable = P.open(-P.inf, P.inf)
 
     # TRANSLATOR: Default name for a player in a game (independent of order)
-    PLAYER_ONE = NameValue(STR=_("Player 1", )
+    PLAYER_ONE = NameValue(STR=_("Player 1"), )
 
     # TRANSLATOR: Default name for a player in a game (independent of order)
-    PLAYER_TWO = NameValue(STR=_("Player 2", )
+    PLAYER_TWO = NameValue(STR=_("Player 2"), )
 
     # TRANSLATOR: Default name for a player in a game (independent of order)
-    PLAYER_THREE = NameValue(STR=_("Player 3", )
+    PLAYER_THREE = NameValue(STR=_("Player 3"), )
 
     # TRANSLATOR: Default name for a player in a game (independent of order)
-    PLAYER_FOUR = NameValue(STR=_("Player 4", )
+    PLAYER_FOUR = NameValue(STR=_("Player 4"), )
 
                             
 class PlayerType(category.Categorized):
