@@ -90,7 +90,7 @@ class Color(category.Categorized):
     class ColorValue(NamedTuple):
         STR: str
         HEX: str
-        VERSIONS: portion.interval.Interval = P.open(-P.inf, P.inf)
+        VERSIONS: P.interval.Interval = P.open(-P.inf, P.inf)
 
     # TRANSLATOR: Color of game piece as in "Move: Black circle to (2,1)"
     BLACK = ColorValue(STR=_("black"), HEX="#000000")
@@ -156,7 +156,7 @@ class Color(category.Categorized):
 #     class CommandValue(NamedTuple):
 #         STR: str
 #         KEY: str
-#         VERSIONS: portion.interval.Interval = P.open(-P.inf, P.inf)
+#         VERSIONS: P.interval.Interval = P.open(-P.inf, P.inf)
 
 #     # TRANSLATOR: This is the command to start a new game (e.g. button text).
 #     # TRANSLATOR: This is the shortcut key to start a new game.
@@ -200,7 +200,7 @@ class Color(category.Categorized):
 #     class PlayersValue(NamedTuple):
 #         STR: str
 #         NUM: int
-#         VERSIONS: portion.interval.Interval = P.open(-P.inf, P.inf)
+#         VERSIONS: P.interval.Interval = P.open(-P.inf, P.inf)
 
 #     # TRANSLATOR: Category to describe games with two regular players
 #     TWO = PlayersValue(STR=_("2-Player"), NUM=2)
@@ -225,7 +225,7 @@ class Color(category.Categorized):
 #     class MarkerValue(NamedTuple):
 #         STR: str
 #         CODE: str
-#         VERSIONS: portion.interval.Interval = P.open(-P.inf, P.inf)
+#         VERSIONS: P.interval.Interval = P.open(-P.inf, P.inf)
 
 #     # TRANSLATOR: Description of the pyplot marker
 #     CIRCLE = MarkerValue(STR=_("circle"), CODE="o")
@@ -271,7 +271,7 @@ class Color(category.Categorized):
 #     class BoardValue(NamedTuple):
 #         STR: str
 #         AX: Callable[[matplotlib.figure.Figure, tuple], matplotlib.axes.Axes]
-#         VERSIONS: portion.interval.Interval = P.open(-P.inf, P.inf)
+#         VERSIONS: P.interval.Interval = P.open(-P.inf, P.inf)
 
 #     def _hash_board(fig: matplotlib.figure.Figure, dims: tuple) -> matplotlib.axes.Axes:
 #         # Tic-Tac-Toe board
