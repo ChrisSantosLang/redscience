@@ -323,21 +323,22 @@ class BoardOption(category.Categorized):
 
 
 class Directions(category.Categorized):
-    """Categories of ways in which to move or build in square-tiled space. E.g:
+    """Categories of ways in which to move or build in square-tiled space. E.g::
 
-      Directions.DIAGONAL(2)  # returns [(1,1), (1,-1), (-1,1), (-1,-1)]
-      Directions.DIAGONAL.call.cache_info()  # to get cache_info
+        Directions.DIAGONAL(2)  # returns [(1,1), (1,-1), (-1,1), (-1,-1)]
+        Directions.DIAGONAL.call.cache_info()  # to get cache_info
 
     Args:
-      dimensions: The (int) number of dimensions in the space
-
-    Attributes:
-      str: A localized str to name the type of directions. How the Directions
-        prints.
-      call: The bound method that yields the tuples.
-
+        dimensions: The (int) number of dimensions in the space
+        
     Returns:
-      A list of relative coordinates (tuples)
+        A list of relative coordinates (tuples)
+
+    **DirectionsValue Attributes**:
+    
+        :STR (str): A localized name. How the Directions prints.
+        :CALL (Callable): The bound method that yields the tuples.
+        :VERSIONS (Iterable): The versions which offer this option.
     """
 
     _ignore_ = "DirectionsValue"
@@ -345,26 +346,27 @@ class Directions(category.Categorized):
     class DirectionsValue(NamedTuple):
         STR: str
         CALL: Callable[[int], tuple]
+        VERSIONS: Iterable = P.open(-P.inf, P.inf)
 
     @functools.lru_cache(maxsize=8)
-    def any_direction(self: "Directions", dimensions: int):
+    def _any_direction(self: "Directions", dimensions: int):
         zero = tuple([0] * dimensions)
         unfiltered = itertools.product([1, 0, -1], repeat=dimensions)
         return tuple([np.array(x) for x in unfiltered if x != zero])
 
     @functools.lru_cache(maxsize=8)
-    def orthogonal(self: "Directions", dimensions: int):
+    def _orthogonal(self: "Directions", dimensions: int):
         return tuple(np.identity(dimensions, dtype=int))
 
     @functools.lru_cache(maxsize=8)
-    def diagonal(self: "Directions", dimensions: int):
+    def _diagonal(self: "Directions", dimensions: int):
         orthogonals = list(map(tuple, self.orthogonal(dimensions)))
         return tuple(
             [x for x in self.any_direction(dimensions) if tuple(x) not in orthogonals]
         )
 
     @functools.lru_cache(maxsize=8)
-    def knight(self: "Directions", dimensions: int):
+    def _knight(self: "Directions", dimensions: int):
         spots = []
         for spot in itertools.product([2, 1, 0, -1, -2], repeat=dimensions):
             inring = (spot.count(2) + spot.count(-2)) == 1
@@ -374,47 +376,54 @@ class Directions(category.Categorized):
         return tuple(spots)
 
     # TRANSLATOR: Category of directions in which chess queen can move
-    ANY = DirectionsValue(STR=_("any direction"), CALL=any_direction)
+    ANY = DirectionsValue(STR=_("any direction"), CALL=_any_direction)
 
     # TRANSLATOR: Category of directions in which chess bishop can move
-    DIAGONAL = DirectionsValue(STR=_("diagonal"), CALL=diagonal)
+    DIAGONAL = DirectionsValue(STR=_("diagonal"), CALL=_diagonal)
 
     # TRANSLATOR: Category of directions in which chess rook can move
-    ORTHOGONAL = DirectionsValue(STR=_("orthogonal"), CALL=orthogonal)
+    ORTHOGONAL = DirectionsValue(STR=_("orthogonal"), CALL=_orthogonal)
 
     # TRANSLATOR: Category of directions in which chess knight can move
-    KNIGHT = DirectionsValue(STR=_("knight move"), CALL=knight)
+    KNIGHT = DirectionsValue(STR=_("knight move"), CALL=_knight)
 
 
-# class Outcome(category.Categorized):
-#     """Function to apply localized formatting to strings. E.g:
+class Outcome(category.Categorized):
+    """Function to apply localized formatting to strings. E.g:
 
-#       Outcome.VICTORY(players=["Player 1"])
+      Outcome.VICTORY(players=["Player 1"])
 
-#     Args:
-#       **kwargs: a string for each bookmark in the str
+    Args:
+        **kwargs: a string for each bookmark in the str
 
-#     Returns:
-#       The localized formated string.
-#     """
+    Returns:
+        The localized formated string.
+        
+    **OutcomeValue Attributes**:
+    
+        :STR (str): A localized name. How the Directions prints.
+        :CALL (Callable): The bound method that yields the tuples.
+        :VERSIONS (Iterable): The versions which offer this option.
+    """
 
-#     _ignore_ = "FormatValue"
+    _ignore_ = "FormatValue"
 
-#     class FormatValue(NamedTuple):
-#         STR: str
-#         FORMAT: str
-#         CALL: Callable[["Outcome", List[str]], str]
+    class OutcomeValue(NamedTuple):
+        STR: str
+        FORMAT: str
+        CALL: Callable[["Outcome", List[str]], str]
+        VERSIONS: Iterable = P.open(-P.inf, P.inf)
 
-#     def formatter(self: "Outcome", players: List[str]) -> str:
-#         return self.FORMAT.format(players=format_list(players))
+    def _formatter(self: "Outcome", players: List[str]) -> str:
+        return self.FORMAT.format(players=format_list(players))
 
-#     # TRANSLATOR: Labels {winners} as the winner(s) of a game
-#     #  e.g. "Victory: Player 1 and Player 3"
-#     VICTORY = FormatValue(
-#         STR=_("Victory"),
-#         FORMAT=_("Victory: {players}"),
-#         CALL=formatter,
-#     )
+    # TRANSLATOR: Labels {winners} as the winner(s) of a game
+    #  e.g. "Victory: Player 1 and Player 3"
+    VICTORY = OutcomeValue(
+        STR=_("Victory"),
+        FORMAT=_("Victory: {players}"),
+        CALL=_formatter,
+    )
 
 
 # class CheckOption(category.Categorized):
