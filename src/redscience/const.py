@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""Contains redscience constants plus functions for internationalization.
+"""Contains redscience constants plus functions for internationalization
+and versioning.
 
 Most constants in this module are encoded as a ``Category`` (see the 
 ``category`` module) or as a ``NamedTuple``. Each displays in the
@@ -54,12 +55,12 @@ from typing import (
 )
 
 import category
-# import matplotlib
-# import matplotlib.pyplot as plt
+import matplotlib
+import matplotlib.pyplot as plt
 import numpy as np
 
 #!pip install portion
-#import portion as P
+import portion as P
 
 # def format_list(items: List[Any]) -> str:
 #     """Defined for type hint, then replaced by babelwrap."""
@@ -92,17 +93,12 @@ class Color(category.Categorized):
     Attributes:
         STR (str): A localized name. How the Color prints.
         HEX (str): A hex code to communicate the Color to computers.
-        VERSIONS: The versions which offer this color.
+        VERSIONS (Interval): The versions which offer this color.
     """
 
     _ignore_ = "ColorValue"
 
     class ColorValue(NamedTuple):
-        """
-        Attributes:
-            STR (str): A localized name. How the Color prints.
-            HEX (str): A hex code to communicate the Color to computers.
-        """
         STR: str
         HEX: str
         VERSIONS: Tuple[Any, ...] = (version("1.0.0"), version("1.5.0"))
