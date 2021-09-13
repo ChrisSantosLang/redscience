@@ -79,8 +79,7 @@ class Color(category.Categorized):
 
         Color.BLACK
 
-    Color Value
-    **ColorValue Attribute:**
+    **ColorValue Attributes:**
     
         :STR (str): A localized name. How the Color prints.
         :HEX (str): A hex code to communicate the Color to computers.
@@ -122,182 +121,186 @@ class Color(category.Categorized):
     GRAY = ColorValue(STR=_("gray"), HEX="#929591")
 
 
-# PlayerColor = category.ctg(*Color[0:4], name="PlayerColor")  # type: ignore[misc]
+PlayerColor = category.ctg(*Color[0:4], name="PlayerColor")  # type: ignore[misc]
 
 
-# class Layout(enum.IntEnum):
-#     """Layout constants. E.g.::
+class Layout(enum.IntEnum):
+    """Layout constants. E.g.::
 
-#       Layout.POINTS_PER_INCH
-#     """
+      Layout.POINTS_PER_INCH
+    """
 
-#     FIGURE_WIDTH = 5
-#     FIGURE_HEIGHT = 5
-#     POINTS_PER_INCH = 54
-#     MARKER_MARGIN = 8
+    FIGURE_WIDTH = 5
+    FIGURE_HEIGHT = 5
+    POINTS_PER_INCH = 54
+    MARKER_MARGIN = 8
 
 
-# class Command(category.Categorized):
-#     """Command from user to the application. E.g.::
+class Command(category.Categorized):
+    """Command from user to the application. E.g.::
 
-#         Command.NEW
+        Command.NEW
 
-#     **CommandValue Attributes:**
-#         :STR (str): A localized name. How the Command prints.
-#         :KEY (str): A localized shortcut key.
-#         :VERSIONS (Iterable): The versions which offer this command.
+    **CommandValue Attributes:**
     
-#     Each Command tests equal to its ``KEY`` as well as to itself. In English:
+        :STR (str): A localized name. How the Command prints.
+        :KEY (str): A localized shortcut key.
+        :VERSIONS (Iterable): The versions which offer this command.
     
-#         >>> Command.NEW == "n"
-#         True
-#     """
-
-#     _ignore_ = "CommandValue"
-
-#     class CommandValue(NamedTuple):
-#         STR: str
-#         KEY: str
-#         VERSIONS: Iterable = P.open(-P.inf, P.inf)
-
-#     # TRANSLATOR: This is the command to start a new game (e.g. button text).
-#     # TRANSLATOR: This is the shortcut key to start a new game.
-#     # It should match the key listed in the prompt.
-#     NEW = CommandValue(STR=_("Play New"), KEY=_("n"))
-
-#     # TRANSLATOR: This is the command to end the application (e.g. button text).
-#     # TRANSLATOR: This is the shortcut key to end the application.
-#     # It should match the key listed in the prompt.
-#     QUIT = CommandValue(STR=_("Quit"), KEY=_("q"))
-
-#     # TRANSLATOR: This is the command to reverse last user input (e.g. button text).
-#     # TRANSLATOR: This is the shortcut key to back-up by one user input.
-#     # It should match the key listed in the prompt.
-#     UNDO = CommandValue(STR=_("Back"), KEY=_("z"))
-
-#     def __eq__(self: "Command", other) -> bool:
-#         return (
-#             other.lower() == self.KEY
-#             if type(other) is str
-#             else category.Categorized.__eq__(self, other)
-#         )
-
-#     def __ne__(self: "Command", other) -> bool:
-#         return not self.__eq__(other)
-
-
-# class PlayersOption(category.Categorized):
-#     """Category of game by number/type of players. E.g.::
-
-#         PlayersOption.TWO
-
-#     **PlayersValue Attributes:**
-#         :STR (str):  A localized name. How the PlayerOption prints.
-#         :NUM (int): The number of regular players.
-#         :VERSIONS (Iterable): The versions which offer this option.
-#     """
-
-#     _ignore_ = "PlayersValue"
-
-#     class PlayersValue(NamedTuple):
-#         STR: str
-#         NUM: int
-#         VERSIONS: Iterable = P.open(-P.inf, P.inf)
-
-#     # TRANSLATOR: Category to describe games with two regular players
-#     TWO = PlayersValue(STR=_("2-Player"), NUM=2)
-
-#     # TRANSLATOR: Category to describe games with three regular players
-#     THREE = PlayersValue(STR=_("3-Player"), NUM=3)
-
-
-# class Marker(category.Categorized):
-#     """Category of game piece by what marker is use to display it. E.g.::
+    Each Command tests equal to its ``KEY`` as well as to itself. In English:
     
-#         Marker.CIRCLE
+        >>> Command.NEW == "n"
+        True
+    """
 
-#     **MarkerValue Attributes:**
-#         :STR (str):  A localized name. How the Marker prints.
-#         :CODE: The str used in pyplot for the marker.
-#         :VERSIONS (Iterable): The versions which offer this marker.
-#     """
+    _ignore_ = "CommandValue"
 
-#     _ignore_ = "MarkerValue"
+    class CommandValue(NamedTuple):
+        STR: str
+        KEY: str
+        VERSIONS: Iterable = P.open(-P.inf, P.inf)
 
-#     class MarkerValue(NamedTuple):
-#         STR: str
-#         CODE: str
-#         VERSIONS: Iterable = P.open(-P.inf, P.inf)
+    # TRANSLATOR: This is the command to start a new game (e.g. button text).
+    # TRANSLATOR: This is the shortcut key to start a new game.
+    # It should match the key listed in the prompt.
+    NEW = CommandValue(STR=_("Play New"), KEY=_("n"))
 
-#     # TRANSLATOR: Description of the pyplot marker
-#     CIRCLE = MarkerValue(STR=_("circle"), CODE="o")
+    # TRANSLATOR: This is the command to end the application (e.g. button text).
+    # TRANSLATOR: This is the shortcut key to end the application.
+    # It should match the key listed in the prompt.
+    QUIT = CommandValue(STR=_("Quit"), KEY=_("q"))
+
+    # TRANSLATOR: This is the command to reverse last user input (e.g. button text).
+    # TRANSLATOR: This is the shortcut key to back-up by one user input.
+    # It should match the key listed in the prompt.
+    UNDO = CommandValue(STR=_("Back"), KEY=_("z"))
+
+    def __eq__(self: "Command", other) -> bool:
+        return (
+            other.lower() == self.KEY
+            if type(other) is str
+            else category.Categorized.__eq__(self, other)
+        )
+
+    def __ne__(self: "Command", other) -> bool:
+        return not self.__eq__(other)
 
 
-# class StalemateOption(category.Categorized):
-#     """Category of game by stalemate end it. E.g.::
+class PlayersOption(category.Categorized):
+    """Category of game by number/type of players. E.g.::
+
+        PlayersOption.TWO
+
+    **PlayersValue Attributes:**
     
-#         StalemateOption.DRAW
+        :STR (str):  A localized name. How the PlayerOption prints.
+        :NUM (int): The number of regular players.
+        :VERSIONS (Iterable): The versions which offer this option.
+    """
 
-#     Prints localized str.
-#     """
+    _ignore_ = "PlayersValue"
 
-#     # TRANSLATOR: Game rule that the game ends in a draw if there is a stalemate
-#     DRAW = _("stalemate draws")
+    class PlayersValue(NamedTuple):
+        STR: str
+        NUM: int
+        VERSIONS: Iterable = P.open(-P.inf, P.inf)
+
+    # TRANSLATOR: Category to describe games with two regular players
+    TWO = PlayersValue(STR=_("2-Player"), NUM=2)
+
+    # TRANSLATOR: Category to describe games with three regular players
+    THREE = PlayersValue(STR=_("3-Player"), NUM=3)
 
 
-# class ColorOption(category.Categorized):
-#     """Category of game by how it treats colors. E.g.::
+class Marker(category.Categorized):
+    """Category of game piece by what marker is use to display it. E.g.::
     
-#         ColorOption.ASSIGNED
+        Marker.CIRCLE
 
-#     Prints localized str.
-#     """
-
-#     # TRANSLATOR: Game rule that each player is assigned their own unique color
-#     ASSIGNED = _("Assigned Colors")
-
-
-# class BoardOption(category.Categorized):
-#     """Category of game board. E.g.::
+    **MarkerValue Attributes:**
     
-#         BoardOption.HASH
+        :STR (str):  A localized name. How the Marker prints.
+        :CODE: The str used in pyplot for the marker.
+        :VERSIONS (Iterable): The versions which offer this marker.
+    """
 
-#     **BoardValue Attributes**:
-#         :STR (str): A localized name the marker. How the BoardOption prints.
-#         :CODE (str): The str used in pyplot for the marker.
-#         :VERSIONS (Iterable): The versions which offer this option.
-#     """
+    _ignore_ = "MarkerValue"
 
-#     _ignore_ = "BoardValue"
+    class MarkerValue(NamedTuple):
+        STR: str
+        CODE: str
+        VERSIONS: Iterable = P.open(-P.inf, P.inf)
 
-#     class BoardValue(NamedTuple):
-#         STR: str
-#         AX: Callable[[matplotlib.figure.Figure, tuple], matplotlib.axes.Axes]
-#         VERSIONS: Iterable = P.open(-P.inf, P.inf)
+    # TRANSLATOR: Description of the pyplot marker
+    CIRCLE = MarkerValue(STR=_("circle"), CODE="o")
 
-#     def _hash_board(fig: matplotlib.figure.Figure, dims: tuple) -> matplotlib.axes.Axes:
-#         # Tic-Tac-Toe board
-#         rows, cols = dims[0], dims[1]
-#         gs = fig.add_gridspec(1, 1)
-#         ax = fig.add_subplot(gs[0, 0])
-#         ax.patch.set_alpha(0.0)
-#         ax.spines["top"].set_visible(False)
-#         ax.spines["bottom"].set_visible(False)
-#         ax.spines["right"].set_visible(False)
-#         ax.spines["left"].set_visible(False)
-#         ax.xaxis.set_ticks_position("none")
-#         ax.xaxis.set_ticklabels([""])
-#         ax.yaxis.set_ticks_position("none")
-#         ax.yaxis.set_ticklabels([""])
-#         ax.grid(True)
-#         ax.xaxis.set_ticks(np.arange(0.5, cols + 0.5, 1))
-#         ax.yaxis.set_ticks(np.arange(0.5, rows + 0.5, 1))
-#         plt.xlim(cols + 0.5, 0.5)
-#         plt.ylim(0.5, rows + 0.5)
-#         return ax
 
-#     # TRANSLATOR: The type of board used for Tic-Tac-Toe, as in "Played on a hash (3,3)"
-#     HASH = BoardValue(STR=_("a hash"), AX=_hash_board)
+class StalemateOption(category.Categorized):
+    """Category of game by stalemate end it. E.g.::
+    
+        StalemateOption.DRAW
+
+    Prints localized str.
+    """
+
+    # TRANSLATOR: Game rule that the game ends in a draw if there is a stalemate
+    DRAW = _("stalemate draws")
+
+
+class ColorOption(category.Categorized):
+    """Category of game by how it treats colors. E.g.::
+    
+        ColorOption.ASSIGNED
+
+    Prints localized str.
+    """
+
+    # TRANSLATOR: Game rule that each player is assigned their own unique color
+    ASSIGNED = _("Assigned Colors")
+
+
+class BoardOption(category.Categorized):
+    """Category of game board. E.g.::
+    
+        BoardOption.HASH
+
+    **BoardValue Attributes**:
+    
+        :STR (str): A localized name the marker. How the BoardOption prints.
+        :CODE (str): The str used in pyplot for the marker.
+        :VERSIONS (Iterable): The versions which offer this option.
+    """
+
+    _ignore_ = "BoardValue"
+
+    class BoardValue(NamedTuple):
+        STR: str
+        AX: Callable[[matplotlib.figure.Figure, tuple], matplotlib.axes.Axes]
+        VERSIONS: Iterable = P.open(-P.inf, P.inf)
+
+    def _hash_board(fig: matplotlib.figure.Figure, dims: tuple) -> matplotlib.axes.Axes:
+        # Tic-Tac-Toe board
+        rows, cols = dims[0], dims[1]
+        gs = fig.add_gridspec(1, 1)
+        ax = fig.add_subplot(gs[0, 0])
+        ax.patch.set_alpha(0.0)
+        ax.spines["top"].set_visible(False)
+        ax.spines["bottom"].set_visible(False)
+        ax.spines["right"].set_visible(False)
+        ax.spines["left"].set_visible(False)
+        ax.xaxis.set_ticks_position("none")
+        ax.xaxis.set_ticklabels([""])
+        ax.yaxis.set_ticks_position("none")
+        ax.yaxis.set_ticklabels([""])
+        ax.grid(True)
+        ax.xaxis.set_ticks(np.arange(0.5, cols + 0.5, 1))
+        ax.yaxis.set_ticks(np.arange(0.5, rows + 0.5, 1))
+        plt.xlim(cols + 0.5, 0.5)
+        plt.ylim(0.5, rows + 0.5)
+        return ax
+
+    # TRANSLATOR: The type of board used for Tic-Tac-Toe, as in "Played on a hash (3,3)"
+    HASH = BoardValue(STR=_("a hash"), AX=_hash_board)
 
 
 # class Directions(category.Categorized):
