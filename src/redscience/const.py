@@ -364,56 +364,56 @@ class Color(category.Categorized):
 #     KNIGHT = DirectionsValue(STR=_("knight move"), CALL=knight)
 
 
-class Outcome(category.Categorized):
-    """Function to apply localized formatting to strings. E.g:
+# class Outcome(category.Categorized):
+#     """Function to apply localized formatting to strings. E.g:
 
-      Outcome.VICTORY(players=["Player 1"])
+#       Outcome.VICTORY(players=["Player 1"])
 
-    Args:
-      **kwargs: a string for each bookmark in the str
+#     Args:
+#       **kwargs: a string for each bookmark in the str
 
-    Returns:
-      The localized formated string.
-    """
+#     Returns:
+#       The localized formated string.
+#     """
 
-    _ignore_ = "FormatValue"
+#     _ignore_ = "FormatValue"
 
-    class FormatValue(NamedTuple):
-        STR: str
-        FORMAT: str
-        CALL: Callable[["Outcome", List[str]], str]
+#     class FormatValue(NamedTuple):
+#         STR: str
+#         FORMAT: str
+#         CALL: Callable[["Outcome", List[str]], str]
 
-    def formatter(self: "Outcome", players: List[str]) -> str:
-        return self.FORMAT.format(players=format_list(players))
+#     def formatter(self: "Outcome", players: List[str]) -> str:
+#         return self.FORMAT.format(players=format_list(players))
 
-    # TRANSLATOR: Labels {winners} as the winner(s) of a game
-    #  e.g. "Victory: Player 1 and Player 3"
-    VICTORY = FormatValue(
-        STR=_("Victory"),
-        FORMAT=_("Victory: {players}"),
-        CALL=formatter,
-    )
+#     # TRANSLATOR: Labels {winners} as the winner(s) of a game
+#     #  e.g. "Victory: Player 1 and Player 3"
+#     VICTORY = FormatValue(
+#         STR=_("Victory"),
+#         FORMAT=_("Victory: {players}"),
+#         CALL=formatter,
+#     )
 
 
-class CheckOption(category.Categorized):
-    """Game rules checked at the end of each move. Prints localized str. """
+# class CheckOption(category.Categorized):
+#     """Game rules checked at the end of each move. Prints localized str. """
 
-    _ignore_ = "PatternCheck"
+#     _ignore_ = "PatternCheck"
 
-    class PatternCheck(NamedTuple):
-        STR: str
-        PATTERN: str
-        DIRECTIONS: Directions
-        OUTCOME: Outcome
+#     class PatternCheck(NamedTuple):
+#         STR: str
+#         PATTERN: str
+#         DIRECTIONS: Directions
+#         OUTCOME: Outcome
 
-    # TRANSLATOR: Game rule to award the win to any player that aranges three
-    # pieces of the same color in a row
-    THREE_SAME_COLOR_IN_ROW_WINS = PatternCheck(
-        STR=_("first 3-same-color-in-a-row wins"),
-        PATTERN="CCC",
-        DIRECTIONS=Directions.ANY,
-        OUTCOME=Outcome.VICTORY,
-    )
+#     # TRANSLATOR: Game rule to award the win to any player that aranges three
+#     # pieces of the same color in a row
+#     THREE_SAME_COLOR_IN_ROW_WINS = PatternCheck(
+#         STR=_("first 3-same-color-in-a-row wins"),
+#         PATTERN="CCC",
+#         DIRECTIONS=Directions.ANY,
+#         OUTCOME=Outcome.VICTORY,
+#     )
 
 
 # class PieceRules(NamedTuple):
@@ -565,108 +565,108 @@ class CheckOption(category.Categorized):
 #         return (spot_size * Layout.POINTS_PER_INCH - Layout.MARKER_MARGIN) ** 2
 
 
-class DefaultName(category.Categorized):
-    """Default names for players. Prints localized str. """
+# class DefaultName(category.Categorized):
+#     """Default names for players. Prints localized str. """
 
-    # TRANSLATOR: Default name for a player in a game (independent of order)
-    PLAYER_ONE = _("Player 1")
+#     # TRANSLATOR: Default name for a player in a game (independent of order)
+#     PLAYER_ONE = _("Player 1")
 
-    # TRANSLATOR: Default name for a player in a game (independent of order)
-    PLAYER_TWO = _("Player 2")
+#     # TRANSLATOR: Default name for a player in a game (independent of order)
+#     PLAYER_TWO = _("Player 2")
 
-    # TRANSLATOR: Default name for a player in a game (independent of order)
-    PLAYER_THREE = _("Player 3")
+#     # TRANSLATOR: Default name for a player in a game (independent of order)
+#     PLAYER_THREE = _("Player 3")
 
-    # TRANSLATOR: Default name for a player in a game (independent of order)
-    PLAYER_FOUR = _("Player 4")
-
-
-class PlayerType(category.Categorized):
-    """Types of players. Prints localized str. """
-
-    # TRANSLATOR: A type of player in a game
-    HUMAN = _("Human")
+#     # TRANSLATOR: Default name for a player in a game (independent of order)
+#     PLAYER_FOUR = _("Player 4")
 
 
-class Player(NamedTuple):
-    """A player definition. E.g.:
+# class PlayerType(category.Categorized):
+#     """Types of players. Prints localized str. """
 
-        Player()  # To use all defaults (i.e. human)
-
-    Attributes:
-        TYPE: If specified, determines the PlayerType. Default is Human.
-    """
-
-    TYPE: PlayerType = PlayerType.HUMAN
+#     # TRANSLATOR: A type of player in a game
+#     HUMAN = _("Human")
 
 
-class Placement(NamedTuple):
+# class Player(NamedTuple):
+#     """A player definition. E.g.:
 
-    TO: Tuple[int, ...]
-    COLOR: Color = Color.BLACK
-    MARKER: Marker = Marker.CIRCLE
+#         Player()  # To use all defaults (i.e. human)
 
-    def __str__(self: "Placement") -> str:
-        # TRANSLATOR: Names a placement in a game e.g. "Black circle to (1,2)"
-        return (
-            _("{color} {shape} to {destination}")
-            .format(color=self.COLOR, shape=self.MARKER, destination=self.TO)
-            .capitalize()
-        )
+#     Attributes:
+#         TYPE: If specified, determines the PlayerType. Default is Human.
+#     """
+
+#     TYPE: PlayerType = PlayerType.HUMAN
 
 
-class Jump(NamedTuple):         
+# class Placement(NamedTuple):
 
-    FROM: Tuple[int, ...]
-    TO: Tuple[int, ...]
+#     TO: Tuple[int, ...]
+#     COLOR: Color = Color.BLACK
+#     MARKER: Marker = Marker.CIRCLE
 
-    def __str__(self: "Jump") -> str:
-        # TRANSLATOR: Names a move in a game e.g. "(2,3) to (1,2)
-        return _("{origin} to {destination}").format(
-            origin=self.FROM, destination=self.TO
-        )
+#     def __str__(self: "Placement") -> str:
+#         # TRANSLATOR: Names a placement in a game e.g. "Black circle to (1,2)"
+#         return (
+#             _("{color} {shape} to {destination}")
+#             .format(color=self.COLOR, shape=self.MARKER, destination=self.TO)
+#             .capitalize()
+#         )
 
 
-class Move(category.Categorized):
-    """A type of move in a game. Prints localized str. Examples:
+# class Jump(NamedTuple):         
 
-      Move.PASS
-      Move.PLACE(COLOR=Color.WHITE, MARKER=Marker.CIRCLE, TO=(2,3))
-      Move.JUMP(FROM=(1,1), TO=(2,3))
+#     FROM: Tuple[int, ...]
+#     TO: Tuple[int, ...]
 
-    Attributes:
-      TO (in JUMP and PLACE only): Tuple of integers specifying the
-        destination coordinates.
-      COLOR (in PLACE only): Color enum specifying the color to be placed.
-        Default is Color.BLACK
-      MARKER (in PLACE only): Marker enum specifying the shape to be placed.
-        Default is Marker.CIRCLE
-      FROM (in JUMP only): Tuple of integers specifying the origin coordinates.
-    """
+#     def __str__(self: "Jump") -> str:
+#         # TRANSLATOR: Names a move in a game e.g. "(2,3) to (1,2)
+#         return _("{origin} to {destination}").format(
+#             origin=self.FROM, destination=self.TO
+#         )
 
-    _ignore_ = "MoveValue"
 
-    class MoveValue(NamedTuple):
-        STR: str
-        CALL: Any
+# class Move(category.Categorized):
+#     """A type of move in a game. Prints localized str. Examples:
 
-    # TRANSLATOR: Move in a game when the player forfeits their turn
-    PASS = _("Pass")
+#       Move.PASS
+#       Move.PLACE(COLOR=Color.WHITE, MARKER=Marker.CIRCLE, TO=(2,3))
+#       Move.JUMP(FROM=(1,1), TO=(2,3))
 
-    # TRANSLATOR: Move in a game when the player adds a piece or card
-    PLACE = MoveValue(STR=_("Place from reserves"), CALL=Placement)
+#     Attributes:
+#       TO (in JUMP and PLACE only): Tuple of integers specifying the
+#         destination coordinates.
+#       COLOR (in PLACE only): Color enum specifying the color to be placed.
+#         Default is Color.BLACK
+#       MARKER (in PLACE only): Marker enum specifying the shape to be placed.
+#         Default is Marker.CIRCLE
+#       FROM (in JUMP only): Tuple of integers specifying the origin coordinates.
+#     """
 
-    # TRANSLATOR: Move in a game from one spot to another
-    JUMP = MoveValue(STR=_("Reposition"), CALL=Jump)
+#     _ignore_ = "MoveValue"
 
-    # TRANSLATOR: Move in a game when the player offers a voluntary draw
-    OFFER = _("Offer to draw")
+#     class MoveValue(NamedTuple):
+#         STR: str
+#         CALL: Any
 
-    # TRANSLATOR: Move in a game when the player accepts an offer to draw
-    AGREE = _("Agree to draw")
+#     # TRANSLATOR: Move in a game when the player forfeits their turn
+#     PASS = _("Pass")
 
-    # TRANSLATOR: Move in a game when the player rejects an offer to draw
-    REFUSE = _("Refuse to draw")
+#     # TRANSLATOR: Move in a game when the player adds a piece or card
+#     PLACE = MoveValue(STR=_("Place from reserves"), CALL=Placement)
+
+#     # TRANSLATOR: Move in a game from one spot to another
+#     JUMP = MoveValue(STR=_("Reposition"), CALL=Jump)
+
+#     # TRANSLATOR: Move in a game when the player offers a voluntary draw
+#     OFFER = _("Offer to draw")
+
+#     # TRANSLATOR: Move in a game when the player accepts an offer to draw
+#     AGREE = _("Agree to draw")
+
+#     # TRANSLATOR: Move in a game when the player rejects an offer to draw
+#     REFUSE = _("Refuse to draw")
 
 
 # Delay this until after all constants are declared; otherwise the strings will
