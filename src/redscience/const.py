@@ -74,26 +74,20 @@ format_percent = category.babelwrap.format_percent
 format_unit = category.babelwrap.format_unit
 format_datetime = category.babelwrap.format_datetime
 version=category.version
-
-# for name, function in babelwrap.functions.items():
-#     globals()[name] = function
           
-# Keep this before setting Enums, so their values will be in the
-# language from which they can be translated
 def _(message: str) -> str:
     """Defined for type hint, then replaced at bottom."""
     return message
-
 
 class Color(category.Categorized):
     """Color used in a game. E.g.::
 
         Color.BLACK
 
-    Attributes:
-        STR (str): A localized name. How the Color prints.
-        HEX (str): A hex code to communicate the Color to computers.
-        VERSIONS (Interval): The versions which offer this color.
+    Attributes
+        :STR (str): A localized name. How the Color prints.
+        :HEX (str): A hex code to communicate the Color to computers.
+        :VERSIONS (Interval): The versions which offer this color.
     """
 
     _ignore_ = "ColorValue"
@@ -259,45 +253,45 @@ class ColorOption(category.Categorized):
     ASSIGNED = _("Assigned Colors")
 
 
-# class BoardOption(category.Categorized):
-#     """Category of game board. E.g.::
+class BoardOption(category.Categorized):
+    """Category of game board. E.g.::
     
-#         BoardOption.HASH
+        BoardOption.HASH
 
-#     Attributes:
-#         STR: A localized str to name the marker. How the BoardOption prints.
-#         CODE: The str used in pyplot for the marker.
-#     """
+    Attributes:
+        STR: A localized str to name the marker. How the BoardOption prints.
+        CODE: The str used in pyplot for the marker.
+    """
 
-#     _ignore_ = "BoardValue"
+    _ignore_ = "BoardValue"
 
-#     class BoardValue(NamedTuple):
-#         STR: str
-#         AX: Callable[[matplotlib.figure.Figure, tuple], matplotlib.axes.Axes]
+    class BoardValue(NamedTuple):
+        STR: str
+        AX: Callable[[matplotlib.figure.Figure, tuple], matplotlib.axes.Axes]
 
-#     def hash_board(fig: matplotlib.figure.Figure, dims: tuple) -> matplotlib.axes.Axes:
-#         """Tic-Tac-Toe board"""
-#         rows, cols = dims[0], dims[1]
-#         gs = fig.add_gridspec(1, 1)
-#         ax = fig.add_subplot(gs[0, 0])
-#         ax.patch.set_alpha(0.0)
-#         ax.spines["top"].set_visible(False)
-#         ax.spines["bottom"].set_visible(False)
-#         ax.spines["right"].set_visible(False)
-#         ax.spines["left"].set_visible(False)
-#         ax.xaxis.set_ticks_position("none")
-#         ax.xaxis.set_ticklabels([""])
-#         ax.yaxis.set_ticks_position("none")
-#         ax.yaxis.set_ticklabels([""])
-#         ax.grid(True)
-#         ax.xaxis.set_ticks(np.arange(0.5, cols + 0.5, 1))
-#         ax.yaxis.set_ticks(np.arange(0.5, rows + 0.5, 1))
-#         plt.xlim(cols + 0.5, 0.5)
-#         plt.ylim(0.5, rows + 0.5)
-#         return ax
+    def hash_board(fig: matplotlib.figure.Figure, dims: tuple) -> matplotlib.axes.Axes:
+        """Tic-Tac-Toe board"""
+        rows, cols = dims[0], dims[1]
+        gs = fig.add_gridspec(1, 1)
+        ax = fig.add_subplot(gs[0, 0])
+        ax.patch.set_alpha(0.0)
+        ax.spines["top"].set_visible(False)
+        ax.spines["bottom"].set_visible(False)
+        ax.spines["right"].set_visible(False)
+        ax.spines["left"].set_visible(False)
+        ax.xaxis.set_ticks_position("none")
+        ax.xaxis.set_ticklabels([""])
+        ax.yaxis.set_ticks_position("none")
+        ax.yaxis.set_ticklabels([""])
+        ax.grid(True)
+        ax.xaxis.set_ticks(np.arange(0.5, cols + 0.5, 1))
+        ax.yaxis.set_ticks(np.arange(0.5, rows + 0.5, 1))
+        plt.xlim(cols + 0.5, 0.5)
+        plt.ylim(0.5, rows + 0.5)
+        return ax
 
-#     # TRANSLATOR: The type of board used for Tic-Tac-Toe, as in "Played on a hash (3,3)"
-#     HASH = BoardValue(STR=_("a hash"), AX=hash_board)
+    # TRANSLATOR: The type of board used for Tic-Tac-Toe, as in "Played on a hash (3,3)"
+    HASH = BoardValue(STR=_("a hash"), AX=hash_board)
 
 
 # class Directions(category.Categorized):
