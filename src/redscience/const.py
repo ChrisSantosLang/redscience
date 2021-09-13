@@ -284,7 +284,7 @@ class BoardOption(category.Categorized):
 
     **BoardValue Attributes**:
     
-        :STR (str): A localized name the marker. How the BoardOption prints.
+        :STR (str): A localized name. How the BoardOption prints.
         :AX (Callable): Function to return matplotlib.axes.Axes, given 
             a matplotlib.figure.Figure and tuple of dimensions.
         :VERSIONS (Iterable): The versions which offer this option.
@@ -426,73 +426,93 @@ class Outcome(category.Categorized):
     )
 
 
-# class CheckOption(category.Categorized):
-#     """Game rules checked at the end of each move. Prints localized str. """
+class CheckOption(category.Categorized):
+    """Game rules checked at the end of each move. E.g.::
+    
+        CheckOption.THREE_SAME_COLOR_IN_ROW_WINS
 
-#     _ignore_ = "PatternCheck"
+    **PatternCheck Attributes**:
+    
+        :STR (str): A localized name the check. How the CheckOption prints.
+        :PATTERN (str): A type of pattern to be checked
+        :DIRECTIONS (Directions): Directions in which to check the pattern
+        :OUTCOME (Outcome): The Outcome if the check passes
+        :VERSIONS (Iterable): The versions which offer this option.
+    """
 
-#     class PatternCheck(NamedTuple):
-#         STR: str
-#         PATTERN: str
-#         DIRECTIONS: Directions
-#         OUTCOME: Outcome
+    _ignore_ = "PatternCheck"
 
-#     # TRANSLATOR: Game rule to award the win to any player that aranges three
-#     # pieces of the same color in a row
-#     THREE_SAME_COLOR_IN_ROW_WINS = PatternCheck(
-#         STR=_("first 3-same-color-in-a-row wins"),
-#         PATTERN="CCC",
-#         DIRECTIONS=Directions.ANY,
-#         OUTCOME=Outcome.VICTORY,
-#     )
+    class PatternCheck(NamedTuple):
+        STR: str
+        PATTERN: str
+        DIRECTIONS: Directions
+        OUTCOME: Outcome
+        VERSIONS: Iterable = P.open(-P.inf, P.inf)
+
+    # TRANSLATOR: Game rule to award the win to any player that aranges three
+    # pieces of the same color in a row
+    THREE_SAME_COLOR_IN_ROW_WINS = PatternCheck(
+        STR=_("first 3-same-color-in-a-row wins"),
+        PATTERN="CCC",
+        DIRECTIONS=Directions.ANY,
+        OUTCOME=Outcome.VICTORY,
+    )
 
 
-# class PieceRules(NamedTuple):
-#     """Rules for a type of piece in a game. E.g.:
+class PieceRules(NamedTuple):
+    """Rules for a type of piece in a game. E.g.::
 
-#         PieceRules(INITIAL_RESERVES=(5,4))
+        PieceRules(INITIAL_RESERVES=(5,4))
 
-#     Attributes:
-#         INITIAL_RESERVES: A tuple indicating the number in initial reserves
-#             of each color, e.g. (5, 4) means 5 of the first color, and 4 of
-#             the second.
-#     """
+    Attributes:
+        INITIAL_RESERVES: A tuple indicating the number in initial reserves
+            of each color, e.g. (5, 4) means 5 of the first color, and 4 of
+            the second.
+    """
 
-#     INITIAL_RESERVES: Tuple[int, ...]
+    INITIAL_RESERVES: Tuple[int, ...]
 
-#     @property
-#     def RESERVES_STR(self: "PieceRules") -> str:
-#         """A constant localized str describing initial reserves for the
-#         piece. E.g.:
+    @property
+    def RESERVES_STR(self: "PieceRules") -> str:
+        """A constant localized str describing initial reserves for the
+        piece. E.g.::
 
-#         piece.RESERVES_STR
-#         """
-#         by_color = []
-#         for index in range(len(self.INITIAL_RESERVES)):
-#             # TRANSLATOR: Part of a list of amounts of game pieces.
-#             # e.g. "5 black" in "5 black and 4 white start in reserve"
-#             by_color.append(
-#                 _("{number} {color}").format(
-#                     number=self.INITIAL_RESERVES[index],
-#                     color=str(Color[index]).lower(),  # type: ignore[misc]
-#                 ),
-#             )
+            piece.RESERVES_STR
+        """
+        by_color = []
+        for index in range(len(self.INITIAL_RESERVES)):
+            # TRANSLATOR: Part of a list of amounts of game pieces.
+            # e.g. "5 black" in "5 black and 4 white start in reserve"
+            by_color.append(
+                _("{number} {color}").format(
+                    number=self.INITIAL_RESERVES[index],
+                    color=str(Color[index]).lower(),  # type: ignore[misc]
+                ),
+            )
 
-#         # TRANSLATOR: The rule for how many to have in reserve when a game
-#         # begins.. E.g. "5 black and 2 white start in reserve"
-#         return _("{list} start in reserve").format(list=format_list(by_color))
+        # TRANSLATOR: The rule for how many to have in reserve when a game
+        # begins.. E.g. "5 black and 2 white start in reserve"
+        return _("{list} start in reserve").format(list=format_list(by_color))
 
-#     @property
-#     def STRS(self: "PieceRules") -> Tuple[str, ...]:
-#         """Get tuple of strings describing the rules for the piece. E.g.:
+    @property
+    def STRS(self: "PieceRules") -> Tuple[str, ...]:
+        """Get tuple of strings describing the rules for the piece. E.g.::
 
-#         piece.STRS
-#         """
-#         lines = [self.RESERVES_STR]
-#         return tuple(lines)
+            piece.STRS
+        """
+        lines = [self.RESERVES_STR]
+        return tuple(lines)
 
-#     def __str__(self: "PieceRules") -> str:
-#         return "/n".join(self.STRS)
+    def __str__(self: "PieceRules") -> str:
+        return "/n".join(self.STRS)
+      
+    @property
+    def VERSIONS(self: "PieceRules") -> Iterable:
+        """The versions which offer these PieceRules. E.g.::
+
+            piece.VERSIONS
+        """
+        return P.open(-P.inf, P.inf)
 
 
 # class Game(NamedTuple):
