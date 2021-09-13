@@ -84,7 +84,7 @@ class Color(category.Categorized):
 
         Color.BLACK
 
-    **Attributes**:
+    **ColorValue Attributes:**
         :STR (str): A localized name. How the Color prints.
         :HEX (str): A hex code to communicate the Color to computers.
         :VERSIONS (Interval): The versions which offer this color.
