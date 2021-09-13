@@ -512,7 +512,11 @@ class PieceRules(NamedTuple):
 
             piece.VERSIONS
         """
-        return P.open(-P.inf, P.inf)
+        versions = P.open(-P.inf, P.inf)
+        for attr in self:
+             if hasattr(attr, "VERSIONS"):
+                 version = versions & attr.VERSIONS
+        return versions
 
 
 # class Game(NamedTuple):
@@ -616,27 +620,55 @@ class PieceRules(NamedTuple):
 #         return (spot_size * Layout.POINTS_PER_INCH - Layout.MARKER_MARGIN) ** 2
 
 
-# class DefaultName(category.Categorized):
-#     """Default names for players. Prints localized str. """
+class DefaultName(category.Categorized):
+    """Default names for players. E.g.::
+    
+        DefaultName.PLAYER_ONE
 
-#     # TRANSLATOR: Default name for a player in a game (independent of order)
-#     PLAYER_ONE = _("Player 1")
+    **ColorOptionValue Attributes:**
+    
+        :STR (str):  A localized name. How the name prints.
+        :VERSIONS (Iterable): The versions which offer this name.
+    """
 
-#     # TRANSLATOR: Default name for a player in a game (independent of order)
-#     PLAYER_TWO = _("Player 2")
+    _ignore_ = "NameValue"
 
-#     # TRANSLATOR: Default name for a player in a game (independent of order)
-#     PLAYER_THREE = _("Player 3")
+    class NameValue(NamedTuple):
+        STR: str
+        VERSIONS: Iterable = P.open(-P.inf, P.inf)
 
-#     # TRANSLATOR: Default name for a player in a game (independent of order)
-#     PLAYER_FOUR = _("Player 4")
+    # TRANSLATOR: Default name for a player in a game (independent of order)
+    PLAYER_ONE = NameValue(STR=_("Player 1", )
 
+    # TRANSLATOR: Default name for a player in a game (independent of order)
+    PLAYER_TWO = NameValue(STR=_("Player 2", )
 
-# class PlayerType(category.Categorized):
-#     """Types of players. Prints localized str. """
+    # TRANSLATOR: Default name for a player in a game (independent of order)
+    PLAYER_THREE = NameValue(STR=_("Player 3", )
 
-#     # TRANSLATOR: A type of player in a game
-#     HUMAN = _("Human")
+    # TRANSLATOR: Default name for a player in a game (independent of order)
+    PLAYER_FOUR = NameValue(STR=_("Player 4", )
+
+                            
+class PlayerType(category.Categorized):
+    """Types of players. E.g.::
+    
+        PlayerType.HUMAN
+
+    **PlayerTypeValue Attributes:**
+    
+        :STR (str):  A localized name. How the type prints.
+        :VERSIONS (Iterable): The versions which offer this PlayerType.
+    """
+
+    _ignore_ = "PlayerTypeValue"
+
+    class PlayerTypeValue(NamedTuple):
+        STR: str
+        VERSIONS: Iterable = P.open(-P.inf, P.inf)
+
+    # TRANSLATOR: A type of player in a game
+    HUMAN = PlayerTypeValue(_("Human"), )
 
 
 # class Player(NamedTuple):
@@ -649,6 +681,18 @@ class PieceRules(NamedTuple):
 #     """
 
 #     TYPE: PlayerType = PlayerType.HUMAN
+                            
+#     @property
+#     def VERSIONS(self: "PieceRules") -> Iterable:
+#         """The versions which offer these PieceRules. E.g.::
+
+#             piece.VERSIONS
+#         """
+#         versions = P.open(-P.inf, P.inf)
+#         for attr in self:
+#              if hasattr(attr, "VERSIONS"):
+#                  version = versions & attr.VERSIONS
+#         return versions
 
 
 # class Placement(NamedTuple):
