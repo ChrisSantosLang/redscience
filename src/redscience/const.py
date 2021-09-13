@@ -87,7 +87,7 @@ class Color(category.Categorized):
     **ColorValue Attributes:**
         :STR (str): A localized name. How the Color prints.
         :HEX (str): A hex code to communicate the Color to computers.
-        :VERSIONS (Interval): The versions which offer this color.
+        :VERSIONS (portion.Interval): The versions which offer this color.
     """
 
     _ignore_ = "ColorValue"
@@ -95,7 +95,7 @@ class Color(category.Categorized):
     class ColorValue(NamedTuple):
         STR: str
         HEX: str
-        VERSIONS: Tuple[Any, ...] = (version("1.0.0"), version("1.5.0"))
+        VERSIONS: portion.interval.Interval = -P.empty()
 
     # TRANSLATOR: Color of game piece as in "Move: Black circle to (2,1)"
     BLACK = ColorValue(STR=_("black"), HEX="#000000")
@@ -145,13 +145,15 @@ class Command(category.Categorized):
 
         Command.NEW
 
-    Attributes:
-        STR (str): A localized name. How the Command prints.
-        KEY (str): A localized shortcut key. 
+    **CommandValue Attributes:**
+        :STR (str): A localized name. How the Command prints.
+        :KEY (str): A localized shortcut key.
+        :VERSIONS (portion.Interval): The versions which offer this command.
     
-    Each Command tests == to its key as well as to itself. In English::
+    Each Command tests equal to its ``KEY`` as well as to itself. In English:
     
-        Command.NEW == "n"
+        >>> Command.NEW == "n"
+        True
     """
 
     _ignore_ = "CommandValue"
@@ -159,6 +161,7 @@ class Command(category.Categorized):
     class CommandValue(NamedTuple):
         STR: str
         KEY: str
+        VERSIONS: portion.interval.Interval = -P.empty()  
 
     # TRANSLATOR: This is the command to start a new game (e.g. button text).
     # TRANSLATOR: This is the shortcut key to start a new game.
@@ -191,9 +194,10 @@ class PlayersOption(category.Categorized):
 
         PlayersOption.TWO
 
-    Attributes:
-        STR (str): A localized name. How the PlayerOption prints.
-        NUM (int): The number of regular players.
+    **PlayersValue Attributes:**
+        :STR (str):  A localized name. How the PlayerOption prints.
+        :NUM (int): The number of regular players.
+        :VERSIONS (portion.Interval): The versions which offer this command.
     """
 
     _ignore_ = "PlayersValue"
@@ -201,6 +205,7 @@ class PlayersOption(category.Categorized):
     class PlayersValue(NamedTuple):
         STR: str
         NUM: int
+        VERSIONS: portion.interval.Interval = -P.empty()
 
     # TRANSLATOR: Category to describe games with two regular players
     TWO = PlayersValue(STR=_("2-Player"), NUM=2)
@@ -214,9 +219,10 @@ class Marker(category.Categorized):
     
         Marker.CIRCLE
 
-    Attributes:
-        STR: A localized str to name the marker. How the Marker prints.
-        CODE: The str used in pyplot for the marker.
+    **MarkerValue Attributes:**
+        :STR (str):  A localized name. How the Marker prints.
+        :CODE: The str used in pyplot for the marker.
+        :VERSIONS (portion.Interval): The versions which offer this command.
     """
 
     _ignore_ = "MarkerValue"
@@ -224,6 +230,7 @@ class Marker(category.Categorized):
     class MarkerValue(NamedTuple):
         STR: str
         CODE: str
+        VERSIONS: portion.interval.Interval = -P.empty()
 
     # TRANSLATOR: Description of the pyplot marker
     CIRCLE = MarkerValue(STR=_("circle"), CODE="o")
@@ -258,9 +265,10 @@ class BoardOption(category.Categorized):
     
         BoardOption.HASH
 
-    **Attributes**:
-        :STR: A localized str to name the marker. How the BoardOption prints.
-        :CODE: The str used in pyplot for the marker.
+    **BoardValue Attributes**:
+        :STR (str): A localized name the marker. How the BoardOption prints.
+        :CODE (str): The str used in pyplot for the marker.
+        :VERSIONS (portion.Interval): The versions which offer this command.
     """
 
     _ignore_ = "BoardValue"
@@ -268,6 +276,7 @@ class BoardOption(category.Categorized):
     class BoardValue(NamedTuple):
         STR: str
         AX: Callable[[matplotlib.figure.Figure, tuple], matplotlib.axes.Axes]
+        VERSIONS: portion.interval.Interval = -P.empty()
 
     def _hash_board(fig: matplotlib.figure.Figure, dims: tuple) -> matplotlib.axes.Axes:
         # Tic-Tac-Toe board
