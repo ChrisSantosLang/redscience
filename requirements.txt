@@ -2,3 +2,5 @@ pre-commit
 matplotlib
 numpy
 portion
+big_o
+radon
