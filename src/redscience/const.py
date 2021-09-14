@@ -519,105 +519,105 @@ class PieceRules(NamedTuple):
         return versions
 
 
-# class Game(NamedTuple):
-#     """A game definition. E.g.:
+class Game(NamedTuple):
+    """A game definition. E.g.:
 
-#         Game()  # To use all defaults (i.e. Tic-Tac-Toe)
+        Game()  # To use all defaults (i.e. Tic-Tac-Toe)
 
-#     Attributes:
-#         PLAYERS: If specified, determines the PlayersOption. Default is 2-Player.
-#         COLOR: If specified, determines the ColorOption. Default is Assigned
-#             Colors.
-#         BOARD: If specified, determines the BoardOption. Default is hash.
-#         DIMENSIONS: If specified, determines the dimensions of the board as a
-#             tuple of integers. Default is (3,3).
-#         PIECES: If specified, determines piece-specific rules as a tuple of
-#             PieceRules. Default is to have only one type of piece (circle) with
-#             5 black and 4 white starting in reserve.
-#         MOVE_CHECKS: If specified, list rules that are checked at the end of
-#             each move as tuple of CheckOptions. Can be None. Default is to award
-#             the win to any player that gets three of the same color in a row.
-#         STALEMATE: If specified, determines the StalemateOption. Default is that
-#             stalemate results in a draw.
-#     """
+    Attributes:
+        PLAYERS: If specified, determines the PlayersOption. Default is 2-Player.
+        COLOR: If specified, determines the ColorOption. Default is Assigned
+            Colors.
+        BOARD: If specified, determines the BoardOption. Default is hash.
+        DIMENSIONS: If specified, determines the dimensions of the board as a
+            tuple of integers. Default is (3,3).
+        PIECES: If specified, determines piece-specific rules as a tuple of
+            PieceRules. Default is to have only one type of piece (circle) with
+            5 black and 4 white starting in reserve.
+        MOVE_CHECKS: If specified, list rules that are checked at the end of
+            each move as tuple of CheckOptions. Can be None. Default is to award
+            the win to any player that gets three of the same color in a row.
+        STALEMATE: If specified, determines the StalemateOption. Default is that
+            stalemate results in a draw.
+    """
 
-#     PLAYERS: PlayersOption = PlayersOption.TWO
-#     COLOR: ColorOption = ColorOption.ASSIGNED
-#     BOARD: BoardOption = BoardOption.HASH
-#     DIMENSIONS: Tuple[int, ...] = (3, 3)
-#     PIECES: Tuple[PieceRules, ...] = (PieceRules(INITIAL_RESERVES=(5, 4)),)
-#     MOVE_CHECKS: Union[Tuple[()], Tuple[CheckOption, ...]] = (
-#         CheckOption.THREE_SAME_COLOR_IN_ROW_WINS,
-#     )
-#     STALEMATE: StalemateOption = StalemateOption.DRAW
+    PLAYERS: PlayersOption = PlayersOption.TWO
+    COLOR: ColorOption = ColorOption.ASSIGNED
+    BOARD: BoardOption = BoardOption.HASH
+    DIMENSIONS: Tuple[int, ...] = (3, 3)
+    PIECES: Tuple[PieceRules, ...] = (PieceRules(INITIAL_RESERVES=(5, 4)),)
+    MOVE_CHECKS: Union[Tuple[()], Tuple[CheckOption, ...]] = (
+        CheckOption.THREE_SAME_COLOR_IN_ROW_WINS,
+    )
+    STALEMATE: StalemateOption = StalemateOption.DRAW
 
-#     @property
-#     def STRS(self: "Game") -> Tuple[str, ...]:
-#         """A constant tuple of localized strings describing the game. E.g:
+    @property
+    def STRS(self: "Game") -> Tuple[str, ...]:
+        """A constant tuple of localized strings describing the game. E.g:
 
-#         game.STRS
-#         """
-#         lines = []
-#         # TRANSLATOR: Line defining a game board e.g. "Played on hash (3,3)" for
-#         # Tic-Tac-Toe where {board} is "hash" and {dimensions} is "(3,3)"
-#         lines.append(
-#             _("Played on {board} {dimensions}").format(
-#                 dimensions=str(self.DIMENSIONS),
-#                 board=str(self.BOARD),
-#             )
-#         )
-#         lines.append(str(self.PLAYERS))
-#         lines.append(str(self.COLOR))
-#         for index in range(len(self.PIECES)):
-#             # TRANSLATOR: Line defining rules for a type of game piece/card
-#             # e.g. "Circle: Immobile, 5 black and 4 white start in reserve"
-#             lines.append(
-#                 _("{shape}: {rules}")
-#                 .format(
-#                     shape=str(Marker[index]),  # type: ignore[misc]
-#                     rules=format_list(list(self.PIECES[index].STRS)),
-#                 )
-#                 .capitalize()
-#             )
-#         for rule in self.MOVE_CHECKS:
-#             lines.append(str(rule).capitalize())
-#         lines.append(str(self.STALEMATE).capitalize())
-#         return tuple(lines)
+        game.STRS
+        """
+        lines = []
+        # TRANSLATOR: Line defining a game board e.g. "Played on hash (3,3)" for
+        # Tic-Tac-Toe where {board} is "hash" and {dimensions} is "(3,3)"
+        lines.append(
+            _("Played on {board} {dimensions}").format(
+                dimensions=str(self.DIMENSIONS),
+                board=str(self.BOARD),
+            )
+        )
+        lines.append(str(self.PLAYERS))
+        lines.append(str(self.COLOR))
+        for index in range(len(self.PIECES)):
+            # TRANSLATOR: Line defining rules for a type of game piece/card
+            # e.g. "Circle: Immobile, 5 black and 4 white start in reserve"
+            lines.append(
+                _("{shape}: {rules}")
+                .format(
+                    shape=str(Marker[index]),  # type: ignore[misc]
+                    rules=format_list(list(self.PIECES[index].STRS)),
+                )
+                .capitalize()
+            )
+        for rule in self.MOVE_CHECKS:
+            lines.append(str(rule).capitalize())
+        lines.append(str(self.STALEMATE).capitalize())
+        return tuple(lines)
 
-#     @property
-#     def RULES(self: "Game") -> str:
-#         """A constant localized str describing the move checks and stalemate
-#         rules. E.g:
+    @property
+    def RULES(self: "Game") -> str:
+        """A constant localized str describing the move checks and stalemate
+        rules. E.g:
 
-#         game.RULES
-#         """
-#         rule_list: List[Union[CheckOption, StalemateOption]] = list(self.MOVE_CHECKS)
-#         rule_list.append(self.STALEMATE)
-#         # TRANSLATOR: Labels {rules} as rules of a game
-#         #  e.g. "Rules: First 3-same-color-in-a-row wins and stalemate draws"
-#         return _("Rules: {rules}").format(
-#             rules=str(format_list(rule_list)).capitalize(),
-#         )
+        game.RULES
+        """
+        rule_list: List[Union[CheckOption, StalemateOption]] = list(self.MOVE_CHECKS)
+        rule_list.append(self.STALEMATE)
+        # TRANSLATOR: Labels {rules} as rules of a game
+        #  e.g. "Rules: First 3-same-color-in-a-row wins and stalemate draws"
+        return _("Rules: {rules}").format(
+            rules=str(format_list(rule_list)).capitalize(),
+        )
 
-#     def __str__(self: "Game") -> str:
-#         return "\n".join(self.STRS)
+    def __str__(self: "Game") -> str:
+        return "\n".join(self.STRS)
 
-#     def AXES(self, fig: matplotlib.figure.Figure) -> matplotlib.axes.Axes:
-#         """A constant matplotlib.axes.Axes for this game. E.g.:
+    def AXES(self, fig: matplotlib.figure.Figure) -> matplotlib.axes.Axes:
+        """A constant matplotlib.axes.Axes for this game. E.g.:
 
-#             game.AXES(fig=plt.figure(1,(FIGURE_HEIGHT, FIGURE_WIDTH)))
+            game.AXES(fig=plt.figure(1,(FIGURE_HEIGHT, FIGURE_WIDTH)))
 
-#         Args:
-#             fig: The Matplotlib.figure.Figure of the Axes
-#         """
-#         return self.BOARD.AX(fig, self.DIMENSIONS)
+        Args:
+            fig: The Matplotlib.figure.Figure of the Axes
+        """
+        return self.BOARD.AX(fig, self.DIMENSIONS)
 
-#     @property
-#     def MARKER_SIZE(self) -> float:
-#         """MARKER_SIZE: A constant int size for markers in this game"""
-#         figure_max = max(Layout.FIGURE_HEIGHT, Layout.FIGURE_WIDTH)
-#         spot_size = figure_max / max(self.DIMENSIONS)
-#         return (spot_size * Layout.POINTS_PER_INCH - Layout.MARKER_MARGIN) ** 2
+    @property
+    def MARKER_SIZE(self) -> float:
+        """MARKER_SIZE: A constant int size for markers in this game"""
+        figure_max = max(Layout.FIGURE_HEIGHT, Layout.FIGURE_WIDTH)
+        spot_size = figure_max / max(self.DIMENSIONS)
+        return (spot_size * Layout.POINTS_PER_INCH - Layout.MARKER_MARGIN) ** 2
 
 
 class DefaultName(category.Categorized):
@@ -671,97 +671,97 @@ class PlayerType(category.Categorized):
     HUMAN = PlayerTypeValue(_("Human"), )
 
 
-# class Player(NamedTuple):
-#     """A player definition. E.g.:
+class Player(NamedTuple):
+    """A player definition. E.g.:
 
-#         Player()  # To use all defaults (i.e. human)
+        Player()  # To use all defaults (i.e. human)
 
-#     Attributes:
-#         TYPE: If specified, determines the PlayerType. Default is Human.
-#     """
+    Attributes:
+        TYPE: If specified, determines the PlayerType. Default is Human.
+    """
 
-#     TYPE: PlayerType = PlayerType.HUMAN
+    TYPE: PlayerType = PlayerType.HUMAN
                             
-#     @property
-#     def VERSIONS(self: "PieceRules") -> Iterable:
-#         """The versions which offer these PieceRules. E.g.::
+    @property
+    def VERSIONS(self: "PieceRules") -> Iterable:
+        """The versions which offer these PieceRules. E.g.::
 
-#             piece.VERSIONS
-#         """
-#         versions = P.open(-P.inf, P.inf)
-#         for attr in self:
-#              if hasattr(attr, "VERSIONS"):
-#                  version = versions & attr.VERSIONS
-#         return versions
-
-
-# class Placement(NamedTuple):
-
-#     TO: Tuple[int, ...]
-#     COLOR: Color = Color.BLACK
-#     MARKER: Marker = Marker.CIRCLE
-
-#     def __str__(self: "Placement") -> str:
-#         # TRANSLATOR: Names a placement in a game e.g. "Black circle to (1,2)"
-#         return (
-#             _("{color} {shape} to {destination}")
-#             .format(color=self.COLOR, shape=self.MARKER, destination=self.TO)
-#             .capitalize()
-#         )
+            piece.VERSIONS
+        """
+        versions = P.open(-P.inf, P.inf)
+        for attr in self:
+             if hasattr(attr, "VERSIONS"):
+                 version = versions & attr.VERSIONS
+        return versions
 
 
-# class Jump(NamedTuple):         
+class Placement(NamedTuple):
 
-#     FROM: Tuple[int, ...]
-#     TO: Tuple[int, ...]
+    TO: Tuple[int, ...]
+    COLOR: Color = Color.BLACK
+    MARKER: Marker = Marker.CIRCLE
 
-#     def __str__(self: "Jump") -> str:
-#         # TRANSLATOR: Names a move in a game e.g. "(2,3) to (1,2)
-#         return _("{origin} to {destination}").format(
-#             origin=self.FROM, destination=self.TO
-#         )
+    def __str__(self: "Placement") -> str:
+        # TRANSLATOR: Names a placement in a game e.g. "Black circle to (1,2)"
+        return (
+            _("{color} {shape} to {destination}")
+            .format(color=self.COLOR, shape=self.MARKER, destination=self.TO)
+            .capitalize()
+        )
 
 
-# class Move(category.Categorized):
-#     """A type of move in a game. Prints localized str. Examples:
+class Jump(NamedTuple):         
 
-#       Move.PASS
-#       Move.PLACE(COLOR=Color.WHITE, MARKER=Marker.CIRCLE, TO=(2,3))
-#       Move.JUMP(FROM=(1,1), TO=(2,3))
+    FROM: Tuple[int, ...]
+    TO: Tuple[int, ...]
 
-#     Attributes:
-#       TO (in JUMP and PLACE only): Tuple of integers specifying the
-#         destination coordinates.
-#       COLOR (in PLACE only): Color enum specifying the color to be placed.
-#         Default is Color.BLACK
-#       MARKER (in PLACE only): Marker enum specifying the shape to be placed.
-#         Default is Marker.CIRCLE
-#       FROM (in JUMP only): Tuple of integers specifying the origin coordinates.
-#     """
+    def __str__(self: "Jump") -> str:
+        # TRANSLATOR: Names a move in a game e.g. "(2,3) to (1,2)
+        return _("{origin} to {destination}").format(
+            origin=self.FROM, destination=self.TO
+        )
 
-#     _ignore_ = "MoveValue"
 
-#     class MoveValue(NamedTuple):
-#         STR: str
-#         CALL: Any
+class Move(category.Categorized):
+    """A type of move in a game. Prints localized str. Examples:
 
-#     # TRANSLATOR: Move in a game when the player forfeits their turn
-#     PASS = _("Pass")
+      Move.PASS
+      Move.PLACE(COLOR=Color.WHITE, MARKER=Marker.CIRCLE, TO=(2,3))
+      Move.JUMP(FROM=(1,1), TO=(2,3))
 
-#     # TRANSLATOR: Move in a game when the player adds a piece or card
-#     PLACE = MoveValue(STR=_("Place from reserves"), CALL=Placement)
+    Attributes:
+      TO (in JUMP and PLACE only): Tuple of integers specifying the
+        destination coordinates.
+      COLOR (in PLACE only): Color enum specifying the color to be placed.
+        Default is Color.BLACK
+      MARKER (in PLACE only): Marker enum specifying the shape to be placed.
+        Default is Marker.CIRCLE
+      FROM (in JUMP only): Tuple of integers specifying the origin coordinates.
+    """
 
-#     # TRANSLATOR: Move in a game from one spot to another
-#     JUMP = MoveValue(STR=_("Reposition"), CALL=Jump)
+    _ignore_ = "MoveValue"
 
-#     # TRANSLATOR: Move in a game when the player offers a voluntary draw
-#     OFFER = _("Offer to draw")
+    class MoveValue(NamedTuple):
+        STR: str
+        CALL: Any
 
-#     # TRANSLATOR: Move in a game when the player accepts an offer to draw
-#     AGREE = _("Agree to draw")
+    # TRANSLATOR: Move in a game when the player forfeits their turn
+    PASS = _("Pass")
 
-#     # TRANSLATOR: Move in a game when the player rejects an offer to draw
-#     REFUSE = _("Refuse to draw")
+    # TRANSLATOR: Move in a game when the player adds a piece or card
+    PLACE = MoveValue(STR=_("Place from reserves"), CALL=Placement)
+
+    # TRANSLATOR: Move in a game from one spot to another
+    JUMP = MoveValue(STR=_("Reposition"), CALL=Jump)
+
+    # TRANSLATOR: Move in a game when the player offers a voluntary draw
+    OFFER = _("Offer to draw")
+
+    # TRANSLATOR: Move in a game when the player accepts an offer to draw
+    AGREE = _("Agree to draw")
+
+    # TRANSLATOR: Move in a game when the player rejects an offer to draw
+    REFUSE = _("Refuse to draw")
 
 
 # Delay this until after all constants are declared; otherwise the strings will
@@ -837,4 +837,3 @@ _ = category.babelwrap._
 #     # TRANSLATOR: Labels {winners} as the winner(s) of a game
 #     #  e.g. "Victory: Player 1 and Player 3"
 #     VICTORY = collections.namedtuple("FormatValue", "STR CALL")(_("Victory: {winners}"), formatter)
-# test commit2
