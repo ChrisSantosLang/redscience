@@ -515,7 +515,7 @@ class PieceRules(NamedTuple):
         versions = P.open(-P.inf, P.inf)
         for attr in self:
              if hasattr(attr, "VERSIONS"):
-                 version = versions & attr.VERSIONS
+                 versions = versions & attr.VERSIONS
         return versions
 
 
@@ -583,6 +583,18 @@ class Game(NamedTuple):
             lines.append(str(rule).capitalize())
         lines.append(str(self.STALEMATE).capitalize())
         return tuple(lines)
+
+    @property
+    def VERSIONS(self: "Game") -> Iterable:
+        """The versions which offer this Game. E.g.::
+
+            game.VERSIONS
+        """
+        versions = P.open(-P.inf, P.inf)
+        for attr in self:
+             if hasattr(attr, "VERSIONS"):
+                 versions = versions & attr.VERSIONS
+        return versions
 
     @property
     def RULES(self: "Game") -> str:
@@ -668,7 +680,12 @@ class PlayerType(category.Categorized):
         VERSIONS: Iterable = P.open(-P.inf, P.inf)
 
     # TRANSLATOR: A type of player in a game
-    HUMAN = PlayerTypeValue(_("Human"), )
+    HUMAN = PlayerTypeValue(
+        STR=_("Human"), 
+        VERSIONS=P.closed(version("1.2.0"), P.inf)
+    )
+
+    ANONYMOUS = PlayerTypeValue(STR=_("Anonymous"))
 
 
 class Player(NamedTuple):
@@ -683,15 +700,15 @@ class Player(NamedTuple):
     TYPE: PlayerType = PlayerType.HUMAN
                             
     @property
-    def VERSIONS(self: "PieceRules") -> Iterable:
-        """The versions which offer these PieceRules. E.g.::
+    def VERSIONS(self: "Player") -> Iterable:
+        """The versions which offer this Player. E.g.::
 
-            piece.VERSIONS
+            player.VERSIONS
         """
         versions = P.open(-P.inf, P.inf)
         for attr in self:
              if hasattr(attr, "VERSIONS"):
-                 version = versions & attr.VERSIONS
+                 versions = versions & attr.VERSIONS
         return versions
 
 
@@ -709,6 +726,18 @@ class Placement(NamedTuple):
             .capitalize()
         )
 
+    @property
+    def VERSIONS(self: "Placement") -> Iterable:
+        """The versions which offer this Placement. E.g.::
+
+            placement.VERSIONS
+        """
+        versions = P.open(-P.inf, P.inf)
+        for attr in self:
+             if hasattr(attr, "VERSIONS"):
+                 versions = versions & attr.VERSIONS
+        return versions
+
 
 class Jump(NamedTuple):         
 
@@ -721,6 +750,18 @@ class Jump(NamedTuple):
             origin=self.FROM, destination=self.TO
         )
 
+    @property
+    def VERSIONS(self: "Jump") -> Iterable:
+        """The versions which offer this Jump. E.g.::
+
+            jump.VERSIONS
+        """
+        versions = P.open(-P.inf, P.inf)
+        for attr in self:
+             if hasattr(attr, "VERSIONS"):
+                 versions = versions & attr.VERSIONS
+        return versions
+
 
 class Move(category.Categorized):
     """A type of move in a game. Prints localized str. Examples:
@@ -729,39 +770,55 @@ class Move(category.Categorized):
       Move.PLACE(COLOR=Color.WHITE, MARKER=Marker.CIRCLE, TO=(2,3))
       Move.JUMP(FROM=(1,1), TO=(2,3))
 
-    Attributes:
-      TO (in JUMP and PLACE only): Tuple of integers specifying the
-        destination coordinates.
-      COLOR (in PLACE only): Color enum specifying the color to be placed.
-        Default is Color.BLACK
-      MARKER (in PLACE only): Marker enum specifying the shape to be placed.
-        Default is Marker.CIRCLE
-      FROM (in JUMP only): Tuple of integers specifying the origin coordinates.
+    ** Move Attributes:**
+
+        :STR (str):  A localized name. How the move prints.
+        :VERSIONS (Iterable): The versions which offer this Move.
+        :TO (in JUMP and PLACE only): Tuple of integers specifying the
+            destination coordinates.
+        :COLOR (in PLACE only): Color enum specifying the color to be placed.
+            Default is Color.BLACK
+        :MARKER (in PLACE only): Marker enum specifying the shape to be placed.
+            Default is Marker.CIRCLE
+        :FROM (in JUMP only): Tuple of integers specifying the origin coordinates.
+
     """
 
     _ignore_ = "MoveValue"
 
     class MoveValue(NamedTuple):
         STR: str
-        CALL: Any
+        CALL: Any = None
+        VERSIONS: Iterable = P.open(-P.inf, P.inf)
 
     # TRANSLATOR: Move in a game when the player forfeits their turn
-    PASS = _("Pass")
+    PASS = MoveValue(STR=_("Pass"))
 
     # TRANSLATOR: Move in a game when the player adds a piece or card
     PLACE = MoveValue(STR=_("Place from reserves"), CALL=Placement)
 
     # TRANSLATOR: Move in a game from one spot to another
-    JUMP = MoveValue(STR=_("Reposition"), CALL=Jump)
+    JUMP = MoveValue(
+      STR=_("Reposition"), 
+      CALL=Jump, 
+      VERSIONS=P.closed(version("1.5.0"), P.inf),
+    )
 
     # TRANSLATOR: Move in a game when the player offers a voluntary draw
-    OFFER = _("Offer to draw")
+    OFFER = MoveValue(
+      STR=_("Offer to draw"), 
+      VERSIONS=P.closed(version("1.5.0"), P.inf),
+    )
 
     # TRANSLATOR: Move in a game when the player accepts an offer to draw
-    AGREE = _("Agree to draw")
+    AGREE = MoveValue(STR=_("Agree to draw"), 
+      VERSIONS=P.closed(version("1.5.0"), P.inf),
+    )
 
     # TRANSLATOR: Move in a game when the player rejects an offer to draw
-    REFUSE = _("Refuse to draw")
+    REFUSE = MoveValue(STR=_("Refuse to draw"), 
+      VERSIONS=P.closed(version("1.5.0"), P.inf),
+    )
 
 
 # Delay this until after all constants are declared; otherwise the strings will
@@ -770,29 +827,13 @@ class Move(category.Categorized):
 _ = category.babelwrap._
 
 
-# defaults['misc']['title'] = _('Command Line Tic-Tac-Toe')
-
-# defaults['misc']['turn_label'] = _('Turn: {player_name}')
-# defaults['misc']['rules_label'] = _('Rules: {rule_or_list}')
-# defaults['misc']['victory_label'] = _('Victory: {victor_or_list}')
-# _("{color}{piece_type} to {coordinates}")
-
 # defaults['misc']['prompt'] = _('What\'s your move? (\'#,#\' or q/z/n for quit/undo/new game)')
-# defaults['misc']['close'] = _('c')
-# defaults['misc']['undo'] = _('z')
-# defaults['misc']['restart'] = _('s')
 # defaults['misc']['illegal'] = _('That is not a legal option.')
 # defaults['misc']['error'] = _('Error in program')
 # defaults['misc']['draw'] = _('Draw')
 
 
-# defaults['misc']['colors'] = [ 'xkcd:black', 'xkcd:white', 'xkcd:pink',
-#     'xkcd:yellow' ]
-# defaults['misc']['color_names'] = [ _('black'), _('white'), _('pink'),
-#     _('yellow') ]
-# defaults['misc']['markers'] = [ 'o', 'p', 'X', 'P', '^', '*' ]
-# defaults['misc']['shapes'] = [ _('circle'), _('pentagon'), _('X'),
-#     _('cross'), _('triangle'), _('star') ]
+
 # defaults['shape'] = { '__type__' : 'shape',
 #         'mobility' : _('no movement'),
 #         'power' : _('no power'),
