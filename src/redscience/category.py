@@ -42,9 +42,20 @@ def version(name:str, min_parts:int=3) -> Tuple[Union[int,str], ...]:
         A tuple with one member per dot-delimitted part of the name (padded with 
         as many zeros as necessary to achieve min_parts). The numeric parts are 
         integers so, the tuples sort correctly (unlike string names).
+
+    Omits leading "v" if any. An extra "~" part is appended to non-prelease 
+    versions to make them preceed prelease versions. E.g.:
+
+    >>> version("v1.0.0-alpha") < version("1.0")
+    True
+
+    References:
+        https://semver.org/
     """
-    parts = name.split(".")
+    if name and name[0] == "v": name = name[1:]
+    parts = re.split("-|\.", name)
     parts.extend(["0"]*(min_parts-len(parts)))
+    if "-" not in name: parts.append("~")
     return tuple(int(part) if part.isnumeric() else part for part in parts)
   
 def setvers(name: Optional[str]=None)->str:
