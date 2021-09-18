@@ -542,13 +542,19 @@ class Game(NamedTuple):
     """
 
     PLAYERS: PlayersOption = PlayersOption.TWO
+
     COLOR: ColorOption = ColorOption.ASSIGNED
+
     BOARD: BoardOption = BoardOption.HASH
+
     DIMENSIONS: Tuple[int, ...] = (3, 3)
+
     PIECES: Tuple[PieceRules, ...] = (PieceRules(INITIAL_RESERVES=(5, 4)),)
+
     MOVE_CHECKS: Union[Tuple[()], Tuple[CheckOption, ...]] = (
         CheckOption.THREE_SAME_COLOR_IN_ROW_WINS,
     )
+    
     STALEMATE: StalemateOption = StalemateOption.DRAW
 
     @property
