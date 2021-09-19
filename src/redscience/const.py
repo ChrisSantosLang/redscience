@@ -38,87 +38,87 @@ Examples::
 
 """
 
-import collections
-import enum
-import functools
-import itertools
-from typing import (
-    Any,
-    Callable,
-    Dict,
-    Iterable,
-    List,
-    NamedTuple,
-    Optional,
-    Tuple,
-    Union,
-)
+# import collections
+# import enum
+# import functools
+# import itertools
+# from typing import (
+#     Any,
+#     Callable,
+#     Dict,
+#     Iterable,
+#     List,
+#     NamedTuple,
+#     Optional,
+#     Tuple,
+#     Union,
+# )
 
-import category
-import matplotlib
-import matplotlib.pyplot as plt
-import numpy as np
-import portion as P
+# import category
+# import matplotlib
+# import matplotlib.pyplot as plt
+# import numpy as np
+# import portion as P
 
-setlang = category.babelwrap.setlang
-setvers = category.setvers
-format_list = category.babelwrap.format_list
-format_decimal = category.babelwrap.format_decimal
-format_percent = category.babelwrap.format_percent
-format_unit = category.babelwrap.format_unit
-format_datetime = category.babelwrap.format_datetime
-version = category.version
-
-
-def _(message: str) -> str:
-    """Defined for type hint, then replaced at bottom."""
-    return message
+# setlang = category.babelwrap.setlang
+# setvers = category.setvers
+# format_list = category.babelwrap.format_list
+# format_decimal = category.babelwrap.format_decimal
+# format_percent = category.babelwrap.format_percent
+# format_unit = category.babelwrap.format_unit
+# format_datetime = category.babelwrap.format_datetime
+# version = category.version
 
 
-class _ColorValue(NamedTuple):
-    STR: str
-    HEX: str
-    VERSIONS: Iterable = P.open(-P.inf, P.inf)
+# def _(message: str) -> str:
+#     """Defined for type hint, then replaced at bottom."""
+#     return message
 
 
-class Color(category.Categorized):
-    """Color used in a game. E.g.::
+# class _ColorValue(NamedTuple):
+#     STR: str
+#     HEX: str
+#     VERSIONS: Iterable = P.open(-P.inf, P.inf)
 
-        Color.BLACK
 
-    **_ColorValue Attributes:**
+# class Color(category.Categorized):
+#     """Color used in a game. E.g.::
 
-        :STR (str): A localized name. How the Color prints.
-        :HEX (str): A hex code to communicate the Color to computers.
-        :VERSIONS (Iterable): The versions which offer this color.
-    """
+#         Color.BLACK
 
-    # TRANSLATOR: Color of game piece as in "Move: Black circle to (2,1)"
-    BLACK = _ColorValue(STR=_("black"), HEX="#000000")
+#     **_ColorValue Attributes:**
 
-    # TRANSLATOR: Color of game piece as in "Move: White circle to (2,1)"
-    WHITE = _ColorValue(STR=_("white"), HEX="#ffffff")
+#         :STR (str): A localized name. How the Color prints.
+#         :HEX (str): A hex code to communicate the Color to computers.
+#         :VERSIONS (Iterable): The versions which offer this color.
+#     """
 
-    # TRANSLATOR: Color of game piece as in "Move: Pink circle to (2,1)"
-    PINK = _ColorValue(STR=_("pink"), HEX="#ff81c0")
+#     # TRANSLATOR: Color of game piece as in "Move: Black circle to (2,1)"
+#     BLACK = _ColorValue(STR=_("black"), HEX="#000000")
 
-    # TRANSLATOR: Color of game piece as in "Move: Yellow circle to (2,1)"
-    YELLOW = _ColorValue(STR=_("yellow"), HEX="#ffff14")
+#     # TRANSLATOR: Color of game piece as in "Move: White circle to (2,1)"
+#     WHITE = _ColorValue(STR=_("white"), HEX="#ffffff")
 
-    # TRANSLATOR: Color of game piece as in "Move: Orange circle to (2,1)"
-    ORANGE = _ColorValue(STR=_("orange"), HEX="#fdaa48")
+#     # TRANSLATOR: Color of game piece as in "Move: Pink circle to (2,1)"
+#     PINK = _ColorValue(STR=_("pink"), HEX="#ff81c0")
 
-    # TRANSLATOR: Color of game piece as in "Move: Blue circle to (2,1)"
-    BLUE = _ColorValue(STR=_("blue"), HEX="#95d0fc")
+#     # TRANSLATOR: Color of game piece as in "Move: Yellow circle to (2,1)"
+#     YELLOW = _ColorValue(STR=_("yellow"), HEX="#ffff14")
 
-    # TRANSLATOR: Color of game piece as in "Move: Purple circle to (2,1)"
-    PURPLE = _ColorValue(STR=_("purple"), HEX="#bf77f6")
+#     # TRANSLATOR: Color of game piece as in "Move: Orange circle to (2,1)"
+#     ORANGE = _ColorValue(STR=_("orange"), HEX="#fdaa48")
 
-    # TRANSLATOR: Color of game piece as in "Move: Green circle to (2,1)"
-    GREEN = _ColorValue(STR=_("green"), HEX="#96f97b")
+#     # TRANSLATOR: Color of game piece as in "Move: Blue circle to (2,1)"
+#     BLUE = _ColorValue(STR=_("blue"), HEX="#95d0fc")
 
-    # TRANSLATOR: Color of game piece as in "Move: Gray circle to (2,1)"
-    GRAY = _ColorValue(STR=_("gray"), HEX="#929591")
+#     # TRANSLATOR: Color of game piece as in "Move: Purple circle to (2,1)"
+#     PURPLE = _ColorValue(STR=_("purple"), HEX="#bf77f6")
+
+#     # TRANSLATOR: Color of game piece as in "Move: Green circle to (2,1)"
+#     GREEN = _ColorValue(STR=_("green"), HEX="#96f97b")
+
+#     # TRANSLATOR: Color of game piece as in "Move: Gray circle to (2,1)"
+#     GRAY = _ColorValue(STR=_("gray"), HEX="#929591")
 
 
 # PlayerColor = category.ctg(*Color[0:4], name="PlayerColor")  # type: ignore[misc]
@@ -823,7 +823,7 @@ class Color(category.Categorized):
 # Delay this until after all constants are declared; otherwise the strings will
 # get translated upon declaration, and that will prevent us from changing
 # language later (since we will have lost the original strings)
-_ = category.babelwrap._
+# _ = category.babelwrap._
 
 
 # defaults['misc']['prompt'] = _('What\'s your move? (\'#,#\' or q/z/n for quit/undo/new game)')
