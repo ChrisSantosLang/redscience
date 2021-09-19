@@ -12,17 +12,17 @@ repos:
     -   id: debug-statements
     -   id: detect-private-key
     -   id: trailing-whitespace
-    -   id: mixed-line-ending   
-- repo: https://github.com/pycqa/isort
+    -   id: mixed-line-ending       
+-   repo: https://github.com/pycqa/isort
     rev: 5.8.0
     hooks:
-      - id: isort
+    -   id: isort
         args: ["--profile", "black", "--filter-files"]
         name: isort (python)
-      - id: isort
+    -   id: isort
         name: isort (cython)
         types: [cython]
-      - id: isort
+    -   id: isort
         name: isort (pyi)
         types: [pyi]
 -   repo: https://github.com/psf/black
