@@ -489,6 +489,7 @@ def ctg(
                 names = [item.name for item in list(base)]
                 for attr in list(base.__dict__):
                     if attr not in enum.Enum.__dict__ and attr not in names:
+                        debug()
                         setattr(category, attr, getattr(base, attr))
     catbases = bases if name == "Categorized" else [category]
     setattr(category, "_catbases_", catbases)
