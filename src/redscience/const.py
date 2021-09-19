@@ -36,6 +36,12 @@ Examples::
   )
   plt.show()
 
+For documentation about ``setlang``, ``format_list``, ``format_decimal``, 
+``format_percent``, ``format_unit`` or ``format_datetime``, see the
+``babelwrap`` module.
+
+For documentation about ``categorized``, ``setvers`` or ``version``, 
+see the ``category`` module.
 """
 
 import collections
