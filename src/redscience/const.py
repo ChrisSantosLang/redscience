@@ -38,27 +38,27 @@ Examples::
 
 """
 
-# import collections
-# import enum
-# import functools
-# import itertools
-# from typing import (
-#     Any,
-#     Callable,
-#     Dict,
-#     Iterable,
-#     List,
-#     NamedTuple,
-#     Optional,
-#     Tuple,
-#     Union,
-# )
+import collections
+import enum
+import functools
+import itertools
+from typing import (
+    Any,
+    Callable,
+    Dict,
+    Iterable,
+    List,
+    NamedTuple,
+    Optional,
+    Tuple,
+    Union,
+)
 
-# import category
-# import matplotlib
-# import matplotlib.pyplot as plt
-# import numpy as np
-# import portion as P
+import category
+import matplotlib
+import matplotlib.pyplot as plt
+import numpy as np
+import portion as P
 
 # setlang = category.babelwrap.setlang
 # setvers = category.setvers
