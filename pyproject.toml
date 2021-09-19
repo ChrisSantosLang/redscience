@@ -1,8 +1,8 @@
 [tool.black]
-line-length = 88  
-target-version = ['py37'] 
+line-length = 88
+target-version = ['py37']
 include = '\.pyi?$'
-exclude = '''  
+exclude = '''
 /(
     \.eggs
   | \.git
@@ -61,5 +61,5 @@ build-backend = "poetry.core.masonry.api"
 [isort]
 default_section = "THIRDPARTY"
 known_first_party = "redscience"
-known_third_party = "babel,matplotlib,numpy"
+known_third_party = ["babel", "babelwrap", "category", "matplotlib", "numpy", "portion"]
 sections = "FUTURE,STDLIB,THIRDPARTY,FIRSTPARTY,LOCALFOLDER"
