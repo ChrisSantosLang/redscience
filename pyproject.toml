@@ -45,6 +45,7 @@ python = ">=3.7,<3.11"
 numpy = "^1.21.2"
 matplotlib = "^3.4.3"
 portion = "^2.1.6"
+sphinx = {version = "^3", optional = true}
 
 [tool.poetry.dev-dependencies]
 pre-commit = "^2.15.0"
@@ -53,6 +54,9 @@ mypy = "^0.910"
 isort = "^5.9.3"
 radon = "^5.1.0"
 big-O = "^0.10.1"
+
+[tool.poetry.extras]
+docs = ["sphinx"]
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
