@@ -11,6 +11,7 @@ repos:
     -   id: check-yaml
     -   id: debug-statements
     -   id: detect-private-key
+    -   id: end-of-file-fixer
     -   id: trailing-whitespace
     -   id: mixed-line-ending       
 -   repo: https://github.com/pycqa/isort
