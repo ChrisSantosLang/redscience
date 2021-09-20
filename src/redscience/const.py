@@ -60,11 +60,11 @@ from typing import (
     Union,
 )
 
-# import category
-# import matplotlib
-# import matplotlib.pyplot as plt
-# import numpy as np
-# import portion as P
+import category
+import matplotlib
+import matplotlib.pyplot as plt
+import numpy as np
+import portion as P
 
 # setlang = category.babelwrap.setlang
 # setvers = category.setvers
