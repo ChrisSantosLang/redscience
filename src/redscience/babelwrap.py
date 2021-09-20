@@ -41,22 +41,17 @@ def _install(function):
 def setlang(*langs: str) -> babel.core.Locale:   
     """Gets/sets locale for language functions. E.g.::
     
-        setlang("zh_Hans_HK", "zh_HK", "en_CA", "ar_TN")
+        setlang()  # to get the currenty set locale
+        setlang("zh_Hans_HK", "zh_HK")  # to set a language (e.g. for testing)
+        setlang("")  # to restore the default language
     
     Args:
         *langs (str): locale names (e.g. "en_US") in order of preference. 
 
     Returns: 
-        The ``babel.core.Locale`` associated with whichever language got set. 
-        When called with no parameters, the previously set locale remains, so
-        ``setlang()`` with no parameters is the getter.
-    
-    Tip:
-        Passing actual locales is ueful for testing, but it is otherwise 
-        more typical to set to the default locale by calling with parameter(s) 
-        guaranteed to have no match. E.g. ``setlang("")``.
+        The ``babel.core.Locale`` associated with whichever language is set. 
         
-    The babel functions are then used as follows::
+    The babel functions can then be used as follows::
 
       print(format_decimal(-12345.6789))
       print(format_percent(-12345.6789))
