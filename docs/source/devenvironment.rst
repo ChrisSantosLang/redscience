@@ -31,17 +31,17 @@ Getting Respository Permissions
 -------------------------------
 
 First, if you don't already have a GitHub account, follow 
-`these instructions <https://docs.github.com/en/get-started/signing-up-for-github/signing-up-for-a-new-github-account>`_
+`the GitHub instructions <https://docs.github.com/en/get-started/signing-up-for-github/signing-up-for-a-new-github-account>`_
 to get one. 
 
-If you intend to contribute to an existing repository, then you
-don't need to build a new one, but the plan if you want to build 
-your own code base is to start by clicking "Use this template" at 
+If you intend to contribute to an existing repository, then fork it.
+If you want to build your own code base, then the plan is to start by 
+clicking "Use this template" at 
 https://github.com/ChrisSantosLang/redscience (instructions from
 GitHub `here <https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/creating-a-repository-on-github/creating-a-repository-from-a-template>`_)
 
 [Describe folder structure and explain configuration files here]
  
 Now, if you don't already have a Google account, follow 
-`these instructions <https://support.google.com/accounts/answer/27441?hl=en#>`_ 
+`the Google instructions <https://support.google.com/accounts/answer/27441?hl=en#>`_ 
 to get one, then move forward to How to Develop in Colab with GitHub. 
