@@ -4,10 +4,10 @@ Classes and functions for defining categories.
 """
 
 import collections
-import configparser
 import enum
 import os
 import re
+import toml
 from typing import (
     Any,
     Callable,
@@ -22,9 +22,7 @@ from typing import (
  
 import babelwrap
 
-CONFIG_PATH = "../../setup.cfg"
-VERSION_SECTION = "metadata"
-VERSION_OPTION = "version"
+CONFIG_PATH = "../../pyproject.toml"
 
 _version: Optional[Tuple[Union[int,str], ...]] = None  
 
@@ -35,13 +33,13 @@ def version(name:str, min_parts:int=3) -> Tuple[Union[int,str], ...]:
     (1, 0, 1)
       
     Args:
-        name (str): The version name (e.g. "1.0.1")
+        name (str): dot/hyphen-delimited version name (e.g. "1.0.1")
         min_parts (int): The minimum parts for the tuple. Default is 3.
         
     Returns:
-        A tuple with one member per dot-delimitted part of the name (padded with 
+        A tuple with one member per part of the name (padded with 
         as many zeros as necessary to achieve min_parts). The numeric parts are 
-        integers so, the tuples sort correctly (unlike string names).
+        integers, so the tuples sort correctly (unlike string names).
 
     Omits leading "v" if any. An extra "~" part is appended to non-prelease 
     versions to make them preceed prelease versions. E.g.:
@@ -52,39 +50,33 @@ def version(name:str, min_parts:int=3) -> Tuple[Union[int,str], ...]:
     References:
         https://semver.org/
     """
-    if name and name[0] == "v": name = name[1:]
+    if not name: return ()
+    if name[0] == "v": name = name[1:]
     parts = re.split("-|\.", name)
     parts.extend(["0"]*(min_parts-len(parts)))
     if "-" not in name: parts.append("~")
     return tuple(int(part) if part.isnumeric() else part for part in parts)
   
 def setvers(name: Optional[str]=None)->str:
-    """Get or set the version. E.g.:
+    """Get or set the version. E.g.::
     
-    >>> setvers("1.1.0")
-    (1, 1, 0)
+        setvers()  # to get the currenty set version
+        setlang("1.1.0")  # to set a version (e.g. for testing)
+        setlang("")  # to restore the version in pyproject.toml
     
     Args:
-        name (str): The name of the version to set. ``setvers("")`` will set to 
-            the version named in ``setup.cfg``. If ``None``, the previously set 
-            version will be retained. Default to ``None``.
+        name (str): The name of the version to set. Default to ``None``.
         
     Returns:
-        The version as a tuple. ``setvers()`` is the getter.
-        
-    Note:
-        This function stores the set version in ``_version``
+        The currently set version as a tuple. 
     """
     global _version
     if _version and name==None: return _version
     if name and len(name) > 0: 
         _version = version(name)
     elif os.path.exists(CONFIG_PATH):
-        parser = configparser.ConfigParser()
-        parser.read(CONFIG_PATH)
-        if (parser.has_section(VERSION_SECTION) 
-            and parser.has_option(VERSION_SECTION, VERSION_OPTION)):
-            _version = version(parser.get(VERSION_SECTION, VERSION_OPTION))
+        config = toml.load(CONFIG_PATH)
+        _version = version(config.get("tool").get("poetry").get("version"))
     _version = _version or version("1.0.0")     
     return _version
   
