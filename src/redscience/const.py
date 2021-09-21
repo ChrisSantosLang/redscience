@@ -530,119 +530,119 @@ class PieceRules(NamedTuple):
         return ntversions(self)
 
 
-# class Game(NamedTuple):
-#     """A game definition. E.g.:
+class Game(NamedTuple):
+    """A game definition. E.g.:
 
-#         Game()  # To use all defaults (i.e. Tic-Tac-Toe)
+        Game()  # To use all defaults (i.e. Tic-Tac-Toe)
 
-#     Attributes:
-#         PLAYERS: If specified, determines the PlayersOption. Default is 2-Player.
-#         COLOR: If specified, determines the ColorOption. Default is Assigned
-#             Colors.
-#         BOARD: If specified, determines the BoardOption. Default is hash.
-#         DIMENSIONS: If specified, determines the dimensions of the board as a
-#             tuple of integers. Default is (3,3).
-#         PIECES: If specified, determines piece-specific rules as a tuple of
-#             PieceRules. Default is to have only one type of piece (circle) with
-#             5 black and 4 white starting in reserve.
-#         MOVE_CHECKS: If specified, list rules that are checked at the end of
-#             each move as tuple of CheckOptions. Can be None. Default is to award
-#             the win to any player that gets three of the same color in a row.
-#         STALEMATE: If specified, determines the StalemateOption. Default is that
-#             stalemate results in a draw.
-#     """
+    Attributes:
+        PLAYERS: If specified, determines the PlayersOption. Default is 2-Player.
+        COLOR: If specified, determines the ColorOption. Default is Assigned
+            Colors.
+        BOARD: If specified, determines the BoardOption. Default is hash.
+        DIMENSIONS: If specified, determines the dimensions of the board as a
+            tuple of integers. Default is (3,3).
+        PIECES: If specified, determines piece-specific rules as a tuple of
+            PieceRules. Default is to have only one type of piece (circle) with
+            5 black and 4 white starting in reserve.
+        MOVE_CHECKS: If specified, list rules that are checked at the end of
+            each move as tuple of CheckOptions. Can be None. Default is to award
+            the win to any player that gets three of the same color in a row.
+        STALEMATE: If specified, determines the StalemateOption. Default is that
+            stalemate results in a draw.
+    """
 
-#     PLAYERS: PlayersOption = PlayersOption.TWO
+    PLAYERS: PlayersOption = PlayersOption.TWO
 
-#     COLOR: ColorOption = ColorOption.ASSIGNED
+    COLOR: ColorOption = ColorOption.ASSIGNED
 
-#     BOARD: BoardOption = BoardOption.HASH
+    BOARD: BoardOption = BoardOption.HASH
 
-#     DIMENSIONS: Tuple[int, ...] = (3, 3)
+    DIMENSIONS: Tuple[int, ...] = (3, 3)
 
-#     PIECES: Tuple[PieceRules, ...] = (PieceRules(INITIAL_RESERVES=(5, 4)),)
+    PIECES: Tuple[PieceRules, ...] = (PieceRules(INITIAL_RESERVES=(5, 4)),)
 
-#     MOVE_CHECKS: Union[Tuple[()], Tuple[CheckOption, ...]] = (
-#         CheckOption.THREE_SAME_COLOR_IN_ROW_WINS,
-#     )
+    MOVE_CHECKS: Union[Tuple[()], Tuple[CheckOption, ...]] = (
+        CheckOption.THREE_SAME_COLOR_IN_ROW_WINS,
+    )
 
-#     STALEMATE: StalemateOption = StalemateOption.DRAW
+    STALEMATE: StalemateOption = StalemateOption.DRAW
 
-#     @property
-#     def STRS(self) -> Tuple[str, ...]:
-#         """A constant tuple of localized strings describing the game. E.g:
+    @property
+    def STRS(self) -> Tuple[str, ...]:
+        """A constant tuple of localized strings describing the game. E.g:
 
-#         game.STRS
-#         """
-#         lines = []
-#         # TRANSLATOR: Line defining a game board e.g. "Played on hash (3,3)" for
-#         # Tic-Tac-Toe where {board} is "hash" and {dimensions} is "(3,3)"
-#         lines.append(
-#             _("Played on {board} {dimensions}").format(
-#                 dimensions=str(self.DIMENSIONS),
-#                 board=str(self.BOARD),
-#             )
-#         )
-#         lines.append(str(self.PLAYERS))
-#         lines.append(str(self.COLOR))
-#         for index in range(len(self.PIECES)):
-#             # TRANSLATOR: Line defining rules for a type of game piece/card
-#             # e.g. "Circle: Immobile, 5 black and 4 white start in reserve"
-#             lines.append(
-#                 _("{shape}: {rules}")
-#                 .format(
-#                     shape=str(Marker[index]),  # type: ignore[misc]
-#                     rules=format_list(list(self.PIECES[index].STRS)),
-#                 )
-#                 .capitalize()
-#             )
-#         for rule in self.MOVE_CHECKS:
-#             lines.append(str(rule).capitalize())
-#         lines.append(str(self.STALEMATE).capitalize())
-#         return tuple(lines)
+        game.STRS
+        """
+        lines = []
+        # TRANSLATOR: Line defining a game board e.g. "Played on hash (3,3)" for
+        # Tic-Tac-Toe where {board} is "hash" and {dimensions} is "(3,3)"
+        lines.append(
+            _("Played on {board} {dimensions}").format(
+                dimensions=str(self.DIMENSIONS),
+                board=str(self.BOARD),
+            )
+        )
+        lines.append(str(self.PLAYERS))
+        lines.append(str(self.COLOR))
+        for index in range(len(self.PIECES)):
+            # TRANSLATOR: Line defining rules for a type of game piece/card
+            # e.g. "Circle: Immobile, 5 black and 4 white start in reserve"
+            lines.append(
+                _("{shape}: {rules}")
+                .format(
+                    shape=str(Marker[index]),  # type: ignore[misc]
+                    rules=format_list(list(self.PIECES[index].STRS)),
+                )
+                .capitalize()
+            )
+        for rule in self.MOVE_CHECKS:
+            lines.append(str(rule).capitalize())
+        lines.append(str(self.STALEMATE).capitalize())
+        return tuple(lines)
 
-#     @property
-#     def VERSIONS(self) -> Iterable:
-#         """The versions which offer this Game. E.g.::
-#
-#             game.VERSIONS
-#         """
-#         return ntversions(self)
+    @property
+    def VERSIONS(self) -> Iterable:
+        """The versions which offer this Game. E.g.::
 
-#     @property
-#     def RULES(self) -> str:
-#         """A constant localized str describing the move checks and stalemate
-#         rules. E.g:
+            game.VERSIONS
+        """
+        return ntversions(self)
 
-#         game.RULES
-#         """
-#         rule_list: List[Union[CheckOption, StalemateOption]] = list(self.MOVE_CHECKS)
-#         rule_list.append(self.STALEMATE)
-#         # TRANSLATOR: Labels {rules} as rules of a game
-#         #  e.g. "Rules: First 3-same-color-in-a-row wins and stalemate draws"
-#         return _("Rules: {rules}").format(
-#             rules=str(format_list(rule_list)).capitalize(),
-#         )
+    @property
+    def RULES(self) -> str:
+        """A constant localized str describing the move checks and stalemate
+        rules. E.g:
 
-#     def __str__(self: "Game") -> str:
-#         return "\n".join(self.STRS)
+        game.RULES
+        """
+        rule_list: List[Union[CheckOption, StalemateOption]] = list(self.MOVE_CHECKS)
+        rule_list.append(self.STALEMATE)
+        # TRANSLATOR: Labels {rules} as rules of a game
+        #  e.g. "Rules: First 3-same-color-in-a-row wins and stalemate draws"
+        return _("Rules: {rules}").format(
+            rules=str(format_list(rule_list)).capitalize(),
+        )
 
-#     def AXES(self, fig: matplotlib.figure.Figure) -> matplotlib.axes.Axes:
-#         """A constant matplotlib.axes.Axes for this game. E.g.:
+    def __str__(self: "Game") -> str:
+        return "\n".join(self.STRS)
 
-#             game.AXES(fig=plt.figure(1,(FIGURE_HEIGHT, FIGURE_WIDTH)))
+    def AXES(self, fig: matplotlib.figure.Figure) -> matplotlib.axes.Axes:
+        """A constant matplotlib.axes.Axes for this game. E.g.:
 
-#         Args:
-#             fig: The Matplotlib.figure.Figure of the Axes
-#         """
-#         return self.BOARD.AX(fig, self.DIMENSIONS)
+            game.AXES(fig=plt.figure(1,(FIGURE_HEIGHT, FIGURE_WIDTH)))
 
-#     @property
-#     def MARKER_SIZE(self) -> float:
-#         """MARKER_SIZE: A constant int size for markers in this game"""
-#         figure_max = max(Layout.FIGURE_HEIGHT, Layout.FIGURE_WIDTH)
-#         spot_size = figure_max / max(self.DIMENSIONS)
-#         return (spot_size * Layout.POINTS_PER_INCH - Layout.MARKER_MARGIN) ** 2
+        Args:
+            fig: The Matplotlib.figure.Figure of the Axes
+        """
+        return self.BOARD.AX(fig, self.DIMENSIONS)
+
+    @property
+    def MARKER_SIZE(self) -> float:
+        """MARKER_SIZE: A constant int size for markers in this game"""
+        figure_max = max(Layout.FIGURE_HEIGHT, Layout.FIGURE_WIDTH)
+        spot_size = figure_max / max(self.DIMENSIONS)
+        return (spot_size * Layout.POINTS_PER_INCH - Layout.MARKER_MARGIN) ** 2
 
 
 class _NameValue(NamedTuple):
@@ -750,7 +750,9 @@ class Placement(NamedTuple):
 class Jump(NamedTuple):
 
     FROM: Tuple[int, ...]
+    """The coordinates from which to jump"""
     TO: Tuple[int, ...]
+    """The coordinates to which to jump"""
 
     def __str__(self) -> str:
         # TRANSLATOR: Names a move in a game e.g. "(2,3) to (1,2)
@@ -760,10 +762,7 @@ class Jump(NamedTuple):
 
     @property
     def VERSIONS(self) -> Iterable:
-        """The versions which offer this jump. E.g.::
-
-        jump.VERSIONS
-        """
+        """The versions which offer this jump"""
         return ntversions(self)
 
 
