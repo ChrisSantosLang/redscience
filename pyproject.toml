@@ -46,6 +46,7 @@ numpy = "^1.21.2"
 matplotlib = "^3.4.3"
 portion = "^2.1.6"
 sphinx = {version = "^3", optional = true}
+toml = "^0.10.2"
 
 [tool.poetry.dev-dependencies]
 pre-commit = "^2.15.0"
