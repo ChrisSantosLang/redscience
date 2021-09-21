@@ -4,13 +4,15 @@
 version: 2
 
 sphinx:
-   configuration: docs/source/conf.py
+  configuration: docs/source/conf.py
    
 formats:
-   - pdf
+  - pdf
 
 python:
-   version: 3.6
-   pip_install: true
-   extra_requirements:
-      - docs
+  version: "3.7"
+  install:
+    - method: pp
+      path: .
+      extra_requirements:
+        - docs
