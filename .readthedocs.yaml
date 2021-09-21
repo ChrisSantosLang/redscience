@@ -10,7 +10,7 @@ formats:
    - pdf
 
 python:
-    version: 3.7
-    pip_install: true
-    extra_requirements:
-        - docs
+   version: 3.7
+   pip_install: true
+   extra_requirements:
+      - docs
