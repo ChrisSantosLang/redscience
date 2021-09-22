@@ -9,7 +9,7 @@ account.
 
 As an anonymous user, on the Home page, you can select
 a game and other player(s). If you select a way to augment your 
-intelligence (i.e. not "alone"), then you can also select an
+intelligence (i.e. do not play "alone"), then you can also select an
 artificial intellience with which to augment your intelligence. 
 Clicking the button next to the name of a game or player launches
 a page for that game or player where you can see statistics (e.g.
@@ -19,8 +19,9 @@ a leaderboard). Clicking the "Play New" button starts the game.
 
 On the playground, the other player(s) display on the left along with
 their color(s), if assigned. The system also classifies other players 
-based on relative expertise (in previous play) and degree to which they 
-are "owed" favors. 
+based on relative expertise (in previous play) and the degree to which they 
+are "owed" favors (useful in multi-player games or to support
+pro-social stategies). 
 
 The board(s) display in the center of the playground. The time bar on 
 the bottom indicates the amount of time left in the current turn. 
@@ -53,8 +54,8 @@ from inventing personalities, teams, and games that are in some way
 Clicking the "Login/Change User" button in the upper right corner allows 
 you to login or create a new account. As a logged-in user, you will see 
 a "Copy" button on game and player pages. You can click them to create 
-new games and players. If your inventions challenge the rest of the user
-community, then those inventions advance social science.
+new games and players. If your modified versions challenge the rest of the 
+user community, then those inventions advance social science.
 
 .. toctree::
    :maxdepth: 2
