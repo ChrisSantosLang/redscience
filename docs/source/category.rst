@@ -22,17 +22,23 @@ ctg()
 
 .. autofunction:: ctg
 
-version()
----------
-
-.. autofunction:: version
 
 setvers()
 ---------
 
 .. autofunction:: setvers
 
-inversion()
------------
+parse_version()
+---------
 
-.. autofunction:: inversion
+.. autofunction:: parse_version
+
+from_version()
+--------------
+
+.. autofunction:: from_version
+
+ALL
+---
+
+.. autodata:: ALL
