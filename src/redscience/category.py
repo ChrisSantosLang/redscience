@@ -207,14 +207,14 @@ class Categorized(enum.Enum, metaclass=Category):
             STR: str
             AX: Callable[[matplotlib.figure.Figure, tuple], 
                 matplotlib.axes.Axes]
-            VERSIONS: portion.interval.Interval = -P.empty()
+            VERSIONS: portion.interval.Interval = ALL
                 
         class BoardOption(Categorized):            
             HASH = _BoardOption(STR = _("a hash"), AX = hash_board)
             SQUARES = _BoardOption(
                 STR = _("squares"), 
                 AX = squares_board,
-                VERSIONS = P.closed(version("1.5.0"), P.inf),
+                VERSIONS = from_version("1.5.0"),
             )
     
     Raises: 
@@ -227,6 +227,9 @@ class Categorized(enum.Enum, metaclass=Category):
     two members--``BoardOption.HASH`` and ``BoardOption.SQUARES``--each of which 
     has three attributes: ``STR``, ``AX`` and ``VERSIONS``. 
     
+    >>> isinstance(BoardOption, Category), isinstance(BoardOption.HASH, Categorized)
+    True, True
+    
     The values in a dropdown is a classic example of a category: different
     values should be available in different versions and all values should
     display differently in different locales. If a member has an 
@@ -234,8 +237,11 @@ class Categorized(enum.Enum, metaclass=Category):
     those versions. If it has has an attribute named  ``STR``, then that's 
     how that member will print (see the `babelwrap module 
     <https://chrissantoslang-redscience.readthedocs.io/en/latest/babelwrap.html>`_).
-    For example, in ``version("1.0.0")``, ``ipywidgets.Dropdown(options=BoardOption)`` 
-    would yield a dropdown containing only "a hash" translated into the locale
+    For example, in ``version("1.0.0")``, this::
+    
+        ipywidgets.Dropdown(options=BoardOption)
+        
+    ...would yield a dropdown containing only "a hash" translated into the locale
     language. In ``version("1.5.0")`` and above, it would yield a dropdown 
     containing the translations of both "a hash" and "squares".
     
@@ -248,84 +254,89 @@ class Categorized(enum.Enum, metaclass=Category):
         class _Jump(NamedTuple):
             FROM: Tuple[int, ...]
             TO: Tuple[int, ...]
-            def __str__(self: "Jump") -> str:
+            VERSIONS: portion.interval.Interval = ALL
+            def __str__(self) -> str:
                 return _("{origin} to {destination}").format(
                     origin=self.FROM, destination=self.TO
                 )
                 
         class _Move(NamedTuple):
                 STR: str
-                CALL: Any
+                CALL: Optional[Any] = None
+                VERSIONS: portion.interval.Interval = ALL
                 
         class Move(Categorized):
-            PASS = _("Pass")
+            PASS = _Move(STR=_("Pass"))
             JUMP = _Move(STR=_("Reposition"), CALL=_Jump)
 
         jumps = (Move.JUMP(FROM=(1,2), TO=dest) for dest in ((3,1), (3,3), (2,4)))  
         CurrentLegal = ctg(*jumps, name="CurentLegal", uniquify=True) | Move.PASS
     
-    In this example, the ``Move`` category has two members: There is 
-    one member ``Move.PASS`` that has no attributes, and one factory member 
-    ``Move.JUMP`` that has ``STR`` and ``CALL`` attributes. The factory member
-    is used to create the ``CurrentLegal`` category which includes ``CurrentLegal.PASS``,
-    ``CurrentLegal.JUMP``, ``CurrentLegal.JUMP1`` and ``CurrentLegal.JUMP2``. 
-    The first has the same attributes as ``Move.PASS`` (in fact, they are equal); 
-    in contrast, each of the "JUMP" members of ``CurrentLegal`` has ``FROM`` and ``TO`` 
-    attributes instead.
-
+    In this example, the ``Move`` category has two members--``Move.PASS`` and
+    ``Move.JUMP``, both of which have ``STR``, ``CALL``, and ``VERSIONS`` attributes.
+    
     >>> str(Move)
     'Pass and Reposition'
-    >>> str(CurrentLegal)
+    
+    ``Move.JUMP`` is a factory member use create three jumps, which are unioned
+    with ``Move.PASS`` to form the ``CurrentLegal`` category, the members of  which 
+    are ``CurrentLegal.PASS``, ``CurrentLegal.JUMP``, ``CurrentLegal.JUMP1`` and 
+    ``CurrentLegal.JUMP2`` (the ``ctg()`` function will invent the names "JUMP1" and 
+    "JUMP2" to keep names unique). 
+    
+     >>> str(CurrentLegal)
     '(1,2) to (3,1), (1,2) to (3,3), (1,2) to (2,4) and Pass'
     
-    Categories support set operations. You can check type:
-    
-    >>> isinstance(Move, Category), isinstance(Move.PASS, Categorized)
-    True, True
-    
-    Test equality: 
+    ``CurrentLegal.PASS`` has the same attributes as 
+    ``Move.PASS`` (in fact, they are equal); in contrast, each of the "JUMP" members 
+    of ``CurrentLegal`` has ``FROM``, ``TO`` and ``VERSIONS` attributes instead. You 
+    can test the equality of members (but note that equal members can have 
+    different contexts--i.e. ``type()``!): 
     
     >>> CurrentLegal.PASS == Move.PASS
-    True
-    
-    ...but equal members can have different contexts! 
-    
+    True   
     >>> str(type(Move.PASS))
     'Pass and Reposition'
     >>> str(type(CurrentLegal.PASS))
     '(1,2) to (3,1), (1,2) to (3,3), (1,2) to (2,4) and Pass'
     
-    Introspect:  
+    The equal member is considered "in" both categories:  
     
-    >>> CurrentLegal.PASS in Move, CurrentLegal.JUMP in Move
-    True, False
-
-    Set difference:
+    >>> CurrentLegal.PASS in Move
+    True
+    >>> Move.PASS in CurrentLegal
+    True
+    >>> CurrentLegal.JUMP in Move
+    False
     
-    >>> str(CurrentLegal - Move)
-    '(1,2) to (3,1), (1,2) to (3,3) and (1,2) to (2,4)'
-
-    Set intersection:
+    Categories support set operations, so you can get a new
+    category containing all members that are in both categories (i.e. 
+    the set intersection):
     
     >>> str(CurrentLegal & Move)
     'Pass'
 
-    Set union: 
+    ...set difference:
+    
+    >>> str(CurrentLegal - Move)
+    '(1,2) to (3,1), (1,2) to (3,3) and (1,2) to (2,4)'
+
+    ...set union: 
     
     >>> str(CurrentLegal | Move)
     '(1,2) to (3,1), (1,2) to (3,3), (1,2) to (2,4), Pass and Reposition'
     
-    Set symmetric difference: 
+    ...and set symmetric difference: 
     
     >>> str(CurrentLegal ^ Move)
     '(1,2) to (3,1), (1,2) to (3,3), (1,2) to (2,4) and Reposition'
     
-    Test for containment:
+    You can also test for containment of entire categories:
     
     >>> CurrentLegal >= (Move - Move.JUMP)
     True
     
-    Test for proper superset:
+    ...and test for proper superset (or subset):
     
     >>> CurrentLegal > (Move - Move.JUMP) 
     True
