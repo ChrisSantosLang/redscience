@@ -101,7 +101,13 @@ def inversion(obj: Any)->bool:
     return not hasattr(obj, "VERSIONS") or _version in obj.VERSIONS
 
 class Category(enum.EnumMeta):
-    """MetaClass for Categorized (not for public use)."""
+    """MetaClass for `Categorized <https://chrissantoslang-redscience.readthedocs.io/en/latest/category.html#categorized>`_
+    (not for public use).
+    
+    References:
+      `enum.EnumMeta <https://docs.python.org/3/library/enum.html#how-are-enums-different>`_
+    
+    """
 
     _catbases_: List["Category"] = []
 
@@ -195,17 +201,17 @@ class Category(enum.EnumMeta):
 
 class Categorized(enum.Enum, metaclass=Category):
     """
-    Derive from this class to define a new Category. e.g.::
+    Derive from this class to define a new category. e.g.::
 
-        class BoardOption(Categorized):
-            _ignore_ = "BoardValue"
-            class BoardValue(NamedTuple):
-                STR: str
-                AX: Callable[[matplotlib.figure.Figure, tuple], 
-                    matplotlib.axes.Axes]
-                VERSIONS: portion.interval.Interval = -P.empty()
-            HASH = BoardValue(STR = _("a hash"), AX = hash_board)
-            SQUARES = BoardValue(
+        class _BoardOption(NamedTuple):
+            STR: str
+            AX: Callable[[matplotlib.figure.Figure, tuple], 
+                matplotlib.axes.Axes]
+            VERSIONS: portion.interval.Interval = -P.empty()
+                
+        class BoardOption(Categorized):            
+            HASH = _BoardOption(STR = _("a hash"), AX = hash_board)
+            SQUARES = _BoardOption(
                 STR = _("squares"), 
                 AX = squares_board,
                 VERSIONS = P.closed(version("1.5.0"), P.inf),
@@ -215,64 +221,62 @@ class Categorized(enum.Enum, metaclass=Category):
         AttributeError: Upon attempt to add, delete or change member. 
 
     The above example assumes the existence of functions named ``hash_board``
-    and ``squares_board``. It creates a ``Category`` named ``BoardOption`` with 
-    two members, ``BoardOption.HASH`` and ``BoardOption.SQUARES``, each of which 
+    and ``squares_board``. It creates a 
+    `Category <https://chrissantoslang-redscience.readthedocs.io/en/latest/category.html#category>`_
+    named ``BoardOption`` with 
+    two members--``BoardOption.HASH`` and ``BoardOption.SQUARES``--each of which 
     has three attributes: ``STR``, ``AX`` and ``VERSIONS``. 
     
-    The classic example of a Category is the values in a dropdown. Categories 
-    behave differently in different locales. If a member has an attribute named 
-    ``STR``, then that's how that member will print. The translation function, 
-    ``babelwrap._()``, is applied when printing and when getting any 
-    attributes (see the ``babelwrap`` module). For example, given the above, the 
-    following would return "a hash" automatically translated into the language of 
-    the set locale:
-    
-    >>> str(BoardOption.HASH)
-    'a hash'
-    
-    Categories also behave differently in different versions. If a member has an 
-    attribute named ``VERSIONS``, then that member will appear in the list for only 
-    those versions. For example, in ``version("1.0.0")``, 
-    ``ipywidgets.Dropdown(options=BoardOption)`` would yield a dropdown with 
-    only the locale translation of "a hash", but would yield a dropdown with 
-    options for both "a hash" and "squares" in ``version("1.5.0")`` and above.
+    The values in a dropdown is a classic example of a category: different
+    values should be available in different versions and all values should
+    display differently in different locales. If a member has an 
+    attribute named ``VERSIONS``, then that member will appear only for 
+    those versions. If it has has an attribute named  ``STR``, then that's 
+    how that member will print (see the `babelwrap module 
+    <https://chrissantoslang-redscience.readthedocs.io/en/latest/babelwrap.html>`_).
+    For example, in ``version("1.0.0")``, ``ipywidgets.Dropdown(options=BoardOption)`` 
+    would yield a dropdown containing only "a hash" translated into the locale
+    language. In ``version("1.5.0")`` and above, it would yield a dropdown 
+    containing the translations of both "a hash" and "squares".
     
     If a member has an attribute named ``CALL``, then the value of that attribute 
-    will be invoked when that member is called. If the CALL is a ``tuple`` class 
+    will be invoked when that member is called. If the ``CALL` is a tuple-class 
     (e.g. ``NamedTuple``), then that member is a "factory member", and calling it 
-    will return a new ``Categorized`` with the attributes of that ``tuple`` class 
+    will return a new ``Categorized`` with the attributes of that tuple-class 
     (initialized with the called parameters). For example::
     
-        class Jump(NamedTuple):
+        class _Jump(NamedTuple):
             FROM: Tuple[int, ...]
             TO: Tuple[int, ...]
             def __str__(self: "Jump") -> str:
                 return _("{origin} to {destination}").format(
                     origin=self.FROM, destination=self.TO
                 )
-
-        class Move(Categorized):
-            _ignore_ = "MoveValue"
-            class MoveValue(NamedTuple):
+                
+        class _Move(NamedTuple):
                 STR: str
                 CALL: Any
+                
+        class Move(Categorized):
             PASS = _("Pass")
-            JUMP = MoveValue(STR=_("Reposition"), CALL=Jump)
+            JUMP = _Move(STR=_("Reposition"), CALL=_Jump)
 
         jumps = (Move.JUMP(FROM=(1,2), TO=dest) for dest in ((3,1), (3,3), (2,4)))  
-        Option = ctg(*jumps, name="Option", uniquify=True) | Move.PASS
+        CurrentLegal = ctg(*jumps, name="CurentLegal", uniquify=True) | Move.PASS
     
     In this example, the ``Move`` category has two members: There is 
     one member ``Move.PASS`` that has no attributes, and one factory member 
     ``Move.JUMP`` that has ``STR`` and ``CALL`` attributes. The factory member
-    is used to create the ``Options`` category which includes ``Option.PASS``,
-    ``Option.JUMP``, ``Option.JUMP1`` and ``Option.JUMP2``. ``Option.PASS`` 
-    has the same attributes as ``Move.PASS`` (in fact, they are equal); each of 
-    the "JUMP" members of Options  has ``FROM`` and ``TO`` attributes.
+    is used to create the ``CurrentLegal`` category which includes ``CurrentLegal.PASS``,
+    ``CurrentLegal.JUMP``, ``CurrentLegal.JUMP1`` and ``CurrentLegal.JUMP2``. 
+    The first has the same attributes as ``Move.PASS`` (in fact, they are equal); 
+    in contrast, each of the "JUMP" members of ``CurrentLegal`` has ``FROM`` and ``TO`` 
+    attributes instead.
 
-    >>> print(Move, Option, sep="\\n")
-    Pass and Reposition
-    (1,2) to (3,1), (1,2) to (3,3), (1,2) to (2,4) and Pass
+    >>> str(Move)
+    'Pass and Reposition'
+    >>> str(CurrentLegal)
+    '(1,2) to (3,1), (1,2) to (3,3), (1,2) to (2,4) and Pass'
     
     Categories support set operations. You can check type:
     
@@ -281,54 +285,53 @@ class Categorized(enum.Enum, metaclass=Category):
     
     Test equality: 
     
-    >>> Option.PASS == Move.PASS
+    >>> CurrentLegal.PASS == Move.PASS
     True
     
     ...but equal members can have different contexts! 
     
-    >>> print(type(Move.PASS), type(Option.PASS), sep="\\n"))
-    Pass and Reposition
-    (1,2) to (3,1), (1,2) to (3,3), (1,2) to (2,4) and Pass
+    >>> str(type(Move.PASS))
+    'Pass and Reposition'
+    >>> str(type(CurrentLegal.PASS))
+    '(1,2) to (3,1), (1,2) to (3,3), (1,2) to (2,4) and Pass'
     
     Introspect:  
     
-    >>> Option.PASS in Move, Option.JUMP in Move
+    >>> CurrentLegal.PASS in Move, CurrentLegal.JUMP in Move
     True, False
 
     Set difference:
     
-    >>> str(Option - Move)
+    >>> str(CurrentLegal - Move)
     '(1,2) to (3,1), (1,2) to (3,3) and (1,2) to (2,4)'
 
     Set intersection:
     
-    >>> str(Option & Move)
+    >>> str(CurrentLegal & Move)
     'Pass'
 
     Set union: 
     
-    >>> str(Option | Move)
+    >>> str(CurrentLegal | Move)
     '(1,2) to (3,1), (1,2) to (3,3), (1,2) to (2,4), Pass and Reposition'
     
     Set symmetric difference: 
     
-    >>> str(Option ^ Move)
+    >>> str(CurrentLegal ^ Move)
     '(1,2) to (3,1), (1,2) to (3,3), (1,2) to (2,4) and Reposition'
     
     Test for containment:
     
-    >>> Option >= (Move - Move.JUMP)
+    >>> CurrentLegal >= (Move - Move.JUMP)
     True
     
-    Test for proper subset:
+    Test for proper superset:
     
-    >>> (Move - Move.JUMP) < Option
+    >>> CurrentLegal > (Move - Move.JUMP) 
     True
-           
-    Categories inherit ``_ignore_`` (and more) from ``Enum``.
     
-    References:
-        https://docs.python.org/3/library/enum.html.
+     References:
+      `enum.Enum <https://docs.python.org/3/library/enum.html>`_
     """
 
     def __getattr__(self, name):
