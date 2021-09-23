@@ -48,10 +48,10 @@ def setlang(*langs: str) -> babel.core.Locale:
         setlang("")  # to restore the default language
     
     Args:
-        *langs (str): locale names (e.g. "en_US") in order of preference. 
+        *langs (str): locale names in order of preference. 
 
     Returns: 
-        The `babel.core.Locale <http://babel.pocoo.org/en/latest/api/core.html>`_ 
+        babel.core.Locale: The `babel.core.Locale <http://babel.pocoo.org/en/latest/api/core.html>`_ 
         associated with whichever language is set. 
         
     The babel functions can then be used as follows::
