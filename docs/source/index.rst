@@ -1,6 +1,7 @@
-************************
-redscience Documentation
-************************
+*****************************************************************************************************************
+redscience Documentation (`PDF <https://chrissantoslang-redscience.readthedocs.io/_/downloads/en/latest/pdf/>`_)
+*****************************************************************************************************************
+
 
 Much as `Fold-It <https://fold.it/>`_ and `BridgeDesigner 
 <https://bridgedesigner.org/>`_ offer simulations to test 
