@@ -21,6 +21,7 @@ from typing import (
 )
  
 import babelwrap
+import portion as P
 
 CONFIG_PATH = "../../pyproject.toml"
 
@@ -54,7 +55,7 @@ def parse_version(name:str, min_parts:int=3) -> Tuple[Union[int,str], ...]:
     if "-" not in name: parts.append("~")
     return tuple(int(part) if part.isnumeric() else part for part in parts)
 
-def from_version(from: str, to: Optional[str] = None)-> portion.interval.Interval:
+def from_version(from: str, to: Optional[str] = None)-> Iterable:
      """The simple interval starting with a certain version. E.g.:
     
     >>> from_version("1.5.0")
@@ -71,8 +72,8 @@ def from_version(from: str, to: Optional[str] = None)-> portion.interval.Interva
     end = parse_version(to) or P.inf
     return P.closedopen(parse_version(from), end)  
 
-ALL: portion.interval.Interval = P.open(-P.inf, P.inf)
-"""A shortcut to represent the `portion.interval.Interval 
+ALL: Iterable = P.open(-P.inf, P.inf)
+"""A shortcut for the `portion.interval.Interval 
 <https://pypi.org/project/portion/#documentation--usage>`_ 
 that contains all versions"""
 
@@ -281,7 +282,7 @@ class Categorized(enum.Enum, metaclass=Category):
         class _Jump(NamedTuple):
             FROM: Tuple[int, ...]
             TO: Tuple[int, ...]
-            VERSIONS: portion.interval.Interval = ALL
+            VERSIONS: Iterable = ALL
             def __str__(self) -> str:
                 return _("{origin} to {destination}").format(
                     origin=self.FROM, destination=self.TO
@@ -290,7 +291,7 @@ class Categorized(enum.Enum, metaclass=Category):
         class _Move(NamedTuple):
                 STR: str
                 CALL: Optional[Any] = None
-                VERSIONS: portion.interval.Interval = ALL
+                VERSIONS: Iterable = ALL
                 
         class Move(Categorized):
             PASS = _Move(STR=_("Pass"))
