@@ -221,32 +221,38 @@ class Categorized(enum.Enum, metaclass=Category):
         AttributeError: Upon attempt to add, delete or change member. 
 
     The above example assumes the existence of functions named ``hash_board``
-    and ``squares_board``. It creates a 
-    `Category <https://chrissantoslang-redscience.readthedocs.io/en/latest/category.html#category>`_
-    named ``BoardOption`` with 
-    two members--``BoardOption.HASH`` and ``BoardOption.SQUARES``--each of which 
+    and ``squares_board``. It creates a `Category`_ named ``BoardOption`` with 
+    two members,``BoardOption.HASH`` and ``BoardOption.SQUARES``, each of which 
     has three attributes: ``STR``, ``AX`` and ``VERSIONS``. 
     
-    >>> isinstance(BoardOption, Category), isinstance(BoardOption.HASH, Categorized)
-    True, True
+    >>> isinstance(BoardOption, Category)
+    True
+    >>> isinstance(BoardOption.HASH, Categorized)
+    True
     
-    The values in a dropdown is a classic example of a category: different
-    values should be available in different versions and all values should
-    display differently in different locales. If a member has an 
-    attribute named ``VERSIONS``, then that member will appear only for 
-    those versions. If it has has an attribute named  ``STR``, then that's 
-    how that member will print (see the `babelwrap module 
-    <https://chrissantoslang-redscience.readthedocs.io/en/latest/babelwrap.html>`_).
-    For example, in ``version("1.0.0")``, this::
+    A dropdown is a classic example of a category because different
+    values should be available in different versions and all values typically 
+    should display differently in different languages. If a member has an 
+    attribute named "VERSIONS", then that member will appear only for 
+    those versions. If it has an attribute named  "STR", then that's 
+    how that member will print (see :doc:`babelwrap`).
+    For example, the following would yield a dropdown containing only the 
+    local language translation of "a hash" in ``version("1.0.0")``, but shifting
+    the version to 1.5.0 would add a translation for "squares"::
     
         ipywidgets.Dropdown(options=BoardOption)
         
-    ...would yield a dropdown containing only "a hash" translated into the locale
-    language. In ``version("1.5.0")`` and above, it would yield a dropdown 
-    containing the translations of both "a hash" and "squares".
+    A member evaluates to False if not in the set version:
     
-    If a member has an attribute named ``CALL``, then the value of that attribute 
-    will be invoked when that member is called. If the ``CALL` is a tuple-class 
+    >>> setvers("1.0.0")
+    (1,0,0)
+    >>> bool(BoardOption.HASH)
+    True
+    >>> bool(BoardOption.SQUARES)
+    False
+    
+    If a member has an attribute named "CALL", then the value of that attribute 
+    will be invoked when that member is called. If the CALL is a tuple-class 
     (e.g. ``NamedTuple``), then that member is a "factory member", and calling it 
     will return a new ``Categorized`` with the attributes of that tuple-class 
     (initialized with the called parameters). For example::
