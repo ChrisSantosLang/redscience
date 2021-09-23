@@ -6,7 +6,6 @@ repos:
     -   id: check-added-large-files
     -   id: check-byte-order-marker
     -   id: check-case-conflict
-    -   id: check-docstring-first
     -   id: check-json
     -   id: check-yaml
     -   id: debug-statements
