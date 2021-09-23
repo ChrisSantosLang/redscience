@@ -7,7 +7,6 @@ import collections
 import enum
 import os
 import re
-import toml
 from typing import (
     Any,
     Callable,
@@ -19,114 +18,126 @@ from typing import (
     Tuple,
     Union,
 )
- 
+
 import babelwrap
 import portion as P
+import toml
 
 CONFIG_PATH = "../../pyproject.toml"
 
-_version: Optional[Tuple[Union[int,str], ...]] = None  
+_version: Optional[Tuple[Union[int, str], ...]] = None
 
-def parse_version(name:str, min_parts:int=3) -> Tuple[Union[int,str], ...]:
+
+def parse_version(
+    name: Optional[str] = None, min_parts: int = 3
+) -> Tuple[Union[int, str], ...]:
     """Yields sortable tuples for a version name. E.g.:
-    
+
     >>> parse_version("1.0.1")
     (1, 0, 1)
-      
+
     Args:
         name (str): dot/hyphen-delimited version name
         min_parts (int): The minimum parts in the tuple. Default is 3.
-        
+
     Returns:
-        A tuple with one member per part of the name padded with 
-        as many zeros as necessary to achieve min_parts. The numeric parts are 
+        A tuple with one member per part of the name padded with
+        as many zeros as necessary to achieve min_parts. The numeric parts are
         integers, so the tuples sort correctly.
 
-    To support `semantic versioning <https://semver.org/>`_, omits any leading 
+    To support `semantic versioning <https://semver.org/>`_, omits any leading
     "v", and appends an extra "~" part releases with no "-". E.g.:
 
     >>> parse_version("v1.0.0-alpha") < parse_version("1.0")
     True
     """
-    if not name: return ()
-    if name[0] == "v": name = name[1:]
-    parts = re.split("-|\.", name)
-    parts.extend(["0"]*(min_parts-len(parts)))
-    if "-" not in name: parts.append("~")
+    if not name:
+        return ()
+    if name[0] == "v":
+        name = name[1:]
+    parts = re.split(r"-|\.", name)
+    parts.extend(["0"] * (min_parts - len(parts)))
+    if "-" not in name:
+        parts.append("~")
     return tuple(int(part) if part.isnumeric() else part for part in parts)
 
-def from_version(from: str, to: Optional[str] = None)-> Iterable:
-     """The simple interval starting with a certain version. E.g.:
-    
+
+def from_version(start: str, to: Optional[str] = None) -> Iterable:
+    """The simple interval starting with a certain version. E.g.:
+
     >>> from_version("1.5.0")
-    True
-    
+    [(1, 5, 0, '~'),+inf)
+
     Args:
-        from (str): The starting version
+        start (str): The starting version
         to (str): If set, the (excluded) last version
-        
+
     Returns:
-        The `portion.interval.Interval 
+        The `portion.interval.Interval
         <https://pypi.org/project/portion/#documentation--usage>`_
     """
     end = parse_version(to) or P.inf
-    return P.closedopen(parse_version(from), end)  
+    return P.closedopen(parse_version(start), end)
+
 
 ALL: Iterable = P.open(-P.inf, P.inf)
-"""A shortcut for the `portion.interval.Interval 
-<https://pypi.org/project/portion/#documentation--usage>`_ 
-that contains all versions"""
+# """A shortcut for the `portion.interval.Interval
+# <https://pypi.org/project/portion/#documentation--usage>`_
+# that contains all versions"""
 
-def setvers(name: Optional[str]=None)->str:
+
+def setvers(name: Optional[str] = None) -> Tuple[Union[int, str], ...]:
     """Get or set the version. E.g.::
-    
+
         setvers()  # to get the currenty set version
         setlang("1.1.0")  # to set a version (e.g. for testing)
         setlang("")  # to restore the version in pyproject.toml
-    
+
     Args:
         name (str): The name of the version to set. Default to ``None``.
-        
+
     Returns:
-        The currently set version as a tuple. 
+        The currently set version as a tuple.
     """
     global _version
-    if _version and name==None: return _version
-    if name and len(name) > 0: 
-        _version = parse_version(name)
-    elif os.path.exists(CONFIG_PATH):
+    if _version and name is None:
+        return _version
+    if not name and os.path.exists(CONFIG_PATH):
         config = toml.load(CONFIG_PATH)
-        _version = parse_version(config.get("tool").get("poetry").get("version"))
-    _version = _version or parse_version("1.0.0")     
+        if isinstance(config, dict):
+            name = config.get("tool").get("poetry").get("version")  # type: ignore[union-attr]
+    _version = parse_version(name) or parse_version("1.0.0")
     return _version
-  
+
+
 setvers()
 
 # TODO: remove
-def inversion(obj: Any)->bool:
+def inversion(obj: Any) -> bool:
     """Tests whether an object is in the version. E.g.:
-    
+
     >>> inversion(Color.BLACK)
     True
-    
+
     Args:
         obj (object): The object in question
-        
+
     Returns:
         True if the object is in the version that was set
-        
+
     Note:
-        This function assumes that any object which might not be in a version has 
+        This function assumes that any object which might not be in a version has
         an attribute named "VERSIONS" which contains all versions that contain it.
     """
     return not hasattr(obj, "VERSIONS") or _version in obj.VERSIONS
 
+
 class Category(enum.EnumMeta):
     """MetaClass for `Categorized`_ (not for public use).
-    
+
     References:
       `enum.EnumMeta <https://docs.python.org/3/library/enum.html#how-are-enums-different>`_
-    
+
     """
 
     _catbases_: List["Category"] = []
@@ -178,8 +189,9 @@ class Category(enum.EnumMeta):
         return filter(bool, enum.EnumMeta.__iter__(self))
 
     def __dir__(self):  # filter version in dir
-        return [name for name in enum.EnumMeta.__dir__(self)
-            if name[0]=="_" or self[name]]
+        return [
+            name for name in enum.EnumMeta.__dir__(self) if name[0] == "_" or self[name]
+        ]
 
     def __getitem__(self, index):
         if isinstance(index, (int, slice)):
@@ -225,60 +237,60 @@ class Categorized(enum.Enum, metaclass=Category):
 
         class _BoardOption(NamedTuple):
             STR: str
-            AX: Callable[[matplotlib.figure.Figure, tuple], 
+            AX: Callable[[matplotlib.figure.Figure, tuple],
                 matplotlib.axes.Axes]
             VERSIONS: Iterable = ALL
-                
-        class BoardOption(Categorized):            
+
+        class BoardOption(Categorized):
             HASH = _BoardOption(STR = _("a hash"), AX = hash_board)
             SQUARES = _BoardOption(
-                STR = _("squares"), 
+                STR = _("squares"),
                 AX = squares_board,
                 VERSIONS = from_version("1.5.0"),
             )
-    
-    Raises: 
-        AttributeError: Upon attempt to add, delete or change member. 
+
+    Raises:
+        AttributeError: Upon attempt to add, delete or change member.
 
     The above example assumes the existence of functions named ``hash_board``
-    and ``squares_board``. It creates a `Category`_ named ``BoardOption`` with 
-    two members, ``BoardOption.HASH`` and ``BoardOption.SQUARES``, each of which 
-    has three attributes: ``STR``, ``AX`` and ``VERSIONS``. 
-    
+    and ``squares_board``. It creates a `Category`_ named ``BoardOption`` with
+    two members, ``BoardOption.HASH`` and ``BoardOption.SQUARES``, each of which
+    has three attributes: ``STR``, ``AX`` and ``VERSIONS``.
+
     >>> isinstance(BoardOption, Category)
     True
     >>> isinstance(BoardOption.HASH, Categorized)
     True
-    
+
     A dropdown is a classic example of a category because different
-    values should be available in different versions and all values typically 
-    should display differently in different languages. A member with an 
-    attribute named "VERSIONS", will appear only for 
-    those versions. If a member has an attribute named  "STR", then that's 
+    values should be available in different versions and all values typically
+    should display differently in different languages. A member with an
+    attribute named "VERSIONS", will appear only for
+    those versions. If a member has an attribute named  "STR", then that's
     how that member will print (use functions from :doc:`babelwrap`).
-    For example, the following would yield a dropdown that contains only the 
+    For example, the following would yield a dropdown that contains only the
     local language translation of "a hash" in version 1.0.0, but translations
     of both "a hash" and "squares" in version 1.5.0 and above::
-    
+
         ipywidgets.Dropdown(options=BoardOption)
-        
-    This will work even if the dropdown is declared *before* calling 
-    `setvers()`_ and `setlang()`_. A member evaluates to False if not in the 
+
+    This will work even if the dropdown is declared *before* calling
+    `setvers()`_ and `setlang()`_. A member evaluates to False if not in the
     set version:
-    
+
     >>> setvers("1.0.0")
     (1,0,0)
     >>> bool(BoardOption.HASH)
     True
     >>> bool(BoardOption.SQUARES)
     False
-    
-    If a member has an attribute named "CALL", then the value of that attribute 
-    will be invoked when that member is called. If the CALL is a tuple-class 
-    (e.g. ``NamedTuple``), then that member is a "factory member", and calling it 
-    will return a new `Categorized`_ with the attributes of that tuple-class 
+
+    If a member has an attribute named "CALL", then the value of that attribute
+    will be invoked when that member is called. If the CALL is a tuple-class
+    (e.g. ``NamedTuple``), then that member is a "factory member", and calling it
+    will return a new `Categorized`_ with the attributes of that tuple-class
     (initialized with the called parameters). For example::
-    
+
         class _Jump(NamedTuple):
             FROM: Tuple[int, ...]
             TO: Tuple[int, ...]
@@ -287,88 +299,88 @@ class Categorized(enum.Enum, metaclass=Category):
                 return _("{origin} to {destination}").format(
                     origin=self.FROM, destination=self.TO
                 )
-                
+
         class _Move(NamedTuple):
                 STR: str
                 CALL: Optional[Any] = None
                 VERSIONS: Iterable = ALL
-                
+
         class Move(Categorized):
             PASS = _Move(STR=_("Pass"))
             JUMP = _Move(STR=_("Reposition"), CALL=_Jump)
 
-        jumps = (Move.JUMP(FROM=(1,2), TO=dest) for dest in ((3,1), (3,3), (2,4)))  
+        jumps = (Move.JUMP(FROM=(1,2), TO=dest) for dest in ((3,1), (3,3), (2,4)))
         CurrentLegal = ctg(*jumps, name="CurentLegal", uniquify=True) | Move.PASS
-    
+
     In this example, the ``Move`` `Category`_ has two members, ``Move.PASS`` and
     ``Move.JUMP``, both of which have ``STR``, ``CALL``, and ``VERSIONS`` attributes.
-    
+
     >>> str(Move)
     'Pass and Reposition'
-    
-    ``Move.JUMP`` is a factory member used in the second-to-last line to create three 
-    new instances of `Categorized`_. At that point, they are not yet members of any 
+
+    ``Move.JUMP`` is a factory member used in the second-to-last line to create three
+    new instances of `Categorized`_. At that point, they are not yet members of any
     `Category`_. The last line creates the ``CurrentLegal`` category from them unioned
-    with ``Move.PASS``. The members of ``CurrentLegal`` are ``CurrentLegal.PASS``, 
-    ``CurrentLegal.JUMP``, ``CurrentLegal.JUMP1`` and ``CurrentLegal.JUMP2`` 
-    (the ``ctg()`` function will construct the names "JUMP1" and 
-    "JUMP2" to avoid name-collisions). 
-    
+    with ``Move.PASS``. The members of ``CurrentLegal`` are ``CurrentLegal.PASS``,
+    ``CurrentLegal.JUMP``, ``CurrentLegal.JUMP1`` and ``CurrentLegal.JUMP2``
+    (the ``ctg()`` function will construct the names "JUMP1" and
+    "JUMP2" to avoid name-collisions).
+
     >>> str(CurrentLegal)
     '(1,2) to (3,1), (1,2) to (3,3), (1,2) to (2,4) and Pass'
-    
-    Each of the "JUMP" members of ``CurrentLegal`` has ``FROM``, ``TO`` and 
-    ``VERSIONS`` attributes, but ``CurrentLegal.PASS`` has the same attributes as 
-    ``Move.PASS``. It is the same entity placed seen in a different context, so it 
+
+    Each of the "JUMP" members of ``CurrentLegal`` has ``FROM``, ``TO`` and
+    ``VERSIONS`` attributes, but ``CurrentLegal.PASS`` has the same attributes as
+    ``Move.PASS``. It is the same entity placed seen in a different context, so it
     evaluates as equal and is considered "in" both categories:
-    
+
     >>> CurrentLegal.PASS == Move.PASS
-    True   
+    True
     >>> CurrentLegal.PASS in Move
     True
     >>> Move.PASS in CurrentLegal
     True
     >>> CurrentLegal.JUMP in Move
     False
-    
+
     The only difference between them is context:
     >>> str(type(Move.PASS))
     'Pass and Reposition'
     >>> str(type(CurrentLegal.PASS))
-    '(1,2) to (3,1), (1,2) to (3,3), (1,2) to (2,4) and Pass' 
-    
+    '(1,2) to (3,1), (1,2) to (3,3), (1,2) to (2,4) and Pass'
+
     Categories support set operations, so you can get a new
-    category containing all members that are in both categories (i.e. 
+    category containing all members that are in both categories (i.e.
     the set intersection):
-    
+
     >>> str(CurrentLegal & Move)
     'Pass'
 
     ...set difference:
-    
+
     >>> str(CurrentLegal - Move)
     '(1,2) to (3,1), (1,2) to (3,3) and (1,2) to (2,4)'
 
-    ...set union: 
-    
+    ...set union:
+
     >>> str(CurrentLegal | Move)
     '(1,2) to (3,1), (1,2) to (3,3), (1,2) to (2,4), Pass and Reposition'
-    
-    ...and set symmetric difference: 
-    
+
+    ...and set symmetric difference:
+
     >>> str(CurrentLegal ^ Move)
     '(1,2) to (3,1), (1,2) to (3,3), (1,2) to (2,4) and Reposition'
-    
+
     You can also test for containment of entire categories:
-    
+
     >>> CurrentLegal >= (Move - Move.JUMP)
     True
-    
+
     ...and for proper superset (or subset):
-    
-    >>> CurrentLegal > (Move - Move.JUMP) 
+
+    >>> CurrentLegal > (Move - Move.JUMP)
     True
-    
+
      References:
       `enum.Enum <https://docs.python.org/3/library/enum.html>`_
     """
@@ -408,10 +420,10 @@ class Categorized(enum.Enum, metaclass=Category):
     def __dir__(self):
         result = enum.Enum.__dir__(self)
         for name in dir(self._value_):
-            if name not in result and name[0]!="_":
+            if name not in result and name[0] != "_":
                 result.append(name)
         return sorted(result)
-    
+
     def __bool__(self):
         return not hasattr(self, "VERSIONS") or _version in self.VERSIONS
 
@@ -451,47 +463,47 @@ class Categorized(enum.Enum, metaclass=Category):
         return ctg(self) | other
 
 
-def _uniquify(name: str, collection: Iterable[str])-> str:
+def _uniquify(name: str, collection: Iterable[str]) -> str:
     """Make name unique by adding small int to end, E.g.:
 
-    >>> _uniquify("JUMP1", ["JUMP1"]) 
+    >>> _uniquify("JUMP1", ["JUMP1"])
     'JUMP2'
-        
-    Arg: 
-        name (str): The name to be made unique 
+
+    Arg:
+        name (str): The name to be made unique
         collection: The collection in which to be unique
-    
+
     Return:
-        A name that is not already in the collection and that ends in the 
+        A name that is not already in the collection and that ends in the
             smallest positive integer suffix required to make it unique.
     """
     counter = 1
     while name in collection:
-        name = re.fullmatch(r"(\w+\D)(\d*)", name).group(1) + str(counter)
+        name = re.fullmatch(r"(\w+\D)(\d*)", name).group(1) + str(counter)  # type: ignore[union-attr]
         counter += 1
     return name
 
 
 def ctg(
-  *members: Iterable[Categorized], 
-  name: str = "Categorized", 
-  uniquify: bool = False,
-  ) -> type:
+    *members: Iterable,
+    name: str = "Categorized",
+    uniquify: bool = False,
+) -> type:
     """Generate a new `Category`_ from one or more `Categorized`_ e.g.::
 
         ctg(Color.BLACK, Marker.CIRCLE)
-        
+
     Args:
         *members: The members for the new `Category`_.
         name (str): The name of the new `Category`_. Defaults to "Categorized"
-        uniquify (bool): If ``True``, name collisions will be resolved by altering 
+        uniquify (bool): If ``True``, name collisions will be resolved by altering
             member names. Useful with factory members. Defaults to ``False``.
 
-    Returns: 
+    Returns:
         The `Category`_.
-    
-    Raises: 
-        TypeError: Upon attempt to combine non-equal members with the 
+
+    Raises:
+        TypeError: Upon attempt to combine non-equal members with the
             same name without setting ``uniquify`` to ``True``.
     """
 
