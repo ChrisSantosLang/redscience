@@ -33,8 +33,8 @@ def parse_version(
 ) -> Tuple[Union[int, str], ...]:
     """Yields sortable tuples for a version name. E.g.:
 
-    >>> parse_version("1.0.1")
-    (1, 0, 1)
+    >>> parse_version("1.0.1-alpha")
+    (1, 0, 1, 'alpha')
 
     Args:
         name (str): dot/hyphen-delimited version name
@@ -46,7 +46,7 @@ def parse_version(
         integers, so the tuples sort correctly.
 
     To support `semantic versioning <https://semver.org/>`_, omits any leading
-    "v", and appends an extra "~" part releases with no "-". E.g.:
+    "v", and appends an extra "~" part to versions with no "-". E.g.:
 
     >>> parse_version("v1.0.0-alpha") < parse_version("1.0")
     True
@@ -70,7 +70,8 @@ def from_version(start: str, to: Optional[str] = None) -> Iterable:
 
     Args:
         start (str): The starting version
-        to (str): If set, the (excluded) last version
+        to (str): If set, the (excluded) last version. If None, there
+           is no end version. Default to None.
 
     Returns:
         The `portion.interval.Interval
@@ -81,9 +82,9 @@ def from_version(start: str, to: Optional[str] = None) -> Iterable:
 
 
 ALL: Iterable = P.open(-P.inf, P.inf)
-# """A shortcut for the `portion.interval.Interval
-# <https://pypi.org/project/portion/#documentation--usage>`_
-# that contains all versions"""
+"""A shortcut for the `portion.interval.Interval
+<https://pypi.org/project/portion/#documentation--usage>`_
+that contains all (versions)"""
 
 
 def setvers(name: Optional[str] = None) -> Tuple[Union[int, str], ...]:
@@ -91,7 +92,7 @@ def setvers(name: Optional[str] = None) -> Tuple[Union[int, str], ...]:
 
         setvers()  # to get the currenty set version
         setlang("1.1.0")  # to set a version (e.g. for testing)
-        setlang("")  # to restore the version in pyproject.toml
+        setlang("")  # to restore the default from pyproject.toml
 
     Args:
         name (str): The name of the version to set. Default to ``None``.
@@ -319,20 +320,19 @@ class Categorized(enum.Enum, metaclass=Category):
     'Pass and Reposition'
 
     ``Move.JUMP`` is a factory member used in the second-to-last line to create three
-    new instances of `Categorized`_. At that point, they are not yet members of any
-    `Category`_. The last line creates the ``CurrentLegal`` category from them unioned
-    with ``Move.PASS``. The members of ``CurrentLegal`` are ``CurrentLegal.PASS``,
-    ``CurrentLegal.JUMP``, ``CurrentLegal.JUMP1`` and ``CurrentLegal.JUMP2``
-    (the ``ctg()`` function will construct the names "JUMP1" and
-    "JUMP2" to avoid name-collisions).
+    new instances of `Categorized`_. They do not become members of any category until 
+    the last line which creates the ``CurrentLegal`` category from them unioned
+    with ``Move.PASS``. Then the members of ``CurrentLegal`` are ``CurrentLegal.JUMP``, 
+    ``CurrentLegal.JUMP1``, ``CurrentLegal.JUMP2``, and ``CurrentLegal.PASS``
+    (the names "JUMP1" and "JUMP2" are constructed by ``ctg()`` to avoid name-collision).
 
     >>> str(CurrentLegal)
     '(1,2) to (3,1), (1,2) to (3,3), (1,2) to (2,4) and Pass'
 
-    Each of the "JUMP" members of ``CurrentLegal`` has ``FROM``, ``TO`` and
+    Each of the "JUMP" members of ``CurrentLegal`` has ``FROM``, ``TO``, and
     ``VERSIONS`` attributes, but ``CurrentLegal.PASS`` has the same attributes as
-    ``Move.PASS``. It is the same entity placed seen in a different context, so it
-    evaluates as equal and is considered "in" both categories:
+    ``Move.PASS``. It is the same entity, so it evaluates as ``==`` and is 
+    ``in`` both categories:
 
     >>> CurrentLegal.PASS == Move.PASS
     True
@@ -343,7 +343,8 @@ class Categorized(enum.Enum, metaclass=Category):
     >>> CurrentLegal.JUMP in Move
     False
 
-    The only difference between them is context:
+    The only difference between the entities is context:
+    
     >>> str(type(Move.PASS))
     'Pass and Reposition'
     >>> str(type(CurrentLegal.PASS))
@@ -381,7 +382,7 @@ class Categorized(enum.Enum, metaclass=Category):
     >>> CurrentLegal > (Move - Move.JUMP)
     True
 
-     References:
+    References:
       `enum.Enum <https://docs.python.org/3/library/enum.html>`_
     """
 
@@ -489,7 +490,7 @@ def ctg(
     name: str = "Categorized",
     uniquify: bool = False,
 ) -> type:
-    """Generate a new `Category`_ from one or more `Categorized`_ e.g.::
+    """Generate a new `Category`_ from one or more `Categorized`_. E.g.::
 
         ctg(Color.BLACK, Marker.CIRCLE)
 
@@ -500,10 +501,10 @@ def ctg(
             member names. Useful with factory members. Defaults to ``False``.
 
     Returns:
-        The `Category`_.
+        The new `Category`_.
 
     Raises:
-        TypeError: Upon attempt to combine non-equal members with the
+        TypeError: If attempt to combine non-equal members having the
             same name without setting ``uniquify`` to ``True``.
     """
 
