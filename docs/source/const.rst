@@ -3,5 +3,5 @@ const module
 
 .. automodule:: const
     :members:
-    :undoc-members:
+    :no-undoc-members:
     :show-inheritance:
