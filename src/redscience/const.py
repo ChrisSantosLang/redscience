@@ -739,7 +739,7 @@ class Player(NamedTuple):
 class Placement(NamedTuple):
 
     TO: Tuple[int, ...]
-    COLOR: _ColorValue = Color.BLACK
+    COLOR: _Color = Color.BLACK
     MARKER: _MarkerValue = Marker.CIRCLE
 
     def __str__(self) -> str:
