@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-An application-specific wrapper for babel.
+Permits setting a default language for babel functions.
 
 References:
 
