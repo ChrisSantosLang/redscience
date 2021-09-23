@@ -2,11 +2,15 @@
 """Contains redscience constants plus functions for internationalization
 and versioning.
 
-Most constants in this module are encoded as a ``Category`` (see the
-``category`` module) or as a ``NamedTuple``. Each displays only members
-in the version set via ``setvers()`` and in the
-locale set via ``setlang()`` (provided an .mo file for that locale can
-be found in the appropriate folder--see the ``babelwrap`` module
+Most constants in this module are encoded as a 
+`category.Category <https://chrissantoslang-redscience.readthedocs.io/en/latest/category.html#category.Categorized>`_ 
+or as a ``NamedTuple``. Each excludes members not in the version set via 
+`setvers() <https://chrissantoslang-redscience.readthedocs.io/en/latest/category.html#category.setvers>`_ 
+and displays in the locale set via 
+`setlang() <https://chrissantoslang-redscience.readthedocs.io/en/latest/babelwrap.html#babelwrap.setlang>`_ 
+(provided an .mo file for that locale can be found in the appropriate 
+folder. See the 
+`babelwrap module <<https://chrissantoslang-redscience.readthedocs.io/en/latest/babelwrap.html>`_
 regarding internationalization).
 
 Examples::
@@ -35,13 +39,6 @@ Examples::
       edgecolors = Color.BLACK.HEX,
   )
   plt.show()
-
-For documentation about ``setlang``, ``format_list``, ``format_decimal``, 
-``format_percent``, ``format_unit`` or ``format_datetime``, see the
-``babelwrap`` module.
-
-For documentation about ``categorized``, ``setvers`` or ``version``, 
-see the ``category`` module.
 """
 
 import collections
@@ -67,13 +64,28 @@ import numpy as np
 import portion as P
 
 setlang = category.babelwrap.setlang
+"""See `babelwrap.setlang() <https://chrissantoslang-redscience.readthedocs.io/en/latest/babelwrap.html#babelwrap.setlang>`_"""
+
 setvers = category.setvers
+"""See `category.setvers() <https://chrissantoslang-redscience.readthedocs.io/en/latest/category.html#category.setvers>`_"""
+
 format_list = category.babelwrap.format_list
+"""See `babelwrap module <https://chrissantoslang-redscience.readthedocs.io/en/latest/babelwrap.html>`_"""
+
 format_decimal = category.babelwrap.format_decimal
+"""See `babelwrap module <https://chrissantoslang-redscience.readthedocs.io/en/latest/babelwrap.html>`_"""
+
 format_percent = category.babelwrap.format_percent
+"""See `babelwrap module <https://chrissantoslang-redscience.readthedocs.io/en/latest/babelwrap.html>`_"""
+
 format_unit = category.babelwrap.format_unit
+"""See `babelwrap module <https://chrissantoslang-redscience.readthedocs.io/en/latest/babelwrap.html>`_"""
+
 format_datetime = category.babelwrap.format_datetime
+"""See `babelwrap module <https://chrissantoslang-redscience.readthedocs.io/en/latest/babelwrap.html>`_"""
+
 version = category.version
+"""See `category.version() <https://chrissantoslang-redscience.readthedocs.io/en/latest/category.html#category.version>`_"""
 
 
 def _(message: str) -> str:
@@ -81,7 +93,7 @@ def _(message: str) -> str:
     return message
 
 
-class _ColorValue(NamedTuple):
+class _Color(NamedTuple):
     STR: str
     HEX: str
     VERSIONS: Iterable = P.open(-P.inf, P.inf)
@@ -92,7 +104,7 @@ class Color(category.Categorized):
 
         Color.BLACK
 
-    **_ColorValue Attributes:**
+    **Color Attributes:**
 
         :STR (str): A localized name. How the Color prints.
         :HEX (str): A hex code to communicate the Color to computers.
@@ -100,31 +112,31 @@ class Color(category.Categorized):
     """
 
     # TRANSLATOR: Color of game piece as in "Move: Black circle to (2,1)"
-    BLACK = _ColorValue(STR=_("black"), HEX="#000000")
+    BLACK = _Color(STR=_("black"), HEX="#000000")
 
     # TRANSLATOR: Color of game piece as in "Move: White circle to (2,1)"
-    WHITE = _ColorValue(STR=_("white"), HEX="#ffffff")
+    WHITE = _Color(STR=_("white"), HEX="#ffffff")
 
     # TRANSLATOR: Color of game piece as in "Move: Pink circle to (2,1)"
-    PINK = _ColorValue(STR=_("pink"), HEX="#ff81c0")
+    PINK = _Color(STR=_("pink"), HEX="#ff81c0")
 
     # TRANSLATOR: Color of game piece as in "Move: Yellow circle to (2,1)"
-    YELLOW = _ColorValue(STR=_("yellow"), HEX="#ffff14")
+    YELLOW = _Color(STR=_("yellow"), HEX="#ffff14")
 
     # TRANSLATOR: Color of game piece as in "Move: Orange circle to (2,1)"
-    ORANGE = _ColorValue(STR=_("orange"), HEX="#fdaa48")
+    ORANGE = _Color(STR=_("orange"), HEX="#fdaa48")
 
     # TRANSLATOR: Color of game piece as in "Move: Blue circle to (2,1)"
-    BLUE = _ColorValue(STR=_("blue"), HEX="#95d0fc")
+    BLUE = _Color(STR=_("blue"), HEX="#95d0fc")
 
     # TRANSLATOR: Color of game piece as in "Move: Purple circle to (2,1)"
-    PURPLE = _ColorValue(STR=_("purple"), HEX="#bf77f6")
+    PURPLE = _Color(STR=_("purple"), HEX="#bf77f6")
 
     # TRANSLATOR: Color of game piece as in "Move: Green circle to (2,1)"
-    GREEN = _ColorValue(STR=_("green"), HEX="#96f97b")
+    GREEN = _Color(STR=_("green"), HEX="#96f97b")
 
     # TRANSLATOR: Color of game piece as in "Move: Gray circle to (2,1)"
-    GRAY = _ColorValue(STR=_("gray"), HEX="#929591")
+    GRAY = _Color(STR=_("gray"), HEX="#929591")
 
 
 PlayerColor = category.ctg(*Color[0:4], name="PlayerColor")  # type: ignore[misc]
