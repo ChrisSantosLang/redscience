@@ -303,7 +303,7 @@ class Categorized(enum.Enum, metaclass=Category):
 
         class _Move(NamedTuple):
                 STR: str
-                CALL: Optional[Any] = None
+                CALL: Optional[Callable] = None
                 VERSIONS: Iterable = ALL
 
         class Move(Categorized):
