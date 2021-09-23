@@ -2,16 +2,10 @@
 """Contains redscience constants plus functions for internationalization
 and versioning.
 
-Most constants in this module are encoded as a 
-`category.Category <https://chrissantoslang-redscience.readthedocs.io/en/latest/category.html#category.Categorized>`_ 
-or as a ``NamedTuple``. Each excludes members not in the version set via 
-`setvers() <https://chrissantoslang-redscience.readthedocs.io/en/latest/category.html#category.setvers>`_ 
-and displays in the locale set via 
-`setlang() <https://chrissantoslang-redscience.readthedocs.io/en/latest/babelwrap.html#babelwrap.setlang>`_ 
-(provided an .mo file for that locale can be found in the appropriate 
-folder. See the 
-`babelwrap module <<https://chrissantoslang-redscience.readthedocs.io/en/latest/babelwrap.html>`_
-regarding internationalization).
+Most constants in this module are encoded as a `Category'_
+or as a ``NamedTuple``. Each displays in the locale set via `setlang`_
+and excludes members not in the version set `setvers`_ (see the
+:doc:`babelwrap` regarding the internationalization functions used here).
 
 Examples::
 
@@ -64,28 +58,22 @@ import numpy as np
 import portion as P
 
 setlang = category.babelwrap.setlang
-"""See `babelwrap.setlang() <https://chrissantoslang-redscience.readthedocs.io/en/latest/babelwrap.html#babelwrap.setlang>`_"""
-
 setvers = category.setvers
-"""See `category.setvers() <https://chrissantoslang-redscience.readthedocs.io/en/latest/category.html#category.setvers>`_"""
-
 format_list = category.babelwrap.format_list
-"""See `babelwrap module <https://chrissantoslang-redscience.readthedocs.io/en/latest/babelwrap.html>`_"""
-
 format_decimal = category.babelwrap.format_decimal
-"""See `babelwrap module <https://chrissantoslang-redscience.readthedocs.io/en/latest/babelwrap.html>`_"""
+"""See :doc:`babelwrap`"""
 
 format_percent = category.babelwrap.format_percent
-"""See `babelwrap module <https://chrissantoslang-redscience.readthedocs.io/en/latest/babelwrap.html>`_"""
+"""See :doc:`babelwrap`"""
 
 format_unit = category.babelwrap.format_unit
-"""See `babelwrap module <https://chrissantoslang-redscience.readthedocs.io/en/latest/babelwrap.html>`_"""
+"""See :doc:`babelwrap`"""
 
 format_datetime = category.babelwrap.format_datetime
-"""See `babelwrap module <https://chrissantoslang-redscience.readthedocs.io/en/latest/babelwrap.html>`_"""
+"""See :doc:`babelwrap`"""
 
-version = category.version
-"""See `category.version() <https://chrissantoslang-redscience.readthedocs.io/en/latest/category.html#category.version>`_"""
+from_version = category.from_version
+ALL = category.ALL
 
 
 def _(message: str) -> str:
@@ -96,7 +84,7 @@ def _(message: str) -> str:
 class _Color(NamedTuple):
     STR: str
     HEX: str
-    VERSIONS: Iterable = P.open(-P.inf, P.inf)
+    VERSIONS: Iterable = ALL
 
 
 class Color(category.Categorized):
@@ -104,7 +92,7 @@ class Color(category.Categorized):
 
         Color.BLACK
 
-    **Color Attributes:**
+    **Attributes:**
 
         :STR (str): A localized name. How the Color prints.
         :HEX (str): A hex code to communicate the Color to computers.
@@ -154,10 +142,10 @@ class Layout(enum.IntEnum):
     MARKER_MARGIN = 8
 
 
-class _CommandValue(NamedTuple):
+class _Command(NamedTuple):
     STR: str
     KEY: str
-    VERSIONS: Iterable = P.open(-P.inf, P.inf)
+    VERSIONS: Iterable = ALL
 
 
 class Command(category.Categorized):
@@ -165,7 +153,7 @@ class Command(category.Categorized):
 
         Command.NEW
 
-    **_CommandValue Attributes:**
+    **Attributes:**
 
         :STR (str): A localized name. How the Command prints.
         :KEY (str): A localized shortcut key.
@@ -180,17 +168,17 @@ class Command(category.Categorized):
     # TRANSLATOR: This is the command to start a new game (e.g. button text).
     # TRANSLATOR: This is the shortcut key to start a new game.
     # It should match the key listed in the prompt.
-    NEW = _CommandValue(STR=_("Play New"), KEY=_("n"))
+    NEW = _Command(STR=_("Play New"), KEY=_("n"))
 
     # TRANSLATOR: This is the command to end the application (e.g. button text).
     # TRANSLATOR: This is the shortcut key to end the application.
     # It should match the key listed in the prompt.
-    QUIT = _CommandValue(STR=_("Quit"), KEY=_("q"))
+    QUIT = _Command(STR=_("Quit"), KEY=_("q"))
 
     # TRANSLATOR: This is the command to reverse last user input (e.g. button text).
     # TRANSLATOR: This is the shortcut key to back-up by one user input.
     # It should match the key listed in the prompt.
-    UNDO = _CommandValue(STR=_("Back"), KEY=_("z"))
+    UNDO = _Command(STR=_("Back"), KEY=_("z"))
 
     def __eq__(self: "Command", other) -> bool:
         return (
@@ -203,10 +191,10 @@ class Command(category.Categorized):
         return not self.__eq__(other)
 
 
-class _PlayersValue(NamedTuple):
+class _PlayersOption(NamedTuple):
     STR: str
     NUM: int
-    VERSIONS: Iterable = P.open(-P.inf, P.inf)
+    VERSIONS: Iterable = ALL
 
 
 class PlayersOption(category.Categorized):
@@ -214,7 +202,7 @@ class PlayersOption(category.Categorized):
 
         PlayersOption.TWO
 
-    **_PlayersValue Attributes:**
+    **Attributes:**
 
         :STR (str):  A localized name. How the PlayerOption prints.
         :NUM (int): The number of regular players.
@@ -222,16 +210,16 @@ class PlayersOption(category.Categorized):
     """
 
     # TRANSLATOR: Category to describe games with two regular players
-    TWO = _PlayersValue(STR=_("2-Player"), NUM=2)
+    TWO = _PlayersOption(STR=_("2-Player"), NUM=2)
 
     # TRANSLATOR: Category to describe games with three regular players
-    THREE = _PlayersValue(STR=_("3-Player"), NUM=3)
+    THREE = _PlayersOption(STR=_("3-Player"), NUM=3)
 
 
 class _MarkerValue(NamedTuple):
     STR: str
     CODE: str
-    VERSIONS: Iterable = P.open(-P.inf, P.inf)
+    VERSIONS: Iterable = ALL
 
 
 class Marker(category.Categorized):
@@ -239,7 +227,7 @@ class Marker(category.Categorized):
 
         Marker.CIRCLE
 
-    **_MarkerValue Attributes:**
+    **Attributes:**
 
         :STR (str):  A localized name. How the Marker prints.
         :CODE: The str used in pyplot for the marker.
@@ -250,9 +238,9 @@ class Marker(category.Categorized):
     CIRCLE = _MarkerValue(STR=_("circle"), CODE="o")
 
 
-class _StalemateValue(NamedTuple):
+class _StalemateOption(NamedTuple):
     STR: str
-    VERSIONS: Iterable = P.open(-P.inf, P.inf)
+    VERSIONS: Iterable = ALL
 
 
 class StalemateOption(category.Categorized):
@@ -260,21 +248,21 @@ class StalemateOption(category.Categorized):
 
         StalemateOption.DRAW
 
-    **_StalemateValue Attributes:**
+    **Attributes:**
 
-        :STR (str):  A localized name. How the StalemateOption prints.
-        :VERSIONS (Iterable): The versions which offer this marker.
+        :STR (str):  A localized name. How the option prints.
+        :VERSIONS (Iterable): The versions which offer this option.
     """
 
-    # TRANSLATOR: Game rule that the game ends in a draw if there is a stalemate
-    DRAW = _StalemateValue(
+    # TRANSLATOR: A rule that the game ends in a draw if there is a stalemate
+    DRAW = _StalemateOption(
         STR=_("stalemate draws"),
     )
 
 
-class _ColorOptionValue(NamedTuple):
+class _ColorOption(NamedTuple):
     STR: str
-    VERSIONS: Iterable = P.open(-P.inf, P.inf)
+    VERSIONS: Iterable = ALL
 
 
 class ColorOption(category.Categorized):
@@ -282,22 +270,22 @@ class ColorOption(category.Categorized):
 
         ColorOption.ASSIGNED
 
-    **ColorOptionValue Attributes:**
+    **Attributes:**
 
         :STR (str):  A localized name. How the ColorOption prints.
         :VERSIONS (Iterable): The versions which offer this marker.
     """
 
-    # TRANSLATOR: Game rule that each player is assigned their own unique color
-    ASSIGNED = _ColorOptionValue(
+    # TRANSLATOR: A rule that each player is assigned their own unique color
+    ASSIGNED = _ColorOption(
         STR=_("Assigned Colors"),
     )
 
 
-class _BoardValue(NamedTuple):
+class _BoardOption(NamedTuple):
     STR: str
     AX: Callable[[matplotlib.figure.Figure, tuple], matplotlib.axes.Axes]
-    VERSIONS: Iterable = P.open(-P.inf, P.inf)
+    VERSIONS: Iterable = ALL
 
 
 class BoardOption(category.Categorized):
@@ -335,13 +323,13 @@ class BoardOption(category.Categorized):
         return ax
 
     # TRANSLATOR: The type of board used for Tic-Tac-Toe, as in "Played on a hash (3,3)"
-    HASH = _BoardValue(STR=_("a hash"), AX=_hash_board)
+    HASH = _BoardOption(STR=_("a hash"), AX=_hash_board)
 
 
 class _DirectionsValue(NamedTuple):
     STR: str
     CALL: Callable[[int], tuple]
-    VERSIONS: Iterable = P.open(-P.inf, P.inf)
+    VERSIONS: Iterable = ALL
 
 
 class Directions(category.Categorized):
@@ -407,7 +395,7 @@ class _OutcomeValue(NamedTuple):
     STR: str
     FORMAT: str
     CALL: Callable[["Outcome", List[str]], str]
-    VERSIONS: Iterable = P.open(-P.inf, P.inf)
+    VERSIONS: Iterable = ALL
 
 
 class Outcome(category.Categorized):
@@ -440,12 +428,12 @@ class Outcome(category.Categorized):
     )
 
 
-class _PatternCheck(NamedTuple):
+class _CheckOption(NamedTuple):
     STR: str
-    PATTERN: str
-    DIRECTIONS: _DirectionsValue
-    OUTCOME: _OutcomeValue
-    VERSIONS: Iterable = P.open(-P.inf, P.inf)
+    VERSIONS: Iterable = ALL
+    PATTERN: Optional[str] = None
+    DIRECTIONS: Optional[_DirectionsValue] = None
+    OUTCOME: Optional[_OutcomeValue] = None
 
 
 class CheckOption(category.Categorized):
@@ -453,18 +441,22 @@ class CheckOption(category.Categorized):
 
         CheckOption.THREE_SAME_COLOR_IN_ROW_WINS
 
-    **_PatternCheck Attributes**:
+    **Attributes**:
 
-        :STR (str): A localized name the check. How the CheckOption prints.
-        :PATTERN (str): A type of pattern to be checked
-        :DIRECTIONS (Directions): Directions in which to check the pattern
-        :OUTCOME (Outcome): The Outcome if the check passes
+        :STR (str): A localized name the check. How the option prints.
         :VERSIONS (Iterable): The versions which offer this option.
+        :PATTERN (str): If specified, a type of pattern to be checked. Default
+            to None.
+        :DIRECTIONS (Directions): If specified, directions in which to check
+            the pattern. Default to None.
+        :OUTCOME (Outcome): If specified, the outcome if the check passes.
+            Default to None.
+
     """
 
     # TRANSLATOR: Game rule to award the win to any player that aranges three
     # pieces of the same color in a row
-    THREE_SAME_COLOR_IN_ROW_WINS = _PatternCheck(
+    THREE_SAME_COLOR_IN_ROW_WINS = _CheckOption(
         STR=_("first 3-same-color-in-a-row wins"),
         PATTERN="CCC",
         DIRECTIONS=Directions.ANY,
@@ -479,7 +471,7 @@ def ntversions(self: Iterable) -> Iterable:
     def VERSIONS(self) -> Iterable:
         return ntversions(self)
     """
-    versions = P.open(-P.inf, P.inf)
+    versions = ALL
     for attr in self:
         if hasattr(attr, "VERSIONS"):
             versions = versions & attr.VERSIONS  # type: ignore[attr-defined]
@@ -564,21 +556,15 @@ class Game(NamedTuple):
             stalemate results in a draw.
     """
 
-    PLAYERS: PlayersOption = PlayersOption.TWO
-
-    COLOR: ColorOption = ColorOption.ASSIGNED
-
-    BOARD: BoardOption = BoardOption.HASH
-
+    PLAYERS: _PlayersOption = PlayersOption.TWO
+    COLOR: _ColorOption = ColorOption.ASSIGNED
+    BOARD: _BoardOption = BoardOption.HASH
     DIMENSIONS: Tuple[int, ...] = (3, 3)
-
     PIECES: Tuple[PieceRules, ...] = (PieceRules(INITIAL_RESERVES=(5, 4)),)
-
-    MOVE_CHECKS: Union[Tuple[()], Tuple[CheckOption, ...]] = (
+    MOVE_CHECKS: Union[Tuple[()], Tuple[_CheckOption, ...]] = (
         CheckOption.THREE_SAME_COLOR_IN_ROW_WINS,
     )
-
-    STALEMATE: StalemateOption = StalemateOption.DRAW
+    STALEMATE: _StalemateOption = StalemateOption.DRAW
 
     @property
     def STRS(self) -> Tuple[str, ...]:
@@ -617,7 +603,7 @@ class Game(NamedTuple):
     def VERSIONS(self) -> Iterable:
         """The versions which offer this Game. E.g.::
 
-            game.VERSIONS
+        game.VERSIONS
         """
         return ntversions(self)
 
@@ -628,7 +614,7 @@ class Game(NamedTuple):
 
         game.RULES
         """
-        rule_list: List[Union[CheckOption, StalemateOption]] = list(self.MOVE_CHECKS)
+        rule_list: List[Union[_CheckOption, _StalemateOption]] = list(self.MOVE_CHECKS)
         rule_list.append(self.STALEMATE)
         # TRANSLATOR: Labels {rules} as rules of a game
         #  e.g. "Rules: First 3-same-color-in-a-row wins and stalemate draws"
@@ -657,9 +643,9 @@ class Game(NamedTuple):
         return (spot_size * Layout.POINTS_PER_INCH - Layout.MARKER_MARGIN) ** 2
 
 
-class _NameValue(NamedTuple):
+class _DefaultName(NamedTuple):
     STR: str
-    VERSIONS: Iterable = P.open(-P.inf, P.inf)
+    VERSIONS: Iterable = ALL
 
 
 class DefaultName(category.Categorized):
@@ -674,29 +660,27 @@ class DefaultName(category.Categorized):
     """
 
     # TRANSLATOR: Default name for a player in a game (independent of order)
-    PLAYER_ONE = _NameValue(
-        STR=_("Player 1"),
-    )
+    PLAYER_ONE = _DefaultName(STR=_("Player 1"))
 
     # TRANSLATOR: Default name for a player in a game (independent of order)
-    PLAYER_TWO = _NameValue(
+    PLAYER_TWO = _DefaultName(
         STR=_("Player 2"),
     )
 
     # TRANSLATOR: Default name for a player in a game (independent of order)
-    PLAYER_THREE = _NameValue(
+    PLAYER_THREE = _DefaultName(
         STR=_("Player 3"),
     )
 
     # TRANSLATOR: Default name for a player in a game (independent of order)
-    PLAYER_FOUR = _NameValue(
+    PLAYER_FOUR = _DefaultName(
         STR=_("Player 4"),
     )
 
 
-class _PlayerTypeValue(NamedTuple):
+class _PlayerType(NamedTuple):
     STR: str
-    VERSIONS: Iterable = P.open(-P.inf, P.inf)
+    VERSIONS: Iterable = ALL
 
 
 class PlayerType(category.Categorized):
@@ -710,10 +694,11 @@ class PlayerType(category.Categorized):
         :VERSIONS (Iterable): The versions which offer this PlayerType.
     """
 
-    # TRANSLATOR: A type of player in a game
-    HUMAN = _PlayerTypeValue(STR=_("Human"), VERSIONS=P.closed(version("1.2.0"), P.inf))
+    # TRANSLATOR: An unnamed human player in a game
+    ANONYMOUS = _PlayerType(STR=_("Anonymous"))
 
-    ANONYMOUS = _PlayerTypeValue(STR=_("Anonymous"))
+    # TRANSLATOR: A named human player in a game
+    HUMAN = _PlayerType(STR=_("Human"), VERSIONS=from_version("1.2.0"))
 
 
 class Player(NamedTuple):
@@ -725,7 +710,7 @@ class Player(NamedTuple):
         TYPE: If specified, determines the PlayerType. Default is Human.
     """
 
-    TYPE: _PlayerTypeValue = PlayerType.HUMAN
+    TYPE: _PlayerType = PlayerType.HUMAN
 
     @property
     def VERSIONS(self) -> Iterable:
@@ -781,7 +766,7 @@ class Jump(NamedTuple):
 class _MoveValue(NamedTuple):
     STR: str
     CALL: Any = None
-    VERSIONS: Iterable = P.open(-P.inf, P.inf)
+    VERSIONS: Iterable = ALL
 
 
 class Move(category.Categorized):
@@ -815,25 +800,25 @@ class Move(category.Categorized):
     JUMP = _MoveValue(
         STR=_("Reposition"),
         CALL=Jump,
-        VERSIONS=P.closed(version("1.5.0"), P.inf),
+        VERSIONS=from_version("1.5.0"),
     )
 
     # TRANSLATOR: Move in a game when the player offers a voluntary draw
     OFFER = _MoveValue(
         STR=_("Offer to draw"),
-        VERSIONS=P.closed(version("1.5.0"), P.inf),
+        VERSIONS=from_version("1.5.0"),
     )
 
     # TRANSLATOR: Move in a game when the player accepts an offer to draw
     AGREE = _MoveValue(
         STR=_("Agree to draw"),
-        VERSIONS=P.closed(version("1.5.0"), P.inf),
+        VERSIONS=from_version("1.5.0"),
     )
 
     # TRANSLATOR: Move in a game when the player rejects an offer to draw
     REFUSE = _MoveValue(
         STR=_("Refuse to draw"),
-        VERSIONS=P.closed(version("1.5.0"), P.inf),
+        VERSIONS=from_version("1.5.0"),
     )
 
 
