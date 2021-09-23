@@ -54,7 +54,8 @@ def setlang(*langs: str) -> babel.core.Locale:
         babel.core.Locale: The `babel.core.Locale <http://babel.pocoo.org/en/latest/api/core.html>`_ 
         associated with whichever language is set. 
         
-    The babel functions can then be used as follows::
+    The babel functions can then be used (defaulted to 
+    the set language) as follows::
 
       print(format_decimal(-12345.6789))
       print(format_percent(-12345.6789))
