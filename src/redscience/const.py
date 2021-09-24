@@ -2,24 +2,22 @@
 """Contains redscience constants plus functions for internationalization
 and versioning.
 
-Most constants in this module are encoded as a `Category'_
-or as a ``NamedTuple``. Each displays in the locale set via `setlang`_
-and excludes members not in the version set `setvers`_ (see the
+Most constants in this module are encoded as a Category_
+or as a ``NamedTuple``. Each displays in the locale set via setlang_
+and excludes members not in the version set setvers_ (see the
 :doc:`babelwrap` regarding the internationalization functions used here).
 
 Examples::
 
+  import matplotlib.pyplot as plt
+  
   ttt=Game()
-  print(ttt.RULES)
-  print(Command.QUIT)
   ipywidgets.Dropdown(options=sorted(Command), value=Command.QUIT)
   ipywidgets.Button(
       description=Command.QUIT,
       tooltip=Command.QUIT.TOOLTIP,
       icon=Command.QUIT.ICON,
   )
-
-  import matplotlib.pyplot as plt
   fig = plt.figure(1,(
       Layout.FIGURE_HEIGHT,
       Layout.FIGURE_WIDTH,
@@ -32,13 +30,13 @@ Examples::
       marker = Marker.CIRCLE.CODE,
       edgecolors = Color.BLACK.HEX,
   )
+
+  setlang(")
+  setvers("")
+  print(ttt.RULES)
+  print(Command.QUIT)
   plt.show()
   
-References:
-
-  :portion.interval.Interval: https://pypi.org/project/portion/#documentation--usage
-  
-.. _portion.interval.Interval: https://pypi.org/project/portion/#documentation--usage
 """
 
 import collections
