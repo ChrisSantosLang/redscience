@@ -9,6 +9,8 @@ References:
   :format_unit: http://babel.pocoo.org/en/latest/api/units.html#babel.units.format_unit
   :format_datetime: http://babel.pocoo.org/en/latest/api/dates.html#babel.dates.format_datetime
   :format_list: http://babel.pocoo.org/en/latest/api/lists.html
+  
+.. _Locale: http://babel.pocoo.org/en/latest/api/core.html 
 """
 
 import functools
@@ -36,7 +38,7 @@ def _install(function):
     global _locale
     wrapper = functools.partial(function, locale=_locale)
     wrapper.__doc__ = "\n".join(
-        ["    Default locale from setlang(); otherwise:", function.__doc__],
+        ["    ***Default locale from setlang();*** otherwise:", function.__doc__],
     )
     globals()[function.__name__] = wrapper
 
@@ -44,15 +46,15 @@ def setlang(*langs: str) -> babel.core.Locale:
     """Gets/sets locale for language functions. E.g.::
     
         setlang()  # to get the currenty set locale
-        setlang("zh_Hans_HK", "zh_HK")  # to set a language (e.g. for testing)
+        setlang("zh_Hans_HK", "zh_HK")  # to set a language (e.g. 
+            for testing)
         setlang("")  # to restore the default language
     
     Args:
         *langs (str): locale names in order of preference. 
 
     Returns: 
-        babel.core.Locale: The `babel.core.Locale <http://babel.pocoo.org/en/latest/api/core.html>`_ 
-        associated with whichever language is set. 
+        The Locale_ that is currently set. 
         
     The babel functions can then be used (defaulted to 
     the set language) as follows::
