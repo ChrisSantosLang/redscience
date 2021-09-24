@@ -3,14 +3,14 @@
 Permits setting a default language for babel functions.
 
 References:
-
-  :format_decimal: http://babel.pocoo.org/en/latest/api/numbers.html#babel.numbers.format_decimal
-  :format_percent: http://babel.pocoo.org/en/latest/api/numbers.html#babel.numbers.format_percent
-  :format_unit: http://babel.pocoo.org/en/latest/api/units.html#babel.units.format_unit
-  :format_datetime: http://babel.pocoo.org/en/latest/api/dates.html#babel.dates.format_datetime
-  :format_list: http://babel.pocoo.org/en/latest/api/lists.html
-  
-.. _target Locale: http://babel.pocoo.org/en/latest/api/core.html
+ 
+.. target-notes::
+.. _babel.core.Locale: http://babel.pocoo.org/en/latest/api/core.html
+.. _babel.dates.format_datetime: http://babel.pocoo.org/en/latest/api/dates.html#babel.dates.format_datetime
+.. _babel.lists.format_list: http://babel.pocoo.org/en/latest/api/lists.html
+.. _babel.numbers.format_decimal: http://babel.pocoo.org/en/latest/api/numbers.html#babel.numbers.format_decimal
+.. _babel.numbers.format_percent: http://babel.pocoo.org/en/latest/api/numbers.html#babel.numbers.format_percent
+.. _babel.units.format_unit: http://babel.pocoo.org/en/latest/api/units.html#babel.units.format_unit
 """
 
 import functools
@@ -38,7 +38,7 @@ def _install(function):
     global _locale
     wrapper = functools.partial(function, locale=_locale)
     wrapper.__doc__ = "\n".join(
-        ["    ***Default locale from setlang();*** otherwise:", function.__doc__],
+        ["    *Default locale from setlang();* otherwise:", function.__doc__],
     )
     globals()[function.__name__] = wrapper
 
@@ -54,7 +54,7 @@ def setlang(*langs: str) -> babel.core.Locale:
         *langs (str): locale names in order of preference. 
 
     Returns: 
-        The Locale_ that is currently set. 
+        The babel.core.Locale_ that is currently set. 
         
     The babel functions can then be used (defaulted to 
     the set language) as follows::
