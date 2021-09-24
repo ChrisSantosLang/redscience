@@ -99,6 +99,7 @@ Player
 
 .. autoclass:: Player
    :show-inheritance: 
+   
 .. autoproperty:: Player::VERSIONS
 
 PlayerType
@@ -132,11 +133,11 @@ PieceRules
 .. autoclass:: PieceRules
    :show-inheritance:
    
-.. autoproperty:: VERSIONS
+.. autoproperty:: PieceRules::VERSIONS
 
-.. autoproperty:: STRS
+.. autoattribute:: PieceRules::STRS
 
-.. autoproperty:: RESERVES_STR
+.. autoproperty:: PieceRules::RESERVES_STR
     
 Marker
 ``````
