@@ -98,9 +98,8 @@ Player
 ``````
 
 .. autoclass:: Player
+   :members:
    :show-inheritance: 
-   
-.. autoproperty:: Player::VERSIONS
 
 PlayerType
 ``````````
@@ -113,7 +112,10 @@ PlayerType
 PlayerColor
 ```````````
 
-.. autodata:: PlayerColor    
+.. autoclass:: PlayerColor
+   :members:
+   :undoc-members:
+   :show-inheritance:   
 
 DefaultName
 ```````````
@@ -131,13 +133,8 @@ PieceRules
 ``````````
 
 .. autoclass:: PieceRules
+   :members:
    :show-inheritance:
-   
-.. autoproperty:: PieceRules::VERSIONS
-
-.. autoattribute:: PieceRules::STRS
-
-.. autoproperty:: PieceRules::RESERVES_STR
     
 Marker
 ``````
