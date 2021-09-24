@@ -46,7 +46,7 @@ def _install(function):
     global _locale
     wrapper = functools.partial(function, locale=_locale)
     wrapper.__doc__ = "\n".join(
-        ["    *Default locale from setlang()* Otherwise:", function.__doc__],
+        ["    *Default locale from setlang()_\* Otherwise:", function.__doc__],
     )
     globals()[function.__name__] = wrapper
 
