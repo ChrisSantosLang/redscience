@@ -61,17 +61,9 @@ setlang = category.babelwrap.setlang
 setvers = category.setvers
 format_list = category.babelwrap.format_list
 format_decimal = category.babelwrap.format_decimal
-"""See :doc:`babelwrap`"""
-
 format_percent = category.babelwrap.format_percent
-"""See :doc:`babelwrap`"""
-
 format_unit = category.babelwrap.format_unit
-"""See :doc:`babelwrap`"""
-
 format_datetime = category.babelwrap.format_datetime
-"""See :doc:`babelwrap`"""
-
 from_version = category.from_version
 ALL = category.ALL
 
@@ -467,9 +459,14 @@ class CheckOption(category.Categorized):
 def ntversions(self: Iterable) -> Iterable:
     """The versions which offer a NamedTuple. E.g.::
 
-    @property
-    def VERSIONS(self) -> Iterable:
-        return ntversions(self)
+        @property
+        def VERSIONS(self) -> Iterable:
+            return ntversions(self)
+            
+    Note:
+        This function assumes that each attribute that can contain values 
+        specific to a version has a VERSIONS attribute listing valid versions
+        as a `portion.interval.Interval <https://pypi.org/project/portion/#documentation--usage>`_
     """
     versions = ALL
     for attr in self:
@@ -702,22 +699,20 @@ class PlayerType(category.Categorized):
 
 
 class Player(NamedTuple):
-    """A player definition. E.g.:
+    """A player definition. E.g.::
 
         Player()  # To use all defaults (i.e. human)
 
-    Attributes:
+    **Attributes:**
         TYPE: If specified, determines the PlayerType. Default is Human.
+        VERSIONS: The versions in which this player can be selected.
     """
 
     TYPE: _PlayerType = PlayerType.HUMAN
+    """If specified, determines the PlayerType. Default is Human."""
 
-    @property
     def VERSIONS(self) -> Iterable:
-        """The versions which offer this player. E.g.::
-
-        player.VERSIONS
-        """
+        """The versions in which this player can be selected."""
         return ntversions(self)
 
 
