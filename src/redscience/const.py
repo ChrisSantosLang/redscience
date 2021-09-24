@@ -2,10 +2,9 @@
 """Contains redscience constants plus functions for internationalization
 and versioning.
 
-Most constants in this module are encoded as a Category_
-or as a ``NamedTuple``. Each displays in the locale set via setlang_
-and excludes members not in the version set setvers_ (see the
-:doc:`babelwrap` regarding the internationalization functions used here).
+Most constants in this module are encoded as a category.Category_
+or as a NamedTuple_. Each displays in the locale set via setlang()_
+and excludes members not in the version set via setvers()_.
 
 Examples::
 
@@ -37,9 +36,12 @@ Examples::
   print(Command.QUIT)
   plt.show()
   
+.. _babel.core.Locale:  http://babel.pocoo.org/en/latest/api/core.html#babel.core.Locale
 .. _matplotlib.figure.Figure: https://matplotlib.org/stable/api/figure_api.html#matplotlib.figure.Figure
 .. _matplotlib.axes.Axes: https://matplotlib.org/stable/api/axes_api.html#matplotlib.axes.Axes
-.._ numpy.array: https://numpy.org/doc/stable/reference/generated/numpy.array.html#numpy.array
+.. _NamedTuple: https://docs.python.org/3/library/typing.html#typing.NamedTuple
+.. _numpy.array: https://numpy.org/doc/stable/reference/generated/numpy.array.html#numpy.array
+.. _portion.interval.Interval: https://pypi.org/project/portion/#documentation--usage
 """
 
 import collections
@@ -92,8 +94,8 @@ class Color(category.Categorized):
 
     **Attributes:**
 
-        :STR (str): A localized name. How the Color prints.
-        :HEX (str): A hex code to communicate the Color to computers.
+        :STR (str): A localized name. How the color prints.
+        :HEX (str): A hex code to communicate the color to computers.
         :VERSIONS (Iterable): The versions which offer this color.
     """
 
@@ -132,6 +134,7 @@ class Layout(enum.IntEnum):
     """Layout constants. E.g.::
 
         Layout.POINTS_PER_INCH
+        
     """
 
     FIGURE_WIDTH = 5
@@ -157,8 +160,8 @@ class Command(category.Categorized):
         :KEY (str): A localized shortcut key.
         :VERSIONS (Iterable): The versions which offer this command.
 
-    Each command tests ``==`` to its ``KEY`` as well as to itself. If the language
-    is English:
+    Each command tests ``==`` to its ``KEY`` as well as to itself. For 
+    example, if the language is English:
 
         >>> Command.NEW == "n"
         True
