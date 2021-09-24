@@ -704,8 +704,9 @@ class Player(NamedTuple):
         Player()  # To use all defaults (i.e. human)
 
     **Attributes:**
-        TYPE: If specified, determines the PlayerType. Default is Human.
-        VERSIONS: The versions in which this player can be selected.
+    
+        TYPE (PlayerType): If specified, determines the PlayerType. Default is Human.
+        VERSIONS (Iterable): The versions in which this player can be selected.
     """
 
     TYPE: _PlayerType = PlayerType.HUMAN
