@@ -10,7 +10,7 @@ References:
   :format_datetime: http://babel.pocoo.org/en/latest/api/dates.html#babel.dates.format_datetime
   :format_list: http://babel.pocoo.org/en/latest/api/lists.html
   
-.. _Locale: http://babel.pocoo.org/en/latest/api/core.html 
+.. _target Locale: http://babel.pocoo.org/en/latest/api/core.html
 """
 
 import functools
