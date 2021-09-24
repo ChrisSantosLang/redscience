@@ -47,9 +47,11 @@ setvers()
 .. autofunction:: setvers
 
 ALL
-```
+---
 
-.. autodata:: ALL
+.. py:data:: category.ALL
+  :value: (-inf,+inf)
+A shortcut for the portion.interval.Interval_ that contains all (e.g. versions)
 
 from_version()
 ``````````````
