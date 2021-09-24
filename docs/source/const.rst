@@ -47,7 +47,7 @@ setvers()
 .. autofunction:: setvers
 
 ALL
----
+```
 
 .. py:data:: const.ALL
   :value: (-inf,+inf)
