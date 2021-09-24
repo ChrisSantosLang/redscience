@@ -49,7 +49,7 @@ setvers()
 ALL
 ---
 
-.. py:data:: category.ALL
+.. py:data:: const.ALL
   :value: (-inf,+inf)
 A shortcut for the portion.interval.Interval_ that contains all (e.g. versions)
 
