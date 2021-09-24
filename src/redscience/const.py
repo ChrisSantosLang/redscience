@@ -39,7 +39,7 @@ Examples::
   
 .. _matplotlib.figure.Figure: https://matplotlib.org/stable/api/figure_api.html#matplotlib.figure.Figure
 .. _matplotlib.axes.Axes: https://matplotlib.org/stable/api/axes_api.html#matplotlib.axes.Axes
-  
+.._ numpy.array: https://numpy.org/doc/stable/reference/generated/numpy.array.html#numpy.array
 """
 
 import collections
@@ -62,7 +62,6 @@ import category
 import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
-import portion as P
 
 setlang = category.babelwrap.setlang
 setvers = category.setvers
@@ -340,7 +339,7 @@ class Directions(category.Categorized):
         dimensions (int): The number of dimensions in the space
 
     Returns:
-        tuple: Of relative coordinates (tuples of ints)
+        tuple: Of relative coordinates (each a numpy.array_ of int)
 
     **Attributes**:
 
