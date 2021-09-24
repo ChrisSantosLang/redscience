@@ -2,6 +2,12 @@
 """
 Classes and functions for defining categories.
 
+References:
+  :enum.Enum: https://docs.python.org/3/library/enum.html
+  :enum.EnumMeta: https://docs.python.org/3/library/enum.html#how-are-enums-different
+  :portion.interval.Interval: https://pypi.org/project/portion/#documentation--usage
+  :semantic versioning: https://semver.org/
+
 .. _enum.Enum: https://docs.python.org/3/library/enum.html
 .. _enum.EnumMeta: https://docs.python.org/3/library/enum.html#how-are-enums-different
 .. _portion.interval.Interval: https://pypi.org/project/portion/#documentation--usage
