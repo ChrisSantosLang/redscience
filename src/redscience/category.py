@@ -2,8 +2,10 @@
 """
 Classes and functions for defining categories.
 
-.. target-notes::
+.. _enum.Enum: https://docs.python.org/3/library/enum.html
+.. _enum.EnumMeta: https://docs.python.org/3/library/enum.html#how-are-enums-different
 .. _portion.interval.Interval: https://pypi.org/project/portion/#documentation--usage
+.. _`semantic versioning`: https://semver.org/
 """
 
 import collections
@@ -48,7 +50,7 @@ def parse_version(
         as many zeros as necessary to achieve min_parts. The numeric parts are
         integers, so the tuples sort correctly.
 
-    To support `semantic versioning <https://semver.org/>`_, omits any leading
+    To support `semantic versioning`_, omits any leading
     "v", and appends an extra "~" part to versions with no "-". E.g.:
 
     >>> parse_version("v1.0.0-alpha") < parse_version("1.0")
@@ -117,7 +119,7 @@ class Category(enum.EnumMeta):
     """MetaClass for `Categorized`_ (not for public use).
 
     References:
-      `enum.EnumMeta <https://docs.python.org/3/library/enum.html#how-are-enums-different>`_
+      enum.EnumMeta_
 
     """
 
@@ -361,9 +363,23 @@ class Categorized(enum.Enum, metaclass=Category):
 
     >>> CurrentLegal > (Move - Move.JUMP)
     True
+    
+    Tip:
+      The ``_()`` function should be used in categories to designate
+      messages that need to be translated, and that function will be 
+      applied when categories are being initialized. To permit changing  
+      language after initialization, keep the initialized messages in 
+      the original language (the one for which you have translations) by
+      setting this before setting the categories::
+      
+          def _(message: str) -> str:
+              return message
+      
+      ... then set ``_()`` to the actual translation function after 
+      setting the categories.
 
     References:
-      `enum.Enum <https://docs.python.org/3/library/enum.html>`_
+      enum.Enum_
     """
 
     def __getattr__(self, name):
