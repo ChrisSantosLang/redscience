@@ -33,6 +33,10 @@ Examples::
       edgecolors = Color.BLACK.HEX,
   )
   plt.show()
+  
+  References:
+  
+  .. _portion.interval.Interval: https://pypi.org/project/portion/#documentation--usage
 """
 
 import collections
@@ -466,7 +470,7 @@ def ntversions(self: Iterable) -> Iterable:
     Note:
         This function assumes that each attribute that can contain values 
         specific to a version has a VERSIONS attribute listing valid versions
-        as a `portion.interval.Interval <https://pypi.org/project/portion/#documentation--usage>`_
+        as a portion.interval.Interval_
     """
     versions = ALL
     for attr in self:
