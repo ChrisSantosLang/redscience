@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 """
 Classes and functions for defining categories.
+
+.. target-notes::
+.. _portion.interval.Interval: https://pypi.org/project/portion/#documentation--usage
 """
 
 import collections
@@ -82,9 +85,8 @@ def from_version(start: str, to: Optional[str] = None) -> Iterable:
 
 
 ALL: Iterable = P.open(-P.inf, P.inf)
-"""A shortcut for the `portion.interval.Interval
-<https://pypi.org/project/portion/#documentation--usage>`_
-that contains all (versions)"""
+ALL.__doc__ = """A shortcut for the portion.interval.Interval_
+that contains all (e.g. versions)"""
 
 
 def setvers(name: Optional[str] = None) -> Tuple[Union[int, str], ...]:
@@ -112,25 +114,6 @@ def setvers(name: Optional[str] = None) -> Tuple[Union[int, str], ...]:
 
 
 setvers()
-
-# TODO: remove
-def inversion(obj: Any) -> bool:
-    """Tests whether an object is in the version. E.g.:
-
-    >>> inversion(Color.BLACK)
-    True
-
-    Args:
-        obj (object): The object in question
-
-    Returns:
-        True if the object is in the version that was set
-
-    Note:
-        This function assumes that any object which might not be in a version has
-        an attribute named "VERSIONS" which contains all versions that contain it.
-    """
-    return not hasattr(obj, "VERSIONS") or _version in obj.VERSIONS
 
 
 class Category(enum.EnumMeta):
