@@ -79,15 +79,17 @@ Command
 ```````
 
 .. autoclass:: Command
-    :members:
-    :show-inheritance:
+   :members:
+   :undoc-members:
+   :show-inheritance:
     
 Layout
 ``````
 
 .. autoclass:: Layout
-    :members:
-    :show-inheritance:
+   :members:
+   :undoc-members:
+   :show-inheritance:
 
 Player Constants
 -----------------
@@ -96,17 +98,16 @@ Player
 ``````
 
 .. autoclass:: Player
-   :members:
-   :show-inheritance:
-    
+   :show-inheritance: 
 .. autoproperty:: Player::VERSIONS
 
 PlayerType
 ``````````
 
 .. autoclass:: PlayerType
-    :members:
-    :show-inheritance:
+   :members:
+   :undoc-members:
+   :show-inheritance:
     
 PlayerColor
 ```````````
@@ -117,8 +118,9 @@ DefaultName
 ```````````
 
 .. autoclass:: DefaultName
-    :members:
-    :show-inheritance:
+   :members:
+   :undoc-members:
+   :show-inheritance:
     
     
 Piece Constants
@@ -129,24 +131,28 @@ PieceRules
 
 .. autoclass:: PieceRules
    :show-inheritance:
+   
 .. autoproperty:: VERSIONS
+
 .. autoproperty:: STRS
+
 .. autoproperty:: RESERVES_STR
-  
     
 Marker
 ``````
 
 .. autoclass:: Marker
-    :members:
-    :show-inheritance:
+   :members:
+   :undoc-members:
+   :show-inheritance:
     
 Directions
 ``````````
 
 .. autoclass:: Directions
-    :members:
-    :show-inheritance:  
+   :members:
+   :undoc-members:
+   :show-inheritance:
     
 Game Constants
 --------------
@@ -165,43 +171,49 @@ PlayersOption
 `````````````
 
 .. autoclass:: PlayersOption
-    :members:
-    :show-inheritance:
+   :members:
+   :undoc-members:
+   :show-inheritance:
     
 ColorOption
 ```````````
 
 .. autoclass:: ColorOption
-    :members:
-    :show-inheritance:
+   :members:
+   :undoc-members:
+   :show-inheritance:
     
 BoardOption
 ```````````
 
 .. autoclass:: BoardOption
-    :members:
-    :show-inheritance:  
+   :members:
+   :undoc-members:
+   :show-inheritance: 
     
 CheckOption
 ```````````
 
 .. autoclass:: CheckOption
-    :members:
-    :show-inheritance: 
+   :members:
+   :undoc-members:
+   :show-inheritance:
     
 Outcome
 ```````
 
 .. autoclass:: Outcome
-    :members:
-    :show-inheritance:  
+   :members:
+   :undoc-members:
+   :show-inheritance: 
     
 StalemateOption
 ```````````````
 
 .. autoclass:: StalemateOption
-    :members:
-    :show-inheritance:  
+   :members:
+   :undoc-members:
+   :show-inheritance: 
     
 Move Constants
 --------------
@@ -210,5 +222,6 @@ Move
 ````
 
 .. autoclass:: Move
-    :members:
-    :show-inheritance:
+   :members:
+   :undoc-members:
+   :show-inheritance:
