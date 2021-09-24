@@ -2,7 +2,8 @@ c#!/usr/bin/env python3
 """
 Permits setting a default language for ``_()`` and babel functions.
 
-References:
+**References:**
+
   :babel.core.Locale: http://babel.pocoo.org/en/latest/api/core.html
   :babel.dates.format_datetime: http://babel.pocoo.org/en/latest/api/dates.html#babel.dates.format_datetime
   :babel.lists.format_list: http://babel.pocoo.org/en/latest/api/lists.html
@@ -49,6 +50,7 @@ def _install(function):
     )
     globals()[function.__name__] = wrapper
 
+#TODO: Refactor to reduce complexity
 def setlang(*langs: str) -> babel.core.Locale:   
     """Gets/sets locale for language functions. E.g.::
     
