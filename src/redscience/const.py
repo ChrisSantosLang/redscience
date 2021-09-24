@@ -34,9 +34,11 @@ Examples::
   )
   plt.show()
   
-  References:
+References:
+
+  :portion.interval.Interval: https://pypi.org/project/portion/#documentation--usage
   
-  .. _portion.interval.Interval: https://pypi.org/project/portion/#documentation--usage
+.. _portion.interval.Interval: https://pypi.org/project/portion/#documentation--usage
 """
 
 import collections
