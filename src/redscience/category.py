@@ -77,17 +77,18 @@ def from_version(start: str, to: Optional[str] = None) -> Iterable:
            is no end version. Default to None.
 
     Returns:
-        The `portion.interval.Interval
-        <https://pypi.org/project/portion/#documentation--usage>`_
+        The portion.interval.Interval_
     """
     end = parse_version(to) or P.inf
     return P.closedopen(parse_version(start), end)
 
 
-ALL: Iterable = P.open(-P.inf, P.inf)
-# ALL.__doc__ = """A shortcut for the portion.interval.Interval_
-# that contains all (e.g. versions)"""
+def _all() -> Iterable:
+    """A shortcut for the portion.interval.Interval_ that contains 
+    all (e.g. versions)."""
+    return P.open(-P.inf, P.inf)
 
+ALL: Iterable = _all()
 
 def setvers(name: Optional[str] = None) -> Tuple[Union[int, str], ...]:
     """Get or set the version. E.g.::
