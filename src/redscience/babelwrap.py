@@ -1,13 +1,15 @@
-#!/usr/bin/env python3
+c#!/usr/bin/env python3
 """
-Permits setting a default language for ``_()`` and babel functions
-babel.dates.format_datetime_, 
-babel.lists.format_list_, 
-babel.numbers.format_decimal_, 
-babel.numbers.format_percent_, and 
-babel.units.format_unit_.
+Permits setting a default language for ``_()`` and babel functions.
 
-.. target-notes::
+References:
+  :babel.core.Locale: http://babel.pocoo.org/en/latest/api/core.html
+  :babel.dates.format_datetime: http://babel.pocoo.org/en/latest/api/dates.html#babel.dates.format_datetime
+  :babel.lists.format_list: http://babel.pocoo.org/en/latest/api/lists.html
+  :babel.numbers.format_decimal: http://babel.pocoo.org/en/latest/api/numbers.html#babel.numbers.format_decimal
+  :babel.numbers.format_percent: http://babel.pocoo.org/en/latest/api/numbers.html#babel.numbers.format_percent 
+  :babel.units.format_unit: http://babel.pocoo.org/en/latest/api/units.html#babel.units.format_unit
+
 .. _babel.core.Locale: http://babel.pocoo.org/en/latest/api/core.html
 .. _babel.dates.format_datetime: http://babel.pocoo.org/en/latest/api/dates.html#babel.dates.format_datetime
 .. _babel.lists.format_list: http://babel.pocoo.org/en/latest/api/lists.html
@@ -29,9 +31,11 @@ import babel.units
 
 logger = logging.getLogger()
 
+# TODO: Move to toml file
 _DOMAIN = "games"
 _LANG_DIR = "\\Users\\Chris.santos-lang\\locales"
 _SOURCE_LANGUAGE = "en"
+
 _locale: str = ""
 _folder: str = ""
 
@@ -41,7 +45,7 @@ def _install(function):
     global _locale
     wrapper = functools.partial(function, locale=_locale)
     wrapper.__doc__ = "\n".join(
-        ["    *Default locale from ``setlang()``* Otherwise:", function.__doc__],
+        ["    *Default locale from setlang()_\* Otherwise:", function.__doc__],
     )
     globals()[function.__name__] = wrapper
 
