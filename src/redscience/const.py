@@ -37,6 +37,9 @@ Examples::
   print(Command.QUIT)
   plt.show()
   
+.. _matplotlib.figure.Figure: https://matplotlib.org/stable/api/figure_api.html#matplotlib.figure.Figure
+.. _matplotlib.axes.Axes: https://matplotlib.org/stable/api/axes_api.html#matplotlib.axes.Axes
+  
 """
 
 import collections
@@ -129,7 +132,7 @@ PlayerColor = category.ctg(*Color[0:4], name="PlayerColor")  # type: ignore[misc
 class Layout(enum.IntEnum):
     """Layout constants. E.g.::
 
-       Layout.POINTS_PER_INCH
+        Layout.POINTS_PER_INCH
     """
 
     FIGURE_WIDTH = 5
@@ -151,11 +154,12 @@ class Command(category.Categorized):
 
     **Attributes:**
 
-        :STR (str): A localized name. How the Command prints.
+        :STR (str): A localized name. How the command prints.
         :KEY (str): A localized shortcut key.
         :VERSIONS (Iterable): The versions which offer this command.
 
-    Each Command tests equal to its ``KEY`` as well as to itself. In English:
+    Each command tests ``==`` to its ``KEY`` as well as to itself. If the language
+    is English:
 
         >>> Command.NEW == "n"
         True
@@ -194,13 +198,13 @@ class _PlayersOption(NamedTuple):
 
 
 class PlayersOption(category.Categorized):
-    """Category of game by number/type of players. E.g.::
+    """Category of game by number/relationship of players. E.g.::
 
         PlayersOption.TWO
 
     **Attributes:**
 
-        :STR (str):  A localized name. How the PlayerOption prints.
+        :STR (str):  A localized name. How the option prints.
         :NUM (int): The number of regular players.
         :VERSIONS (Iterable): The versions which offer this option.
     """
@@ -212,7 +216,7 @@ class PlayersOption(category.Categorized):
     THREE = _PlayersOption(STR=_("3-Player"), NUM=3)
 
 
-class _MarkerValue(NamedTuple):
+class _Marker(NamedTuple):
     STR: str
     CODE: str
     VERSIONS: Iterable = ALL
@@ -226,12 +230,12 @@ class Marker(category.Categorized):
     **Attributes:**
 
         :STR (str):  A localized name. How the Marker prints.
-        :CODE: The str used in pyplot for the marker.
+        :CODE (str): The str used in pyplot for the marker.
         :VERSIONS (Iterable): The versions which offer this marker.
     """
 
     # TRANSLATOR: Description of the pyplot marker
-    CIRCLE = _MarkerValue(STR=_("circle"), CODE="o")
+    CIRCLE = _Marker(STR=_("circle"), CODE="o")
 
 
 class _StalemateOption(NamedTuple):
@@ -240,7 +244,7 @@ class _StalemateOption(NamedTuple):
 
 
 class StalemateOption(category.Categorized):
-    """Category of game by stalemate end it. E.g.::
+    """How statemate ends a game. E.g.::
 
         StalemateOption.DRAW
 
@@ -251,9 +255,7 @@ class StalemateOption(category.Categorized):
     """
 
     # TRANSLATOR: A rule that the game ends in a draw if there is a stalemate
-    DRAW = _StalemateOption(
-        STR=_("stalemate draws"),
-    )
+    DRAW = _StalemateOption(STR=_("stalemate draws"))
 
 
 class _ColorOption(NamedTuple):
@@ -268,7 +270,7 @@ class ColorOption(category.Categorized):
 
     **Attributes:**
 
-        :STR (str):  A localized name. How the ColorOption prints.
+        :STR (str):  A localized name. How the option prints.
         :VERSIONS (Iterable): The versions which offer this marker.
     """
 
@@ -291,9 +293,9 @@ class BoardOption(category.Categorized):
 
     **BoardValue Attributes**:
 
-        :STR (str): A localized name. How the BoardOption prints.
-        :AX (Callable): Function to return matplotlib.axes.Axes, given
-            a matplotlib.figure.Figure and tuple of dimensions.
+        :STR (str): A localized name. How the option prints.
+        :AX (Callable): Function to return matplotlib.axes.Axes_, given
+            a matplotlib.figure.Figure_ and tuple of dimensions.
         :VERSIONS (Iterable): The versions which offer this option.
     """
 
@@ -331,20 +333,25 @@ class _DirectionsValue(NamedTuple):
 class Directions(category.Categorized):
     """Categories of ways in which to move or build in square-tiled space. E.g::
 
-        Directions.DIAGONAL(2)  # returns [(1,1), (1,-1), (-1,1), (-1,-1)]
-        Directions.DIAGONAL.call.cache_info()  # to get cache_info
+    >>> Directions.DIAGONAL(2)
+    ((1,1), (1,-1), (-1,1), (-1,-1))
 
     Args:
-        dimensions: The (int) number of dimensions in the space
+        dimensions (int): The number of dimensions in the space
 
     Returns:
-        A list of relative coordinates (tuples)
+        tuple: Of relative coordinates (tuples of ints)
 
-    **DirectionsValue Attributes**:
+    **Attributes**:
 
         :STR (str): A localized name. How the Directions prints.
         :CALL (Callable): The bound method that yields the tuples.
         :VERSIONS (Iterable): The versions which offer this option.
+        
+    Tip:
+        To get cache info::
+        
+            Directions.DIAGONAL.call.cache_info()
     """
 
     @functools.lru_cache(maxsize=8)
@@ -374,7 +381,7 @@ class Directions(category.Categorized):
                 spots.append(np.array(spot))
         return tuple(spots)
 
-    # TRANSLATOR: Category of directions in which chess queen can move
+    #: TRANSLATOR: Category of directions in which chess queen can move
     ANY = _DirectionsValue(STR=_("any direction"), CALL=_any_direction)
 
     # TRANSLATOR: Category of directions in which chess bishop can move
@@ -397,18 +404,21 @@ class _OutcomeValue(NamedTuple):
 class Outcome(category.Categorized):
     """Function to apply localized formatting to strings. E.g:
 
-      Outcome.VICTORY(players=["Player 1"])
+    >>> winners = (DefaultName.PLAYER_ONE, DefaultName.PLAYER_THREE)
+    >>> Outcome.VICTORY(players=winners)
+    'Victory: Player 1 and Player 3'
 
     Args:
-        **kwargs: a string for each bookmark in the str
+        **kwargs: a str for each bookmark in the STR
 
     Returns:
-        The localized formated string.
+        str: The localized string.
 
     **OutcomeValue Attributes**:
 
         :STR (str): A localized name. How the Directions prints.
-        :CALL (Callable): The bound method that yields the tuples.
+        :CALL (Callable): The bound method that yields the str.
+        :FORMAT (str): The formatted string for the ``CALL``.
         :VERSIONS (Iterable): The versions which offer this option.
     """
 
@@ -439,13 +449,13 @@ class CheckOption(category.Categorized):
 
     **Attributes**:
 
-        :STR (str): A localized name the check. How the option prints.
+        :STR (str): A localized name. How the option prints.
         :VERSIONS (Iterable): The versions which offer this option.
         :PATTERN (str): If specified, a type of pattern to be checked. Default
             to None.
-        :DIRECTIONS (Directions): If specified, directions in which to check
+        :DIRECTIONS (Directions_): If specified, directions in which to check
             the pattern. Default to None.
-        :OUTCOME (Outcome): If specified, the outcome if the check passes.
+        :OUTCOME (Outcome_): If specified, the outcome if the check triggers.
             Default to None.
 
     """
@@ -486,9 +496,9 @@ class PieceRules(NamedTuple):
 
     **Attributes:**
     
-        :INITIAL_RESERVES: A tuple indicating the number in initial reserves
-            of each color, e.g. (5, 4) means 5 of the first color, and 4 of
-            the second.
+        :INITIAL_RESERVES (Tuple[int, ...]): Specifies the number of each
+            color in initial reserves, e.g. (5, 4) means start with 5 of the 
+            first color and 4 of the second color in reserve.
     """
 
     INITIAL_RESERVES: Tuple[int, ...]
@@ -540,25 +550,29 @@ class PieceRules(NamedTuple):
 
 
 class Game(NamedTuple):
-    """A game definition. E.g.:
+    """A game definition. E.g.::
 
         Game()  # To use all defaults (i.e. Tic-Tac-Toe)
 
-    Attributes:
-        PLAYERS: If specified, determines the PlayersOption. Default is 2-Player.
-        COLOR: If specified, determines the ColorOption. Default is Assigned
-            Colors.
-        BOARD: If specified, determines the BoardOption. Default is hash.
-        DIMENSIONS: If specified, determines the dimensions of the board as a
-            tuple of integers. Default is (3,3).
-        PIECES: If specified, determines piece-specific rules as a tuple of
-            PieceRules. Default is to have only one type of piece (circle) with
-            5 black and 4 white starting in reserve.
-        MOVE_CHECKS: If specified, list rules that are checked at the end of
-            each move as tuple of CheckOptions. Can be None. Default is to award
-            the win to any player that gets three of the same color in a row.
-        STALEMATE: If specified, determines the StalemateOption. Default is that
-            stalemate results in a draw.
+    **Attributes:**
+    
+        :PLAYERS (PlayersOption_): If specified, determines the number/
+            relationship of players. Default is 2-Player.
+        :COLOR (ColorOption_): If specified, determines the significance 
+            of colors. Default is Assigned Colors.
+        :BOARD (BoardOption_): If specified, determines the type of board.
+            Default is hash.
+        :DIMENSIONS (Tuple[int, ...]): If specified, determines the 
+            dimensions of the board. Default is (3,3).
+        :PIECES (Tuple[PieceRules_, ...]): If specified, determines 
+            piece-specific rules. Default is to have only one type of piece 
+            (circle) with 5 black and 4 white circles starting in reserve.
+        :MOVE_CHECKS (Tuple[_CheckOption, ...]): If specified, determines 
+            which rules are checked at the end of each move. Can be None. 
+            Default is to award the win to any player that gets three of the 
+            same color in a row.
+        :STALEMATE (StalemateOption_): If specified, determines the result 
+            of stalemate. Default is that stalemate results in a draw.
     """
 
     PLAYERS: _PlayersOption = PlayersOption.TWO
@@ -573,9 +587,12 @@ class Game(NamedTuple):
 
     @property
     def STRS(self) -> Tuple[str, ...]:
-        """A constant tuple of localized strings describing the game. E.g:
+        """A Tuple of localized strings describing the game. E.g:
 
-        game.STRS
+        >>> Game().STRS
+        ('Played on a hash (3, 3)', '2-Player', 'Assigned Colors', 
+        'Circle: 5 black and 4 white start in reserve', 'First 
+        3-same-color-in-a-row wins', 'Stalemate draws')
         """
         lines = []
         # TRANSLATOR: Line defining a game board e.g. "Played on hash (3,3)" for
@@ -606,18 +623,19 @@ class Game(NamedTuple):
 
     @property
     def VERSIONS(self) -> Iterable:
-        """The versions which offer this Game. E.g.::
+        """The (Tuple) versions which offer this Game. E.g.:
 
-        game.VERSIONS
+        >>> Game().VERSIONS
+        (-inf,+inf)
         """
         return ntversions(self)
 
     @property
     def RULES(self) -> str:
-        """A constant localized str describing the move checks and stalemate
-        rules. E.g:
+        """A localized str of check and stalemate rules. E.g:
 
-        game.RULES
+        >>>game().RULES
+        'Rules: First 3-same-color-in-a-row wins and stalemate draws'
         """
         rule_list: List[Union[_CheckOption, _StalemateOption]] = list(self.MOVE_CHECKS)
         rule_list.append(self.STALEMATE)
@@ -631,18 +649,32 @@ class Game(NamedTuple):
         return "\n".join(self.STRS)
 
     def AXES(self, fig: matplotlib.figure.Figure) -> matplotlib.axes.Axes:
-        """A constant matplotlib.axes.Axes for this game. E.g.:
+        """The board in terms of matplotlib E.g.::
 
-            game.AXES(fig=plt.figure(1,(FIGURE_HEIGHT, FIGURE_WIDTH)))
+            import matplotlib.pyplot as plt
+            figure = plt.figure(1,(
+                Layout.FIGURE_HEIGHT,
+                Layout.FIGURE_WIDTH,
+            ))
+            game.AXES(fig=figure)
+            plt.show()
 
         Args:
-            fig: The Matplotlib.figure.Figure of the Axes
+            fig (matplotlib.figure.Figure_): The Figure in which the Axes
+                will appear
+                
+        Returns:
+            matplotlib.axes.Axes_: A framework in which to place pieces 
         """
         return self.BOARD.AX(fig, self.DIMENSIONS)
 
     @property
     def MARKER_SIZE(self) -> float:
-        """MARKER_SIZE: A constant int size for markers in this game"""
+        """The (int) size for markers in this game. E.g.:
+        
+        >>> Game().MARKER_SIZE
+        6724
+        """
         figure_max = max(Layout.FIGURE_HEIGHT, Layout.FIGURE_WIDTH)
         spot_size = figure_max / max(self.DIMENSIONS)
         return (spot_size * Layout.POINTS_PER_INCH - Layout.MARKER_MARGIN) ** 2
@@ -707,7 +739,7 @@ class PlayerType(category.Categorized):
 
 
 class Player(NamedTuple):
-    """A player definition. E.g.::
+    """The constant parts of a player. E.g.::
 
         Player()  # To use all defaults (i.e. human)
 
@@ -724,7 +756,7 @@ class Player(NamedTuple):
         return ntversions(self)
 
 
-class Placement(NamedTuple):
+class _Placement(NamedTuple):
 
     TO: Tuple[int, ...]
     COLOR: _Color = Color.BLACK
@@ -747,12 +779,10 @@ class Placement(NamedTuple):
         return ntversions(self)
 
 
-class Jump(NamedTuple):
+class _Jump(NamedTuple):
 
     FROM: Tuple[int, ...]
-    """The coordinates from which to jump"""
     TO: Tuple[int, ...]
-    """The coordinates to which to jump"""
 
     def __str__(self) -> str:
         # TRANSLATOR: Names a move in a game e.g. "(2,3) to (1,2)
@@ -766,7 +796,7 @@ class Jump(NamedTuple):
         return ntversions(self)
 
 
-class _MoveValue(NamedTuple):
+class _Move(NamedTuple):
     STR: str
     CALL: Any = None
     VERSIONS: Iterable = ALL
@@ -779,47 +809,47 @@ class Move(category.Categorized):
       Move.PLACE(COLOR=Color.WHITE, MARKER=Marker.CIRCLE, TO=(2,3))
       Move.JUMP(FROM=(1,1), TO=(2,3))
 
-    ** Move Attributes:**
+    **Attributes:**
 
         :STR (str):  A localized name. How the move prints.
         :VERSIONS (Iterable): The versions which offer this Move.
-        :TO (in JUMP and PLACE only): Tuple of integers specifying the
-            destination coordinates.
-        :COLOR (in PLACE only): Color enum specifying the color to be placed.
-            Default is Color.BLACK
-        :MARKER (in PLACE only): Marker enum specifying the shape to be placed.
-            Default is Marker.CIRCLE
-        :FROM (in JUMP only): Tuple of integers specifying the origin coordinates.
+        :TO (Tuple[int,...]): *Only for PLACE and JUMP.* destination 
+            coordinates.
+        :COLOR (PlayerColor_): *Only for PLACE.* Color to be placed.
+            Default is black
+        :MARKER (Marker_): *Only for PLACE.* Shape to be placed.
+            Default is circle.
+        :FROM (Tuple[int, ...]): *Only for JUMP.* Origin coordinates.
 
     """
 
     # TRANSLATOR: Move in a game when the player forfeits their turn
-    PASS = _MoveValue(STR=_("Pass"))
+    PASS = _Move(STR=_("Pass"))
 
     # TRANSLATOR: Move in a game when the player adds a piece or card
-    PLACE = _MoveValue(STR=_("Place from reserves"), CALL=Placement)
+    PLACE = _Move(STR=_("Place from reserves"), CALL=_Placement)
 
     # TRANSLATOR: Move in a game from one spot to another
-    JUMP = _MoveValue(
+    JUMP = _Move(
         STR=_("Reposition"),
-        CALL=Jump,
+        CALL=_Jump,
         VERSIONS=from_version("1.5.0"),
     )
 
     # TRANSLATOR: Move in a game when the player offers a voluntary draw
-    OFFER = _MoveValue(
+    OFFER = _Move(
         STR=_("Offer to draw"),
         VERSIONS=from_version("1.5.0"),
     )
 
     # TRANSLATOR: Move in a game when the player accepts an offer to draw
-    AGREE = _MoveValue(
+    AGREE = _Move(
         STR=_("Agree to draw"),
         VERSIONS=from_version("1.5.0"),
     )
 
     # TRANSLATOR: Move in a game when the player rejects an offer to draw
-    REFUSE = _MoveValue(
+    REFUSE = _Move(
         STR=_("Refuse to draw"),
         VERSIONS=from_version("1.5.0"),
     )
