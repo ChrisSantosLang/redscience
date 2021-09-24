@@ -85,8 +85,8 @@ def from_version(start: str, to: Optional[str] = None) -> Iterable:
 
 
 ALL: Iterable = P.open(-P.inf, P.inf)
-ALL.__doc__ = """A shortcut for the portion.interval.Interval_
-that contains all (e.g. versions)"""
+# ALL.__doc__ = """A shortcut for the portion.interval.Interval_
+# that contains all (e.g. versions)"""
 
 
 def setvers(name: Optional[str] = None) -> Tuple[Union[int, str], ...]:
