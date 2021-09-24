@@ -55,8 +55,7 @@ def setlang(*langs: str) -> babel.core.Locale:
     """Gets/sets locale for language functions. E.g.::
     
         setlang()  # to get the currenty set locale
-        setlang("zh_Hans_HK", "zh_HK")  # to set a language (e.g. 
-            for testing)
+        setlang("zh_Hans_HK", "zh_HK")  # to set a language (e.g. for testing)
         setlang("")  # to restore the default language
     
     Args:
