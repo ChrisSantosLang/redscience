@@ -71,18 +71,21 @@ Color
 `````
 
 .. autoclass:: Color
+    :members:
     :show-inheritance:
     
 Command
 ```````
 
 .. autoclass:: Command
+    :members:
     :show-inheritance:
     
 Layout
 ``````
 
 .. autoclass:: Layout
+    :members:
     :show-inheritance:
 
 Player Constants
@@ -92,14 +95,18 @@ Player
 ``````
 
 .. autoclass:: Player
+    :members:
     :show-inheritance:
     
-.. autoproperty:: VERSIONS
+.. autoproperty:: Player::VERSIONS
+
+.. autoattribute:: Player::VERSIONS
 
 PlayerType
 ``````````
 
 .. autoclass:: PlayerType
+    :members:
     :show-inheritance:
     
 PlayerColor
@@ -111,6 +118,7 @@ DefaultName
 ```````````
 
 .. autoclass:: DefaultName
+    :members:
     :show-inheritance:
     
     
@@ -121,21 +129,27 @@ PieceRules
 ``````````
 
 .. autoclass:: PieceRules
+    :members:
     :show-inheritance:
 .. autoproperty:: RESERVES_STR
 .. autoproperty:: STRS
 .. autoproperty:: VERSIONS  
+.. autoattribute:: RESERVES_STR
+.. autoattribute:: STRS
+.. autoattribute:: VERSIONS 
     
 Marker
 ``````
 
 .. autoclass:: Marker
+    :members:
     :show-inheritance:
     
 Directions
 ``````````
 
 .. autoclass:: Directions
+    :members:
     :show-inheritance:  
     
 Game Constants
@@ -155,36 +169,42 @@ PlayersOption
 `````````````
 
 .. autoclass:: PlayersOption
+    :members:
     :show-inheritance:
     
 ColorOption
 ```````````
 
 .. autoclass:: ColorOption
+    :members:
     :show-inheritance:
     
 BoardOption
 ```````````
 
 .. autoclass:: BoardOption
+    :members:
     :show-inheritance:  
     
 CheckOption
 ```````````
 
 .. autoclass:: CheckOption
+    :members:
     :show-inheritance: 
     
 Outcome
 ```````
 
 .. autoclass:: Outcome
+    :members:
     :show-inheritance:  
     
 StalemateOption
 ```````````````
 
 .. autoclass:: StalemateOption
+    :members:
     :show-inheritance:  
     
 Move Constants
@@ -194,4 +214,5 @@ Move
 ````
 
 .. autoclass:: Move
+    :members:
     :show-inheritance:
