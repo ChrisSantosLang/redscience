@@ -1,4 +1,4 @@
-c#!/usr/bin/env python3
+#!/usr/bin/env python3
 """
 Permits setting a default language for ``_()`` and babel functions.
 
