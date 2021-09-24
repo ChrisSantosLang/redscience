@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
 """
-Permits setting a default language for babel functions.
+Permits setting a default language for ``_()`` and babel functions
+babel.dates.format_datetime_, 
+babel.lists.format_list_, 
+babel.numbers.format_decimal_, 
+babel.numbers.format_percent_, and 
+babel.units.format_unit_.
 
-References:
- 
 .. target-notes::
 .. _babel.core.Locale: http://babel.pocoo.org/en/latest/api/core.html
 .. _babel.dates.format_datetime: http://babel.pocoo.org/en/latest/api/dates.html#babel.dates.format_datetime
@@ -38,7 +41,7 @@ def _install(function):
     global _locale
     wrapper = functools.partial(function, locale=_locale)
     wrapper.__doc__ = "\n".join(
-        ["    *Default locale from setlang();* otherwise:", function.__doc__],
+        ["    *Default locale from setlang()_;* otherwise:", function.__doc__],
     )
     globals()[function.__name__] = wrapper
 
