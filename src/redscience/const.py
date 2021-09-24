@@ -131,7 +131,7 @@ PlayerColor = category.ctg(*Color[0:4], name="PlayerColor")  # type: ignore[misc
 class Layout(enum.IntEnum):
     """Layout constants. E.g.::
 
-    Layout.POINTS_PER_INCH
+       Layout.POINTS_PER_INCH
     """
 
     FIGURE_WIDTH = 5
@@ -660,7 +660,7 @@ class DefaultName(category.Categorized):
 
         DefaultName.PLAYER_ONE
 
-    **ColorOptionValue Attributes:**
+    **Attributes:**
 
         :STR (str):  A localized name. How the name prints.
         :VERSIONS (Iterable): The versions which offer this name.
@@ -691,11 +691,11 @@ class _PlayerType(NamedTuple):
 
 
 class PlayerType(category.Categorized):
-    """Types of players. E.g.::
+    """Type of player. E.g.::
 
         PlayerType.HUMAN
 
-    **PlayerTypeValue Attributes:**
+    **Attributes:**
 
         :STR (str):  A localized name. How the type prints.
         :VERSIONS (Iterable): The versions which offer this PlayerType.
@@ -715,7 +715,7 @@ class Player(NamedTuple):
 
     **Attributes:**
     
-        :TYPE (PlayerType_): If specified, determines the PlayerType. Default is Human.
+        :TYPE (PlayerType_): If specified, determines the type. Default is Human.
     """
 
     TYPE: _PlayerType = PlayerType.HUMAN
