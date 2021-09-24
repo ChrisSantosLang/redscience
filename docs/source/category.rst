@@ -42,3 +42,4 @@ ALL
 ---
 
 .. autodata:: ALL
+    :annotation: A shortcut for the portion.interval.Interval_ that contains all (e.g. versions)
