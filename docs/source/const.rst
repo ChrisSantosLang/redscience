@@ -98,7 +98,7 @@ Player
 ``````
 
 .. autoclass:: Player
-   :members:
+   :members: VERSIONS
    :show-inheritance: 
 
 PlayerType
@@ -133,7 +133,7 @@ PieceRules
 ``````````
 
 .. autoclass:: PieceRules
-   :members:
+   :members: VERSIONS, RESERVES_STR, STRS
    :show-inheritance:
     
 Marker
@@ -159,11 +159,8 @@ Game
 ````
 
 .. autoclass:: Game
+    :members: VERSIONS, RULES, AXES, MARKER_SIZE
     :show-inheritance:
-.. autoproperty:: AXES
-.. autoproperty:: MARKER_SIZE
-.. autoproperty:: RULES
-.. autoproperty:: VERSIONS
 
 PlayersOption
 `````````````
