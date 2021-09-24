@@ -37,8 +37,9 @@ Examples::
   plt.show()
   
 .. _babel.core.Locale:  http://babel.pocoo.org/en/latest/api/core.html#babel.core.Locale
-.. _matplotlib.figure.Figure: https://matplotlib.org/stable/api/figure_api.html#matplotlib.figure.Figure
 .. _matplotlib.axes.Axes: https://matplotlib.org/stable/api/axes_api.html#matplotlib.axes.Axes
+.. _matplotlib.figure.Figure: https://matplotlib.org/stable/api/figure_api.html#matplotlib.figure.Figure
+.. _matplotlib.marker: https://matplotlib.org/stable/api/markers_api.html marker
 .. _NamedTuple: https://docs.python.org/3/library/typing.html#typing.NamedTuple
 .. _numpy.array: https://numpy.org/doc/stable/reference/generated/numpy.array.html#numpy.array
 .. _portion.interval.Interval: https://pypi.org/project/portion/#documentation--usage
@@ -225,14 +226,14 @@ class _Marker(NamedTuple):
 
 
 class Marker(category.Categorized):
-    """Category of game piece by what marker is use to display it. E.g.::
+    """The shape of a game piece. E.g.::
 
         Marker.CIRCLE
 
     **Attributes:**
 
-        :STR (str):  A localized name. How the Marker prints.
-        :CODE (str): The str used in pyplot for the marker.
+        :STR (str):  A localized name. How the narker prints.
+        :CODE (str): A matplotlib.marker_.
         :VERSIONS (Iterable): The versions which offer this marker.
     """
 
@@ -546,7 +547,7 @@ class PieceRules(NamedTuple):
         """The versions which offer this piece. E.g.::
 
         >>> piece.VERSIONS
-        (-inf,+inf)
+        (-inf, +inf)
         """
         return ntversions(self)
 
@@ -702,19 +703,13 @@ class DefaultName(category.Categorized):
     PLAYER_ONE = _DefaultName(STR=_("Player 1"))
 
     # TRANSLATOR: Default name for a player in a game (independent of order)
-    PLAYER_TWO = _DefaultName(
-        STR=_("Player 2"),
-    )
+    PLAYER_TWO = _DefaultName(STR=_("Player 2"))
 
     # TRANSLATOR: Default name for a player in a game (independent of order)
-    PLAYER_THREE = _DefaultName(
-        STR=_("Player 3"),
-    )
+    PLAYER_THREE = _DefaultName(STR=_("Player 3"), VERSION=from_version("1.5.0"))
 
     # TRANSLATOR: Default name for a player in a game (independent of order)
-    PLAYER_FOUR = _DefaultName(
-        STR=_("Player 4"),
-    )
+    PLAYER_FOUR = _DefaultName(STR=_("Player 4"), VERSION=from_version("1.5.0"))
 
 
 class _PlayerType(NamedTuple):
