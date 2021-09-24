@@ -71,8 +71,9 @@ Color
 `````
 
 .. autoclass:: Color
-    :members:
-    :show-inheritance:
+   :members:
+   :undoc-members:
+   :show-inheritance:
     
 Command
 ```````
@@ -95,12 +96,10 @@ Player
 ``````
 
 .. autoclass:: Player
-    :members:
-    :show-inheritance:
+   :members:
+   :show-inheritance:
     
 .. autoproperty:: Player::VERSIONS
-
-.. autoattribute:: Player::VERSIONS
 
 PlayerType
 ``````````
@@ -129,14 +128,11 @@ PieceRules
 ``````````
 
 .. autoclass:: PieceRules
-    :members:
-    :show-inheritance:
-.. autoproperty:: RESERVES_STR
+   :show-inheritance:
+.. autoproperty:: VERSIONS
 .. autoproperty:: STRS
-.. autoproperty:: VERSIONS  
-.. autoattribute:: RESERVES_STR
-.. autoattribute:: STRS
-.. autoattribute:: VERSIONS 
+.. autoproperty:: RESERVES_STR
+  
     
 Marker
 ``````
