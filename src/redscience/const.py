@@ -707,10 +707,10 @@ class DefaultName(category.Categorized):
     PLAYER_TWO = _DefaultName(STR=_("Player 2"))
 
     # TRANSLATOR: Default name for a player in a game (independent of order)
-    PLAYER_THREE = _DefaultName(STR=_("Player 3"), VERSION=from_version("1.5.0"))
+    PLAYER_THREE = _DefaultName(STR=_("Player 3"), VERSIONS=from_version("1.5.0"))
 
     # TRANSLATOR: Default name for a player in a game (independent of order)
-    PLAYER_FOUR = _DefaultName(STR=_("Player 4"), VERSION=from_version("1.5.0"))
+    PLAYER_FOUR = _DefaultName(STR=_("Player 4"), VERSIONS=from_version("1.5.0"))
 
 
 class _PlayerType(NamedTuple):
