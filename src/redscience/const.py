@@ -2,9 +2,9 @@
 """Contains redscience constants plus functions for internationalization
 and versioning.
 
-Most constants in this module are encoded as a category.Category_
-or as a NamedTuple_. Each displays in the locale set via setlang()_
-and excludes members not in the version set via setvers()_.
+Most constants in this module are encoded as a :ref:`Category`
+or as a NamedTuple_. Each displays in the locale set via `setlang()`_
+and excludes members not in the version set via `setvers()`_.
 
 Examples::
 
@@ -37,6 +37,7 @@ Examples::
   plt.show()
   
 .. _babel.core.Locale:  http://babel.pocoo.org/en/latest/api/core.html#babel.core.Locale
+.. _category.Category: 
 .. _matplotlib.axes.Axes: https://matplotlib.org/stable/api/axes_api.html#matplotlib.axes.Axes
 .. _matplotlib.figure.Figure: https://matplotlib.org/stable/api/figure_api.html#matplotlib.figure.Figure
 .. _matplotlib.marker: https://matplotlib.org/stable/api/markers_api.html marker
