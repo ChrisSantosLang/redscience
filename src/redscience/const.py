@@ -759,7 +759,7 @@ class _Placement(NamedTuple):
 
     TO: Tuple[int, ...]
     COLOR: _Color = Color.BLACK
-    MARKER: _MarkerValue = Marker.CIRCLE
+    MARKER: _Marker = Marker.CIRCLE
 
     def __str__(self) -> str:
         # TRANSLATOR: Names a placement in a game e.g. "Black circle to (1,2)"
