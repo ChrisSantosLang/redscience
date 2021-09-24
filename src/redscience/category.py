@@ -83,7 +83,7 @@ def from_version(start: str, to: Optional[str] = None) -> Iterable:
     return P.closedopen(parse_version(start), end)
 
 
-ALL: Iterable = return P.open(-P.inf, P.inf)
+ALL: Iterable = P.open(-P.inf, P.inf)
 """Iterable: A shortcut for the portion.interval.Interval_ that contains all (e.g. versions)."""    
 
 def setvers(name: Optional[str] = None) -> Tuple[Union[int, str], ...]:
