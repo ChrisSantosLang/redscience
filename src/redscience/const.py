@@ -486,8 +486,9 @@ class PieceRules(NamedTuple):
 
         PieceRules(INITIAL_RESERVES=(5,4))
 
-    Attributes:
-        INITIAL_RESERVES: A tuple indicating the number in initial reserves
+    **Attributes:**
+    
+        :INITIAL_RESERVES: A tuple indicating the number in initial reserves
             of each color, e.g. (5, 4) means 5 of the first color, and 4 of
             the second.
     """
@@ -497,9 +498,10 @@ class PieceRules(NamedTuple):
     @property
     def RESERVES_STR(self: "PieceRules") -> str:
         """A constant localized str describing initial reserves for the
-        piece. E.g.::
+        piece. E.g.:
 
-            piece.RESERVES_STR
+        >>> piece.RESERVES_STR
+        '5 black and 4 white start in reserve'
         """
         by_color = []
         for index in range(len(self.INITIAL_RESERVES)):
@@ -520,7 +522,8 @@ class PieceRules(NamedTuple):
     def STRS(self: "PieceRules") -> Tuple[str, ...]:
         """Get tuple of strings describing the rules for the piece. E.g.::
 
-        piece.STRS
+        >>> piece.STRS
+        ('No movement', 'No power', '5 black and 4 white start in reserve')
         """
         lines = [self.RESERVES_STR]
         return tuple(lines)
@@ -532,7 +535,8 @@ class PieceRules(NamedTuple):
     def VERSIONS(self) -> Iterable:
         """The versions which offer this piece. E.g.::
 
-        piece.VERSIONS
+        >>> piece.VERSIONS
+        (-inf,+inf)
         """
         return ntversions(self)
 
@@ -711,13 +715,12 @@ class Player(NamedTuple):
 
     **Attributes:**
     
-        TYPE (PlayerType): If specified, determines the PlayerType. Default is Human.
-        VERSIONS (Iterable): The versions in which this player can be selected.
+        :TYPE (PlayerType_): If specified, determines the PlayerType. Default is Human.
     """
 
     TYPE: _PlayerType = PlayerType.HUMAN
-    """If specified, determines the PlayerType. Default is Human."""
 
+    @property
     def VERSIONS(self) -> Iterable:
         """The versions in which this player can be selected."""
         return ntversions(self)
