@@ -23,11 +23,10 @@ example,
    identify an essential member of that team using its Members tab.
 #. Clone the team to create a new contender, and slightly modify one 
    dimension of the personality of the cloned essential member (e.g. make 
-   the clone less extreme)
-#. Copy the parent’s training schedule to the clone and execute the training
+   the clone less extreme). 
 #. Run an olympic tournament which includes both the current champion and 
    its modified clone. Does the modified clone outperform its parent, or 
-   does the parent turn the extreme personality of that team-member into a 
+   does the parent make the extreme personality of that team-member into a 
    strength?
 
 Note that the most comprehensive olympics will include cooperative games 
@@ -42,23 +41,23 @@ Anticipate exploits
 
 *e.g. of your own personality or of a (proposed) AI.*
 
-#. Look at a player’s “Favoritism” tab to identify tools that perform 
-   better against that player than against other players of its same 
-   skill-level 
+#. Look at a player’s “Favoritism” tab to identify tools that consistently 
+   perform better against that player than against other players of the 
+   same skill-level.
 #. Look at the Favoritism stats for those tools to find other players whom
    they exploit in the same way. What do the victims have in common? (As 
    examples, depending on the game, a tool might exploit risk-aversion or 
    risk-proclivity).
 #. Browse the Favoritism tab to find games in which that vulnerability 
-   does not manifest (i.e. "safe games").
-#. Compare victims’ Favoritism stats for playing alone vs using tools. 
-   Which forms of tool use (if any) are sufficient to neutralize the 
-   vulnerability (i.e. review, debate, delegation)? What is the difference 
+   does not manifest (i.e. games that are "safe" for the player).
+#. Compare victims’ Favoritism stats on "unsafe" games with different 
+   forms of tool-use. Which forms of tool use (if any) are sufficient 
+   to neutralize the victims' vulnerability? What is the difference 
    between using a tool to protect oneself from exploitation vs. 
-   relinquishing freedom to that tool (e.g. To what extent is freedom 
-   relinquished when taking advice from a jury, a news channel, a doctor, 
-   a religious teacher, or an algorithm encoded in a scripture or law, 
-   etc.)?
+   relinquishing freedom to that tool? Juries, news channels, 
+   doctors, religious teachers, and algorithms encoded in scripture 
+   and law are all examples of real-world tools that can help someone 
+   overcome a vulnerability and make more effective decisions.
 
 .. warning:: This can be humbling! But humility might come in handy...
 
@@ -66,19 +65,18 @@ Discover new dimensions of intelligence
 ---------------------------------------
 
 We create more comprehensive olympics by 
-adding events that make different demands on players. For example:
+adding events that make more diverse demands on players. For example:
 
 #. Identify the most comprehensive olympics via the comparison page
-#. Use the comparison page to identify an event that makes unique demands, 
+#. Use the comparison page to identify an essential event in that olympics, 
    then fine-tune tools for that specific event (see `Benchmark social designs`_). 
 #. Contrast the best tools for that event to the best tools for other 
    events to understand which tools’ biases are particularly advantageous 
    for that event.
-#. Clone the event and tweak its design to make one of those biases even 
+#. Clone the event and tweak its design to make those biases even 
    more advantageous.
-#. Use the comparison page to confirm that the new event is even more 
-   unique, and that a new Olympics including that event is now the most 
-   comprehensive. 
+#. Use the comparison page to confirm that swapping-in the new event makes 
+   the olympics more comprehensive. 
 
 Elevate reality above experimentation
 -------------------------------------
