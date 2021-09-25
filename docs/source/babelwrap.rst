@@ -3,6 +3,7 @@ babelwrap module
 
 .. automodule:: babelwrap
 
+.. _setlang:
 setlang()
 ---------
 .. autofunction:: setlang
