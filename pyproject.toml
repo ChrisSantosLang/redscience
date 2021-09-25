@@ -44,7 +44,7 @@ classifiers = [
 python = ">=3.7,<3.11"
 numpy = "^1.21.2"
 matplotlib = "^3.4.3"
-portion = "^2.1.6"
+portion = "^2.2.0"
 toml = "^0.10.2"
 sphinx = {version = "^3", optional = true}
 pre-commit = {version = "^2.15.0", optional = true}
