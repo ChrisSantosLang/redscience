@@ -2,67 +2,6 @@ const module
 ============
 
 .. automodule:: const
- 
-
-Language Functions
-------------------
-
-setlang()
-`````````
-
-.. autofunction:: setlang
-
-format_datetime()
-`````````````````
-
-.. autofunction:: format_datetime
-
-format_decimal()
-````````````````
-
-.. autofunction:: format_decimal
-
-format_list()
-`````````````
-
-.. autofunction:: format_list
-
-format_percent()
-````````````````
-
-.. autofunction:: format_percent
-
-
-format_format_unit()
-````````````````````
-
-.. autofunction:: format_unit
-
-Versioning Functions
---------------------
-
-setvers()
-`````````
-
-.. autofunction:: setvers
-
-ALL
-```
-
-.. py:data:: const.ALL
-  :value: (-inf,+inf)
-A shortcut for the portion.interval.Interval_ that contains all (e.g. versions)
-
-from_version()
-``````````````
-
-.. autofunction:: from_version
-
-ntversions()
-````````````
-
-.. autofunction:: ntversions
-
 
 General Constants
 -----------------
@@ -129,19 +68,19 @@ DefaultName
 Piece Constants
 ---------------
 
-PieceRules
-``````````
-
-.. autoclass:: PieceRules
-   :members: VERSIONS, RESERVES_STR, STRS
-   :show-inheritance:
-    
 Marker
 ``````
 
 .. autoclass:: Marker
    :members:
    :undoc-members:
+   :show-inheritance:
+    
+PieceRules
+``````````
+
+.. autoclass:: PieceRules
+   :members: VERSIONS, RESERVES_STR, STRS
    :show-inheritance:
     
 Directions
@@ -194,14 +133,6 @@ CheckOption
    :undoc-members:
    :show-inheritance:
     
-Outcome
-```````
-
-.. autoclass:: Outcome
-   :members:
-   :undoc-members:
-   :show-inheritance: 
-    
 StalemateOption
 ```````````````
 
@@ -220,3 +151,70 @@ Move
    :members:
    :undoc-members:
    :show-inheritance:
+    
+Outcome
+```````
+
+.. autoclass:: Outcome
+   :members:
+   :undoc-members:
+   :show-inheritance: 
+   
+Language Functions
+------------------
+
+setlang()
+`````````
+
+.. autofunction:: setlang
+
+format_datetime()
+`````````````````
+
+.. autofunction:: format_datetime
+
+format_decimal()
+````````````````
+
+.. autofunction:: format_decimal
+
+format_list()
+`````````````
+
+.. autofunction:: format_list
+
+format_percent()
+````````````````
+
+.. autofunction:: format_percent
+
+
+format_format_unit()
+````````````````````
+
+.. autofunction:: format_unit
+
+Versioning Functions
+--------------------
+
+setvers()
+`````````
+
+.. autofunction:: setvers
+
+ALL
+```
+
+.. py:data:: const.ALL
+  :value: (-inf,+inf)
+A shortcut for the portion.interval.Interval_ that contains all (e.g. versions)
+
+from_version()
+``````````````
+
+.. autofunction:: from_version
+
+ntversions()
+````````````
+
+.. autofunction:: ntversions
