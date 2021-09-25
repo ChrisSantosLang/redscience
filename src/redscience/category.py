@@ -258,7 +258,7 @@ class Categorized(enum.Enum, metaclass=Category):
         ipywidgets.Dropdown(options=BoardOption)
 
     This will work even if the dropdown is declared *before* calling
-    `setvers()`_ and :ref:`setlang()`. A member evaluates to False if not in the
+    `setvers()`_ and :ref:`setlang()<setlang>`. A member evaluates to False if not in the
     set version:
 
     >>> setvers("1.0.0")
