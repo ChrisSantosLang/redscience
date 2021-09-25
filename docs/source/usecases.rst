@@ -86,14 +86,17 @@ Elevate reality above experimentation
 For example, the best strategy 
 in the *Volunteer* game depends upon prevailing social norms: 
 
-#. Create a private universe in which you train all tools to play 
-   *Volunteer* via turn-taking (i.e. “You volunteered last time, now it’s 
-   my turn”). Confirm that the social norms of that universe push all 
-   tools towards turn-taking.
-#. Create a separate private universe in which you train all tools to 
-   play *Volunteer* via caste (i.e. whoever got the better deal last time 
-   gets it again). Confirm that the social norms of that universe push 
-   all tools towards a caste system (i.e. turn-taking backfires). 
+#. Copy your own player record to create a new universe, and copy the best
+   AI for the *Volunteer* game to that universe (but start its experience 
+   fresh). Play a turn-taking strategy against it (i.e. “You volunteered 
+   last time, now it’s my turn”). Make several copies of the AI in that 
+   universe.
+#. Similarly create a separate private universe in which you train all tools 
+   to play *Volunteer* via caste (i.e. whoever got the better deal last time 
+   gets it again). Copy in an AI from the turn-taking universe (retaining
+   its turn-taking experience) and confirm that it switches to the caste
+   strategy. Copy an AI to the turn-taking universe (retaining experience) 
+   and confirm thay it switches to turn-taking.
 #. Create a third private universe composed half of players copied from 
    the turn-taking universe and half of players copied from the caste 
    universe. Which norm survives a *Volunteer* tournament? Similarly test 
@@ -104,5 +107,4 @@ If we couldn’t run these experiments to our satisfaction in redscience,
 would we be doomed to spend our real lives serving as the subjects of 
 such experiments (i.e. as pawns in a war between competing systems of 
 norms)? If the most-defensible norm is one you considered morally wrong, 
-does the evidence that “resistance is futile” make you reexamine the 
-basis for that moral belief?
+does such exprimentation inspire you to question your moral belief?
