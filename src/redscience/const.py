@@ -2,7 +2,7 @@
 """Contains redscience constants plus functions for internationalization
 and versioning.
 
-Most constants in this module are encoded as a :ref:`Category`
+Most constants in this module are encoded as a :ref:`category.Category`
 or as a NamedTuple_. Each displays in the locale set via `setlang()`_
 and excludes members not in the version set via `setvers()`_.
 
@@ -96,7 +96,7 @@ class Color(category.Categorized):
 
     **Attributes:**
 
-        :STR (str): A localized name. How the color prints.
+        :STR (:keyword:`str`): A localized name. How the color prints.
         :HEX (str): A hex code to communicate the color to computers.
         :VERSIONS (Iterable): The versions which offer this color.
     """
