@@ -31,9 +31,6 @@ is :doc:`code <modules>`.
    play
    curriculum
    modules
-
-Indices and tables
-==================
-
+   
 * :ref:`genindex`
-* :ref:`modindex`
+
