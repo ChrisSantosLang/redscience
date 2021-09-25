@@ -94,7 +94,7 @@ in the *Volunteer* game depends upon prevailing social norms:
    gets it again). Copy in an AI from the turn-taking universe (retaining
    its turn-taking experience) and confirm that it switches to the caste
    strategy. Copy an AI to the turn-taking universe (retaining experience) 
-   and confirm thay it switches to turn-taking.
+   and confirm that it switches to turn-taking.
 #. Create a third private universe composed half of players copied from 
    the turn-taking universe and half of players copied from the caste 
    universe. Which norm survives a *Volunteer* tournament? Similarly test 
