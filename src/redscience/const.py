@@ -136,7 +136,8 @@ class Layout(enum.IntEnum):
     """Layout constants. E.g.::
 
     >>> Layout.POINTS_PER_INCH
-    54        
+    54 
+    
     """
 
     FIGURE_WIDTH = 5
