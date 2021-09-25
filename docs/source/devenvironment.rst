@@ -135,8 +135,8 @@ First, if you don't already have a GitHub account, follow
 -up-for-github/signing-up-for-a-new-github-account>`_
 to get one. 
 
-If you intend to contribute to an existing repository, then fork it.
-If you want to build your own code base, then the plan is to start by 
+If this is a group project with an existing repository, then fork it.
+If you want to start a new code base, then the plan is to start by 
 clicking "Use this template" at 
 https://github.com/ChrisSantosLang/redscience (instructions from
 GitHub `here <https://docs.github.com/en/github/creating-cloning-and-
@@ -144,7 +144,11 @@ archiving-repositories/creating-a-repository-on-github/creating-a-
 repository-from-a-template>`_)
 
 [Describe folder structure and explain configuration files here]
+
+How to Set-up Colab
+-------------------
  
-Now, if you don't already have a Google account, follow 
+At this point, you should have your own GitHob repo for this project. 
+If you don't already have a Google account, follow 
 `the Google instructions <https://support.google.com/accounts/answer/27441?hl=en#>`_ 
 to get one, then move forward to How to Develop in Colab with GitHub. 
