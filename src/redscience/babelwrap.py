@@ -2,15 +2,6 @@
 """
 Permits setting a default language for ``_()`` and babel functions.
 
-**References:**
-
-  :babel.core.Locale: http://babel.pocoo.org/en/latest/api/core.html
-  :babel.dates.format_datetime: http://babel.pocoo.org/en/latest/api/dates.html#babel.dates.format_datetime
-  :babel.lists.format_list: http://babel.pocoo.org/en/latest/api/lists.html
-  :babel.numbers.format_decimal: http://babel.pocoo.org/en/latest/api/numbers.html#babel.numbers.format_decimal
-  :babel.numbers.format_percent: http://babel.pocoo.org/en/latest/api/numbers.html#babel.numbers.format_percent 
-  :babel.units.format_unit: http://babel.pocoo.org/en/latest/api/units.html#babel.units.format_unit
-
 .. _babel.core.Locale: http://babel.pocoo.org/en/latest/api/core.html
 .. _babel.dates.format_datetime: http://babel.pocoo.org/en/latest/api/dates.html#babel.dates.format_datetime
 .. _babel.lists.format_list: http://babel.pocoo.org/en/latest/api/lists.html
