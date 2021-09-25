@@ -36,8 +36,8 @@ Examples::
   print(Command.QUIT)
   plt.show()
   
-.. _babel.core.Locale:  http://babel.pocoo.org/en/latest/api/core.html#babel.core.Locale
-.. _category.Category: 
+.. _babel.core.Locale: http://babel.pocoo.org/en/latest/api/core.html#babel.core.Locale
+.. _enum.IntEnum: https://docs.python.org/3/library/enum.html#enum.IntEnum
 .. _matplotlib.axes.Axes: https://matplotlib.org/stable/api/axes_api.html#matplotlib.axes.Axes
 .. _matplotlib.figure.Figure: https://matplotlib.org/stable/api/figure_api.html#matplotlib.figure.Figure
 .. _matplotlib.marker: https://matplotlib.org/stable/api/markers_api.html marker
@@ -138,6 +138,7 @@ class Layout(enum.IntEnum):
     >>> Layout.POINTS_PER_INCH
     54 
     
+    See enum.IntEnum_        
     """
 
     FIGURE_WIDTH = 5
