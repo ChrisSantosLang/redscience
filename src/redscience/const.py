@@ -2,7 +2,7 @@
 """Contains redscience constants plus functions for internationalization
 and versioning.
 
-Most constants in this module are encoded as a :ref:`category.Category`
+Most constants in this module are encoded as a :doc:`category.Category <category>`
 or as a NamedTuple_. Each displays in the locale set via `setlang()`_
 and excludes members not in the version set via `setvers()`_.
 
@@ -96,7 +96,7 @@ class Color(category.Categorized):
 
     **Attributes:**
 
-        :STR (:keyword:`str`): A localized name. How the color prints.
+        :STR (str): A localized name. How the color prints.
         :HEX (str): A hex code to communicate the color to computers.
         :VERSIONS (Iterable): The versions which offer this color.
     """
@@ -571,7 +571,7 @@ class Game(NamedTuple):
         :PIECES (Tuple[PieceRules_, ...]): If specified, determines 
             piece-specific rules. Default is to have only one type of piece 
             (circle) with 5 black and 4 white circles starting in reserve.
-        :MOVE_CHECKS (Tuple[_CheckOption, ...]): If specified, determines 
+        :MOVE_CHECKS (Tuple[CheckOption_, ...]): If specified, determines 
             which rules are checked at the end of each move. Can be None. 
             Default is to award the win to any player that gets three of the 
             same color in a row.
@@ -801,7 +801,7 @@ class _Move(NamedTuple):
 
 
 class Move(category.Categorized):
-    """A type of move in a game. Prints localized str. Examples:
+    """A type of move in a game. Prints localized str. Examples::
 
       Move.PASS
       Move.PLACE(COLOR=Color.WHITE, MARKER=Marker.CIRCLE, TO=(2,3))
