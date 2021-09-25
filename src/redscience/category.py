@@ -2,12 +2,6 @@
 """
 Classes and functions for defining categories.
 
-References:
-  :enum.Enum: https://docs.python.org/3/library/enum.html
-  :enum.EnumMeta: https://docs.python.org/3/library/enum.html#how-are-enums-different
-  :portion.interval.Interval: https://pypi.org/project/portion/#documentation--usage
-  :semantic versioning: https://semver.org/
-
 .. _enum.Enum: https://docs.python.org/3/library/enum.html
 .. _enum.EnumMeta: https://docs.python.org/3/library/enum.html#how-are-enums-different
 .. _portion.interval.Interval: https://pypi.org/project/portion/#documentation--usage
@@ -264,7 +258,7 @@ class Categorized(enum.Enum, metaclass=Category):
         ipywidgets.Dropdown(options=BoardOption)
 
     This will work even if the dropdown is declared *before* calling
-    `setvers()`_ and `setlang()`_. A member evaluates to False if not in the
+    `setvers()`_ and :ref:`setlang()`. A member evaluates to False if not in the
     set version:
 
     >>> setvers("1.0.0")
