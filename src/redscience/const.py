@@ -133,10 +133,9 @@ PlayerColor = category.ctg(*Color[0:4], name="PlayerColor")  # type: ignore[misc
 
 
 class Layout(enum.IntEnum):
-    """Layout constants. E.g.:
+    """Layout constants. E.g.::
 
-    >>> Layout.POINTS_PER_INCH
-    54 
+        Layout.POINTS_PER_INCH
     
     See enum.IntEnum_        
     """
