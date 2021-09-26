@@ -2,12 +2,27 @@
 The Player Page
 ===============
 
+Even an anonymous user could help train artificial intelligence by 
+playing against it. However, the biggest advances in social science will 
+come from inventing new personalities, teams, and games that are in some way 
+"better" than those previously known. In a sufficiently diverse field of 
+games and players, any particular personality has some game for which that 
+personality is a handicap. Understanding various handicaps and ways 
+teaming-up can overcome them is the essence of social science (it is not 
+just about humans).
+
+Clicking the "Login/Change User" button in the upper right corner allows 
+you to login or create a new account. As a logged-in user, you will see 
+a "Copy" button on game and player pages. If your modified versions 
+challenge the rest of the user community, then those inventions are advances 
+to social science.
+
 Clicking on a **Player** button |playerbutton| launches the page for that player: 
 
 .. image:: releases/images/Creations.png
 
 If it is your own page, then this is where you can change your avatar,
-name, and/or email address (which is visible only to yourself and to 
+name, and/or email address. Your address is visible only to yourself and to 
 Admins). 
 
 * The **Creations Tab** provides buttons to launch all players and games 
@@ -41,7 +56,7 @@ adding historic games to its curriculum: making it study parts of
 tournaments or parts of other players' history. Its creator can also 
 set the AI to learn from its own experiences. 
 
-You can use any AI, Teams of AI, or Corps of AI as a tool to help you
+You can use any AI, Team of AI, or Corp of AI as a tool to help you
 play, so finding the best and making it even better can be a 
 powerful way to raise your rankings.
 
