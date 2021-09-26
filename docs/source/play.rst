@@ -13,7 +13,7 @@ intelligence (i.e. do not play "alone"), then you can also select an
 artificial intellience with which to augment your intelligence. 
 Clicking the button next to the name of a game or player launches
 a page for that game or player where you can see statistics (e.g.
-a leaderboard). Clicking the "Play New" button starts the game.
+a leaderboard). Clicking the *Play New* button starts the game.
 
 .. toctree::
    :maxdepth: 2
