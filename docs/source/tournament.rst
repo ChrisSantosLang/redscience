@@ -25,7 +25,7 @@ intelligence" and likely would not win non-Olympic tournaments (i.e.
 for specific events). Choose the right game for the kind of 
 intelligence you want to measure.
 
-Click on a **Tournament** button |tournamentbuton| to launch the page 
+Click on a **Tournament** button |tournamentbutton| to launch the page 
 for that tournament: 
 
 .. image:: releases/images/Beryllium.png
