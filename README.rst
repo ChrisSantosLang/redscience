@@ -7,14 +7,14 @@ turning back, and no telling how deep the rabbit hole may go…
 
   Blue Science says, “Clinical trials are what matter. We can’t clone entire 
   religions, businesses, or states, and manipulate them to form properly 
-  controlled clinical trials of potential social policies, so social policies 
-  can take root only in *opinion*.” It says, “History will determine which proposed 
-  social technologies or other social changes are safe...but, by then, it will be 
+  controlled clinical trials of potential social policies, so social policy-making 
+  must take root in *opinion*.” It says, “History will determine which proposed 
+  social technologies or other social changes are safe... and, by then, it will be 
   too late.” 
 
 A perfect clinical trial would require cloning the entire universe at least 
 twice: The exact proposed patient would receive the exact proposed treatment 
-in one cloned universe and receive the alternative in another. Any 
+in one cloned universe and would receive the alternative in another. Any 
 less-expensive experiment is mere calibration for some simplified model. Blue 
 Science treats the inevitable simplification as an excuse to defer to subjective 
 opinion--perhaps to the democratically-aggregated opinion of a minority (e.g. 
@@ -33,21 +33,22 @@ of protein-folding and bridge design. By expanding that paradigm to the social
 sciences, the redscience software package goes meta: It facilitates the 
 pre-clinical science *of* science. Any social interaction can be modeled with 
 game theory, so redscience builds on ``ipython``, ``babel``, ``trueskill``, ``matplotlib``, 
-and ``sk-learn`` to let users create and compare designs for “olympics” and player 
-tools (a.k.a. “teams” of “bots”). 
+and ``sk-learn`` to let users create and compare designs for “Olympics” and player 
+tools (a.k.a. “teams” of “AI”). 
 
 Design advances in redscience until no olympics can be conceived for which a 
 more reliable tool can be conceived. Leaderboards are more objective and more 
 efficient than peer-reviewed journals; they make the agenda-setting level of 
 science as inexpensive and accessible as playing a video game. The speed with 
 which redscience can expose design-flaws in our inherited Blue-engineered 
-social institutions is so shocking that a warning is merited: Ignorance may 
-cause more damage in the long-run, but truth has its own sting!
+social institutions is so shocking that a warning is merited: Although ignorance 
+may cause more damage in the long-run, truth has its own sting!
 
 Next Steps
 ----------
 
-You can learn more via the `documentation <https://chrissantoslang-redscience.readthedocs.io/en/latest/index.html>`_. If you choose truth, 
+You can learn more via the `documentation <https://chrissantoslang-redscience.
+readthedocs.io/en/latest/index.html>`_. If you choose truth, 
 and cannot find an existing redscience website on which to explore, then you 
 can make your own by… 
 
@@ -58,6 +59,6 @@ the security of society, redscience is `open-source
 <https://github.com/ChrisSantosLang/redscience/blob/master/LICENSE/>`_ and 
 accompanied by educational resources so that diverse social groups can make 
 their own versions which they fully understand and control. It is as much a 
-curriculum about coding as it is code. Report bugs/ideas `here <https://github.com/ChrisSantosLang/redscience/issues>`_, contribute code 
+curriculum about coding as it is code. Report bugs/ideas `here <https://github.
+com/ChrisSantosLang/redscience/issues>`_, contribute code 
 here, contribute as an educator here. 
-
