@@ -28,3 +28,6 @@ those regions. Hover over the rules to preview rules for future phases
 
 Note that for some games (e.g. *Hide and Seek*), different elements 
 may be visible to different players (unlike with physical board games).
+A player cannot move a placed piece if the player has an identical 
+piece in reserve, and cannot attempt to place a piece from reserves 
+to a location that the player knows is occupied. 
