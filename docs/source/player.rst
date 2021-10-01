@@ -5,19 +5,11 @@ The Player Page
 Even an anonymous user could help train artificial intelligence by 
 playing against it. However, the biggest advances in social science will 
 come from inventing new personalities, teams, and games that are in some way 
-"better" than those previously known. In a sufficiently diverse field of 
-games and players, any particular personality has some game for which that 
-personality is a handicap. Understanding various handicaps and ways 
-teaming-up can overcome them is the essence of social science (it is not 
-just about humans).
+"better" than those previously known.
 
-Clicking the "Login/Change User" button in the upper right corner allows 
-you to login or create a new account. As a logged-in user, you will see 
-a "Copy" button on game and player pages. If your modified versions 
-challenge the rest of the user community, then those inventions are advances 
-to social science.
-
-Click on a **Player** button |playerbutton| to launch the page for that player: 
+Clicking the **Login/Change User** button |loginbutton| in the upper 
+right corner allows you to login or create a new account. Click on a 
+**Player** button |playerbutton| to launch the page for that player: 
 
 .. image:: releases/images/Creations.png
 
@@ -30,6 +22,10 @@ Admins.
 * The **Stats Tab** provides buttons to challenge the player to 
   play various games 
 * The **Favoritism Tab** provides buttons to see opponents' stats
+
+As a logged-in user, you will see a **Copy** button on game and 
+player pages. If your modified versions challenge the rest of the 
+user community, then those inventions are advances to social science.
 
 Click the **Copy** button to create a new 
 player. Players created in this way will have no email address, but their
@@ -62,3 +58,4 @@ play, so finding the best and making it even better can be a
 powerful way to raise your rankings.
 
 .. |playerbutton| image:: releases/images/playerbutton.png
+.. |loginbutton| image:: releases/images/loginbutton.png
