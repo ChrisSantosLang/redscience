@@ -3,8 +3,8 @@ Creating AI
 ===========
 
 You can use any *AI*, *Team*, or *Corp* as a tool to help you
-play. When logged in, you can even **Copy** such players and adjust the 
-settings on your copies to improve them. Finding/creating the best tools
+play. When logged in, a Trainer can even **Copy** such players and adjust the 
+settings on those copies to improve them. Finding/creating the best tools
 may be the most powerful way to raise your rankings.
 
 .. image:: releases/images/CurriculumSimple.png
