@@ -8,17 +8,18 @@ account.
 .. image:: releases/images/home.png
 
 As an anonymous user, on the Home page, you can select
-a game and other player(s). If you select a way to augment your 
-intelligence (i.e. do not play "alone"), then you can also select an
-artificial intellience with which to augment yourself. 
-Clicking the **Play New** button starts the game.
+a :doc:`game <game>` and other :doc:`player(s) <player>`. If you select 
+a way to augment your intelligence (i.e. do not play "alone"), then you 
+can also select an :doc:`artificial intellience <playerfactory>` with 
+which to augment yourself. Clicking the **Play New** button starts the 
+:doc:`match <playground>`.
 
 .. toctree::
    :maxdepth: 2
 
    playground
    player
-   playerfactory
-   tournament
    game
    gamefactory
+   playerfactory
+   tournament
