@@ -1,6 +1,6 @@
-===============
-The Game Page
-===============
+==========
+Game Pages
+==========
 
 Tic-Tac-Toe is just one of a huge set of possible games, and each 
 game has its own **Leaderboard**. Click the |gamebutton| button next
@@ -13,11 +13,11 @@ to the name of any game to launch its page:
 * The **Tournaments Tab** provides buttons to see recent 
   :doc:`tournaments <tournament>`
 * The **Compare Tab** provides buttons to compare games (and design
-  a better olympics)
+  a better Olympics_)
 
 If the game is an *Olympics*, then it will have an **Events Tab** with
 buttons to launch the game page of each event. If the game is an *event*,
-then it will have a **Setup & Rules Tab** instead. Either tabe will have 
+then it will have a **Setup & Rules Tab** instead. Either tab will have 
 a **Copy** button you can use to copy the game and 
 :doc:`shift the rules <gamefactory>`.
 
