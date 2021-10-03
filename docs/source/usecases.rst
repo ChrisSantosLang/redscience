@@ -21,7 +21,7 @@ of other tests (like testing on animal subjects before testing on humans).
 
 For example,   
 
-#. Identify the most comprehensive Olympics_ via the **Comparison Tab**, 
+#. Identify the most comprehensive :doc:`Olympics <tounament>`_ via the **Comparison Tab**, 
    identify the top team for that Olympics via its :doc:`leaderboard <game>`, 
    and identify an essential member of that team using its **Members Tab**.
 #. :doc:`Clone the team <playerfactory>` to create a new one, and slightly 
@@ -88,7 +88,7 @@ Intelligence is measured in terms of the kinds of games which one being
 wins over another, so every dimension of intelligence can be expressed as a 
 kind of game (e.g. games that test empathy by requiring players to collaborate
 with players of different skill-level and experience). The most comprehensive 
-Olympics_ would test every dimension of intelligence, so creating more 
+:doc:`Olympics <tounament>`_ would test every dimension of intelligence, so creating more 
 comprehensive Olympics is like expanding the Periodic Table of the Elements:
 
 #. Identify the most comprehensive Olympics via the **Comparison Tab**
