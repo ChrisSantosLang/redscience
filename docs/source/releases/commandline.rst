@@ -1,5 +1,5 @@
 ============================
-1.1 Command Line Tic-Tac-Toe
+1.0 Command Line Tic-Tac-Toe
 ============================
 
 Requirements
