@@ -1,7 +1,8 @@
-****************************************************************************************************************
-redscience Documentation (`PDF <https://chrissantoslang-redscience.readthedocs.io/_/downloads/en/latest/pdf/>`_)
-****************************************************************************************************************
+************************
+redscience Documentation 
+************************
 
+(Also available as `PDF <https://chrissantoslang-redscience.readthedocs.io/_/downloads/en/latest/pdf/>`_)
 
 Much as `Fold-It <https://fold.it/>`_ and `BridgeDesigner 
 <https://bridgedesigner.org/>`_ offer simulations to test 
@@ -24,7 +25,7 @@ is :doc:`code <modules>`.
 
 redscience has not yet been released, but feel free to preview
 our plans by reading this documentation. If you want alerts when 
-we release, you can follow out twitter acount at @redscience_ai 
+we release, you can follow our twitter acount at @redscience_ai 
 or join the 
 `redscience-announce GoogleGroup <https://groups.google.com/g/redscience-announce>`_
 
