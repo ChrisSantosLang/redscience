@@ -1,3 +1,4 @@
+========================
 Command Line Tic-Tac-Toe
 ========================
 
@@ -40,8 +41,8 @@ since all pieces in that player’s reserves will be of the same shape
 and color, but design your code to evolve support for other games 
 (e.g. other-dimensional boards, other kind of pieces/cards, etc).
  
-Testing Plan
-------------
+Acceptance Test Plan
+--------------------
 
 Test that the program works. Confirm that it does not permit illegal 
 moves, and that it recognizes draws and all kinds of wins (e.g. 
