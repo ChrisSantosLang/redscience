@@ -47,12 +47,12 @@ may cause more damage in the long-run, truth has its own sting!
 Next Steps
 ----------
 
-You can learn more via the `documentation <https://chrissantoslang-redscience.
-readthedocs.io/en/latest/index.html>`_. If you choose truth, 
-and cannot find an existing redscience website on which to explore, then you 
-can make your own by… 
-
-[how to install]
+redscience has not yet been released, but feel free to preview
+our plans by reading the `documentation <https://chrissantoslang-redscience.
+readthedocs.io/en/latest/index.html>`_. If you want alerts when 
+we release, you can follow out twitter acount at @redscience_ai 
+or join the 
+`redscience-announce GoogleGroup <https://groups.google.com/g/redscience-announce>`_
 
 Any effective social science could be used for good or bad. For 
 the security of society, redscience is `open-source 
