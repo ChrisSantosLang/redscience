@@ -22,9 +22,10 @@ their own versions which they fully understand and control. It
 is as much a :doc:`curriculum <curriculum>` about coding as it 
 is :doc:`code <modules>`.
 
-redscience has not yet been releases, but feel free to preview
-our plans by reading this documentation. If you want to be alerted
-of our progress, follow out twitter acount at @redscience_ai or 
+redscience has not yet been released, but feel free to preview
+our plans by reading this documentation. If you want alerts when 
+we release, you can follow out twitter acount at @redscience_ai 
+or join the 
 `redscience-announce GoogleGroup <https://groups.google.com/g/redscience-announce>`_
 
 .. toctree::
