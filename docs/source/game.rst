@@ -13,7 +13,7 @@ to the name of any game to launch its page:
 * The **Tournaments Tab** provides buttons to see recent 
   :doc:`tournaments <tournament>`
 * The **Compare Tab** provides buttons to compare games (and design
-  a better :doc:`Olympics <tournament>`_)
+  a better :doc:`Olympics <tournament>`)
 
 If the game is an *Olympics*, then it will have an **Events Tab** with
 buttons to launch the game page of each event. If the game is an *event*,
