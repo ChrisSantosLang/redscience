@@ -177,11 +177,11 @@ or years since their most recent match.
 
 .. math::
    \text{win_boost}_{a, b, g} = 
-       \sum_{\substack{
-         (now-10) < i \le now \\
+       \displaystyle\sum_{\substack{
+         i=n-10 \\
          game_i = g \\
          players_i \subset \{a, b\}
-       }}
+       }}^{n}
        \frac{X_i(win_a) - E_i(win_a)}{10}   
 
 :math:`\text{kick_back}_{a, b, g}`:
