@@ -52,6 +52,20 @@ after the user, calculate flags as follows:
 :math:`\hat{\sigma}_{a, g, m}`:
   The standard deviation in the skill estimate for player :math:`a` on 
   game :math:`g` going  into match :math:`m`
+
+.. math::  
+  \documentclass{article}
+  \usepackage{amsmath}
+
+  \begin{document}
+    \[
+      X(m,n) = \left\{\begin{array}{lr}
+          x(n), & \text{for } 0\leq n\leq 1\\
+          x(n-1), & \text{for } 0\leq n\leq 1\\
+          x(n-1), & \text{for } 0\leq n\leq 1
+          \end{array}\right\} = xy
+    \]
+  \end{document}
   
 .. math::  
   \[ value =
