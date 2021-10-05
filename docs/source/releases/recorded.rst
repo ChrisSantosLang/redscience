@@ -40,9 +40,6 @@ flags” for each player in the match:
 :math:`\text{players}_m`:
   The players for match :math:`m`
   
-:math:`X_m(x)`:
-  The occurence of event :math:`x` in match :math:`m`. 
-  
 :math:`\hat{\mu}_{a, g}` :
   The mean skill estimate for player :math:`a` on 
   game :math:`g`   
@@ -73,8 +70,7 @@ flags” for each player in the match:
       (\hat{\mu}_{max, m} - \hat{\sigma}_{a, \text{game}_m}) \}\\
       \text{Expert}  & \quad \text{if } \hat{\mu}_{a, \text{game}_m} 
       > max \{ (\hat{\mu}_{min, m} + \hat{\sigma}_{a, \text{game}_m}),  
-      (\hat{\mu}_{max, m} - \hat{\sigma}_{a, \text{game}_m}) \}\\
-      \text{Peer}  & \quad \text{otherwise}
+      (\hat{\mu}_{max, m} - \hat{\sigma}_{a, \text{game}_m}) \}
     \end{cases}
   
 If player :math:`a` is a teammate of the user (e.g. Partner), or is not the 
@@ -88,16 +84,18 @@ first on its team to play after the user, calculate the flag as follows instead:
       \text{Novice}  & \quad \text{if } \hat{\mu}_{a, \text{game}_m} 
       < \hat{\mu}_{partner, \text{game}_m} - 3 \hat{\sigma}_{a, \text{game}_m}\\
       \text{Expert}  & \quad \text{if } \hat{\mu}_{a, \text{game}_m} 
-      > \hat{\mu}_{partner, \text{game}_m} + 3 \hat{\sigma}_{a, \text{game}_m}\\
-      \text{Peer}  & \quad \text{otherwise}
+      > \hat{\mu}_{partner, \text{game}_m} + 3 \hat{\sigma}_{a, \text{game}_m}
     \end{cases}
     
 
 When maintaining skill level, also maintain an account of favors 
 “owed” for each pair of players with form of augmentation (per 
 game), : 
+  
+:math:`X_m(x)` :
+  The occurence of event :math:`x` in match :math:`m`. 
 
-:math:`E_m(x)`:
+:math:`E_m(x)` :
   The expected probability of event :math:`x` in match :math:`m`, given 
   the skill estimates going into the match  
 
@@ -105,7 +103,7 @@ game), :
    E_m(x) = P(X_m(x) \mid \{\hat{\mu}_{a, m}, 
    \hat{\sigma}_{a, m} : a \in \text{players}_m \})
 
-:math:`\text{favors_owed}_{a, b, g}`:
+:math:`\text{favors_owed}_{a, b, g}` :
   The favors player :math:`a` owes player :math:`b` on game 
   :math:`g`, a favor being when a player benefits another by performing 
   below its skill level
@@ -139,14 +137,14 @@ and set the total social flags for each player :math:`\text{flags}_{a, m}` as fo
 .. math::  
    =
     \begin{cases}
-      \text{Antisocial}      & \quad  111 & \quad\text{if } \neg \text{Random} \land \exists b \in players_m (\text{warning}_{a, b, game_m, m})\\ 
-      \text{Richer Novice}   & \quad  110 & \quad\text{if } \neg \text{Antisocial} \land \text{Novice} \land \text{debt}_{a, m} \ge \text{debt}_{user, m}\\
-      \text{Richer Expert}   & \quad  101 & \quad\text{if } \neg \text{Antisocial} \land \text{Expert} \land \text{debt}_{a, m} \ge \text{debt}_{user, m}\\
-      \text{Richer}          & \quad  100 & \quad\text{if } \neg \text{Antisocial} \land \text{Peer} \land \text{debt}_{a, m} \ge \text{debt}_{user, m}\\
       \text{Random}          & \quad  011 & \quad\text{if Random}\\
-      \text{Poorer Novice}   & \quad  010 & \quad\text{if } \neg \text{Antisocial} \land \text{Novice} \land \text{debt}_{a, m} < \text{debt}_{user, m}\\
-      \text{Poorer Expert}   & \quad  001 & \quad\text{if } \neg \text{Antisocial} \land \text{Expert} \land \text{debt}_{a, m} < \text{debt}_{user, m}\\
-      \text{Poorer}          & \quad  000 & \quad\text{if } \neg \text{Antisocial} \land \text{Peer} \land \text{debt}_{a, m} < \text{debt}_{user, m}
+      \text{Antisocial}      & \quad  111 & \quad\text{else if } \exists b \in players_m (\text{warning}_{a, b, game_m})\\ 
+      \text{Richer Novice}   & \quad  110 & \quad\text{else if } \text{debt}_{a, m} \ge \text{debt}_{user, m} \land \text{Novice}\\
+      \text{Richer Expert}   & \quad  101 & \quad\text{else if } \text{debt}_{a, m} \ge \text{debt}_{user, m} \land \text{Expert}\\
+      \text{Richer}          & \quad  100 & \quad\text{else if } \text{debt}_{a, m} \ge \text{debt}_{user, m}\\
+      \text{Poorer Novice}   & \quad  010 & \quad\text{else if } \text{Novice}\\
+      \text{Poorer Expert}   & \quad  001 & \quad\text{esle if } \text{Expert}\\
+      \text{Poorer}          & \quad  000 & \quad\text{otherwise }
     \end{cases}
 
 By researching play history, human players could get the 
@@ -160,46 +158,46 @@ partner/opponent, display *Win Boost*, *Kick Back*, *Draw Boost*,
 *Relative Rating*, *Preference*, *Favors Owed* and the days, months, 
 or years since their most recent match.
 
-:math:`\text{win_boost}_{a, b, g}`:
+:math:`\text{win_boost}_{a, b, g}` :
   The boost to player :math:`a`'s win rate on game :math:`g` in 
   the last ten matches with player :math:`b`
 
 .. math::
    \text{win_boost}_{a, b, g} = 
        \displaystyle\sum_{\substack{
-         i=n-10 \\
+         i=(n-10) \\
          game_i = g \\
          players_i \subset \{a, b\}
        }}^{n}
        \frac{X_i(win_a) - E_i(win_a)}{10}   
 
-:math:`\text{kick_back}_{a, b, g}`:
+:math:`\text{kick_back}_{a, b, g}` :
   The boost to player :math:`b`'s win rate on game :math:`g` in 
   the last ten matches with player :math:`a`
   
 .. math::
    \text{kick_back}_{a, b, g} = 
-       \sum_{\substack{
-         (now-10) < i \le now \\
+       \displaystyle\sum_{\substack{
+         i=(n-10) \\
          game_i = g \\
          players_i \subset \{a, b\}
-       }}
+       }}^{n}
        \frac{X_i(win_b) - E_i(win_b)}{10}  
 
-:math:`\text{draw_boost}_{a, b, g}`:
+:math:`\text{draw_boost}_{a, b, g}` :
   The boost to player :math:`a`'s draw rate on game :math:`g` in 
   the last ten matches with player :math:`b`
   
 .. math::
    \text{draw_boost}_{a, b, g} = 
-       \sum_{\substack{
-         (now-10) < i \le now \\
+       \displaystyle\sum_{\substack{
+         i=(n-10) \\
          game_i = g \\
          players_i \subset \{a, b\}
-       }}
+       }}^{n}
        \frac{X_i(draw) - E_i(draw)}{10}  
  
-:math:`\text{preference}_{a, b, g}`:
+:math:`\text{preference}_{a, b, g}` :
   Player :math:`a`'s preference to play with player :math:`b` on 
   game :math:`g`
   
@@ -208,7 +206,7 @@ or years since their most recent match.
    \text{draw_boost}_{a, b, g} +
    2 (\text{win_boost}_{a, b, g})
  
-:math:`\text{relative_rating}_{a, b, g}`:
+:math:`\text{relative_rating}_{a, b, g}` :
   The relative skill rating of player :math:`b` on game :math:`g`, 
   compared to player :math:`a` 
   
