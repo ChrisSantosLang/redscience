@@ -134,8 +134,30 @@ partner/opponent, display:
 * **Favors Owed**
 * **Last Match** = days, months, or years since most recent match
 
+:math:`\text{game}_m`:
+  The game for match :math:`m`
+  
+:math:`\text{players}_m`:
+  The players for match :math:`m`
+  
+:math:`X_m(x)`:
+  The occurence of event :math:`x` in match :math:`m`. 
+  
+:math:`\hat{\mu}_{a, g, m}`:
+  The mean skill estimate for player :math:`a` on game :math:`g` going  
+  into match :math:`m`   
+  
+:math:`\hat{\sigma}_{a, g, m}`:
+  The standard deviation in the skill estimate for player :math:`a` on 
+  game :math:`g` going  into match :math:`m`
+  
+:math:`E_m(x)`:
+  The expected probability of event :math:`x` in match :math:`m`, given the skill estimates going into the match  
 
-   
+.. math::
+   E_m(x) = P(X_m(x) \mid \{\hat{\mu}_{a, g, m}, 
+   \hat{\sigma}_{a, g, m} : g = \text{game}_m, 
+   a \in \text{players}_m \})
 
 ==============================  ===================================
 :math:`\text{game}_m`           The game for match :math:`m`
@@ -170,14 +192,6 @@ partner/opponent, display:
        }}
        \frac{X_i(win_a) - E_i(win_a)}{10}   
                                   
-.. math::                                  
-   \sum_{\substack{
-     (m-10) < i \le m \\
-     game_i = g \\
-     players_i \subset \{a, b\}
-     }}
-     \frac{X_i(win_a) - E_i(win_a)}{10}
-
 .. math::
    \text{relative_rating}_{a, b, g, m} = 
    \frac{\hat{\mu}_{b, g, m} - 3 \hat{\sigma}_{b, g, m}}
