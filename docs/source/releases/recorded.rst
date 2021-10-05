@@ -32,9 +32,7 @@ time, “Black circle To A” 2/7th of the time, “Black circle To B”
 Maintain a skill-level rating for each player with form of 
 augmentation per game (e.g. Lora’s skill at Tic-Tac-Toe when 
 reviewing). At the beginning of each game, calculate skill “warning 
-flags” for each player in the match. If the player is a teammate of 
-the user (e.g. Partner), or is not the first on its team to play 
-after the user, calculate flags as follows:
+flags” for each player in the match:
 
 :math:`\text{game}_m`:
   The game for match :math:`m`
@@ -66,17 +64,33 @@ after the user, calculate flags as follows:
   :math:`\text{players}_m` on :math:`\text{game}_m`
 
 .. math::  
-   \text{relative_expertise}_{a, m} =
+   =
     \begin{cases}
       \text{Random}       & \quad \text{if } \hat{\mu}_{a, \text{game}_m} 
       = \hat{\mu}_{random, \text{game}_m} \pm 2 \hat{\sigma}_{a, \text{game}_m}\\
       \text{Novice}  & \quad \text{if } \hat{\mu}_{a, \text{game}_m} 
-      < min \{ (\hat{\mu}_{min, m} + \hat{\sigma}_{a, m}),  (\hat{\mu}_{max, m} - \hat{\sigma}_{a, \text{game}_m}) \}\\
+      < min \{ (\hat{\mu}_{min, m} + \hat{\sigma}_{a, \text{game}_m}),  
+      (\hat{\mu}_{max, m} - \hat{\sigma}_{a, \text{game}_m}) \}\\
       \text{Expert}  & \quad \text{if } \hat{\mu}_{a, \text{game}_m} 
-      > max \{ (\hat{\mu}_{min, m} + \hat{\sigma}_{a, m}),  (\hat{\mu}_{max, m} - \hat{\sigma}_{a, \text{game}_m}) \}
+      > max \{ (\hat{\mu}_{min, m} + \hat{\sigma}_{a, \text{game}_m}),  
+      (\hat{\mu}_{max, m} - \hat{\sigma}_{a, \text{game}_m}) \}
     \end{cases}
   
+If the player a is a teammate of the user (e.g. Partner), or is not the 
+first on its team to play after the user, calculate the flag as follows
 
+.. math::  
+   =
+    \begin{cases}
+      \text{Random}       & \quad \text{if } \hat{\mu}_{a, \text{game}_m} 
+      = \hat{\mu}_{random, \text{game}_m} \pm 2 \hat{\sigma}_{a, \text{game}_m}\\
+      \text{Novice}  & \quad \text{if } \hat{\mu}_{a, \text{game}_m} 
+      < (\hat{\mu}_{partner, \text{game}_m} + 3 \hat{\sigma}_{a, \text{game}_m}\\
+      \text{Expert}  & \quad \text{if } \hat{\mu}_{a, \text{game}_m} 
+      > (\hat{\mu}_{partner, \text{game}_m} + 3 \hat{\sigma}_{a, \text{game}_m}
+    \end{cases}
+    
+    
 ======  ===========================================================
 Random  If its skill level is within two standard deviations of the 
         Random player
