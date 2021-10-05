@@ -110,24 +110,19 @@ game), :
   :math:`g`, a favor being when a player benefits another by performing 
   below its skill level
   
-  .. math::  
-   add
-    \begin{cases}
-      E_m(win_b) + E_m(draw)   & \quad \text{if player } a \text{wins match } m\\
-      -E_m(win_a) - E_m(draw)   & \quad \text{if player } b \text{wins match } m\\
-      E_m(win_b) - E_m(win_a)   & \quad \text{if they draw}
-    \end{cases}
+.. math::  
+  \begin{cases}
+    \text{if player } a \text{wins match } m    & \quad \text{add } E_m(win_b) + E_m(draw)\\
+    \text{if player } b \text{wins match } m    & \quad \text{subtract } E_m(win_a) + E_m(draw)\\
+    \text{if they draw}    & \quad \text{add } E_m(win_b) - E_m(win_a)
+  \end{cases}
 
-Also reset a warning flag on the account:
+Also set a warning flag on the account :math:`\text{warning}_{a, b, g}` unless:
 
 .. math::  
-   \text{warning}_{a, b, g, m} =
-    \begin{cases}
-      \text{True}   & \quad \text{if } \text{favors_owed}_{a, b, g, m} 
-      > max(1, \text{favors_owed}_{a, b, g, m-1})\\
-      \text{False}  & \quad \text{if }\text{favors_owed}_{a, b, g, m} 
-      < min(-1, \text{favors_owed}_{a, b, g, m-1})
-    \end{cases}
+   min(-1, \text{favors_owed}_{a, b, g, m-1}) 
+   < \text{favors_owed}_{a, b, g, m} 
+   < max(1, \text{favors_owed}_{a, b, g, m-1})
 
 At the beginning of each game, for each player in the match, sum the 
 favors owed to all other players in that match:
@@ -139,12 +134,12 @@ favors owed to all other players in that match:
        }}
        \text{favors_owed}_{a, i, game_m} 
 
-and set the total social flags as follows:
+and set the total social flags for each player :math:`\text{flags}_{a, m}` as follows:
 
 .. math::  
-   \text{flags}_{a, m} =
+   =
     \begin{cases}
-      \text{Antisocial}      & \quad  111 & \quad\text{if } \neg \text{Random} \land \exists b \in players_m \text{warning}_{a, b, game_m, m}\\ 
+      \text{Antisocial}      & \quad  111 & \quad\text{if } \neg \text{Random} \land \exists b \in players_m (\text{warning}_{a, b, game_m, m})\\ 
       \text{Richer Novice}   & \quad  110 & \quad\text{if } \neg \text{Antisocial} \land \text{Novice} \land \text{debt}_{a, m} \ge \text{debt}_{user, m}\\
       \text{Richer Expert}   & \quad  101 & \quad\text{if } \neg \text{Antisocial} \land \text{Expert} \land \text{debt}_{a, m} \ge \text{debt}_{user, m}\\
       \text{Richer}          & \quad  100 & \quad\text{if } \neg \text{Antisocial} \land \text{Peer} \land \text{debt}_{a, m} \ge \text{debt}_{user, m}\\
