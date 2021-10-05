@@ -137,13 +137,13 @@ partner/opponent, display:
 .. math::
    \text{relative_rating}_{a, b, g, m} = \frac{\hat{\mu}_{b, g, m} - 3 \hat{\sigma}_{b, g, m}}{\hat{\mu}_{a, g, m} - 3 \hat{\sigma}_{a, g, m}}
  
- .. math::
+.. math::
    \sum_{\substack{
      (m-10) < i \le m \\
      game_i = g \\
      players_i \subset \{a, b\}
      }}
-     \frac{X_i(win_a) - E_i(win_a)}{10)
+     \frac{X_i(win_a) - E_i(\win_a)}{10}
    
 
 ==============================  ============================
