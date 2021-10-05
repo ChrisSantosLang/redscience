@@ -59,14 +59,6 @@ flags” for each player in the match:
   The standard deviation in the skill estimate for player :math:`a` on 
   game :math:`g`
   
-:math:`E_m(x)`:
-  The expected probability of event :math:`x` in match :math:`m`, given 
-  the skill estimates going into the match  
-
-.. math::
-   E_m(x) = P(X_m(x) \mid \{\hat{\mu}_{a, m}, 
-   \hat{\sigma}_{a, m} : a \in \text{players}_m \})
-  
 :math:`\text{relative_expertise}_{a, m}` :
   A flag indicating the expertise of player :math:`a` relative to 
   :math:`\text{players}_m` on :math:`\text{game}_m`
@@ -101,15 +93,27 @@ first on its team to play after the user, calculate the flag as follows
 
 When maintaining skill level, also maintain an account of favors 
 “owed” for each pair of players with form of augmentation (per 
-game), a favor being when a player benefits another by performing 
-below its skill level: 
+game), : 
 
-.. math::  
+:math:`E_m(x)`:
+  The expected probability of event :math:`x` in match :math:`m`, given 
+  the skill estimates going into the match  
+
+.. math::
+   E_m(x) = P(X_m(x) \mid \{\hat{\mu}_{a, m}, 
+   \hat{\sigma}_{a, m} : a \in \text{players}_m \})
+
+:math:`\text{favors_owed}_(a, b, g}`:
+  The favors player :math:`a` owes player :math:`b` on game 
+  :math:`g`, a favor being when a player benefits another by performing 
+  below its skill level
+  
+  .. math::  
    add
     \begin{cases}
-      E_m(win_{creditor}) + E_m(draw)   & \quad \text{if the debtor wins}\\
-      -E_m(win_{debtor}) - E_m(draw)   & \quad \text{if the creditor wins}\\
-      E_m(win_{creditor}) - E_m(win_{debtor})   & \quad \text{if they draw}
+      E_m(win_b) + E_m(draw)   & \quad \text{if player} a \text{wins match} m\\
+      -E_m(win_a) - E_m(draw)   & \quad \text{if player} b \text{wins match } m\\
+      E_m(win_b) - E_m(win_a)   & \quad \text{if they draw}
     \end{cases}
 
 Also reset a warning flag on the account:
@@ -117,8 +121,10 @@ Also reset a warning flag on the account:
 .. math::  
    =
     \begin{cases}
-      \text{True}   & \quad \text{if } account_t > max(account_{t-1}, 1)\\
-      \text{False}  & \quad \text{if } account_t < min(account_{t-1}, -1)
+      \text{True}   & \quad \text{if } \text{favors_owed}_(a, b, g, t} 
+      > max(1, \text{favors_owed}_(a, b, g, t-1})\\
+      \text{False}  & \quad \text{if }\text{favors_owed}_(a, b, g, t} 
+      < min(-1, \text{favors_owed}_(a, b, g, t-1})
     \end{cases}
 
 At the beginning of each game, for each player in the match, sum the 
@@ -170,7 +176,7 @@ or years since their most recent match.
   the last ten matches with player :math:`b`
 
 .. math::
-   \text{win_boost}_{a, b, g, m} = 
+   \text{win_boost}_{a, b, g} = 
        \sum_{\substack{
          (now-10) < i \le now \\
          game_i = g \\
