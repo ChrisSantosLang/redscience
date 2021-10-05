@@ -103,7 +103,7 @@ game), :
    E_m(x) = P(X_m(x) \mid \{\hat{\mu}_{a, m}, 
    \hat{\sigma}_{a, m} : a \in \text{players}_m \})
 
-:math:`\text{favors_owed}_(a, b, g}`:
+:math:`\text{favors_owed}_{a, b, g}`:
   The favors player :math:`a` owes player :math:`b` on game 
   :math:`g`, a favor being when a player benefits another by performing 
   below its skill level
@@ -121,10 +121,10 @@ Also reset a warning flag on the account:
 .. math::  
    =
     \begin{cases}
-      \text{True}   & \quad \text{if } \text{favors_owed}_(a, b, g, t} 
-      > max(1, \text{favors_owed}_(a, b, g, t-1})\\
-      \text{False}  & \quad \text{if }\text{favors_owed}_(a, b, g, t} 
-      < min(-1, \text{favors_owed}_(a, b, g, t-1})
+      \text{True}   & \quad \text{if } \text{favors_owed}_{a, b, g, t} 
+      > max(1, \text{favors_owed}_{a, b, g, t-1})\\
+      \text{False}  & \quad \text{if }\text{favors_owed}_{a, b, g, t} 
+      < min(-1, \text{favors_owed}_{a, b, g, t-1})
     \end{cases}
 
 At the beginning of each game, for each player in the match, sum the 
