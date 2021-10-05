@@ -110,12 +110,16 @@ game), :
   
 .. math::  
   \begin{cases}
-    \text{if player } a \text{wins match } m    & \quad \text{add } E_m(win_b) + E_m(draw)\\
-    \text{if player } b \text{wins match } m    & \quad \text{subtract } E_m(win_a) + E_m(draw)\\
-    \text{if they draw}    & \quad \text{add } E_m(win_b) - E_m(win_a)
+    \text{if player } a \text{ wins match } m \text{,}
+      & \quad \text{add } (E_m(win_b) + E_m(draw))\\
+    \text{if player } b \text{ wins match } m \text{,}   
+      & \quad \text{subtract } (E_m(win_a) + E_m(draw))\\
+    \text{if they draw,}    
+      & \quad \text{add } (E_m(win_b) - E_m(win_a))
   \end{cases}
 
-Also set a warning flag on the account :math:`\text{warning}_{a, b, g}` unless:
+Also set a warning flag  :math:`\text{warning}_{a, b, g}` on the 
+account, unless:
 
 .. math::  
    min(-1, \text{favors_owed}_{a, b, g, m-1}) 
@@ -132,18 +136,25 @@ favors owed to all other players in that match:
        }}
        \text{favors_owed}_{a, i, game_m} 
 
-and set the total social flags for each player :math:`\text{flags}_{a, m}` as follows:
+and set the total social flags for each player 
+:math:`\text{flags}_{a, m}` as follows:
 
 .. math::  
    =
     \begin{cases}
       \text{Random}          & \quad  011 & \quad\text{if Random}\\
-      \text{Antisocial}      & \quad  111 & \quad\text{else if } \exists b \in players_m (\text{warning}_{a, b, game_m})\\ 
-      \text{Richer Novice}   & \quad  110 & \quad\text{else if } \text{debt}_{a, m} \ge \text{debt}_{user, m} \land \text{Novice}\\
-      \text{Richer Expert}   & \quad  101 & \quad\text{else if } \text{debt}_{a, m} \ge \text{debt}_{user, m} \land \text{Expert}\\
-      \text{Richer}          & \quad  100 & \quad\text{else if } \text{debt}_{a, m} \ge \text{debt}_{user, m}\\
-      \text{Poorer Novice}   & \quad  010 & \quad\text{else if } \text{Novice}\\
-      \text{Poorer Expert}   & \quad  001 & \quad\text{esle if } \text{Expert}\\
+      \text{Antisocial}      & \quad  111 & \quad\text{else if } 
+        \exists b \in players_m (\text{warning}_{a, b, game_m})\\ 
+      \text{Richer Novice}   & \quad  110 & \quad\text{else if } 
+        \text{debt}_{a, m} \ge \text{debt}_{user, m} \land \text{Novice}\\
+      \text{Richer Expert}   & \quad  101 & \quad\text{else if } 
+        \text{debt}_{a, m} \ge \text{debt}_{user, m} \land \text{Expert}\\
+      \text{Richer}          & \quad  100 & \quad\text{else if } 
+        \text{debt}_{a, m} \ge \text{debt}_{user, m}\\
+      \text{Poorer Novice}   & \quad  010 & \quad\text{else if } 
+        \text{Novice}\\
+      \text{Poorer Expert}   & \quad  001 & \quad\text{esle if } 
+        \text{Expert}\\
       \text{Poorer}          & \quad  000 & \quad\text{otherwise }
     \end{cases}
 
