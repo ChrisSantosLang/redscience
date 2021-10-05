@@ -135,7 +135,7 @@ partner/opponent, display:
 * **Last Match** = days, months, or years since most recent match
 
 .. math::
-   \text{relative_rating)_{a, b, g, m} = \frac{\hat\{\mu}_{b, g, m} - 3 \hat{\sigma}_{b, g, m}}{\hat\{\mu}_{a, g, m} - 3 \hat{\sigma}_{a, g, m}}
+   \text{relative_rating}_{a, b, g, m} = \frac{\hat\{\mu}_{b, g, m} - 3 \hat{\sigma}_{b, g, m}}{\hat\{\mu}_{a, g, m} - 3 \hat{\sigma}_{a, g, m}}
    
 Definitions
   ::math:`\text{game}_m`: The game for match :math:`m`
