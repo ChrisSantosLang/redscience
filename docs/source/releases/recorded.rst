@@ -153,7 +153,7 @@ partner/opponent, display:
      \end{cases}
    \]
                                   
-                                  
+.. math::                                  
    \sum_{\substack{
      (m-10) < i \le m \\
      game_i = g \\
@@ -176,10 +176,6 @@ partner/opponent, display:
                                 game :math:`g` going  into match 
                                 :math:`m`                       
 :math:`E_m(x) `                 The expected probability of event
-                                :math:`x` in match :math:`m`, given
-                                the skill estimates going into the 
-                                match  
-:math:`\text{win_boost}_{a, b, g, m} `               The expected probability of event
                                 :math:`x` in match :math:`m`, given
                                 the skill estimates going into the 
                                 match  
