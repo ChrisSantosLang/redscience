@@ -140,6 +140,20 @@ partner/opponent, display:
    {\hat{\mu}_{a, g, m} - 3 \hat{\sigma}_{a, g, m}}
  
 .. math::
+   \[ \text{win_boost}_{a, b, g, m} = 
+     \begin{cases}
+       \sum_{\substack{
+         (m-10) < i \le m \\
+         game_i = g \\
+         players_i \subset \{a, b\}
+       }}
+       \frac{X_i(win_a) - E_i(win_a)}{10}   
+       \text{if player} a \text{won match} m\\
+       \text{n.a.}   \text{otherwise}
+     \end{cases}
+   \]
+                                  
+                                  
    \sum_{\substack{
      (m-10) < i \le m \\
      game_i = g \\
@@ -152,14 +166,7 @@ partner/opponent, display:
 :math:`\text{game}_m`           The game for match :math:`m`
 :math:`\text{players}_m`        The players for match :math:`m`
 :math:`X_m(x)`                  The occurence of event :math:`x` 
-                                in match :math:`m`. e.g.
-                                :math:`\[ X_m(\text{win}_a) = 
-                                \begin{cases}
-                                  1   \text{if player} a 
-                                      \text{won match} m\\
-                                  0   \text{otherwise}
-                                \end{cases}
-                                \]`
+                                in match :math:`m`. 
 :math:`\hat{\mu}_{a, g, m}`     The mean skill 
                                 estimate for player :math:`a` on 
                                 game :math:`g` going  into match 
@@ -168,8 +175,20 @@ partner/opponent, display:
                                 estimate for player :math:`a` on 
                                 game :math:`g` going  into match 
                                 :math:`m`                       
+:math:`E_m(x) `                 The expected probability of event
+                                :math:`x` in match :math:`m`, given
+                                the skill estimates going into the 
+                                match  
+:math:`\text{win_boost}_{a, b, g, m} `               The expected probability of event
+                                :math:`x` in match :math:`m`, given
+                                the skill estimates going into the 
+                                match  
 ==============================  ===================================
 
+.. math::
+   E_m(x) = P(X_m(x) \mid \{\hat{\mu}_{x, g, m}, 
+   \hat{\sigma}_{x, g, m} : g = \text{game}_m, 
+   a \in \text{players}_m \}
 
 Maintain a saved record of each match (the game played, who played, 
 their forms of augmentation, their ratings given those forms of 
