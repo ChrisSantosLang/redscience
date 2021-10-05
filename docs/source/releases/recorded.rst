@@ -54,18 +54,14 @@ after the user, calculate flags as follows:
   game :math:`g` going  into match :math:`m`
 
 .. math::  
-  \documentclass{article}
   \usepackage{amsmath}
-
-  \begin{document}
-    \[
-      X(m,n) = \left\{\begin{array}{lr}
-          x(n), & \text{for } 0\leq n\leq 1\\
-          x(n-1), & \text{for } 0\leq n\leq 1\\
-          x(n-1), & \text{for } 0\leq n\leq 1
-          \end{array}\right\} = xy
-    \]
-  \end{document}
+  \[
+    X(m,n) = \left\{\begin{array}{lr}
+        x(n), & \text{for } 0\leq n\leq 1\\
+        x(n-1), & \text{for } 0\leq n\leq 1\\
+        x(n-1), & \text{for } 0\leq n\leq 1
+        \end{array}\right\} = xy
+  \]
   
 .. math::  
   \[ value =
