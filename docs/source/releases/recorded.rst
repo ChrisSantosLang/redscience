@@ -107,9 +107,9 @@ below its skill level:
 .. math::  
    add
     \begin{cases}
-      E_m(win_creditor) + E_m(draw)   & \quad \text{if the debtor wins}\\
-      -E_m(win_debtor) - E_m(draw)   & \quad \text{if the creditor wins}\\
-      E_m(win_creditor) - -E_m(win_debtor)   & \quad \text{if they draw}
+      E_m(win_{creditor}) + E_m(draw)   & \quad \text{if the debtor wins}\\
+      -E_m(win_{debtor}) - E_m(draw)   & \quad \text{if the creditor wins}\\
+      E_m(win_{creditor}) - E_m(win_{debtor})   & \quad \text{if they draw}
     \end{cases}
 
 Also reset a warning flag on the account:
