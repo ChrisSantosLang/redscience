@@ -45,23 +45,23 @@ after the user, calculate flags as follows:
 :math:`X_m(x)`:
   The occurence of event :math:`x` in match :math:`m`. 
   
-:math:`\hat{\mu}_{a, m}`:
+:math:`\hat{\mu}_{a, m}` :
   The mean skill estimate for player :math:`a` on 
   :math:`\text{game}_m` going into match :math:`m`   
   
-:math:`\hat{\mu}_{min, m}, \hat{\mu}_{max, m}`:
+:math:`\hat{\mu}_{min, m}, \hat{\mu}_{max, m}` :
   The lowest and highest mean skill estimates among 
   :math:`\text{players}_m` for :math:`\text{game}_m` 
   
-:math:`\hat{\mu}_{random, m}`:
+:math:`\hat{\mu}_{random, m}` :
   The mean skill estimate for the random player on 
   :math:`\text{game}_m`
   
-:math:`\hat{\sigma}_{a, m}`:
+:math:`\hat{\sigma}_{a, m}` :
   The standard deviation in the skill estimate for player :math:`a` on 
   :math:`\text{game}_m` going  into match :math:`m`
   
-:math:`\text{relative_expertise}_{a, m}`:
+:math:`\text{relative_expertise}_{a, m}` :
   A flag indicating the expertise of player :math:`a` relative to 
   :math:`\text{players}_m` on :math:`\text{game}_m` going  into 
   match :math:`m` 
@@ -165,9 +165,8 @@ or years since their most recent match.
   the skill estimates going into the match  
 
 .. math::
-   E_m(x) = P(X_m(x) \mid \{\hat{\mu}_{a, g, m}, 
-   \hat{\sigma}_{a, g, m} : g = \text{game}_m, 
-   a \in \text{players}_m \})
+   E_m(x) = P(X_m(x) \mid \{\hat{\mu}_{a, m}, 
+   \hat{\sigma}_{a, m} : a \in \text{players}_m \})
 
 :math:`\text{win_boost}_{a, b, g, m}`:
   The boost to player :math:`a`'s win rate on game :math:`g` as of 
