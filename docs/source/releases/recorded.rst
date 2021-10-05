@@ -73,7 +73,8 @@ flags” for each player in the match:
       (\hat{\mu}_{max, m} - \hat{\sigma}_{a, \text{game}_m}) \}\\
       \text{Expert}  & \quad \text{if } \hat{\mu}_{a, \text{game}_m} 
       > max \{ (\hat{\mu}_{min, m} + \hat{\sigma}_{a, \text{game}_m}),  
-      (\hat{\mu}_{max, m} - \hat{\sigma}_{a, \text{game}_m}) \}
+      (\hat{\mu}_{max, m} - \hat{\sigma}_{a, \text{game}_m}) \}\\
+      \text{Peer}  & \quad \text{otherwise}
     \end{cases}
   
 If player :math:`a` is a teammate of the user (e.g. Partner), or is not the 
@@ -87,7 +88,8 @@ first on its team to play after the user, calculate the flag as follows instead:
       \text{Novice}  & \quad \text{if } \hat{\mu}_{a, \text{game}_m} 
       < \hat{\mu}_{partner, \text{game}_m} - 3 \hat{\sigma}_{a, \text{game}_m}\\
       \text{Expert}  & \quad \text{if } \hat{\mu}_{a, \text{game}_m} 
-      > \hat{\mu}_{partner, \text{game}_m} + 3 \hat{\sigma}_{a, \text{game}_m}
+      > \hat{\mu}_{partner, \text{game}_m} + 3 \hat{\sigma}_{a, \text{game}_m}\\
+      \text{Peer}  & \quad \text{otherwise}
     \end{cases}
     
 
@@ -119,46 +121,38 @@ game), :
 Also reset a warning flag on the account:
 
 .. math::  
-   =
+   \text{warning}_{a, b, g, m} =
     \begin{cases}
-      \text{True}   & \quad \text{if } \text{favors_owed}_{a, b, g, t} 
-      > max(1, \text{favors_owed}_{a, b, g, t-1})\\
-      \text{False}  & \quad \text{if }\text{favors_owed}_{a, b, g, t} 
-      < min(-1, \text{favors_owed}_{a, b, g, t-1})
+      \text{True}   & \quad \text{if } \text{favors_owed}_{a, b, g, m} 
+      > max(1, \text{favors_owed}_{a, b, g, m-1})\\
+      \text{False}  & \quad \text{if }\text{favors_owed}_{a, b, g, m} 
+      < min(-1, \text{favors_owed}_{a, b, g, m-1})
     \end{cases}
 
 At the beginning of each game, for each player in the match, sum the 
-favors owed to all other players in that match, and set the total 
-warning flags as follows:
+favors owed to all other players in that match:
 
-===  =============  ==========================================
-111  Antisocial     If not flagged Random, but warning flag is 
-                    true against the player on an at least one 
-                    favors account with another player in the 
-                    match
-110  Richer Novice  If not Antisocial, but flagged Novice and 
-                    the total debt for the player’s team is 
-                    greater than or equal to the total debt for 
-                    the user’s team
-101  Richer Expert  If not Antisocial, but flagged Expert and 
-                    the total debt for the player’s team is 
-                    greater than or equal to the total debt for 
-                    the user’s team
-100  Richer         If no Antisocial or skill flag, but the 
-                    total debt for the player’s team is greater 
-                    than or equal to the total debt for the 
-                    user’s team
-011  Random         If flagged Random
-010  Poorer Novice  If not Antisocial, but flagged Novice and 
-                    the total debt for the player’s team is less 
-                    than the total debt for the user’s team
-001  Poorer Expert  If not Antisocial, but flagged Expert and 
-                    the total debt for the player’s team is less 
-                    than the total debt for the user’s team
-000  Poorer         If no Antisocial or skill flag, but the 
-                    total debt for the player’s team is less 
-                    than the total debt for the user’s team
-===  =============  ==========================================
+.. math::  
+   \text{debt}_{a, m} =
+       \displaystyle\sum_{\substack{
+         i \in players_m \\
+       }}
+       \text{favors_owed}_{a, i, game_m} 
+
+and set the total social flags as follows:
+
+.. math::  
+   \text{flags}_{a, m} =
+    \begin{cases}
+      \text{Antisocial}      & \quad  111 & \quad\text{if } \neg \text{Random} \land \exists b \in players_m \text{warning}_{a, b, game_m, m}\\ 
+      \text{Richer Novice}   & \quad  110 & \quad\text{if } \neg \text{Antisocial} \land \text{Novice} \land \text{debt}_{a, m} \ge \text{debt}_{user, m}\\
+      \text{Richer Expert}   & \quad  101 & \quad\text{if } \neg \text{Antisocial} \land \text{Expert} \land \text{debt}_{a, m} \ge \text{debt}_{user, m}\\
+      \text{Richer}          & \quad  100 & \quad\text{if } \neg \text{Antisocial} \land \text{Peer} \land \text{debt}_{a, m} \ge \text{debt}_{user, m}\\
+      \text{Random}          & \quad  011 & \quad\text{if Random}\\
+      \text{Poorer Novice}   & \quad  010 & \quad\text{if } \neg \text{Antisocial} \land \text{Novice} \land \text{debt}_{a, m} < \text{debt}_{user, m}\\
+      \text{Poorer Expert}   & \quad  001 & \quad\text{if } \neg \text{Antisocial} \land \text{Expert} \land \text{debt}_{a, m} < \text{debt}_{user, m}\\
+      \text{Poorer}          & \quad  000 & \quad\text{if } \neg \text{Antisocial} \land \text{Peer} \land \text{debt}_{a, m} < \text{debt}_{user, m}
+    \end{cases}
 
 By researching play history, human players could get the 
 information in these flags and could use it to their advantage 
