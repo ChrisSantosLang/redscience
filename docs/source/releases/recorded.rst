@@ -146,9 +146,23 @@ partner/opponent, display:
      \frac{X_i(win_a) - E_i(win_a)}{10)
    
 
-=====================  ============================
-:math:`\text{game}_m`  The game for match :math:`m`
-=====================  ============================
+==============================  ============================
+:math:`\text{game}_m`           The game for match :math:`m`
+:math:`\text{players)_m`        The players for match :math:`m`
+:math:`\text{players)_m`        The players for match :math:`m`
+:math:`X_m(x)`                  The occurence of event :math:`x` 
+                                in match :math:`m. e.g.
+                                :math:`\[ X_m(\text{win}_a) = 
+                                \begin{cases}
+                                  1   \text{if player} a \text{won match} m
+                                  0   \text{otherwise}
+                                \end{cases}
+                                \]`
+:math:`\hat{\sigma}_{a, g, m}`  The standard deviation in the skill 
+                                estimate for player :math:`a` on 
+                                game :math:`g` going  into match 
+                                :math:`m                       
+==============================  ============================
 
 
 Maintain a saved record of each match (the game played, who played, 
