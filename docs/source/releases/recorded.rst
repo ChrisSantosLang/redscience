@@ -64,13 +64,13 @@ after the user, calculate flags as follows:
   \]
   
 .. math::  
-  \[ value =
+   value =
     \begin{cases}
       Random       & \quad \text{if } n \text{ is even}\\
       Novice  & \quad \text{if } n \text{ is odd}\\
       Expert  & \quad \text{if } n \text{ is odd}
     \end{cases}
-  \]
+  
 
 ======  ===========================================================
 Random  If its skill level is within two standard deviations of the 
