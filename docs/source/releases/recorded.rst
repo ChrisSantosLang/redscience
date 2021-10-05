@@ -45,33 +45,35 @@ after the user, calculate flags as follows:
 :math:`X_m(x)`:
   The occurence of event :math:`x` in match :math:`m`. 
   
-:math:`\hat{\mu}_{a, m}` :
+:math:`\hat{\mu}_{a, g}` :
   The mean skill estimate for player :math:`a` on 
-  :math:`\text{game}_m` going into match :math:`m`   
+  game :math:`g`   
+  
+:math:`\hat{\mu}_{random, g}` :
+  The mean skill estimate for the random player on 
+  game :math:`g`
   
 :math:`\hat{\mu}_{min, m}, \hat{\mu}_{max, m}` :
   The lowest and highest mean skill estimates among 
   :math:`\text{players}_m` for :math:`\text{game}_m` 
   
-:math:`\hat{\mu}_{random, m}` :
-  The mean skill estimate for the random player on 
-  :math:`\text{game}_m`
-  
-:math:`\hat{\sigma}_{a, m}` :
+:math:`\hat{\sigma}_{a, g}` :
   The standard deviation in the skill estimate for player :math:`a` on 
-  :math:`\text{game}_m` going  into match :math:`m`
+  game :math:`g`
   
 :math:`\text{relative_expertise}_{a, m}` :
   A flag indicating the expertise of player :math:`a` relative to 
-  :math:`\text{players}_m` on :math:`\text{game}_m` going  into 
-  match :math:`m` 
+  :math:`\text{players}_m` on :math:`\text{game}_m`
 
 .. math::  
    \text{relative_expertise}_{a, m} =
     \begin{cases}
-      \text{Random}       & \quad \text{if } \hat{\mu}_{a, m} = \hat{\mu}_{random, m} \pm 2 \hat{\sigma}_{a, m}\\
-      \text{Novice}  & \quad \text{if } \hat{\mu}_{a, m} < min \{ (\hat{\mu}_{min, m} + \hat{\sigma}_{a, m}),  (\hat{\mu}_{max, m} - \hat{\sigma}_{a, m}) \}\\
-      \text{Expert}  & \quad \text{if } \hat{\mu}_{a, m} > max \{ (\hat{\mu}_{min, m} + \hat{\sigma}_{a, m}),  (\hat{\mu}_{max, m} - \hat{\sigma}_{a, m}) \}
+      \text{Random}       & \quad \text{if } \hat{\mu}_{a, \text{game}_m} 
+      = \hat{\mu}_{random, \text{game}_m} \pm 2 \hat{\sigma}_{a, \text{game}_m}\\
+      \text{Novice}  & \quad \text{if } \hat{\mu}_{a, \text{game}_m} 
+      < min \{ (\hat{\mu}_{min, m} + \hat{\sigma}_{a, m}),  (\hat{\mu}_{max, m} - \hat{\sigma}_{a, \text{game}_m}) \}\\
+      \text{Expert}  & \quad \text{if } \hat{\mu}_{a, \text{game}_m} 
+      > max \{ (\hat{\mu}_{min, m} + \hat{\sigma}_{a, m}),  (\hat{\mu}_{max, m} - \hat{\sigma}_{a, \text{game}_m}) \}
     \end{cases}
   
 
@@ -168,62 +170,62 @@ or years since their most recent match.
    E_m(x) = P(X_m(x) \mid \{\hat{\mu}_{a, m}, 
    \hat{\sigma}_{a, m} : a \in \text{players}_m \})
 
-:math:`\text{win_boost}_{a, b, g, m}`:
-  The boost to player :math:`a`'s win rate on game :math:`g` as of 
-  match :math:`m` from playing with player :math:`b`
+:math:`\text{win_boost}_{a, b, g}`:
+  The boost to player :math:`a`'s win rate on game :math:`g` in 
+  the last ten matches with player :math:`b`
 
 .. math::
    \text{win_boost}_{a, b, g, m} = 
        \sum_{\substack{
-         (m-10) < i \le m \\
+         (now-10) < i \le now \\
          game_i = g \\
          players_i \subset \{a, b\}
        }}
        \frac{X_i(win_a) - E_i(win_a)}{10}   
 
-:math:`\text{kick_back}_{a, b, g, m}`:
-  The boost to player :math:`b`'s win rate on game :math:`g` as of 
-  match :math:`m` from playing with player :math:`a`
+:math:`\text{kick_back}_{a, b, g}`:
+  The boost to player :math:`b`'s win rate on game :math:`g` in 
+  the last ten matches with player :math:`a`
   
 .. math::
-   \text{kick_back}_{a, b, g, m} = 
+   \text{kick_back}_{a, b, g} = 
        \sum_{\substack{
-         (m-10) < i \le m \\
+         (now-10) < i \le now \\
          game_i = g \\
          players_i \subset \{a, b\}
        }}
        \frac{X_i(win_b) - E_i(win_b)}{10}  
 
-:math:`\text{draw_boost}_{a, b, g, m}`:
-  The boost to player :math:`a`'s draw rate on game :math:`g` as of 
-  match :math:`m` from playing with player :math:`b`
+:math:`\text{draw_boost}_{a, b, g}`:
+  The boost to player :math:`a`'s draw rate on game :math:`g` in 
+  the last ten matches with player :math:`b`
   
 .. math::
-   \text{draw_boost}_{a, b, g, m} = 
+   \text{draw_boost}_{a, b, g} = 
        \sum_{\substack{
-         (m-10) < i \le m \\
+         (now-10) < i \le now \\
          game_i = g \\
          players_i \subset \{a, b\}
        }}
        \frac{X_i(draw) - E_i(draw)}{10}  
  
-:math:`\text{preference}_{a, b, g, m}`:
+:math:`\text{preference}_{a, b, g}`:
   Player :math:`a`'s preference to play with player :math:`b` on 
-  game :math:`g` as of match :math:`m` 
+  game :math:`g`
   
 .. math::
-   \text{preference}_{a, b, g, m} = 
-   \text{draw_boost}_{a, b, g, m} +
-   2 (\text{win_boost}_{a, b, g, m})
+   \text{preference}_{a, b, g} = 
+   \text{draw_boost}_{a, b, g} +
+   2 (\text{win_boost}_{a, b, g})
  
-:math:`\text{relative_rating}_{a, b, g, m}`:
-  The relative skill rating of player :math:`b`, compared to 
-  player :math:`a` on game :math:`g` as of match :math:`m` 
+:math:`\text{relative_rating}_{a, b, g}`:
+  The relative skill rating of player :math:`b` on game :math:`g`, 
+  compared to player :math:`a` 
   
 .. math::
-   \text{relative_rating}_{a, b, g, m} = 
-   \frac{\hat{\mu}_{b, g, m} - 3 \hat{\sigma}_{b, g, m}}
-   {\hat{\mu}_{a, g, m} - 3 \hat{\sigma}_{a, g, m}}
+   \text{relative_rating}_{a, b, g} = 
+   \frac{\hat{\mu}_{b, g} - 3 \hat{\sigma}_{b, g}}
+   {\hat{\mu}_{a, g} - 3 \hat{\sigma}_{a, g}}
    
 Maintain a saved record of each match (the game played, who played, 
 their forms of augmentation, their ratings given those forms of 
