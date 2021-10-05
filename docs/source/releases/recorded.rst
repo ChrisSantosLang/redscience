@@ -58,7 +58,7 @@ after the user, calculate flags as follows:
     \begin{cases}
       Random       & \quad \text{if } n \text{ is even}\\
       Novice  & \quad \text{if } n \text{ is odd}\\
-      Expert  & \quad \text{if } n \text{ is odd}\\
+      Expert  & \quad \text{if } n \text{ is odd}
     \end{cases}
   \]
 
