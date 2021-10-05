@@ -59,6 +59,14 @@ flags” for each player in the match:
   The standard deviation in the skill estimate for player :math:`a` on 
   game :math:`g`
   
+:math:`E_m(x)`:
+  The expected probability of event :math:`x` in match :math:`m`, given 
+  the skill estimates going into the match  
+
+.. math::
+   E_m(x) = P(X_m(x) \mid \{\hat{\mu}_{a, m}, 
+   \hat{\sigma}_{a, m} : a \in \text{players}_m \})
+  
 :math:`\text{relative_expertise}_{a, m}` :
   A flag indicating the expertise of player :math:`a` relative to 
   :math:`\text{players}_m` on :math:`\text{game}_m`
@@ -90,47 +98,32 @@ first on its team to play after the user, calculate the flag as follows
       > (\hat{\mu}_{partner, \text{game}_m} + 3 \hat{\sigma}_{a, \text{game}_m}
     \end{cases}
     
-    
-======  ===========================================================
-Random  If its skill level is within two standard deviations of the 
-        Random player
-Novice  If not Random (above), and at least three standard deviations 
-        below the highest-rated player on its team. 
-Expert  If not Random (above), and at least three standard deviations 
-        above the lowest-rated player on its team. 
-======  ===========================================================
-
-Otherwise, calculate flags as follows:
-
-======  ===========================================================
-Random  If its skill level is within two standard deviations of the 
-        Random player
-Novice  If not Random (above), and within one standard deviation of 
-        the team least favored to win and at least one standard 
-        deviation below the team most favored to win
-Expert  If not Random (above), and within one standard deviation of 
-        the team most favored to win and at least one standard 
-        deviation above the team least favored to win 
-======  ===========================================================
 
 When maintaining skill level, also maintain an account of favors 
 “owed” for each pair of players with form of augmentation (per 
 game), a favor being when a player benefits another by performing 
 below its skill level: 
 
-* Whenever the debtor wins, add the creditor’s expected win rate 
-  plus the expected draw rate to the account for that game
-* Whenever the creditor wins, subtract the debtor’s expected win 
-  rate plus the expected draw rate to the account for that game
-* Whenever they draw, add the creditor’s expected win rate less 
-  the debtor’s expected win rate to the account for that game
+* Whenever the debtor wins, add :math:`E_m(win_creditor) + E_m(draw)`
+* Whenever the creditor wins, add :math:`-E_m(win_debtor) - E_m(draw)`
+* Whenever they draw, add :math:`E_m(win_creditor) - -E_m(win_debtor)`
+
+.. math::  
+   add
+    \begin{cases}
+      E_m(win_creditor) + E_m(draw)   & \quad \text{if the debtor wins}\\
+      -E_m(win_debtor) - E_m(draw)   & \quad \text{if the creditor wins}\\
+      E_m(win_creditor) - -E_m(win_debtor)   & \quad \text{if they draw}
+    \end{cases}
 
 Also reset the warning flag on the account each time it changes:
 
-* If it increases, set true (for debtor) if and only if the new 
-  total balance is greater than 1
-* If it decreases, set true (for creditor) if and only if the new 
-  total balance is less than -1
+.. math::  
+   =
+    \begin{cases}
+      \text{True}   & \quad \text{if } account_n > max(account_{n-1}, 1)\\
+      \text{False}  & \quad \text{if } account_n < min(account_{n-1}, -1)
+    \end{cases}
 
 At the beginning of each game, for each player in the match, sum the 
 favors owed to all other players in that match, and set the total 
@@ -175,14 +168,6 @@ and form of augmentation. For each other (augmented)
 partner/opponent, display *Win Boost*, *Kick Back*, *Draw Boost*, 
 *Relative Rating*, *Preference*, *Favors Owed* and the days, months, 
 or years since their most recent match.
-  
-:math:`E_m(x)`:
-  The expected probability of event :math:`x` in match :math:`m`, given 
-  the skill estimates going into the match  
-
-.. math::
-   E_m(x) = P(X_m(x) \mid \{\hat{\mu}_{a, m}, 
-   \hat{\sigma}_{a, m} : a \in \text{players}_m \})
 
 :math:`\text{win_boost}_{a, b, g}`:
   The boost to player :math:`a`'s win rate on game :math:`g` in 
