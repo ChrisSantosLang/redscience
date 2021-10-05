@@ -224,7 +224,7 @@ or years since their most recent match.
 .. math::
    \text{relative_rating}_{a, b, g} = 
    \frac{\hat{\mu}_{b, g} - 3 \hat{\sigma}_{b, g}}
-   {\hat{\mu}_{a, g} - 3 \hat{\sigma}_{a, g}}
+   {\hat{\mu}_{a, g} - 3 \hat{\sigma}_{a, g}} - 1
    
 Maintain a saved record of each match (the game played, who played, 
 their forms of augmentation, their ratings given those forms of 
