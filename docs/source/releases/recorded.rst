@@ -76,8 +76,8 @@ flags” for each player in the match:
       (\hat{\mu}_{max, m} - \hat{\sigma}_{a, \text{game}_m}) \}
     \end{cases}
   
-If the player a is a teammate of the user (e.g. Partner), or is not the 
-first on its team to play after the user, calculate the flag as follows
+If player :math:`a` is a teammate of the user (e.g. Partner), or is not the 
+first on its team to play after the user, calculate the flag as follows instead:
 
 .. math::  
    =
