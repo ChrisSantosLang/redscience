@@ -111,8 +111,8 @@ game), :
   .. math::  
    add
     \begin{cases}
-      E_m(win_b) + E_m(draw)   & \quad \text{if player} a \text{wins match} m\\
-      -E_m(win_a) - E_m(draw)   & \quad \text{if player} b \text{wins match } m\\
+      E_m(win_b) + E_m(draw)   & \quad \text{if player } a \text{wins match } m\\
+      -E_m(win_a) - E_m(draw)   & \quad \text{if player } b \text{wins match } m\\
       E_m(win_b) - E_m(win_a)   & \quad \text{if they draw}
     \end{cases}
 
