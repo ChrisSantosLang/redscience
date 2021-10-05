@@ -153,7 +153,7 @@ and set the total social flags for each player
         \text{debt}_{a, m} \ge \text{debt}_{user, m}\\
       \text{Poorer Novice}   & \quad  010 & \quad\text{else if } 
         \text{Novice}\\
-      \text{Poorer Expert}   & \quad  001 & \quad\text{esle if } 
+      \text{Poorer Expert}   & \quad  001 & \quad\text{else if } 
         \text{Expert}\\
       \text{Poorer}          & \quad  000 & \quad\text{otherwise }
     \end{cases}
