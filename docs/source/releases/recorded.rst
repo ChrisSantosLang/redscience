@@ -36,6 +36,32 @@ flags” for each player in the match. If the player is a teammate of
 the user (e.g. Partner), or is not the first on its team to play 
 after the user, calculate flags as follows:
 
+:math:`\text{game}_m`:
+  The game for match :math:`m`
+  
+:math:`\text{players}_m`:
+  The players for match :math:`m`
+  
+:math:`X_m(x)`:
+  The occurence of event :math:`x` in match :math:`m`. 
+  
+:math:`\hat{\mu}_{a, g, m}`:
+  The mean skill estimate for player :math:`a` on game :math:`g` going  
+  into match :math:`m`   
+  
+:math:`\hat{\sigma}_{a, g, m}`:
+  The standard deviation in the skill estimate for player :math:`a` on 
+  game :math:`g` going  into match :math:`m`
+  
+.. math::  
+  \[ value =
+    \begin{cases}
+      Random       & \quad \text{if } n \text{ is even}\\
+      Novice  & \quad \text{if } n \text{ is odd}\\
+      Expert  & \quad \text{if } n \text{ is odd}\\
+    \end{cases}
+  \]
+
 ======  ===========================================================
 Random  If its skill level is within two standard deviations of the 
         Random player
@@ -117,71 +143,22 @@ playing-field by making the information available to all players.
 
 For each player, allow users to view Favoritism Stats for each game 
 and form of augmentation. For each other (augmented) 
-partner/opponent, display: 
-
-* **Win Boost** = (the player’s win rate in last up to 10 matches 
-  together) - (the average of the player’s expected win rates in 
-  those matches)
-* **Kick Back** = (the partner/opponent’s win rate in last up to 
-  10 matches together) - (the average of that partner/opponent’s 
-  expected win rates in those matches)
-* **Draw Boost** = (the draw rate in last up to 10 matches 
-  together) - (the average expected draw rates in those matches)
-* **Relative Rating** = (the partner/opponent’s conservative skill 
-  estimate - the player’s conservative skill estimate) / (the 
-  player’s conservative skill estimate)
-* **Preference** = Draw Boost + (2 * Win Boost)
-* **Favors Owed**
-* **Last Match** = days, months, or years since most recent match
-
-:math:`\text{game}_m`:
-  The game for match :math:`m`
-  
-:math:`\text{players}_m`:
-  The players for match :math:`m`
-  
-:math:`X_m(x)`:
-  The occurence of event :math:`x` in match :math:`m`. 
-  
-:math:`\hat{\mu}_{a, g, m}`:
-  The mean skill estimate for player :math:`a` on game :math:`g` going  
-  into match :math:`m`   
-  
-:math:`\hat{\sigma}_{a, g, m}`:
-  The standard deviation in the skill estimate for player :math:`a` on 
-  game :math:`g` going  into match :math:`m`
+partner/opponent, display *Win Boost*, *Kick Back*, *Draw Boost*, 
+*Relative Rating*, *Preference*, *Favors Owed* and the days, months, 
+or years since their most recent match.
   
 :math:`E_m(x)`:
-  The expected probability of event :math:`x` in match :math:`m`, given the skill estimates going into the match  
+  The expected probability of event :math:`x` in match :math:`m`, given 
+  the skill estimates going into the match  
 
 .. math::
    E_m(x) = P(X_m(x) \mid \{\hat{\mu}_{a, g, m}, 
    \hat{\sigma}_{a, g, m} : g = \text{game}_m, 
    a \in \text{players}_m \})
 
-==============================  ===================================
-:math:`\text{game}_m`           The game for match :math:`m`
-:math:`\text{players}_m`        The players for match :math:`m`
-:math:`X_m(x)`                  The occurence of event :math:`x` 
-                                in match :math:`m`. 
-:math:`\hat{\mu}_{a, g, m}`     The mean skill 
-                                estimate for player :math:`a` on 
-                                game :math:`g` going  into match 
-                                :math:`m`   
-:math:`\hat{\sigma}_{a, g, m}`  The standard deviation in the skill 
-                                estimate for player :math:`a` on 
-                                game :math:`g` going  into match 
-                                :math:`m`                       
-:math:`E_m(x)`                  The expected probability of event
-                                :math:`x` in match :math:`m`, given
-                                the skill estimates going into the 
-                                match  
-==============================  ===================================
-
-.. math::
-   E_m(x) = P(X_m(x) \mid \{\hat{\mu}_{a, g, m}, 
-   \hat{\sigma}_{a, g, m} : g = \text{game}_m, 
-   a \in \text{players}_m \})
+:math:`\text{win_boost}_{a, b, g, m}`:
+  The boost to player :math:`a`'s win rate on game :math:`g` as of 
+  match :math:`m` from playing with player :math:`b`
 
 .. math::
    \text{win_boost}_{a, b, g, m} = 
@@ -191,7 +168,11 @@ partner/opponent, display:
          players_i \subset \{a, b\}
        }}
        \frac{X_i(win_a) - E_i(win_a)}{10}   
-       
+
+:math:`\text{kick_back}_{a, b, g, m}`:
+  The boost to player :math:`b`'s win rate on game :math:`g` as of 
+  match :math:`m` from playing with player :math:`a`
+  
 .. math::
    \text{kick_back}_{a, b, g, m} = 
        \sum_{\substack{
@@ -201,6 +182,10 @@ partner/opponent, display:
        }}
        \frac{X_i(win_b) - E_i(win_b)}{10}  
 
+:math:`\text{draw_boost}_{a, b, g, m}`:
+  The boost to player :math:`a`'s draw rate on game :math:`g` as of 
+  match :math:`m` from playing with player :math:`b`
+  
 .. math::
    \text{draw_boost}_{a, b, g, m} = 
        \sum_{\substack{
@@ -209,12 +194,20 @@ partner/opponent, display:
          players_i \subset \{a, b\}
        }}
        \frac{X_i(draw) - E_i(draw)}{10}  
-       
+ 
+:math:`\text{preference}_{a, b, g, m}`:
+  Player :math:`a`'s preference to play with player :math:`b` on 
+  game :math:`g` as of match :math:`m` 
+  
 .. math::
    \text{preference}_{a, b, g, m} = 
    \text{draw_boost}_{a, b, g, m} +
    2 (\text{win_boost}_{a, b, g, m})
  
+:math:`\text{relative_rating}_{a, b, g, m}`:
+  The relative skill rating of player :math:`b`, compared to 
+  player :math:`a` on game :math:`g` as of match :math:`m` 
+  
 .. math::
    \text{relative_rating}_{a, b, g, m} = 
    \frac{\hat{\mu}_{b, g, m} - 3 \hat{\sigma}_{b, g, m}}
