@@ -93,9 +93,9 @@ first on its team to play after the user, calculate the flag as follows
       \text{Random}       & \quad \text{if } \hat{\mu}_{a, \text{game}_m} 
       = \hat{\mu}_{random, \text{game}_m} \pm 2 \hat{\sigma}_{a, \text{game}_m}\\
       \text{Novice}  & \quad \text{if } \hat{\mu}_{a, \text{game}_m} 
-      < (\hat{\mu}_{partner, \text{game}_m} + 3 \hat{\sigma}_{a, \text{game}_m}\\
+      < \hat{\mu}_{partner, \text{game}_m} - 3 \hat{\sigma}_{a, \text{game}_m}\\
       \text{Expert}  & \quad \text{if } \hat{\mu}_{a, \text{game}_m} 
-      > (\hat{\mu}_{partner, \text{game}_m} + 3 \hat{\sigma}_{a, \text{game}_m}
+      > \hat{\mu}_{partner, \text{game}_m} + 3 \hat{\sigma}_{a, \text{game}_m}
     \end{cases}
     
 
@@ -103,10 +103,6 @@ When maintaining skill level, also maintain an account of favors
 “owed” for each pair of players with form of augmentation (per 
 game), a favor being when a player benefits another by performing 
 below its skill level: 
-
-* Whenever the debtor wins, add :math:`E_m(win_creditor) + E_m(draw)`
-* Whenever the creditor wins, add :math:`-E_m(win_debtor) - E_m(draw)`
-* Whenever they draw, add :math:`E_m(win_creditor) - -E_m(win_debtor)`
 
 .. math::  
    add
@@ -116,13 +112,13 @@ below its skill level:
       E_m(win_creditor) - -E_m(win_debtor)   & \quad \text{if they draw}
     \end{cases}
 
-Also reset the warning flag on the account each time it changes:
+Also reset a warning flag on the account:
 
 .. math::  
    =
     \begin{cases}
-      \text{True}   & \quad \text{if } account_n > max(account_{n-1}, 1)\\
-      \text{False}  & \quad \text{if } account_n < min(account_{n-1}, -1)
+      \text{True}   & \quad \text{if } account_t > max(account_{t-1}, 1)\\
+      \text{False}  & \quad \text{if } account_t < min(account_{t-1}, -1)
     \end{cases}
 
 At the beginning of each game, for each player in the match, sum the 
