@@ -191,7 +191,30 @@ partner/opponent, display:
          players_i \subset \{a, b\}
        }}
        \frac{X_i(win_a) - E_i(win_a)}{10}   
-                                  
+       
+.. math::
+   \text{kick_back}_{a, b, g, m} = 
+       \sum_{\substack{
+         (m-10) < i \le m \\
+         game_i = g \\
+         players_i \subset \{a, b\}
+       }}
+       \frac{X_i(win_b) - E_i(win_b)}{10}  
+
+.. math::
+   \text{draw_boost}_{a, b, g, m} = 
+       \sum_{\substack{
+         (m-10) < i \le m \\
+         game_i = g \\
+         players_i \subset \{a, b\}
+       }}
+       \frac{X_i(draw) - E_i(draw)}{10}  
+       
+.. math::
+   \text{preference}_{a, b, g, m} = 
+   \text{draw_boost}_{a, b, g, m} +
+   2 (\text{win_boost}_{a, b, g, m})
+ 
 .. math::
    \text{relative_rating}_{a, b, g, m} = 
    \frac{\hat{\mu}_{b, g, m} - 3 \hat{\sigma}_{b, g, m}}
