@@ -386,7 +386,7 @@ class Directions(category.Categorized):
                 spots.append(np.array(spot))
         return tuple(spots)
 
-    #: TRANSLATOR: Category of directions in which chess queen can move
+    # TRANSLATOR: Category of directions in which chess queen can move
     ANY = _DirectionsValue(STR=_("any direction"), CALL=_any_direction)
 
     # TRANSLATOR: Category of directions in which chess bishop can move
