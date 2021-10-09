@@ -45,8 +45,8 @@ Potential Schema
 
 friend_requests: PRIMARY KEY is invitor_id, invited_id::
 
-	creator_id  int NOT NULL FOREIGN KEY(players.player_id)
-	invited_id int NOT NULL FOREIGN KEY(players.player_id)
+  creator_id  int NOT NULL FOREIGN KEY(players.player_id)
+  invited_id int NOT NULL FOREIGN KEY(players.player_id)
   created_ts timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
   request_status tinyint NOT NULL DEFAULT 0
 
@@ -56,7 +56,7 @@ friend_requests: PRIMARY KEY is invitor_id, invited_id::
 
 play_invites: PRIMARY KEY is player_id::
 
-	creator_id  int NOT NULL FOREIGN KEY(players.player_id)
+  creator_id  int NOT NULL FOREIGN KEY(players.player_id)
   created_ts timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
   game_id int NOT NULL FOREIGN KEY (games.game_id)
   player2_cat tinyint NOT NULL DEFAULT 0
