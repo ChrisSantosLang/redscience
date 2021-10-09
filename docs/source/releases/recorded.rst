@@ -116,23 +116,25 @@ players: PRIMARY KEY is player_id::
 
   player_id int NOT NULL AUTO_INCREMENT
   created_ts timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-	creator_id  int NOT NULL FOREIGN KEY(players.player_id)
-	parent_id FOREIGN KEY(players.player_id)
-	name varchar( )  UNIQUE NOT NULL
+  creator_id  int NOT NULL FOREIGN KEY(players.player_id)
+  parent_id FOREIGN KEY(players.player_id)
+  name varchar( )  NOT NULL
+  universe varchar( )  NOT NULL
   avatar int NOT NULL
-	type_cat int NOT NULL (cannot change)
-	security_cat int 
+  type_cat int NOT NULL (cannot change)
+  security_cat int 
   status_cat int NOT NULL (logged-out, playing, waiting, browsing)
-	email_ad varchar( )
-	ts_last_login timestamp
-	recent_game_selections
-	recent_player_selections
-	algorithm_json varchar( )
-	cont_learn_fl int
-	introspection_depth int
-	team_id int FOREIGN KEY(players.player_id)
-	
-  UNIQUE INDEX team_id, player_id	
+  email_ad varchar( )
+  ts_last_login timestamp
+  recent_game_selections
+  recent_player_selections
+  algorithm_json varchar( )
+  cont_learn_fl int
+  introspection_depth int
+  team_id int FOREIGN KEY(players.player_id)
+  
+  UNIQUE INDEX name, universe	
+  UNIQUE INDEX team_id, player_id
 
 Hints
 -----
