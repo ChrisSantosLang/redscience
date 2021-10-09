@@ -138,6 +138,7 @@ Favoritism
   the last ten matches with player :math:`b`
 
 .. math::
+   :name: win boost
    \text{win boost}_{a, b, g} = 
        \displaystyle\sum_{\substack{
          i=(n-10) \\
@@ -345,9 +346,9 @@ Favoritism Tab
 
  .. figure:: images/Favoritism.png
 
-   (but the checkboxes, “Document Social History” and “Profile 
-   Selected Players” buttons (fa-bar-chart) do not display until 
-   version 1.6). 
+   Shown as of :doc:`recorded` (to show the evolution of the page).
+   The checkboxes, "Document Social History” button, and “Profile 
+   Selected Players” button do not display until :doc:`educated`. 
 
 * The game dropdown offers one option for each combination of 
   game this player has played and form of augmentation used. 
@@ -367,11 +368,11 @@ Evolution Page
 
    .. figure:: images/LearningCurve.png
 
-   (but the title is “Recorded Tic-Tac-Toe”, and Rating is the only 
-   score option until version 1.6, the “Profile Selected Players” 
-   button (fa-bar-chart) does not display until version 1.6, and 
-   “Show Game Tree” buttons (fa-sitemap) do not show until version 
-   1.10)
+   Shown as of :doc:`corp` (to show the evolution of the page). 
+   The “Profile Selected Players” button (fa-bar-chart) and score
+   options other than "Rating" apear in :doc:`educated`, and 
+   “Show Game Tree” buttons (fa-sitemap) show only for members of
+   a Team or Corp (:doc:`team`)
 
 * The player combobox offers all players. If the selected game is 
   not available for the new player, then select the first game 
