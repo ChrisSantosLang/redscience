@@ -16,6 +16,6 @@ Versions
    teachable
    introspection
    generalintelligence
-   teams
-   corps
-   goverance
+   team
+   corp
+   governance
