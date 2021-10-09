@@ -114,7 +114,7 @@ Formulae
   True if player :math:`a` presents as random in match :math:`m`
   
 .. math::  
-   \text{Random}_{a, m} \text{ if } 
+   \text{ if } 
       \hat{\mu}_{a, \text{game}_m} 
         = \hat{\mu}_{random, \text{game}_m} 
 		  \pm 2 \hat{\sigma}_{a, \text{game}_m}
@@ -123,7 +123,7 @@ Formulae
   True if player :math:`a` presents as a novice in match :math:`m`
   
 .. math::  
-   \text{Novice}_{a, m} \text{ if } 
+   \text{ if } 
       \hat{\mu}_{a, \text{game}_m} 
         < min \{ & ( min \{ \hat{\mu}_{\text{players}_m, \text{game}_m, m} \}
             + \hat{\sigma}_{a, \text{game}_m}),  \\
@@ -135,7 +135,7 @@ not the first on its team to play after the user, calculate the flag
 as follows instead:
 
 .. math::  
-   \text{Novice}_{a, m} \text{ if } 
+   \text{ if } 
      \hat{\mu}_{a, \text{game}_m} 
         < \hat{\mu}_{partner, \text{game}_m} 
 		  - 3 \hat{\sigma}_{a, \text{game}_m}
@@ -144,7 +144,7 @@ as follows instead:
   True if player :math:`a` presents as an expert in match :math:`m`
   
 .. math::  
-   \text{Expert}_{a, m} \text{ if } 
+   \text{ if } 
       \hat{\mu}_{a, \text{game}_m} 
         > max \{ & ( min \{ \hat{\mu}_{\text{players}_m, \text{game}_m, m} \}
 		    + \hat{\sigma}_{a, \text{game}_m}), \\ 
@@ -156,7 +156,7 @@ not the first on its team to play after the user, calculate the flag
 as follows instead:
 
 .. math::  
-   \text{Expert}_{a, m} \text{ if } 
+   \text{ if } 
      \hat{\mu}_{a, \text{game}_m} 
         > \hat{\mu}_{partner, \text{game}_m} 
 		  + 3 \hat{\sigma}_{a, \text{game}_m}
@@ -222,17 +222,17 @@ as follows instead:
   match :math:`m`
   
 .. math::  
-   \text{Richer}_{a, m} \text{ if } 
-     & text{debt}_{a, m} < \text{debt}_{user, m} \\
-     & \text{ or } ( \text{debt}_{a, m} = \text{debt}_{user, m}
-	   \text{ and } R_{a, text{game}_m} > R_{a, text{game}_m} )
+   \text{ if } 
+     & \text{debt}_{a, m} < \text{debt}_{user, m} \\
+     & \text{ or } ( (\text{debt}_{a, m} = \text{debt}_{user, m})
+	   \text{ and } (R_{a, text{game}_m} > R_{user, text{game}_m} ))
 
 :math:`\text{social flags}_{a, m}` :
   A set of flags describing player :math:`a` relative to the user on 
   match :math:`m`
 
 .. math::  
-   \text{social flags}_{a, m} =
+   =
     \begin{cases}
       \text{Random}          & \quad  011 & \quad\text{if } 
 	    \text{Random}_{a, m}\\
