@@ -1,0 +1,55 @@
+===========================
+1.3 Statistical Tic-Tac-Toe
+===========================
+
+Requirements
+------------
+
+Maintain a saved record of each match (the game played, who played, 
+their forms of augmentation, the outcome), and of each choice made 
+during the match. Allow users to see game stats per form of augmentation 
+for each player (time since the player last played, number of matches 
+played, % won, % draw, and average time to finish their turn). For 
+example, Lora's win rate at Tic-Tac-Toe when reviewing.
+
+Command Line Interface::
+  redscience player -s name
+
+Skill Rating
+~~~~~~~~~~~~
+
+Maintain a skill-level rating estimate for each player with form of 
+augmentation per game (e.g. Lora’s skill at Tic-Tac-Toe when 
+reviewing), and add the conservate estimate to player stats along with 
+top burst (i.e largest single-game increase in conservative estimate). To 
+each record of a match, add the estimated ratings of each player before 
+the match, the standard deviation in each estimate, and whether the 
+outcome seemed “strategic” or “unstrategic” for each player twenty matches 
+later.
+
+At the beginning of each game, calculate skill “warning 
+flags” for each player in the match. By researching play history, 
+human players could get the information in these flags and could use 
+it to their advantage (e.g. to cooperate across multiple matches); 
+we level the playing-field by making the information available to all 
+players. 
+
+Favoritism
+~~~~~~~~~~
+
+To each record of a match, add each player’s expected probability of 
+winning, and the expected probability of a draw. When maintaining skill 
+level estimates, also maintain an account of favors “owed” for each pair 
+of players with form of augmentation (per game). Allow users to view 
+Favoritism Stats for each player, game with form of augmentation and  
+partner/opponent (Win Boost, Kick Back, Draw Boost, Relative Rating, 
+Preference, Favors Owed, and time since last match together.
+
+Command Line Interface::
+  redscience player -f name
+
+Formulae
+--------
+
+:math:`\text{game}_m`:
+  The game for match :math:`m`.
