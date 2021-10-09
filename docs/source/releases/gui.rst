@@ -88,11 +88,16 @@ Playground Page
   Shown as of :doc:`introspection` Version (to anticipate the 
   evolution of the page)
 
+* The name of the player with the current tuurn displays in the 
+  upper right along with the form of augmentation ("Moving" if not 
+  augmented).
 * Recommendations by an augmenter (and spaces cited in justification)
   are highlighted in blue. Exclusive spaces have a diagonal pattern 
   in the color(s) to which they are exclusive. Locked spaces are 
   covered with a grid; sticky spaces are coverd with dots; cloaked 
-  spaces are hovered with a haze. 
+  spaces are hovered with a haze. If the augmentation is “Reviewing” 
+  or “Debating” and the augmenting AI predicts probabilities, then 
+  those scores display over each legal "To" for the active move. 
 * The avatars and assigned colors of the other players are shown 
   in order of play (next player first). If there are no invisible 
   spaces, then also display the total count of each other player’s 
@@ -128,9 +133,14 @@ Playground Page
   clears its “To” and any subsequent moves. If the user is not 
   playing with “Delegated” augmentation, this will also disable 
   “Accept Move”.
+* If the augmentation is “Reviewing” or “Debating” and the 
+  augmenting AI predicts probabilities, then the threshold float 
+  select appears above the avatar of the augmenting AI (default
+  to the value most recently selected by the user for that 
+  augmentor and game).   
 * If the user is augmented by a team, then clicking the icon of 
   the bot will toggle the explorer to a different bot in the team 
-  (or toggle the debater if debating)..
+  (or toggle the debater if debating).
 * The “Accept Move” button (fa-check, style=success) advances the 
   turn. If the move is not fully specified (i.e. the user is 
   playing with “Delegated” augmentation), then the non-human player 
