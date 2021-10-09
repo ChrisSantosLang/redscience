@@ -203,7 +203,7 @@ as follows instead:
   :math:`g` is in default
   
 .. math::  
-  {if }
+  \text{if }
     \text{favors owed}_{a, b, m}
 	> min \{ 1, max \{ \text{favors owed}_{a, b, n} : 
 	  \text{game}_n = \text{game}_m, n < m \} \}
