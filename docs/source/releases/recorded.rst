@@ -11,9 +11,7 @@ including name, avatar, type, security, and Universe (for now, all
 players will have Universe = ”Public Universe”; security will be 
 "Admin" if type is Human and None if type is "Random").
 
-To access from command line::
 
-  redscience player name
 
 Random
 ~~~~~~
@@ -54,35 +52,56 @@ and security.
 Potential Mockups
 -----------------
 
+To read player data from command line (not email address)::
+
+  redscience player name
+  
+  
+Player Page
+~~~~~~~~~~~
+
 .. figure:: images/Player.png
 
-   (but the email/Universe textbox does not show until Release 1.3). 
+   Shown as of :doc:`stats` Version (to anticipate the evolution of 
+   the page). The tabs and their contents do not display in the current 
+   version.
+
 
 * When the user is the creator or an Admin, clicking the Avatar 
-  navigates to the Avatar Selection page
-* The name text field does not accept ‘*’, ‘(‘, or ‘)’.
-* The “Copy Player” button (fa-files-o) saves the current record 
-  and opens a Player page for a new Persona. 
-* The stats table is sorted by Last Match (most recent on top). 
-  Display the type of augmentation with the game (A=Alone, 
-  D=Delegating, R=Reviewing). The “Sort by this Column” buttons 
-  re-display the table sorted by the values in the associated 
-  column; if already sorted by that column, reverse the order.
-* The “Play New Game” buttons (fa-fort-awesome) saves the current 
-  record and navigates to the Home Page with the associated game
-  and this player prefilled. 
-* The Rating numbers are “Show Evolution” buttons which save the 
-  current record and navigate to the Evolution Page with this 
-  player, the associated game (and augmentation) and score 
-  selected. The rating displays a conservative estimate (i.e 
-  rating minus two standard deviations), but displays in bold if 
-  within a standard deviation of the maximum rating for that game 
-  among all player/augmentation combinations.
+  navigates to the AI Avatar page for AI players or to the Team 
+  Avatar page other types of players.
+* The name text field does not accept whitespace, ‘*’, ‘(‘, or ‘)’.
+* The “Copy Player” button (fa-files-o) saves the current record and 
+  opens a Player page for a new player (Persona if copied from a 
+  Human player). 
+* For Persona and other non-human players, display the player type 
+  (disabled after first save) instead of security level, and universe
+  (disabled after first save) instead of email. Hide email unless the 
+  user is the owner of the email or is an admin. 
+
+* The stats table is sorted by Last Match (most recent on top). For 
+  human players, display the type of augmentation with the rules 
+  (A=Alone, B=Debating, D=Delegating, R=Reviewing). The “Sort by 
+  this Column” buttons re-display the table sorted by the values in 
+  the associated column; if already sorted by that column, reverse 
+  the order.
+* The “Play New Game” buttons (fa-fort-awesome) save the current 
+  record and navigate to the Home Page with the associated game
+  and this player prefilled. It displays only for non-human players, 
+  friends, and personas created by the user.
+* The Rating, Accuracy, F1, Long-Game, Teach, and Empath numbers 
+  are “Show Evolution” buttons which save the current record and 
+  navigate to the Evolution Page with this player, the associated 
+  game (and augmentation) and score selected. The rating displays 
+  a conservative estimate, but displays in bold if within a 
+  standard deviation of the maximum rating for that game among all 
+  player/augmentation combinations.
 * The Favoritism numbers are “Show Favoritism” buttons which 
   navigate to the Favoritism tab with the associated game (and 
   augmentation) selected.
   
-
+Team Avatar Page
+~~~~~~~~~~~~~~~~
    
  .. figure:: images/HumanSelect.png
 
@@ -90,3 +109,45 @@ Potential Mockups
    avatar replaced with the selected avatar
    
 
+Potential Schema
+----------------
+
+players: PRIMARY KEY is player_id::
+
+  player_id int NOT NULL AUTO_INCREMENT
+  created_ts timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+	creator_id  int NOT NULL FOREIGN KEY(players.player_id)
+	parent_id FOREIGN KEY(players.player_id)
+	name varchar( )  UNIQUE NOT NULL
+  avatar int NOT NULL
+	type_cat int NOT NULL (cannot change)
+	security_cat int 
+  status_cat int NOT NULL (logged-out, playing, waiting, browsing)
+	email_ad varchar( )
+	ts_last_login timestamp
+	recent_game_selections
+	recent_player_selections
+	algorithm_json varchar( )
+	cont_learn_fl int
+	introspection_depth int
+	team_id int FOREIGN KEY(players.player_id)
+	
+  UNIQUE INDEX team_id, player_id	
+
+Hints
+-----
+
+Rotation
+~~~~~~~~
+
+::
+
+  def rotated(label):
+    return widgets.HTML(value='''
+      <p style='
+        writing-mode: vertical-lr; 
+        transform: rotate(180deg);
+        display: inline-block;
+      '>''' + label + "</p>")
+
+  widgets.HBox([rotated("Hello1"), rotated("Hello2")])
