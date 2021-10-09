@@ -11,7 +11,8 @@ including name, avatar, type, security, and Universe (for now, all
 players will have Universe = ”Public Universe”; security will be 
 "Admin" if type is Human and None if type is "Random").
 
-Command Line Interface::
+To access from command line::
+
   redscience player name
 
 Random
