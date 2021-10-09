@@ -234,21 +234,21 @@ as follows instead:
 .. math::  
    =
     \begin{cases}
-      \text{Random}          & \quad  011 & \quad\text{if } 
+      011 \text{ Random}  & \quad\text{if } 
 	    \text{Random}_{a, m}\\
-      \text{Antisocial}      & \quad  111 & \quad\text{else if } 
+      111 \text{ Antisocial} & \quad\text{else if } 
         \exists b \in players_m : \text{default}_{a, b, game_m}\\ 
-      \text{Richer Novice}   & \quad  110 & \quad\text{else if } 
+      110 \text{ Richer Novice} & \quad\text{else if } 
         \text{Richer}_{a, m} \text{ and } \text{Novice}_{a, m}\\
-      \text{Richer Expert}   & \quad  101 & \quad\text{else if } 
+      101 \text{ Richer Expert} & \quad\text{else if } 
         \text{Richer}_{a, m} \text{ and } \text{Expert}_{a, m}\\
-      \text{Richer}          & \quad  100 & \quad\text{else if } 
+      100 \text{ Richer} & \quad\text{else if } 
         \text{Richer}_{a, m}\\
-      \text{Poorer Novice}   & \quad  010 & \quad\text{else if } 
+      010 \text{ Poorer Novice} & \quad\text{else if } 
         \text{Novice}_{a, m}\\
-      \text{Poorer Expert}   & \quad  001 & \quad\text{else if } 
+      001 \text{ Poorer Expert} & \quad\text{else if } 
         \text{Expert}_{a, m}\\
-      \text{Poorer}          & \quad  000 & \quad\text{otherwise }
+      000 \text{ Poorer} & \quad\text{otherwise }
     \end{cases}
 
 
