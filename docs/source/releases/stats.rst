@@ -12,8 +12,7 @@ for each player (time since the player last played, number of matches
 played, % won, % draw, and average time to finish their turn). For 
 example, Lora's win rate at Tic-Tac-Toe when reviewing.
 
-Command Line Interface::
-
+.. code-block::
   redscience player -s name
 
 Skill Rating
@@ -46,7 +45,7 @@ Favoritism Stats for each player, game with form of augmentation and
 partner/opponent (Win Boost, Kick Back, Draw Boost, Relative Rating, 
 Preference, Favors Owed, and time since last match together.
 
-Command Line Interface::
+.. code-block::
   redscience player -f name
 
 Formulae
@@ -77,3 +76,32 @@ Formulae
   
 .. math::
    R_{a, g} = \hat{\mu}_{a, g} - 3 \hat{\sigma}_{a, g} 
+   
+:math:`\text{top_burst}_{a, g}` :
+  The highest growth in conservative skill estimate of player 
+  :math:`a` on game :math:`g`
+  
+.. math::
+   \text{top_burst}_{a, g} 
+     = max \{
+	   R_{a, g, 1} - R_{a, g, 0} \dots
+       R_{a, g, m} - R_{a, g, m-1} \}  
+   
+:math:`text{strategic}_(m, a)``\hat{\sigma}_{a, g}` :
+  Whether the outcome of match :math:`m` seemed "strategic" for 
+  player :math:`a` twenty matches later. 
+  
+ .. math::  
+   =
+    \begin{cases}
+      \text{Strategic}  & \quad \text{if } 
+	    \displaystyle\sum_{i=(m+22)}^{m+26} \hat{\mu}_{a, g, i}
+        - \displaystyle\sum_{i=(m-2)}^{m+2} \hat{\mu}_{a, g, i}
+        \ge  2 \hat{\sigma}_{a, g, m+20}
+        \lor \hat{\mu}_{a, g, m+20} \ge \hat{\mu}_{max, g, m+20} 
+		  - \hat{\sigma}_{a, g, m+20}\\
+      \text{Unstrategic}  & \quad \text{if } 
+	    \displaystyle\sum_{i=(m-2)}^{m+2} \hat{\mu}_{a, g, i}
+	    - \displaystyle\sum_{i=(m+22)}^{m+26} \hat{\mu}_{a, g, i}
+        \ge  2 \hat{\sigma}_{a, g, m+20}
+    \end{cases} 
