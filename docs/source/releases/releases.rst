@@ -1,4 +1,4 @@
-Releases
+Versions
 ========
 
 .. toctree::
@@ -7,6 +7,7 @@ Releases
    commandline
    gui
    recorded
+   stats
    secure
    remote
    games
