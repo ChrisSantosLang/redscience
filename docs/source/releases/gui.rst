@@ -14,12 +14,16 @@ is up. Any player who does not select their move before the timer
 runs out, or who leaves the playground before the game is complete, 
 loses. In addition to displaying the name of the game being played, 
 display its rules (piece-specific rules like ability to move or 
-capture can be displayed via tooltip). Also randomly assign each 
-player two private impulses: Subtle vs. Basic (33.333% frequency) 
-and Rare vs Common (20% frequency). Having private impulses provides 
-strategic advantage in games for which opponents could exploit 
-predictability; making them available to all players levels the 
-playing field.
+capture can be displayed via tooltip). 
+
+Impulses
+~~~~~~~~
+
+Randomly assign each player two private impulses: Subtle vs. Basic 
+(33.333% frequency) and Rare vs Common (20% frequency). Having private 
+impulses provides strategic advantage in games for which opponents 
+could exploit predictability; making them available to all players 
+levels the playing field.
  
 Acceptance Test Plan
 --------------------
@@ -30,6 +34,9 @@ appropriate errors for invalid entries
 Potential Mockups
 -----------------
 
+Command Line Interface::
+  redscience
+  
 .. figure:: images/HomePage1.png
 
    Comboboxes and dropdown are disabled at GUI Tic-Tac-Toe Release
