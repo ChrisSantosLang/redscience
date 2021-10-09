@@ -137,7 +137,9 @@ Playground Page
   augmenting AI predicts probabilities, then the threshold float 
   select appears above the avatar of the augmenting AI (default
   to the value most recently selected by the user for that 
-  augmentor and game).   
+  augmentor and game), and an analysis select displays under the 
+  moves. Display the sensitivity analysis if the analysis select 
+  is set to analyze the proposal. 
 * If the user is augmented by a team, then clicking the icon of 
   the bot will toggle the explorer to a different bot in the team 
   (or toggle the debater if debating).
