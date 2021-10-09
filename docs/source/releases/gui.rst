@@ -47,7 +47,7 @@ Home Page
    
 .. figure:: images/HomePage2.png
 
-   Shown as of :doc:`games` Version (to anticipate the 
+   Shown as of :doc:`games` (to anticipate the 
    evolution of the page)
    
 * The “Go Back” (fa-arrow-left, style=info) button navigates to 
@@ -85,7 +85,7 @@ Playground Page
   
 .. figure:: images/Playground2.png
 
-  Shown as of :doc:`introspection` Version (to anticipate the 
+  Shown as of :doc:`introspection` (to anticipate the 
   evolution of the page)
 
 * The name of the player with the current tuurn displays in the 
