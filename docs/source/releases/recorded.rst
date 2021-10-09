@@ -135,21 +135,3 @@ players: PRIMARY KEY is player_id::
   
   UNIQUE INDEX name, universe	
   UNIQUE INDEX team_id, player_id
-
-Hints
------
-
-Rotation
-~~~~~~~~
-
-::
-
-  def rotated(label):
-    return widgets.HTML(value='''
-      <p style='
-        writing-mode: vertical-lr; 
-        transform: rotate(180deg);
-        display: inline-block;
-      '>''' + label + "</p>")
-
-  widgets.HBox([rotated("Hello1"), rotated("Hello2")])
