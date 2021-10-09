@@ -103,6 +103,7 @@ Formulae
         & \quad \text{or } \hat{\mu}_{a, g, m+20} 
 	  \ge \hat{\mu}_{max, g, m+20} 
 	    - \hat{\sigma}_{a, g, m+20}\\
+	    \\
       \text{Unstrategic}  & \quad \text{if } 
 	    \displaystyle\sum_{i=(m-2)}^{m+2} \hat{\mu}_{a, g, i}
 	    - \displaystyle\sum_{i=(m+22)}^{m+26} \hat{\mu}_{a, g, i}
@@ -143,7 +144,7 @@ as follows instead:
   True if player :math:`a` presents as an expert in match :math:`m`
   
 .. math::  
-   \text{Expert}_{a, m} \text{ if} 
+   \text{Expert}_{a, m} \text{ if } 
       \hat{\mu}_{a, \text{game}_m} 
         > max \{ & ( min \{ \hat{\mu}_{\text{players}_m, \text{game}_m, m} \}
 		    + \hat{\sigma}_{a, \text{game}_m}), \\ 
@@ -191,18 +192,18 @@ as follows instead:
   :math:`m`
   
 .. math::  
-  \text{favors owed}_{a, b, m} = -
+  \text{favors owed}_{a, b, m} =
     \displaystyle\sum_{\substack{
       i=0 \\
       \text{game}_i = \text{game}_m }}^{m} 
-      \text{favor}_{a, b, i}
+      \text{favor}_{b, a, i}
 
 :math:`\text{default}_{a, b, g}` :
   Whether player :math:`a`'s debt to player :math:`b` on game 
   :math:`g` is in default
   
 .. math::  
-  \text{default}_{a, b, g} =
+  =
     \text{favors owed}_{a, b, m}
 	> min \{ 1, max \{ \text{favors owed}_{a, b, n} : 
 	  \text{game}_n = \text{game}_m, n < m \} \}
@@ -222,9 +223,9 @@ as follows instead:
   
 .. math::  
    \text{Richer}_{a, m} \text{ if } 
-     & text{debt}_{a, m} < \text{debt}_{user, m}\\
+     & text{debt}_{a, m} < \text{debt}_{user, m} \\
      & \text{ or } ( \text{debt}_{a, m} = \text{debt}_{user, m}
-	   \text( and } R_{a, text{game}_m} > R_{a, text{game}_m} )
+	   \text{ and } R_{a, text{game}_m} > R_{a, text{game}_m} )
 
 :math:`\text{social flags}_{a, m}` :
   A set of flags describing player :math:`a` relative to the user on 
