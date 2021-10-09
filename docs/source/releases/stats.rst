@@ -79,9 +79,9 @@ Formulae
 .. math::
    R_{a, g} = \hat{\mu}_{a, g} - 3 \hat{\sigma}_{a, g} 
    
-:math:`\text{top_burst}_{a, g}` :
+:math:`TB_{a, g}` :
   The highest growth in conservative skill estimate of player 
   :math:`a` on game :math:`g`
   
 .. math::
-   \text{top_burst}_{a, g} = max \{ (R_{a, g, 1} - R_{a, g, 0}) \dots (R_{a, g, m} - R_{a, g, m-1}) \}  
+   TB_{a, g} = max \{ (R_{a, g, 1} - R_{a, g, 0}) \dots (R_{a, g, m} - R_{a, g, m-1}) \}  
