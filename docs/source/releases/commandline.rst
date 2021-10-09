@@ -55,6 +55,7 @@ Potential Mockups
 -----------------
 
 Command Line Interface::
+
   pip install redscience
   redscience tic-tac-toe
 
