@@ -54,6 +54,10 @@ end the game or restart at any time.
 Potential Mockups
 -----------------
 
+Command Line Interface::
+  pip install redscience
+  redscience tic-tac-toe
+
 .. figure:: images/commandline.png
 
    Each move adds a new section to the bottom...
