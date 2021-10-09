@@ -217,8 +217,8 @@ Favoritism
 	> min \{ 1, max \{ \text{favors owed}_{a, b, n} : 
 	  \text{game}_n = \text{game}_m, n < m \} \}
 
- Social Flags
- ~~~~~~~~~~~~
+Social Flags
+~~~~~~~~~~~~
 
 :math:`\text{Random}_{a, m}` :
   True if player :math:`a` presents as random in match :math:`m`
@@ -482,4 +482,4 @@ favor_stats: PRIMARY KEY is player1_id, player1_tool_cat, player2_id, player2_to
   debt float
   debt_default_fl bool NOT NULL DEFAULT 0
 
-INDEX player_id
+  INDEX player_id
