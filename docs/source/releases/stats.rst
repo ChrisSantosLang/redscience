@@ -84,22 +84,23 @@ Formulae
 .. math::
    \text{top_burst}_{a, g} 
      = max \{
-	   R_{a, g, 1} - R_{a, g, 0} \dots
-       R_{a, g, m} - R_{a, g, m-1} \}  
+	   (R_{a, g, 1} - R_{a, g, 0}) \dots
+       (R_{a, g, m} - R_{a, g, m-1}) \}  
    
-:math:`text{strategic}_(m, a)` :
+:math:`\text{strategic}_(m, a)` :
   Whether the outcome of match :math:`m` seemed "strategic" for 
   player :math:`a` twenty matches later. 
   
  .. math::  
-   text{strategic}_(m, a) =
+   =
     \begin{cases}
       \text{Strategic}  & \quad \text{if } 
 	    \displaystyle\sum_{i=(m+22)}^{m+26} \hat{\mu}_{a, g, i}
         - \displaystyle\sum_{i=(m-2)}^{m+2} \hat{\mu}_{a, g, i}
-        \ge  2 \hat{\sigma}_{a, g, m+20}
-        \lor \hat{\mu}_{a, g, m+20} \ge \hat{\mu}_{max, g, m+20} 
-		  - \hat{\sigma}_{a, g, m+20}\\
+        \ge  2 \hat{\sigma}_{a, g, m+20}\\
+        & \quad \lor \hat{\mu}_{a, g, m+20} 
+	  \ge \hat{\mu}_{max, g, m+20} 
+	    - \hat{\sigma}_{a, g, m+20}\\
       \text{Unstrategic}  & \quad \text{if } 
 	    \displaystyle\sum_{i=(m-2)}^{m+2} \hat{\mu}_{a, g, i}
 	    - \displaystyle\sum_{i=(m+22)}^{m+26} \hat{\mu}_{a, g, i}
