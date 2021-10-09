@@ -62,7 +62,7 @@ Player Page
 
 .. figure:: images/Player.png
 
-   Shown as of :doc:`stats` Version (to anticipate the evolution of 
+   Shown as of :doc:`stats` (to anticipate the evolution of 
    the page). The tabs and their contents do not display in the current 
    version.
 
