@@ -84,4 +84,4 @@ Formulae
   :math:`a` on game :math:`g`
   
 .. math::
-   TB_{a, g} = \text{or} max \{ (R_{a, g, 1} - R_{a, g, 0}) \dots (R_{a, g, m} - R_{a, g, m-1}) \}  
+   TB_{a, g} = \text{or}_a max \{ (R_{a, g, 1} - R_{a, g, 0}) \dots (R_{a, g, m} - R_{a, g, m-1}) \}  
