@@ -100,7 +100,7 @@ Formulae
 	    \displaystyle\sum_{i=(m+22)}^{m+26} \hat{\mu}_{a, g, i}
         - \displaystyle\sum_{i=(m-2)}^{m+2} \hat{\mu}_{a, g, i}
         \ge  2 \hat{\sigma}_{a, g, m+20}\\
-        & \quad \text{or} \hat{\mu}_{a, g, m+20} 
+        & \quad \text{or } \hat{\mu}_{a, g, m+20} 
 	  \ge \hat{\mu}_{max, g, m+20} 
 	    - \hat{\sigma}_{a, g, m+20}\\
       \text{Unstrategic}  & \quad \text{if } 
@@ -113,7 +113,7 @@ Formulae
   True if player :math:`a` presents as random in match :math:`m`
   
 .. math::  
-   \text{Random}_{a, m} \text{if} 
+   \text{Random}_{a, m} \text{ if } 
       \hat{\mu}_{a, \text{game}_m} 
         = \hat{\mu}_{random, \text{game}_m} 
 		  \pm 2 \hat{\sigma}_{a, \text{game}_m}
@@ -122,11 +122,11 @@ Formulae
   True if player :math:`a` presents as a novice in match :math:`m`
   
 .. math::  
-   \text{Novice}_{a, m} \text{if} 
+   \text{Novice}_{a, m} \text{ if } 
       \hat{\mu}_{a, \text{game}_m} 
-        < min \{ ( min \{ \hat{\mu}_{\text{players}_m, \text{game}_m, m} \}
-            + \hat{\sigma}_{a, \text{game}_m}),  
-          ( max \{ \hat{\mu}_{\text{players}_m, \text{game}_m, m} \} 
+        < min \{ & ( min \{ \hat{\mu}_{\text{players}_m, \text{game}_m, m} \}
+            + \hat{\sigma}_{a, \text{game}_m}),  \\
+          & ( max \{ \hat{\mu}_{\text{players}_m, \text{game}_m, m} \} 
 		    - \hat{\sigma}_{a, \text{game}_m}) \}
 
 If player :math:`a` is a teammate of the user (e.g. Partner), or is 
@@ -134,7 +134,7 @@ not the first on its team to play after the user, calculate the flag
 as follows instead:
 
 .. math::  
-   \text{Novice}_{a, m} \text{if} 
+   \text{Novice}_{a, m} \text{ if } 
      \hat{\mu}_{a, \text{game}_m} 
         < \hat{\mu}_{partner, \text{game}_m} 
 		  - 3 \hat{\sigma}_{a, \text{game}_m}
@@ -143,11 +143,11 @@ as follows instead:
   True if player :math:`a` presents as an expert in match :math:`m`
   
 .. math::  
-   \text{Expert}_{a, m} \text{if} 
+   \text{Expert}_{a, m} \text{ if} 
       \hat{\mu}_{a, \text{game}_m} 
-        > max \{ ( min \{ \hat{\mu}_{\text{players}_m, \text{game}_m, m} \}
-		    + \hat{\sigma}_{a, \text{game}_m}),  
-          ( max \{ \hat{\mu}_{\text{players}_m, \text{game}_m, m} \} 
+        > max \{ & ( min \{ \hat{\mu}_{\text{players}_m, \text{game}_m, m} \}
+		    + \hat{\sigma}_{a, \text{game}_m}), \\ 
+          & ( max \{ \hat{\mu}_{\text{players}_m, \text{game}_m, m} \} 
 		    - \hat{\sigma}_{a, \text{game}_m}) \}
 
 If player :math:`a` is a teammate of the user (e.g. Partner), or is 
@@ -155,7 +155,7 @@ not the first on its team to play after the user, calculate the flag
 as follows instead:
 
 .. math::  
-   \text{Expert}_{a, m} \text{if} 
+   \text{Expert}_{a, m} \text{ if } 
      \hat{\mu}_{a, \text{game}_m} 
         > \hat{\mu}_{partner, \text{game}_m} 
 		  + 3 \hat{\sigma}_{a, \text{game}_m}
@@ -180,7 +180,7 @@ as follows instead:
    \begin{cases}
     E_m(win_a) + E_m(draw) & \quad  
       \text{if player } b \text{ wins match } m \\
-	- (E_m(win_b) + E_m(draw)) & \quad 
+	- E_m(win_b) - E_m(draw) & \quad 
 	  \text{if player } a \text{ wins match } m \\
 	E_m(win_a) - E_m(win_b) & \quad 
       \text{if they draw}    
@@ -194,7 +194,7 @@ as follows instead:
   \text{favors owed}_{a, b, m} = -
     \displaystyle\sum_{\substack{
       i=0 \\
-      \text{game}_i = \text{game}_m }^{m} 
+      \text{game}_i = \text{game}_m }}^{m} 
       \text{favor}_{a, b, i}
 
 :math:`\text{default}_{a, b, g}` :
@@ -221,10 +221,10 @@ as follows instead:
   match :math:`m`
   
 .. math::  
-   \text{Richer}_{a, m} \text{if} 
-     text{debt}_{a, m} < \text{debt}_{user, m}
-	 \lor ( text{debt}_{a, m} = \text{debt}_{user, m}
-	   \land R_{a, text{game}_m} > R_{a, text{game}_m} )
+   \text{Richer}_{a, m} \text{ if } 
+     & text{debt}_{a, m} < \text{debt}_{user, m}\\
+     & \text{ or } ( \text{debt}_{a, m} = \text{debt}_{user, m}
+	   \text( and } R_{a, text{game}_m} > R_{a, text{game}_m} )
 
 :math:`\text{social flags}_{a, m}` :
   A set of flags describing player :math:`a` relative to the user on 
@@ -236,13 +236,13 @@ as follows instead:
       \text{Random}          & \quad  011 & \quad\text{if } 
 	    \text{Random}_{a, m}\\
       \text{Antisocial}      & \quad  111 & \quad\text{else if } 
-        \exists b \in players_m \text{default}_{a, b, game_m}\\ 
+        \exists b \in players_m : \text{default}_{a, b, game_m}\\ 
       \text{Richer Novice}   & \quad  110 & \quad\text{else if } 
-        \text{Richer}_{a, m} \land \text{Novice}_{a, m}\\
+        \text{Richer}_{a, m} \text{ and } \text{Novice}_{a, m}\\
       \text{Richer Expert}   & \quad  101 & \quad\text{else if } 
-        text{Richer}_{a, m} \land \text{Expert}_{a, m}\\
+        \text{Richer}_{a, m} \text{ and } \text{Expert}_{a, m}\\
       \text{Richer}          & \quad  100 & \quad\text{else if } 
-        text{Richer}_{a, m}\\
+        \text{Richer}_{a, m}\\
       \text{Poorer Novice}   & \quad  010 & \quad\text{else if } 
         \text{Novice}_{a, m}\\
       \text{Poorer Expert}   & \quad  001 & \quad\text{else if } 
@@ -296,8 +296,8 @@ as follows instead:
   
 .. math::
    \text{preference}_{a, b, g} = 
-   \text{draw_boost}_{a, b, g} +
-   2 (\text{win_boost}_{a, b, g})
+   \text{draw boost}_{a, b, g} +
+   2 (\text{win boost}_{a, b, g})
  
 :math:`\text{relative rating}_{a, b, g}` :
   The relative skill rating of player :math:`b` on game :math:`g`, 
