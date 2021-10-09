@@ -484,3 +484,21 @@ favor_stats: PRIMARY KEY is player1_id, player1_tool_cat, player2_id, player2_to
   debt_default_fl bool NOT NULL DEFAULT 0
 
   INDEX player_id
+  
+Hints
+-----
+
+Rotation
+~~~~~~~~
+
+::
+
+  def rotated(label):
+    return widgets.HTML(value='''
+      <p style='
+        writing-mode: vertical-lr; 
+        transform: rotate(180deg);
+        display: inline-block;
+      '>''' + label + "</p>")
+
+  widgets.HBox([rotated("Hello1"), rotated("Hello2")])
