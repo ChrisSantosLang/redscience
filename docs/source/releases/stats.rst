@@ -87,12 +87,12 @@ Formulae
 	   R_{a, g, 1} - R_{a, g, 0} \dots
        R_{a, g, m} - R_{a, g, m-1} \}  
    
-:math:`text{strategic}_(m, a)``\hat{\sigma}_{a, g}` :
+:math:`text{strategic}_(m, a)` :
   Whether the outcome of match :math:`m` seemed "strategic" for 
   player :math:`a` twenty matches later. 
   
  .. math::  
-   =
+   text{strategic}_(m, a) =
     \begin{cases}
       \text{Strategic}  & \quad \text{if } 
 	    \displaystyle\sum_{i=(m+22)}^{m+26} \hat{\mu}_{a, g, i}
