@@ -54,7 +54,7 @@ end the game or restart at any time.
 Potential Mockups
 -----------------
 
-Command Line Interface::
+To start from command line::
 
   pip install redscience
   redscience tic-tac-toe
