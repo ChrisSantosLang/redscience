@@ -13,6 +13,7 @@ played, % won, % draw, and average time to finish their turn). For
 example, Lora's win rate at Tic-Tac-Toe when reviewing.
 
 Command Line Interface::
+
   redscience player -s name
 
 Skill Rating
@@ -53,3 +54,26 @@ Formulae
 
 :math:`\text{game}_m`:
   The game for match :math:`m`.
+  
+:math:`\text{players}_m`:
+  The players for match :math:`m`.
+  
+:math:`\hat{\mu}_{a, g}` :
+  The mean skill estimate for player :math:`a` on 
+  game :math:`g`. :math:`\hat{\mu}_{random, g}` is the mean skill 
+  estimate for the random player, :math:`\hat{\mu}_{a, g, m}` is the 
+  mean skill estimate going into match :math:`m`, and 
+  \hat{\mu}_{max, g, m} is the highest skill estimate among all 
+  players at that time.
+  
+:math:`\hat{\sigma}_{a, g}` :
+  The standard deviation in the skill estimate for player 
+  :math:`a` on game :math:`g`. :math:`\hat{\sigma}_{a, g, m}` is the 
+  standard deviation going into match :math:`m`.
+  
+:math:`R_{a, g}` :
+  The conservative skill estimate of player :math:`a` on 
+  game :math:`g`
+  
+.. math::
+   R_{a, g} = \hat{\mu}_{a, g} - 3 \hat{\sigma}_{a, g} 
