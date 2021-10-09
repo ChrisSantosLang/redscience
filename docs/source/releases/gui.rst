@@ -34,7 +34,8 @@ appropriate errors for invalid entries
 Potential Mockups
 -----------------
 
-Command Line Interface::
+To start from command line:: 
+
   redscience
   
 .. figure:: images/HomePage1.png
