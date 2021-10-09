@@ -12,10 +12,6 @@ for each player (time since the player last played, number of matches
 played, % won, % draw, and average time to finish their turn). For 
 example, Lora's win rate at Tic-Tac-Toe when reviewing.
 
-::
-
-  redscience player -s name
-
 Skill Rating
 ~~~~~~~~~~~~
 
@@ -46,12 +42,12 @@ Favoritism Stats for each player, game with form of augmentation and
 partner/opponent (Win Boost, Kick Back, Draw Boost, Relative Rating, 
 Preference, Favors Owed, and time since last match together.
 
-::
-
-  redscience player -f name
 
 Formulae
 --------
+
+Skill Rating
+~~~~~~~~~~~~
 
 :math:`\text{game}_m`:
   The game for match :math:`m`.
@@ -89,6 +85,19 @@ Formulae
 	   R_{a, g, 1} - R_{a, g, 0} \dots
        R_{a, g, m} - R_{a, g, m-1} \}  
 
+:math:`\text{relative rating}_{a, b, g}` :
+  The relative skill rating of player :math:`b` on game :math:`g`, 
+  compared to player :math:`a` 
+  
+.. math::
+   \text{relative rating}_{a, b, g} = 
+    \frac{R_{b, g}}
+     {R_{a, g}} 
+    - 1
+
+Stategic Outcomes
+~~~~~~~~~~~~~~~~~
+
 :math:`\text{strategic}_(m, a)` :
   Whether the outcome of match :math:`m` seemed "strategic" for 
   player :math:`a` twenty matches later. 
@@ -109,7 +118,108 @@ Formulae
 	    - \displaystyle\sum_{i=(m+22)}^{m+26} \hat{\mu}_{a, g, i}
         \ge  2 \hat{\sigma}_{a, g, m+20}
     \end{cases} 
+
+Favoritism
+~~~~~~~~~~
+
+:math:`X_m(x)` :
+  The occurence of event :math:`x` in match :math:`m`. 
+
+:math:`E_m(x)` :
+  The expected probability of event :math:`x` in match :math:`m`, given 
+  the skill estimates going into the match  
+
+.. math::
+   E_m(x) = P(X_m(x) \mid \{\hat{\mu}_{a, m}, 
+   \hat{\sigma}_{a, m} : a \in \text{players}_m \})
+   
+:math:`\text{win boost}_{a, b, g}` :
+  The boost to player :math:`a`'s win rate on game :math:`g` in 
+  the last ten matches with player :math:`b`
+
+.. math::
+   \text{win boost}_{a, b, g} = 
+       \displaystyle\sum_{\substack{
+         i=(n-10) \\
+         game_i = g \\
+         players_i \subset \{a, b\}
+       }}^{n}
+       \frac{X_i(win_a) - E_i(win_a)}{10}   
+
+:math:`\text{kick back}_{a, b, g}` :
+  The boost to player :math:`b`'s win rate on game :math:`g` in 
+  the last ten matches with player :math:`a`
   
+.. math::
+   \text{kick back}_{a, b, g} = 
+       \displaystyle\sum_{\substack{
+         i=(n-10) \\
+         game_i = g \\
+         players_i \subset \{a, b\}
+       }}^{n}
+       \frac{X_i(win_b) - E_i(win_b)}{10}  
+
+:math:`\text{draw boost}_{a, b, g}` :
+  The boost to player :math:`a`'s draw rate on game :math:`g` in 
+  the last ten matches with player :math:`b`
+  
+.. math::
+   \text{draw boost}_{a, b, g} = 
+       \displaystyle\sum_{\substack{
+         i=(n-10) \\
+         game_i = g \\
+         players_i \subset \{a, b\}
+       }}^{n}
+       \frac{X_i(draw) - E_i(draw)}{10}  
+ 
+:math:`\text{preference}_{a, b, g}` :
+  Player :math:`a`'s preference to play with player :math:`b` on 
+  game :math:`g`
+  
+.. math::
+   \text{preference}_{a, b, g} = 
+   \text{draw boost}_{a, b, g} +
+   2 (\text{win boost}_{a, b, g})
+
+:math:`\text{favor}_{a, b, m}` :
+  The favor player performed by :math:`a` for player :math:`b` in match 
+  :math:`m`.
+  
+.. math:: 
+  \text{favor}_{a, b, m} = 
+   \begin{cases}
+    E_m(win_a) + E_m(draw) & \quad  
+      \text{if player } b \text{ wins match } m \\
+	- E_m(win_b) - E_m(draw) & \quad 
+	  \text{if player } a \text{ wins match } m \\
+	E_m(win_a) - E_m(win_b) & \quad 
+      \text{if they draw}    
+   \end{cases}  
+  
+:math:`\text{favors owed}_{a, b, m}` :
+  The favors player :math:`a` owes player :math:`b` in match  
+  :math:`m`
+  
+.. math::  
+  \text{favors owed}_{a, b, m} =
+    \displaystyle\sum_{\substack{
+      i=0 \\
+      \text{game}_i = \text{game}_m }}^{m} 
+      \text{favor}_{b, a, i}
+
+:math:`\text{default}_{a, b, g}` :
+  Whether player :math:`a`'s debt to player :math:`b` on game 
+  :math:`g` is in default
+  
+.. math::  
+  \text{if }
+    \text{favors owed}_{a, b, m}
+	> min \{ 1, max \{ \text{favors owed}_{a, b, n} : 
+	  \text{game}_n = \text{game}_m, n < m \} \}
+
+ Social Flags
+ ~~~~~~~~~~~~
+
 :math:`\text{Random}_{a, m}` :
   True if player :math:`a` presents as random in match :math:`m`
   
@@ -160,53 +270,6 @@ as follows instead:
      \hat{\mu}_{a, \text{game}_m} 
         > \hat{\mu}_{partner, \text{game}_m} 
 		  + 3 \hat{\sigma}_{a, \text{game}_m}
-		  
-:math:`X_m(x)` :
-  The occurence of event :math:`x` in match :math:`m`. 
-
-:math:`E_m(x)` :
-  The expected probability of event :math:`x` in match :math:`m`, given 
-  the skill estimates going into the match  
-
-.. math::
-   E_m(x) = P(X_m(x) \mid \{\hat{\mu}_{a, m}, 
-   \hat{\sigma}_{a, m} : a \in \text{players}_m \})
-
-:math:`\text{favor}_{a, b, m}` :
-  The favor player performed by :math:`a` for player :math:`b` in match 
-  :math:`m`.
-  
-.. math:: 
-  \text{favor}_{a, b, m} = 
-   \begin{cases}
-    E_m(win_a) + E_m(draw) & \quad  
-      \text{if player } b \text{ wins match } m \\
-	- E_m(win_b) - E_m(draw) & \quad 
-	  \text{if player } a \text{ wins match } m \\
-	E_m(win_a) - E_m(win_b) & \quad 
-      \text{if they draw}    
-   \end{cases}  
-  
-:math:`\text{favors owed}_{a, b, m}` :
-  The favors player :math:`a` owes player :math:`b` in match  
-  :math:`m`
-  
-.. math::  
-  \text{favors owed}_{a, b, m} =
-    \displaystyle\sum_{\substack{
-      i=0 \\
-      \text{game}_i = \text{game}_m }}^{m} 
-      \text{favor}_{b, a, i}
-
-:math:`\text{default}_{a, b, g}` :
-  Whether player :math:`a`'s debt to player :math:`b` on game 
-  :math:`g` is in default
-  
-.. math::  
-  \text{if }
-    \text{favors owed}_{a, b, m}
-	> min \{ 1, max \{ \text{favors owed}_{a, b, n} : 
-	  \text{game}_n = \text{game}_m, n < m \} \}
 
 :math:`\text{debt}_{a, m}` :
   The favors owed by player :math:`a` to all other players in 
@@ -216,7 +279,7 @@ as follows instead:
    \text{debt}_{a, m} =
      \displaystyle\sum_{i \in players_m}
        \text{favors owed}_{a, i, m} 
-
+       
 :math:`\text{Richer}_{a, m}` :
   True if player :math:`a` presents as richer than the user in 
   match :math:`m`
@@ -252,64 +315,6 @@ as follows instead:
     \end{cases}
 
 
-:math:`\text{win boost}_{a, b, g}` :
-  The boost to player :math:`a`'s win rate on game :math:`g` in 
-  the last ten matches with player :math:`b`
-
-.. math::
-   \text{win boost}_{a, b, g} = 
-       \displaystyle\sum_{\substack{
-         i=(n-10) \\
-         game_i = g \\
-         players_i \subset \{a, b\}
-       }}^{n}
-       \frac{X_i(win_a) - E_i(win_a)}{10}   
-
-:math:`\text{kick back}_{a, b, g}` :
-  The boost to player :math:`b`'s win rate on game :math:`g` in 
-  the last ten matches with player :math:`a`
-  
-.. math::
-   \text{kick back}_{a, b, g} = 
-       \displaystyle\sum_{\substack{
-         i=(n-10) \\
-         game_i = g \\
-         players_i \subset \{a, b\}
-       }}^{n}
-       \frac{X_i(win_b) - E_i(win_b)}{10}  
-
-:math:`\text{draw boost}_{a, b, g}` :
-  The boost to player :math:`a`'s draw rate on game :math:`g` in 
-  the last ten matches with player :math:`b`
-  
-.. math::
-   \text{draw boost}_{a, b, g} = 
-       \displaystyle\sum_{\substack{
-         i=(n-10) \\
-         game_i = g \\
-         players_i \subset \{a, b\}
-       }}^{n}
-       \frac{X_i(draw) - E_i(draw)}{10}  
- 
-:math:`\text{preference}_{a, b, g}` :
-  Player :math:`a`'s preference to play with player :math:`b` on 
-  game :math:`g`
-  
-.. math::
-   \text{preference}_{a, b, g} = 
-   \text{draw boost}_{a, b, g} +
-   2 (\text{win boost}_{a, b, g})
- 
-:math:`\text{relative rating}_{a, b, g}` :
-  The relative skill rating of player :math:`b` on game :math:`g`, 
-  compared to player :math:`a` 
-  
-.. math::
-   \text{relative rating}_{a, b, g} = 
-    \frac{R_{b, g}}
-     {R_{a, g}} 
-    - 1
-
 Acceptance Test Plan
 --------------------
 
@@ -323,6 +328,20 @@ confirm that it remembers the stats.
 Potential Mockups
 -----------------
 
+To get CSV of moves::
+
+  redscience moves tic-tac-toe {file}
+  
+To get CSV of stats::
+
+  redscience player {name} -s {file}
+  
+To get CSV of favoritism::
+
+  redscience player {name} -f {file}
+
+Favoritism Tab
+~~~~~~~~~~~~~~
 
  .. figure:: images/Favoritism.png
 
@@ -342,7 +361,10 @@ Potential Mockups
   save the current record and navigate to the Evolution Page with 
   the selected rule set and “Rating” selected for both the player 
   and the associated other player.
-  
+ 
+Evolution Page
+~~~~~~~~~~~~~~
+
    .. figure:: images/LearningCurve.png
 
    (but the title is “Recorded Tic-Tac-Toe”, and Rating is the only 
@@ -364,3 +386,100 @@ Potential Mockups
   curves display, also display a legend.
 * The “Delete Curve” button (fa-trash-o) removes that row (and 
   adds an “Add Curve” button to the last).
+
+Potential Schema
+----------------
+
+matches: PRIMARY KEY is match_id::
+
+  match_id int NOT NULL AUTO_INCREMENT
+  created_ts timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  creator_id  int NOT NULL FOREIGN KEY(players.player_id)
+  game_id int NOT NULL FOREIGN KEY (games.game_id)
+  player1_id int NOT NULL FOREIGN KEY(players.player_id) (player order by id)
+  player1_tool_cat tintyint NOT NULL DEFAULT 0
+  player1_outcome_cat tintyint NOT NULL DEFAULT 0
+  player1_mu int NOT NULL DEFAULT 0
+  player1_sigma int NOT NULL DEFAULT 0
+  player2_id int NOT NULL FOREIGN KEY(players.player_id)
+  player2_tool_cat tintyint NOT NULL DEFAULT 0
+  player2_outcome_cat tintyint NOT NULL DEFAULT 0
+  player2_mu int NOT NULL DEFAULT 0
+  player2_sigma int NOT NULL DEFAULT 0
+  player3_id int FOREIGN KEY(players.player_id)
+  player3_tool_cat tintyint NOT NULL DEFAULT 0
+  player3_outcome_cat tintyint NOT NULL DEFAULT 0
+  player3_mu int NOT NULL DEFAULT 0
+  player3_sigma int NOT NULL DEFAULT 0
+  player4_id int FOREIGN KEY(players.player_id)
+  player4_tool_cat tintyint NOT NULL DEFAULT 0
+  player4_outcome_cat tintyint NOT NULL DEFAULT 0
+  player4_mu int NOT NULL DEFAULT 0
+  player4_sigma int NOT NULL DEFAULT 0
+  draw_fl bool NOT NULL DEFAULT 0
+  duration time NOT NULL DEFAULT 0
+  move_tally int NOT NULL DEFAULT 0
+  real_match_id FOREIGN KEY(games.match_id)
+  explorer_id int FOREIGN KEY(players.player_id)
+  taught_fl bool NOT NULL DEFAULT 0
+
+  INDEX game_id, player1_id, player2_id, player3_id, player4_id, match_id
+
+moves: PRIMARY KEY is match_id, move_num::
+
+  match_id int NOT NULL FOREIGN KEY(games.match_id)
+  move_num int NOT NULL AUTO_INCREMENT
+  created_ts timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP 
+  creator_id  int NOT NULL FOREIGN KEY(players.player_id)
+  game_id int NOT NULL FOREIGN KEY (games.game_id)
+  decision_interval int NOT NULL DEFAULT 0
+  to_spot int NOT NULL DEFAULT 0
+  rel_color_cat tinyint NOT NULL DEFAULT 0 (player color, next color,…)
+  shape_cat tinyint NOT NULL DEFAULT 0 
+  from_spot int NOT NULL DEFAULT 0
+  outcome_cat tinyint NOT NULL DEFAULT 0 
+  predicted_outcome_cat tintyint NOT NULL DEFAULT 0 
+	
+  UNIQUE INDEX creator_id, created_ts, outcome_cat, predicted_outcome_cat
+  INDEX match_id
+
+stats: PRIMARY KEY is player_id, aug_cat , game_id::
+
+  player_id int NOT NULL FOREIGN KEY(players.player_id)
+  tool_cat tinyint (review, debate, etc)
+  game_id int NOT NULL FOREIGN KEY (games.game_id)
+  created_ts timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  creator_id  int NOT NULL FOREIGN KEY(players.player_id)
+  last_match_ts timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  played_tally int NOT NULL DEFAULT 0
+  won_tally int NOT NULL DEFAULT 0
+  lost_tally int NOT NULL DEFAULT 0
+  decision_interval_tally int NOT NULL DEFAULT 0
+  rating_mu int NOT NULL DEFAULT 0
+  rating_sigma int NOT NULL DEFAULT 0
+  top_burst int NOT NULL DEFAULT 0
+  explore_tally int NOT NULL DEFAULT 0
+  critic_tally int NOT NULL DEFAULT 0
+
+  INDEX player_id
+  UNIQUE INDEX game_id, rating_mu, player_id 
+
+favor_stats: PRIMARY KEY is player1_id, player1_tool_cat, player2_id, player2_tool_cat game_id::
+
+  player1_id int NOT NULL FOREIGN KEY(players.player_id)
+  player1_tool_cat tintyint NOT NULL DEFAULT 0
+  player2_id int NOT NULL FOREIGN KEY(players.player_id)
+  player2_tool_cat tintyint NOT NULL DEFAULT 0
+  game_id int NOT NULL FOREIGN KEY (games.game_id)
+  created_ts timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  creator_id  int NOT NULL FOREIGN KEY(players.player_id)
+  last_match_ts timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  played_tally int NOT NULL DEFAULT 0
+  win_boost float 
+  kick_back float
+  draw_boost float
+  preference float
+  debt float
+  debt_default_fl bool NOT NULL DEFAULT 0
+
+INDEX player_id
