@@ -6,40 +6,49 @@ Requirements
 ------------
 
 Modify the GUI Tic-Tac-Toe program to allow users to select players 
-to play Tic-Tac-Toe. Permit each user to be augmented by a non-human 
+to play Tic-Tac-Toe. Maintain a saved record of each player 
+including name, avatar, type, security, and Universe (for now, all 
+players will have Universe = ”Public Universe”; security will be 
+"Admin" if type is Human and None if type is "Random").
+
+Command Line Interface::
+  redscience player name
+
+Random
+~~~~~~
+
+When a player of Type - Random is playing (or augmenting) a turn, 
+compile a list of all legal sets of moves for that turn for each piece, 
+counting each reserve piece individually, then pick randomly from that 
+list. For example, if Random had two black circles and one white triangle 
+in reserve, and could pass, and there were two empty spaces in which 
+Random could play (“A” and “B”), then Random would choose “White 
+triangle To A” 1/7th of the time, “White triangle To B” 1/7th of the 
+time, “Black circle To A” 2/7th of the time, “Black circle To B” 
+2/7th of the time, and “Pass” 1/7 of the time.  
+
+Review and Delegate
+~~~~~~~~~~~~~~~~~~~
+
+Permit each user to be augmented by a non-human 
 player (just "Random" for now). If the timer runs out before the user 
 confirms a move-selection, then the non-human makes the move; if the 
 type of augmentation is “Reviewing” then the non-human player prefills 
 the move for the user (but the user can change it), if the type of 
 augmentation is “Delegating” then the non-human does not prefill the 
 move (but the user can expire the clock early by clicking accept 
-without selecting a move). Maintain a saved record of each player 
-including name, avatar, type, security, and Universe (for now, all 
-new players will be type = “Human”, security = “Admin” and Universe 
-= ”Public Universe”, but one player will be type=”Random” and 
-security = None). 
-
-When Random is playing (or augmenting) a turn, compile a list of all 
-legal sets of moves for that turn for each piece, counting each 
-reserve piece individually, then pick randomly from that list. For 
-example, if Random had two black circles and one white triangle in 
-reserve, and could pass, and there were two empty spaces in which 
-Random could play (“A” and “B”), then Random would choose “White 
-triangle To A” 1/7th of the time, “White triangle To B” 1/7th of the 
-time, “Black circle To A” 2/7th of the time, “Black circle To B” 
-2/7th of the time, and “Pass” 1/7 of the time.  
-
+without selecting a move). 
  
 Acceptance Test Plan
 --------------------
 
 Test each of the clickable elements and test that it displays 
 appropriate errors for invalid entries. Create at least three 
-Random players.  To test that a Random player does not settle 
-on predictable behavior, play a game to the end, then undo and 
-repeat to see that it plays differently. Close Python and reopen it 
-to confirm that it remembers the players.
-
+Random players. Play all three forms of augmentation against Random. 
+To test that a Random player does not settle on predictable behavior, 
+undo and repeat to see that it plays differently. Close Python and reopen 
+it to confirm that it remembers the players names, avatars, types, 
+and security.
 
 Potential Mockups
 -----------------
