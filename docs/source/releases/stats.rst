@@ -12,7 +12,8 @@ for each player (time since the player last played, number of matches
 played, % won, % draw, and average time to finish their turn). For 
 example, Lora's win rate at Tic-Tac-Toe when reviewing.
 
-.. code-block::
+::
+
   redscience player -s name
 
 Skill Rating
@@ -45,7 +46,8 @@ Favoritism Stats for each player, game with form of augmentation and
 partner/opponent (Win Boost, Kick Back, Draw Boost, Relative Rating, 
 Preference, Favors Owed, and time since last match together.
 
-.. code-block::
+::
+
   redscience player -f name
 
 Formulae
