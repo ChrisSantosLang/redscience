@@ -216,7 +216,7 @@ AI Avatar Page
 Curriculum Tab
 ~~~~~~~~~~~~~~
 
-.. figure:: images/BotSelect.png
+.. figure:: images/Curriculum.png
 
 * The history dropdown (empty until first save) offers the 
   timestamps of all tournaments already learned plus the creation 
