@@ -70,7 +70,8 @@ Player Page
 * When the user is the creator or an Admin, clicking the Avatar 
   navigates to the AI Avatar page for AI players or to the Team 
   Avatar page other types of players. The initial avatar is 
-  selected randomly.
+  selected randomly for AI or Human players, but otherwise 
+  matches the avatar of its creator.
 * The name text field does not accept whitespace, ‘*’, ‘(‘, or ‘)’.
 * The “Copy Player” button (fa-files-o) saves the current record and 
   opens a Player page for a new player (Persona if copied from a 
