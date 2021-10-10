@@ -190,7 +190,14 @@ Acceptance Test Plan
 --------------------
 
 Test each of the clickable elements and test that it displays 
-appropriate errors for invalid entries. 
+appropriate errors for invalid entries. Create and play 3on15line, 
+Treblecross15, 3P-Misere-Notakto, 3P-Notakto, 4on7sq, 5on15sq, 
+Connect6-19x19, Tapatan, Achi, 9-Holes, Qubic-4, Connect4, 
+3P-MostWins-3x4, 3P-LeastLoses-3x4, Wild-TTT-6sq3143, 
+RockPaperScissors, 3P-9X-HideSeek, Shopping9, 4P-TrendSetter, 
+3P-PublicGoods, NeedyTrust, RichTrust, 3Blotto13, KBeauty9, and 
+StagHunt.
+
 
 Potential Mockups
 -----------------
@@ -434,10 +441,6 @@ Qubic-4:
 Connect4:
   7x1x6 stacks, 21 black and 21 white start in reserve,
   First 4-same-color-in-a-row wins
-  
-4P-Blind-TTT:
-  Partners, Partners share color, All spaces cloaked, Cloaking 
-  hides
    
 3P-MostWins-3x4:
   3x4x1 squares, 4 black, 4 white, and 4 pink start in reserve, 
@@ -519,7 +522,7 @@ RichTrust:
   3 boards of 2x1x13 posts, Most pieces wins, each player starts with a reserve of 13 circles. Cloaking offers invisibility; all spaces cloaked; each player has one post locked to all other players on each board)
 
 KBeauty9:
-  3x1x9 posts; cloaking offers invisibility; all posts are cloaked; each post is locked to all but one player, 4 players, Most-in-a-row wins, Overachiever(s) disqualified; each player starts with a reserve of 9 circles. Phase 1 “Player 1”: Option to pass; only the first player can play. Phase 2 “Player 2”: Option to pass; only the second player can play. Phase 3 “Player 3”: Option to pass; only the third player can play. Phase 4 “Player 4”: Option to pass; only the fourth player can play; the player ending the phase with most in a row is disqualified.) Shows advantages of Introversion and Empathy
+  4x1x9 posts; cloaking offers invisibility; all posts are cloaked; each post is locked to all but one player, 4 players, Most-in-a-row wins, Overachiever(s) disqualified; each player starts with a reserve of 9 circles. Phase 1 “Player 1”: Option to pass; only the first player can play. Phase 2 “Player 2”: Option to pass; only the second player can play. Phase 3 “Player 3”: Option to pass; only the third player can play. Phase 4 “Player 4”: Option to pass; only the fourth player can play
 
 StagHunt:
   4x1x3 posts; the first and second posts are locked to all but the first and second player respectively; the third and fourth posts are locked against the second and first players respectively; 2-vs-chaos, Most 2-same-color-in-a-row wins, the first two players start with one pentagon in reserve and one pentagon on one of the first two posts respectively, chaos starts with 6 circles in reserve; pentagons remove via cover (like mines). Phase 1 “Hunt”: Simultaneous play; the last two columns are locked to chaos. Phase 2 “chaos”: Option to pass; all posts locked to all but chaos) Shows advantages of Empath
