@@ -193,9 +193,10 @@ which outranks highest-singleton.
 Acceptance Test Plan
 --------------------
 
-Test each of the clickable elements and test that it displays appropriate errors for invalid entries. Create and play:
-
-Tic-Tac-Toe
+Test each of the clickable elements and test that it displays 
+appropriate errors for invalid entries. Create and play each of 
+the following variations on tic-tac-toe (the differences from 
+tic-tac-toe are given below):
 
 3on15line: 
   Played on 15x1x1 squares, 8 black and 7 white start in reserve 
