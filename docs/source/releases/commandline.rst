@@ -13,13 +13,18 @@ Write a program that allows two **humans** (sharing the same keyboard)
 to play **Tic-Tac-Toe** at the **command prompt**, with **options** 
 at any point to **quit**, **undo the last move**, or 
 **start a new game**. Randomize the order of the **players** at the 
-beginning of each new **game**. If a player has only one legal 
+beginning of each new **game**. A player cannot attempt to place 
+a **piece** from **reserves** to **coordinates** that the player knows 
+are occupied. If a player has only one legal 
 **move**, then choose it automatically (so the other player doesn’t 
 have to wait). If a player has no legal move, automatically **pass**. 
 Detect when a player repeats the exact same move facing the exact same 
-**board**--this will be called “**stalemate**” and happens in 
+**board**--this will be called “stalemate” and happens in 
 Tic-Tac-Toe only when the board is full (so both players 
-automatically pass).
+automatically pass). The **stalemate rule** determines the outcome if
+the final phase of a game ends in stalemate. Each game may also have 
+one or more **rules** that are checked at the end of each **turn** (e.g. 
+“**First 3-same-color-in-a-row** **wins**”). 
 
 The program should contain the following **rules** as a **constant**, 
 and the rules should determine how **play** proceeds: 
@@ -27,13 +32,13 @@ and the rules should determine how **play** proceeds:
 * Played on **hash** (**3,3**)
 * **2-Player**
 * **Assigned Colors**
-* **Circle**: 5 **black** and 4 **white** start in **reserve**
-* **First 3-same-color-in-a-row** **wins**
+* **Circle**: 5 **black** and 4 **white** start in reserve
+* First 3-same-color-in-a-row wins
 * Stalemate **draws**
 
 In general, a game move is either a pass, a 
 **request to call it a draw**, **agreement**/**rejection** of such a 
-request, a **jump** from **one spot** to **another**, or a 
+request, a **jump** from **one spot** to another, or a 
 **placement** from reserves of a given **shape** and **color** to a 
 spot on the board. The rules of Tic-Tac-Toe permit players to choose 
 only moves of the last type and to only specify “to” coordinates, 
