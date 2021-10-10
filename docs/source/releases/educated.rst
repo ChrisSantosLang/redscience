@@ -106,25 +106,10 @@ Faith (vs Skeptical)
 Metrics
 ~~~~~~~
 
-:math:`P_{a, n}(x)` :
-  Whether classifier :math:`a` predicted outcome :math:`x`  
-  for move :math:`n`. 
-  
 :math:`\text{tCount}_{a, g, n}` :
   The number of tactically-correct predictions by classifier 
   :math:`a` among the 100 predictions or game :math:`g` ending 
   with move :math:`n`
-  
-.. math::
-  \text{tCount}_{a, g, n} = 
-    \displaystyle\sum_{\substack{
-         i=(n-100) \\
-         game_i = g \\
-         X_i(win) = P_{a, i}(win \lor unstrategic win) \\
-         X_i(loss) = P_{a, i}(loss \lor strategic loss) \\
-         X_i(draw) = P_{a, i}(draw \lor unstrategic draw) \\
-       }}^{n}
-       1  
 
 :math:`\text{accuracy}_{a, g, n}` :
   The tactical accuracy of classifier :math:`a` at predicting 
@@ -139,23 +124,12 @@ Metrics
 
 .. math::
   \text{F1}_{a, g, n} = 
-  \frac{2 \text{tCount}_{a, g, n}}{\text{tCount}_{a, g, n} + 100}  
+  \frac{2 (\text{tCount}_{a, g, n})}{\text{tCount}_{a, g, n} + 100}  
      
 :math:`\text{sCount}_{a, g, n}` :
   The number of strategically-correct predictions by classifier 
   :math:`a` among the 100 predictions or game :math:`g` ending 
   with move :math:`n`
-  
-.. math::
-  \text{sCount}_{a, g, n} = 
-    \displaystyle\sum_{\substack{
-         i=(n-100) \\
-         game_i = g \\
-         X_i(strategic) = P_{a, i}(win \lor draw \lor strategic loss) \\
-         X_i(unstrategic) = P_{a, i}(loss \lor unstrategic win \lor unstrategic draw) \\
-         X_i(neither) = P_{a, i}(win \lor draw \lor loss) \\
-       }}^{n-22}
-       1  
        
 :math:`\text{long game}_{a, g, n}` :
   The F1 of classifier :math:`a` at predicting the strategic
@@ -163,7 +137,7 @@ Metrics
 
 .. math::
   \text{long game}_{a, g, n} = 
-  \frac{2 \text{sCount}_{a, g, n}}{\text{sCount}_{a, g, n} + 88}   
+  \frac{2 (\text{sCount}_{a, g, n})}{\text{sCount}_{a, g, n} + 88}   
   
        
 Acceptance Test Plan
