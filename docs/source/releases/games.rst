@@ -426,7 +426,9 @@ Game Factory Page
   1. Player1 Goal is always at y=max (or x=1, if the max y is 1). 
   For two-player games, Player 2 goal is opposite (e.g. y=1). For 
   games with more players, the goals proceed around the board 
-  counter-clockwise (e.g. Player 2 Goal at x=1).
+  counter-clockwise (e.g. Player 2 Goal at x=1). Stacks display
+  only two rows above the tallest stack, but the maximum height
+  displays in the upper left corner of the board.
 * Each of the dimension integer selects offers integers from 1 to
   the floor of (512 / the product of the other two dimensions) 
   upto a max of 19. Changing the dimensions causes the board to 
@@ -471,6 +473,7 @@ Game Factory Page
   property from the space; clicking a space that lacks the selected
   property will add it. The cloak and lock properties are the only 
   ones that can be changed after phase 1.
+* Clicking a phase_lock icon toggles it.
 * Each reserved integer select offers integers from 0 to the maximum 
   number that can be played (e.g. the product of the dimension 
   integer selects divided by the number of colors). If the maximum 
