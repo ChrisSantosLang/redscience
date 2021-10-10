@@ -61,7 +61,7 @@ Offense (vs Defence)
 ~~~~~~~~~~~~~~~~~~~~
 
 :math:`\text{Offense}` :
-  1.0 means maximize wins; 0.0 means minimize losses
+  :math:`1.0` means maximize wins; :math:`0.0` means minimize losses
   
 .. math::
    \text{tScore}_x = 
@@ -72,7 +72,7 @@ Tactical (vs Strategic)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 :math:`\text{Tactical}` :
-  1.0 means prioritize the current game; 0.0 means maximize rating; 
+  :math:`1.0` means prioritize the current game; :math:`0.0` means maximize rating; 
   :math:`\text{Tactical}` greater than :math:`\text{Offense}` means 
   never sacrifice a current win for future wins; 
   :math:`\text{Tactical}` greater than :math:`(1 - \text{Offense})` 
@@ -80,14 +80,14 @@ Tactical (vs Strategic)
   
 .. math::
    \text{sScore}_x = 
-     P(win \lor strategic loss \mid x) ] \\
-     - P(loss \lor unstrategic win \lor unstrategic draw \mid x)  
+     & P(win \lor strategic loss \mid x) ] \\
+     & - P(loss \lor unstrategic win \lor unstrategic draw \mid x)  
   
 Faith (vs Skeptical)
 ~~~~~~~~~~~~~~~~~~~~
 
 :math:`\text{Faith}` :
-  1.0 means confidence never decays; 0.0 means confidence expires 
+  :math:`1.0` means confidence never decays; :math:`0.0` means confidence expires 
   instantly
   
 :math:`t_x` :
