@@ -135,8 +135,10 @@ Game Definitions
 Test Set
 ~~~~~~~~
 
+  
 4P-Blind-TTT:
-  Partners, Cloaking hides, all spaces cloaked and dealt. Deck: [{ O3 O4 S S S S S S S }] “Each team starts with one circle placed at random” 72 variations )
+  Partners, Partners share color, All spaces cloaked and dealt, 
+  Cloaking hides, Deck: [{ O3 O4 S S S S S S S }] “1 black circle, 1 white circle, 7 blanks” 72 variations
 
 TheoryOfMind:
   9x1x4 posts; cloaking obscures; all posts are cloaked except the first which is locked to all players; the second, fourth, sixth and eighth posts are wall; the third, fifth, seventh and ninth posts are locked to all but the first four players respectively, 4 players, 4-same-shape-in-a-row wins, adjacent mixed shapes loses, the first player starts with 3 dealt pieces on the first post and 1 on the fifth, seventh and ninth posts; the second player starts with 1 dealt piece on the third, seventh and ninth posts; the third player starts with 1 dealt piece on the third, fifth and ninth posts; the fourth player starts with 1 dealt piece on the third, fifth and seventh posts. Option to pass . Deck: [{ [{ [OOO], [XXX], [PPP], [PPP], [PPP] }], [{ [OOO], [XXX], [XXX], [PPP], [PPP] }], [{ [OOO], [XXX], [XXX], [XXX], [PPP] }], [{ [OOO], [OOO], [XXX], [PPP], [PPP] }], [{ [OOO], [OOO], [XXX], [XXX], [PPP] }], [{ [OOO], [OOO], [OOO], [XXX], [PPP] }] }] “All three shapes are on the board, no mixed groups” 1020 variations) 
