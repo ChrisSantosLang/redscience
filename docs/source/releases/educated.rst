@@ -110,13 +110,13 @@ Metrics
   Whether classifier :math:`a` predicted outcome :math:`x`  
   for move :math:`n`. 
   
-:math:`\text{tCount}_(a, g, n}` :
+:math:`\text{tCount}_{a, g, n}` :
   The number of tactically-correct predictions by classifier 
   :math:`a` among the 100 predictions or game :math:`g` ending 
   with move :math:`n`
   
 .. math::
-  \text{tCount}_(a, g, n} = 
+  \text{tCount}_{a, g, n} = 
     \displaystyle\sum_{\substack{
          i=(n-100) \\
          game_i = g \\
@@ -126,28 +126,28 @@ Metrics
        }}^{n}
        1  
 
-:math:`\text{accuracy}_(a, g, n}` :
+:math:`\text{accuracy}_{a, g, n}` :
   The tactical accuracy of classifier :math:`a` at predicting 
   the outcomes of game :math:`g` as of move :math:`n`
 
 .. math::
-  \text{accuracy}_(a, g, n} = \frac{\text{tCount}_(a, g, n}}{100}
+  \text{accuracy}_{a, g, n} = \frac{\text{tCount}_{a, g, n}}{100}
     
-:math:`\text{F1}_(a, g, n}` :
+:math:`\text{F1}_{a, g, n}` :
   The F1 of classifier :math:`a` at predicting 
   the outcomes of game :math:`g` as of move :math:`n`
 
 .. math::
-  \text{F1}_(a, g, n} = 
-  \frac{2 \text{tCount}_(a, g, n}}{\text{tCount}_(a, g, n} + 100}  
+  \text{F1}_{a, g, n} = 
+  \frac{2 \text{tCount}_{a, g, n}}{\text{tCount}_{a, g, n} + 100}  
      
-:math:`\text{sCount}_(a, g, n}` :
+:math:`\text{sCount}_{a, g, n}` :
   The number of strategically-correct predictions by classifier 
   :math:`a` among the 100 predictions or game :math:`g` ending 
   with move :math:`n`
   
 .. math::
-  \text{tCount}_(a, g, n} = 
+  \text{sCount}_{a, g, n} = 
     \displaystyle\sum_{\substack{
          i=(n-100) \\
          game_i = g \\
@@ -157,13 +157,13 @@ Metrics
        }}^{n-22}
        1  
        
-:math:`\text{long game}_(a, g, n}` :
+:math:`\text{long game}_{a, g, n}` :
   The F1 of classifier :math:`a` at predicting the strategic
   outcomes of game :math:`g` as of move :math:`n`
 
 .. math::
-  \text{long game}_(a, g, n} = 
-  \frac{2 \text{sCount}_(a, g, n}}{\text{sCount}_(a, g, n} + 88}   
+  \text{long game}_{a, g, n} = 
+  \frac{2 \text{sCount}_{a, g, n}}{\text{sCount}_{a, g, n} + 88}   
   
        
 Acceptance Test Plan
