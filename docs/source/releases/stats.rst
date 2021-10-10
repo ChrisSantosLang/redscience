@@ -43,6 +43,79 @@ partner/opponent (Win Boost, Kick Back, Draw Boost, Relative Rating,
 Preference, Favors Owed, and time since last match together.
 
 
+Acceptance Test Plan
+--------------------
+
+Test each of the clickable elements. Play the Random players against 
+each other for at least 20 games and confirm that Rating Diff, 
+Win Boost, Draw Boost, Kick Back are small. Play against them in a 
+favoring way, letting one win and making the other lose and confirm 
+that you can detect the favoritism. Close Python and reopen it to 
+confirm that it remembers the stats.
+
+Potential Mockups
+-----------------
+
+To get CSV of moves::
+
+  redscience moves tic-tac-toe {file}
+  
+To get CSV of stats::
+
+  redscience player {name} -s {file}
+  
+To get CSV of favoritism::
+
+  redscience player {name} -f {file}
+
+Favoritism Tab
+~~~~~~~~~~~~~~
+
+ .. figure:: images/Favoritism.png
+
+   Shown as of :doc:`recorded` (to show the evolution of the page).
+   The checkboxes, "Document Social History” button, and “Profile 
+   Selected Players” button do not display until :doc:`educated`. 
+
+* The game dropdown offers one option for each combination of 
+  game this player has played and form of augmentation used. 
+* The rows are sorted by Last Match (most recent on top). The 
+  “Sort by this Column” buttons re-display the table sorted by 
+  the values in the associated column; if already sorted by that 
+  column, reverse the order.
+* The “Show Player” buttons (fa-address-card-o) save the record 
+  and navigate to the Stats tab of the associated Player.
+* The Relative Rating numbers are “Show Evolution” buttons which 
+  save the current record and navigate to the Evolution Page with 
+  the selected rule set and “Rating” selected for both the player 
+  and the associated other player.
+ 
+Evolution Page
+~~~~~~~~~~~~~~
+
+   .. figure:: images/LearningCurve.png
+
+   Shown as of :doc:`corp` (to show the evolution of the page). 
+   The “Profile Selected Players” button (fa-bar-chart) and score
+   options other than "Rating" apear in :doc:`educated`, and 
+   “Show Game Tree” buttons (fa-sitemap) show only for members of
+   a Team or Corp (:doc:`team`)
+
+* The player combobox offers all players. If the selected game is 
+  not available for the new player, then select the first game 
+  available for the new player. 
+* The game combobox offers all games played by the selected player.  
+  Selecting a game adds the curve to the graph.
+* The score select offers only “Rating” for now, the title is 
+  “Rating History”, and the x-axis is observed to date.
+* The “Add Curve” button (fa-plus) inserts an identical row (same 
+  player, rule_set, and score) with its own “Add Curve” button, 
+  and replaces itself with a “Delete Curve” button. If multiple 
+  curves display, also display a legend.
+* The “Delete Curve” button (fa-trash-o) removes that row (and 
+  adds an “Add Curve” button to the last).
+
+
 Formulae
 --------
 
@@ -95,6 +168,7 @@ Skill Rating
      {R_{a, g}} 
     - 1
 
+
 Stategic Outcomes
 ~~~~~~~~~~~~~~~~~
 
@@ -118,6 +192,7 @@ Stategic Outcomes
 	    - \displaystyle\sum_{i=(m+22)}^{m+26} \hat{\mu}_{a, g, i}
         \ge  2 \hat{\sigma}_{a, g, m+20}
     \end{cases} 
+
 
 Favoritism
 ~~~~~~~~~~
@@ -218,6 +293,7 @@ Favoritism
 	> min \{ 1, max \{ \text{favors owed}_{a, b, n} : 
 	  \text{game}_n = \text{game}_m, n < m \} \}
 
+
 Social Flags
 ~~~~~~~~~~~~
 
@@ -316,77 +392,6 @@ as follows instead:
     \end{cases}
 
 
-Acceptance Test Plan
---------------------
-
-Test each of the clickable elements. Play the Random players against 
-each other for at least 20 games and confirm that Rating Diff, 
-Win Boost, Draw Boost, Kick Back are small. Play against them in a 
-favoring way, letting one win and making the other lose and confirm 
-that you can detect the favoritism. Close Python and reopen it to 
-confirm that it remembers the stats.
-
-Potential Mockups
------------------
-
-To get CSV of moves::
-
-  redscience moves tic-tac-toe {file}
-  
-To get CSV of stats::
-
-  redscience player {name} -s {file}
-  
-To get CSV of favoritism::
-
-  redscience player {name} -f {file}
-
-Favoritism Tab
-~~~~~~~~~~~~~~
-
- .. figure:: images/Favoritism.png
-
-   Shown as of :doc:`recorded` (to show the evolution of the page).
-   The checkboxes, "Document Social History” button, and “Profile 
-   Selected Players” button do not display until :doc:`educated`. 
-
-* The game dropdown offers one option for each combination of 
-  game this player has played and form of augmentation used. 
-* The rows are sorted by Last Match (most recent on top). The 
-  “Sort by this Column” buttons re-display the table sorted by 
-  the values in the associated column; if already sorted by that 
-  column, reverse the order.
-* The “Show Player” buttons (fa-address-card-o) save the record 
-  and navigate to the Stats tab of the associated Player.
-* The Relative Rating numbers are “Show Evolution” buttons which 
-  save the current record and navigate to the Evolution Page with 
-  the selected rule set and “Rating” selected for both the player 
-  and the associated other player.
- 
-Evolution Page
-~~~~~~~~~~~~~~
-
-   .. figure:: images/LearningCurve.png
-
-   Shown as of :doc:`corp` (to show the evolution of the page). 
-   The “Profile Selected Players” button (fa-bar-chart) and score
-   options other than "Rating" apear in :doc:`educated`, and 
-   “Show Game Tree” buttons (fa-sitemap) show only for members of
-   a Team or Corp (:doc:`team`)
-
-* The player combobox offers all players. If the selected game is 
-  not available for the new player, then select the first game 
-  available for the new player. 
-* The game combobox offers all games played by the selected player.  
-  Selecting a game adds the curve to the graph.
-* The score select offers only “Rating” for now, the title is 
-  “Rating History”, and the x-axis is observed to date.
-* The “Add Curve” button (fa-plus) inserts an identical row (same 
-  player, rule_set, and score) with its own “Add Curve” button, 
-  and replaces itself with a “Delete Curve” button. If multiple 
-  curves display, also display a legend.
-* The “Delete Curve” button (fa-trash-o) removes that row (and 
-  adds an “Add Curve” button to the last).
 
 Potential Schema
 ----------------
