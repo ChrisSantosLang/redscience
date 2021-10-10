@@ -54,92 +54,6 @@ Sensitivity Analysis
 Permit users augmented as “Reviewing” or “Debating” to see a sensitivity analysis for each selected move: For each property of the game state (space occupations, space locks, player types, impulses), calculate how much the score for that move would shift if that property shifted, then display the properties with the largest shifts.
 
 
-Formulae
---------
-
-Offense (vs Defence)
-~~~~~~~~~~~~~~~~~~~~
-
-:math:`\text{Offense}` :
-  :math:`1.0` means maximize wins; :math:`0.0` means minimize losses
-  
-.. math::
-   \text{tScore}_x = 
-     & \text{Offense} [ P(win \lor unstrategic win \mid x) ] \\
-     & - (1 - \text{Offense}) [ P(loss \lor strategic loss \mid x) ]
-
-Tactical (vs Strategic)
-~~~~~~~~~~~~~~~~~~~~~~~
-
-:math:`\text{Tactical}` :
-  :math:`1.0` means prioritize the current game; :math:`0.0` means maximize rating; 
-  :math:`\text{Tactical}` greater than :math:`\text{Offense}` means 
-  never sacrifice a current win for future wins; 
-  :math:`\text{Tactical}` greater than :math:`(1 - \text{Offense})` 
-  means never take a loss for future wins
-  
-.. math::
-   \text{sScore}_x = 
-     & P(win \lor strategic loss \mid x) ] \\
-     & - P(loss \lor unstrategic win \lor unstrategic draw \mid x)  
-  
-Faith (vs Skeptical)
-~~~~~~~~~~~~~~~~~~~~
-
-:math:`\text{Faith}` :
-  :math:`1.0` means confidence never decays; :math:`0.0` means confidence expires 
-  instantly
-  
-:math:`t_x` :
-  The number of days since the most recent occurance of game
-  state :math:`x` in the curriculm
-  
-:math:`\text{score}_x` :
-  How much the classifier recommends moving to game state :math:`x`
-  
-.. math::
-  \text{score}_x = 
-    \text{Faith}^\frac{\ln (t_x + 20)}{3}
-    [ \text{Tactical} (\text{tScore}_x) 
-    + (1 - \text{Tactical}) (\text{sScore}_x) ]
-
-Metrics
-~~~~~~~
-
-:math:`\text{tCount}_{a, g, n}` :
-  The number of tactically-correct predictions by classifier 
-  :math:`a` among the 100 predictions or game :math:`g` ending 
-  with move :math:`n`
-
-:math:`\text{accuracy}_{a, g, n}` :
-  The tactical accuracy of classifier :math:`a` at predicting 
-  the outcomes of game :math:`g` as of move :math:`n`
-
-.. math::
-  \text{accuracy}_{a, g, n} = \frac{\text{tCount}_{a, g, n}}{100}
-    
-:math:`\text{F1}_{a, g, n}` :
-  The F1 of classifier :math:`a` at predicting 
-  the outcomes of game :math:`g` as of move :math:`n`
-
-.. math::
-  \text{F1}_{a, g, n} = 
-  \frac{2 (\text{tCount}_{a, g, n})}{\text{tCount}_{a, g, n} + 100}  
-     
-:math:`\text{sCount}_{a, g, n}` :
-  The number of strategically-correct predictions by classifier 
-  :math:`a` among the 100 predictions or game :math:`g` ending 
-  with move :math:`n`
-       
-:math:`\text{long game}_{a, g, n}` :
-  The F1 of classifier :math:`a` at predicting the strategic
-  outcomes of game :math:`g` as of move :math:`n`
-
-.. math::
-  \text{long game}_{a, g, n} = 
-  \frac{2 (\text{sCount}_{a, g, n})}{\text{sCount}_{a, g, n} + 88}   
-  
-       
 Acceptance Test Plan
 --------------------
 
@@ -326,6 +240,91 @@ Stats Tab (Revised)
   Curriculum (use back button to undo). Default the combobox to 
   the study option most recently selected by the user.
 
+Formulae
+--------
+
+Offense (vs Defence)
+~~~~~~~~~~~~~~~~~~~~
+
+:math:`\text{Offense}` :
+  :math:`1.0` means maximize wins; :math:`0.0` means minimize losses
+  
+.. math::
+   \text{tScore}_x = 
+     & \text{Offense} [ P(win \lor unstrategic win \mid x) ] \\
+     & - (1 - \text{Offense}) [ P(loss \lor strategic loss \mid x) ]
+
+Tactical (vs Strategic)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+:math:`\text{Tactical}` :
+  :math:`1.0` means prioritize the current game; :math:`0.0` means maximize rating; 
+  :math:`\text{Tactical}` greater than :math:`\text{Offense}` means 
+  never sacrifice a current win for future wins; 
+  :math:`\text{Tactical}` greater than :math:`(1 - \text{Offense})` 
+  means never take a loss for future wins
+  
+.. math::
+   \text{sScore}_x = 
+     & P(win \lor strategic loss \mid x) ] \\
+     & - P(loss \lor unstrategic win \lor unstrategic draw \mid x)  
+  
+Faith (vs Skeptical)
+~~~~~~~~~~~~~~~~~~~~
+
+:math:`\text{Faith}` :
+  :math:`1.0` means confidence never decays; :math:`0.0` means confidence expires 
+  instantly
+  
+:math:`t_x` :
+  The number of days since the most recent occurance of game
+  state :math:`x` in the curriculm
+  
+:math:`\text{score}_x` :
+  How much the classifier recommends moving to game state :math:`x`
+  
+.. math::
+  \text{score}_x = 
+    \text{Faith}^\frac{\ln (t_x + 20)}{3}
+    [ \text{Tactical} (\text{tScore}_x) 
+    + (1 - \text{Tactical}) (\text{sScore}_x) ]
+
+Metrics
+~~~~~~~
+
+:math:`\text{tCount}_{a, g, n}` :
+  The number of tactically-correct predictions by classifier 
+  :math:`a` among the 100 predictions or game :math:`g` ending 
+  with move :math:`n`
+
+:math:`\text{accuracy}_{a, g, n}` :
+  The tactical accuracy of classifier :math:`a` at predicting 
+  the outcomes of game :math:`g` as of move :math:`n`
+
+.. math::
+  \text{accuracy}_{a, g, n} = \frac{\text{tCount}_{a, g, n}}{100}
+    
+:math:`\text{F1}_{a, g, n}` :
+  The F1 of classifier :math:`a` at predicting 
+  the outcomes of game :math:`g` as of move :math:`n`
+
+.. math::
+  \text{F1}_{a, g, n} = 
+  \frac{2 (\text{tCount}_{a, g, n})}{\text{tCount}_{a, g, n} + 100}  
+     
+:math:`\text{sCount}_{a, g, n}` :
+  The number of strategically-correct predictions by classifier 
+  :math:`a` among the 100 predictions or game :math:`g` ending 
+  with move :math:`n`
+       
+:math:`\text{long game}_{a, g, n}` :
+  The F1 of classifier :math:`a` at predicting the strategic
+  outcomes of game :math:`g` as of move :math:`n`
+
+.. math::
+  \text{long game}_{a, g, n} = 
+  \frac{2 (\text{sCount}_{a, g, n})}{\text{sCount}_{a, g, n} + 88}   
+  
 
 Potential Schema
 ----------------
