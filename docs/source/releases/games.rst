@@ -186,166 +186,11 @@ which outranks highest-pair which outranks highest-2-straight
 which outranks highest-singleton.
 
 
-
-
-
-
 Acceptance Test Plan
 --------------------
 
 Test each of the clickable elements and test that it displays 
-appropriate errors for invalid entries. Create and play each of 
-the following variations on tic-tac-toe (the differences from 
-tic-tac-toe are given below):
-
-3on15line: 
-  Played on 15x1x1 squares, 8 black and 7 white start in reserve 
-  
-Treblecross15:
-  Played on 15x1x1 squares, Shared Color, 15 black start in 
-  reserve
-
-3P-Misere-Notakto:
-  3 Player, Shared Color, 9 black start in reserve,
-  
-3P-Notakto:
-  3 Player, Shared Color, 9 black start in reserve,
-  First 3-same-color-in-a-row loses
-
-4on7sq:
-  Played on 7x7x1 squares, 25 black and 24 white start in reserve,
-  First 4-same-color-in-a-row wins
-  
-5on15sq: 
-  Played on 15x15x1 squares, 113 black and 112 white start in 
-  reserve, First 5-same-color-in-a-row wins, 300 seconds/turn
-  
-Connect6-19x19:
-  Played on 19x19x1 squares, start with white occupying (10,10)
-  and 180 black and 180 white in reserve, First 
-  6-same-color-in-a-row wins, 2 moves/turn, 300 seconds/turn
-  
-Tapatan: 
-  3 black and 3 white start in reserve, Moves adjacent
-  
-Achi:
-  4 black and 4 white start in reserve, Moves adjacent
-  
-9-Holes: 
-  3 black and 3 white start in reserve, Moves linear or knight, 
-  First 3-same-color-in-a-row-orth wins
-
-Qubic-4:
-  4x4x4 squares, 32 black and 32 white start in reserve, 
-  First 4-same-color-in-a-row wins, 300 seconds/turn
-  
-Connect4:
-  7x1x6 stacks, 21 black and 21 white start in reserve,
-  First 4-same-color-in-a-row wins
-  
-4P-Blind-TTT:
-  Partners, Partners share color, All spaces cloaked, Cloaking 
-  hides
-   
-3P-MostWins-3x4:
-  3x4x1 squares, 4 black, 4 white, and 4 pink start in reserve, 
-  3 Player, Most-same-color-in-a-row wins
-  
-3P-LeastLoses-3x4:
-  3x4x1 squares, 4 black, 4 white, and 4 pink start in reserve, 
-  3 Player, Least-same-color-in-a-row loses
-  
-Wild-TTT-6sq3143:
-  6x6x1 vertices, (3,1,1) and (4,3,1) are locked, 18 black and 
-  18 white start in reserve, Players choose color
-  
-RockPaperScissors:
-  1x1x2 stacks, Simultaneous, 
-  Circle: Can capture, Cover by rank, Converts captive(s), 
-  1 black and 1 white start in reserve; 
-  Pentagon: Can capture, Cover by rank, Converts captive(s), 
-  1 black and 1 white start in reserve; 
-  X: Can capture, Cover by rank, Converts captive(s), 
-  1 black and 1 white start in reserve; 
-  
-3P-9X-HideSeek: 
-  5x5x1 squares, all but the center nine spaces exclusive to chaos; 
-  starts with yellow pentagon in (1,1) and pink circles in all 
-  remaining spaces except center nine; 3 vs chaos, Cloaking hides;  
-  Most circles wins, Statemate if chaos cannot capture;
-  Circle: Moves adjacent or knight, 1 black and 1 white start in reserve;
-  Pentagon: Must capture, Cover, Destroys Captive(s), Moves 
-  adjacent, 1 pink starts in reserve;
-  Phase 1: Placement only, center nine spots are cloaked;  
-  Phase 2: Option to pass, center nine spots are cloaked
-  
-Shopping9:
-  3x1x9 stacks; First stack exclusive to black, second stack 
-  exclusive to white and starts with 2 white pentagons, third 
-  stack exclusive to pink; 2-vs-chaos, Cloaking hides, 
-  Least pieces loses; Chaos wins if total circles > 9;
-  Circle: 9 black and 7 white start in reserve;
-  Pentagon: 8 pink start in reserve;
-  Phase 1: Option to pass, All but first player locked;
-  Phase 2: Option to pass, All but second player locked;
-  Phase 3: Option to pass, All but chaos locked 
-  
-4P-TrendSetter: 
-  1x3x1 squares, 4 Player, Simultaneous, All players lose if  stalemate, Any piece wins, 1 black, 1 white, 1 pink, and 1 
-  yellow start in reserve   
-  
-3P-PublicGoods:
-  5x1x8 stacks; each of the first four posts is locked to all but on one of the players respectively; the last post is locked to 
-  chaos, 3-vs-chaos, Less pieces than chaos loses, the first three 
-  players start with 1 pentagon each on the final post and 1, 2 
-  or 3 circles on their exclusive post respectively, chaos starts 
-  with 5 circles in reserve, circle moves unlimited orth by stack, 
-  pentagon reincarnates (x2) by cover. Phase 1 “Invest”: Single; 
-  option to pass; all posts locked to chaos. Phase 2 “Return”: 
-  All posts locked to chaos; last post locked (so all returns will 
-  automatically move to exclusive posts). 3 “chaos”: Option to 
-  pass; all posts locked to all but chaos.)
-  
-NeedyTrust:
-  4x1x9 stacks; the posts are locked to all but the first, to chaos, to all but the second, and to all but chaos respectively, 
-  2-vs-chaos, More pieces than chaos wins, Less pieces than chaos 
-  loses, the first player starts with 2 circles on the first post, 
-  1 pentagon on the third stack, and 2 circles in reserve; the 
-  second player starts with 1 X on the second post; chaos starts 
-  with 4 circles on the fourth post and 2 in reserve; pentagon 
-  converts by cover; X reincarnates (x2) by cover. Phase 1: All 
-  posts locked to all but the first player. Phase 2 “Return”: All 
-  posts locked to all but the second player. Phase 3 “chaos”: Option 
-  to pass; all posts locked to all but chaos.
-  
-RichTrust:
-  like NeedyTrust, but the first player starts with 1 pentagon on 
-  the third stack, and 4 circles in reserve, and chaos starts with 
-  3 circles on the fourth post and 2 in reserve.
-  
-3Blotto13 (3 boards of 2x1x13 posts, Most pieces wins, each player starts with a reserve of 13 circles. Cloaking offers invisibility; all spaces cloaked; each player has one post locked to all other players on each board)
-KBeauty9 (3x1x9 posts; cloaking offers invisibility; all posts are cloaked; each post is locked to all but one player, 4 players, Most-in-a-row wins, Overachiever(s) disqualified; each player starts with a reserve of 9 circles. Phase 1 “Player 1”: Option to pass; only the first player can play. Phase 2 “Player 2”: Option to pass; only the second player can play. Phase 3 “Player 3”: Option to pass; only the third player can play. Phase 4 “Player 4”: Option to pass; only the fourth player can play; the player ending the phase with most in a row is disqualified.) Shows advantages of Introversion and Empathy
-StagHunt (4x1x3 posts; the first and second posts are locked to all but the first and second player respectively; the third and fourth posts are locked against the second and first players respectively; 2-vs-chaos, Most 2-same-color-in-a-row wins, the first two players start with one pentagon in reserve and one pentagon on one of the first two posts respectively, chaos starts with 6 circles in reserve; pentagons remove via cover (like mines). Phase 1 “Hunt”: Simultaneous play; the last two columns are locked to chaos. Phase 2 “chaos”: Option to pass; all posts locked to all but chaos) Shows advantages of Empath
-
-Other interesting games
-~~~~~~~~~~~~~~~~~~~~~~~
-4P-Coordination (1x3x1 squares, 4 players, All players win if stalemate, Any piece loses, each player starts with one circle in reserve. Simultaneous play.) 
-PrisonerDilemma (5x1x2 posts; the second post is all wall; the first, third and fourth posts are locked to all but the first three players respectively, 2-vs-chaos, Most 2-same-color-in-a-row wins, the first player starts with one X on the first post and one X in reserve, the second player starts with one pentagon on the third post and one pentagon in reserve, chaos starts with six circles in reserve; pentagon and X remove via cover by rank. Phase 1 “Testify”: Simultaneous play;all posts locked to chaos. Phase 2 “chaos”: Option to pass; all posts locked to all but chaos) Shows advantages of Empath
-NeedyUltimatum (like NeedyTrust, but the first player starts with a reserve of 3 circles; the second player starts with 3 circles and 1 pentagon on the first post and 1 X in reserve; chaos starts with 5 circles on the third post, 2 on the fourth post, and 3 in reserve; X removes on cover.) 
-3P-Volunteer (5x1x3 posts; the first four posts are locked to all but the first four players respectively; each of the last two posts ends with a wall, 3-vs-chaos, Least 2-same-color-in-a-row loses, the first player starts with two pentagons on the first post and one pentagon in reserve, the second and third players start similarly with the second and third post and cross and X respectively, chaos starts with eight circles in reserve; pentagon, cross, and X remove via cover by rank. Phase 1 “Choose”: Simultaneous play; all posts locked to chaos. Phase 2 “chaos”: Option to pass; all posts locked to all but chaos.) Shows advantages of Empath
-BoS (2 boards of 2x2x1 vertices;each player has one space locked against all other players on each board; the remaining space is locked to all players and diagonal to a different non-chaos player on each board, 2-vs-chaos, Least area wins, each player (including chaos) starts with one circle in reserve. Phase 1 “Choose”: Simultaneous play; all posts locked to chaos. Phase 2 “chaos”: All posts locked to all but chaos.) Shows advantages of Empath
-Centipede10 (2x1x10 posts; alternating spaces on the first post are locked to all but the first two players; the second column is locked to all but chaos, 2-vs-chaos, Most pieces wins, the first two players each start with a reserve of 5 circles, chaos starts with a reserve of 8 circles; the circle converts on cover. Phase 1 “Race”: Sequential play; option to pass; all posts locked to chaos; players swap positions at end of phase. Phase 2 “chaos”: Option to pass; all posts locked to all but chaos.)
-NeedyDictator (like NeedyUltimatum but the second player has no reserves.)
-ContractHunt (4x1x3 posts; the first two posts are locked to chaos, the second posts is locked to the first player; the third and fourth posts are locked against the second and first players respectively, 2-vs-chaos, Most 2-same-color-in-a-row wins, the first player starts with a pentagon in reserve and a pentagon on the first post, the second player starts with two pentagons in reserve, chaos starts with 6 circles in reserve; pentagons remove via cover (like mines). Phase 1 “Contract”: Single; all posts locked to chaos and the first player; the fourth post locked to all. Phase 2 “Hunt”: Simultaneous; all posts locked to chaos. Phase 3 “chaos”: Option to pass; all posts locked to all but chaos) Shows advantages of Empath
-ContractPD (5x1x2 posts; the second post is all wall; the first post is locked to chaos, third and fourth posts are locked to all but the second player and chaos respectively, 2-vs-chaos, Most 2-same-color-in-a-row wins, the first player starts with one X on the first post and one X in reserve, the second player starts with two pentagons in reserve, chaos starts with six circles in reserve; pentagon and X remove via cover by rank. Phase 1 “Contract”: Single; all posts locked to chaos and the first player; the fifth post locked to all. Phase 2 “Testify”: Simultaneous play; all posts locked to chaos. Phase 3 “chaos”: Option to pass; all posts locked to all but chaos.) Shows advantages of Empath
-OptionalPD (5x1x2 posts; the second post is all wall; the first, third and fourth posts are locked to all but the first three players respectively, 2-vs-chaos, Most 2-same-color-in-a-row wins, the first player starts with two Xs in reserve, the second player starts with two pentagons in reserve, chaos starts with six circles in reserve; pentagon and X remove via cover by rank. Phase 1 “Opt-in”: Single; Option to Pass; fourth and fifth posts locked; all posts locked to chaos; Draw if less than 2 pieces played at end of phase. Phase 2 “Testify”: Simultaneous play; all posts locked to chaos. Phase 3 “chaos”: Option to pass; all posts locked to all but chaos,) Shows advantages of Empath
-3P-BoS (3 boards of 2x2x1 vertices;each player has one space locked against all other players on each board; chaos’s space is diagonal to a different non-chaos player on each board, 3-vs-chaos, Least area wins, each player (including chaos) starts with one circle in reserve. Phase 1 “Choose”: Simultaneous play; all posts locked to chaos. Phase 2 “chaos”: All posts locked to all but chaos.) Shows advantages of Empath
-NeedyCentipede4 (same as Centipede, but chaos starts with 4 circles on the second post 6 in reserve.)
-RichUltimatum (like NeedyUltimatum, but the first player starts with 4 circles on the second post and 3 in reserve; the second player starts with 1 pentagon on the first post and 1 X in reserve; chaos starts with 5 circles on the third post, 2 on the fourth post, and 3 in reserve.)
-RichDictator (like RichUltimatum, but the second player has no reserves.)
-4P-TrolleyDilemma (4x1x4 stacks; each of the posts is locked to all but one of the players respectively; 4 Players, Most-in-a-row loses, the first player starts with 1 circle in reserve, the second player starts with 1 pentagon on the first post and 2 circles on the second, the third and fourth players start with three circles each on their respective post, pentagon reincarnates (x2) by cover. Phase 1 “Dilemma”: Single; option to pass; all post locked to all but first player. Phase 2 “Return”: All posts locked to chaos (so all returns will automatically move to exclusive posts). 
-3P-TrolleyDilemma (6x1x5 stacks; each of the first three posts is locked to all but one of the players respectively; the last three posts are locked all but chaos, 3-vs-chaos, Most-in-a-row loses, the first player starts with 1 circle in reserve, the second player starts with 1 pentagon on the first post and 2 circles on the second, the third player starts with three circles on the third post, chaos starts with 5 circles in reserve, pentagon reincarnates (x2) by cover. Phase 1 “Dilemma”: Single; option to pass; all post locked to all but first player. Phase 2 “Return”: All posts locked to chaos (so all returns will automatically move to exclusive posts). 3 “chaos”: Option to pass; all posts locked to all but chaos.)
-
+appropriate errors for invalid entries. 
 
 Potential Mockups
 -----------------
@@ -534,6 +379,201 @@ Leaderboard Tab
 * The “Add to Friends” buttons (fa-user-plus) sends a friend 
   request to the associated player. It displays whenever no 
   “Play New Game” button displays.
+
+
+Game Definitions
+----------------
+
+The following are variations on tic-tac-toe (only differences from 
+tic-tac-toe are described):
+
+Test Set
+~~~~~~~~
+
+3on15line: 
+  Played on 15x1x1 squares, 8 black and 7 white start in reserve 
+  
+Treblecross15:
+  Played on 15x1x1 squares, Shared Color, 15 black start in 
+  reserve
+
+3P-Misere-Notakto:
+  3 Player, Shared Color, 9 black start in reserve,
+  
+3P-Notakto:
+  3 Player, Shared Color, 9 black start in reserve,
+  First 3-same-color-in-a-row loses
+
+4on7sq:
+  Played on 7x7x1 squares, 25 black and 24 white start in reserve,
+  First 4-same-color-in-a-row wins
+  
+5on15sq: 
+  Played on 15x15x1 squares, 113 black and 112 white start in 
+  reserve, First 5-same-color-in-a-row wins, 300 seconds/turn
+  
+Connect6-19x19:
+  Played on 19x19x1 squares, start with white occupying (10,10)
+  and 180 black and 180 white in reserve, First 
+  6-same-color-in-a-row wins, 2 moves/turn, 300 seconds/turn
+  
+Tapatan: 
+  3 black and 3 white start in reserve, Moves adjacent
+  
+Achi:
+  4 black and 4 white start in reserve, Moves adjacent
+  
+9-Holes: 
+  3 black and 3 white start in reserve, Moves linear or knight, 
+  First 3-same-color-in-a-row-orth wins
+
+Qubic-4:
+  4x4x4 squares, 32 black and 32 white start in reserve, 
+  First 4-same-color-in-a-row wins, 300 seconds/turn
+  
+Connect4:
+  7x1x6 stacks, 21 black and 21 white start in reserve,
+  First 4-same-color-in-a-row wins
+  
+4P-Blind-TTT:
+  Partners, Partners share color, All spaces cloaked, Cloaking 
+  hides
+   
+3P-MostWins-3x4:
+  3x4x1 squares, 4 black, 4 white, and 4 pink start in reserve, 
+  3 Player, Most-same-color-in-a-row wins
+  
+3P-LeastLoses-3x4:
+  3x4x1 squares, 4 black, 4 white, and 4 pink start in reserve, 
+  3 Player, Least-same-color-in-a-row loses
+  
+Wild-TTT-6sq3143:
+  6x6x1 vertices, (3,1,1) and (4,3,1) are locked, 18 black and 
+  18 white start in reserve, Players choose color
+  
+RockPaperScissors:
+  1x1x2 stacks, Simultaneous, 
+  Circle: Can capture, Cover by rank, Converts captive(s), 
+  1 black and 1 white start in reserve; 
+  Pentagon: Can capture, Cover by rank, Converts captive(s), 
+  1 black and 1 white start in reserve; 
+  X: Can capture, Cover by rank, Converts captive(s), 
+  1 black and 1 white start in reserve; 
+  
+3P-9X-HideSeek: 
+  5x5x1 squares, all but the center nine spaces exclusive to chaos; 
+  starts with yellow pentagon in (1,1) and pink circles in all 
+  remaining spaces except center nine; 3 vs chaos, Cloaking hides;  
+  Most circles wins, Statemate if chaos cannot capture;
+  Circle: Moves adjacent or knight, 1 black and 1 white start in reserve;
+  Pentagon: Must capture, Cover, Destroys Captive(s), Moves 
+  adjacent, 1 pink starts in reserve;
+  Phase 1: Placement only, center nine spots are cloaked;  
+  Phase 2: Option to pass, center nine spots are cloaked
+  
+Shopping9:
+  3x1x9 stacks; First stack exclusive to black, second stack 
+  exclusive to white and starts with 2 white pentagons, third 
+  stack exclusive to pink; 2-vs-chaos, Cloaking hides, 
+  Least pieces loses; Chaos wins if total circles > 9;
+  Circle: 9 black and 7 white start in reserve;
+  Pentagon: 8 pink start in reserve;
+  Phase 1: Option to pass, All but first player locked;
+  Phase 2: Option to pass, All but second player locked;
+  Phase 3: Option to pass, All but chaos locked 
+  
+4P-TrendSetter: 
+  1x3x1 squares, 4 Player, Simultaneous, All players lose if  stalemate, Any piece wins, 1 black, 1 white, 1 pink, and 1 
+  yellow start in reserve   
+  
+3P-PublicGoods:
+  5x1x8 stacks; each of the first four posts is locked to all but on one of the players respectively; the last post is locked to 
+  chaos, 3-vs-chaos, Less pieces than chaos loses, the first three 
+  players start with 1 pentagon each on the final post and 1, 2 
+  or 3 circles on their exclusive post respectively, chaos starts 
+  with 5 circles in reserve, circle moves unlimited orth by stack, 
+  pentagon reincarnates (x2) by cover. Phase 1 “Invest”: Single; 
+  option to pass; all posts locked to chaos. Phase 2 “Return”: 
+  All posts locked to chaos; last post locked (so all returns will 
+  automatically move to exclusive posts). 3 “chaos”: Option to 
+  pass; all posts locked to all but chaos.)
+  
+NeedyTrust:
+  4x1x9 stacks; the posts are locked to all but the first, to chaos, to all but the second, and to all but chaos respectively, 
+  2-vs-chaos, More pieces than chaos wins, Less pieces than chaos 
+  loses, the first player starts with 2 circles on the first post, 
+  1 pentagon on the third stack, and 2 circles in reserve; the 
+  second player starts with 1 X on the second post; chaos starts 
+  with 4 circles on the fourth post and 2 in reserve; pentagon 
+  converts by cover; X reincarnates (x2) by cover. Phase 1: All 
+  posts locked to all but the first player. Phase 2 “Return”: All 
+  posts locked to all but the second player. Phase 3 “chaos”: Option 
+  to pass; all posts locked to all but chaos.
+  
+RichTrust:
+  like NeedyTrust, but the first player starts with 1 pentagon on 
+  the third stack, and 4 circles in reserve, and chaos starts with 
+  3 circles on the fourth post and 2 in reserve.
+  
+3Blotto13:
+  3 boards of 2x1x13 posts, Most pieces wins, each player starts with a reserve of 13 circles. Cloaking offers invisibility; all spaces cloaked; each player has one post locked to all other players on each board)
+
+KBeauty9:
+  3x1x9 posts; cloaking offers invisibility; all posts are cloaked; each post is locked to all but one player, 4 players, Most-in-a-row wins, Overachiever(s) disqualified; each player starts with a reserve of 9 circles. Phase 1 “Player 1”: Option to pass; only the first player can play. Phase 2 “Player 2”: Option to pass; only the second player can play. Phase 3 “Player 3”: Option to pass; only the third player can play. Phase 4 “Player 4”: Option to pass; only the fourth player can play; the player ending the phase with most in a row is disqualified.) Shows advantages of Introversion and Empathy
+
+StagHunt:
+  4x1x3 posts; the first and second posts are locked to all but the first and second player respectively; the third and fourth posts are locked against the second and first players respectively; 2-vs-chaos, Most 2-same-color-in-a-row wins, the first two players start with one pentagon in reserve and one pentagon on one of the first two posts respectively, chaos starts with 6 circles in reserve; pentagons remove via cover (like mines). Phase 1 “Hunt”: Simultaneous play; the last two columns are locked to chaos. Phase 2 “chaos”: Option to pass; all posts locked to all but chaos) Shows advantages of Empath
+
+Other interesting games
+~~~~~~~~~~~~~~~~~~~~~~~
+
+4P-Coordination:
+  1x3x1 squares, 4 players, All players win if stalemate, Any piece loses, each player starts with one circle in reserve. Simultaneous play.) 
+
+PrisonerDilemma:
+  5x1x2 posts; the second post is all wall; the first, third and fourth posts are locked to all but the first three players respectively, 2-vs-chaos, Most 2-same-color-in-a-row wins, the first player starts with one X on the first post and one X in reserve, the second player starts with one pentagon on the third post and one pentagon in reserve, chaos starts with six circles in reserve; pentagon and X remove via cover by rank. Phase 1 “Testify”: Simultaneous play;all posts locked to chaos. Phase 2 “chaos”: Option to pass; all posts locked to all but chaos) Shows advantages of Empath
+
+NeedyUltimatum:
+  like NeedyTrust, but the first player starts with a reserve of 3 circles; the second player starts with 3 circles and 1 pentagon on the first post and 1 X in reserve; chaos starts with 5 circles on the third post, 2 on the fourth post, and 3 in reserve; X removes on cover.) 
+
+3P-Volunteer:
+  5x1x3 posts; the first four posts are locked to all but the first four players respectively; each of the last two posts ends with a wall, 3-vs-chaos, Least 2-same-color-in-a-row loses, the first player starts with two pentagons on the first post and one pentagon in reserve, the second and third players start similarly with the second and third post and cross and X respectively, chaos starts with eight circles in reserve; pentagon, cross, and X remove via cover by rank. Phase 1 “Choose”: Simultaneous play; all posts locked to chaos. Phase 2 “chaos”: Option to pass; all posts locked to all but chaos.) Shows advantages of Empath
+
+BoS:
+  2 boards of 2x2x1 vertices;each player has one space locked against all other players on each board; the remaining space is locked to all players and diagonal to a different non-chaos player on each board, 2-vs-chaos, Least area wins, each player (including chaos) starts with one circle in reserve. Phase 1 “Choose”: Simultaneous play; all posts locked to chaos. Phase 2 “chaos”: All posts locked to all but chaos.) Shows advantages of Empath
+
+Centipede10:
+  2x1x10 posts; alternating spaces on the first post are locked to all but the first two players; the second column is locked to all but chaos, 2-vs-chaos, Most pieces wins, the first two players each start with a reserve of 5 circles, chaos starts with a reserve of 8 circles; the circle converts on cover. Phase 1 “Race”: Sequential play; option to pass; all posts locked to chaos; players swap positions at end of phase. Phase 2 “chaos”: Option to pass; all posts locked to all but chaos.)
+
+NeedyDictator:
+  like NeedyUltimatum but the second player has no reserves.
+ 
+ContractHunt:
+  4x1x3 posts; the first two posts are locked to chaos, the second posts is locked to the first player; the third and fourth posts are locked against the second and first players respectively, 2-vs-chaos, Most 2-same-color-in-a-row wins, the first player starts with a pentagon in reserve and a pentagon on the first post, the second player starts with two pentagons in reserve, chaos starts with 6 circles in reserve; pentagons remove via cover (like mines). Phase 1 “Contract”: Single; all posts locked to chaos and the first player; the fourth post locked to all. Phase 2 “Hunt”: Simultaneous; all posts locked to chaos. Phase 3 “chaos”: Option to pass; all posts locked to all but chaos) Shows advantages of Empath
+
+ContractPD:
+  5x1x2 posts; the second post is all wall; the first post is locked to chaos, third and fourth posts are locked to all but the second player and chaos respectively, 2-vs-chaos, Most 2-same-color-in-a-row wins, the first player starts with one X on the first post and one X in reserve, the second player starts with two pentagons in reserve, chaos starts with six circles in reserve; pentagon and X remove via cover by rank. Phase 1 “Contract”: Single; all posts locked to chaos and the first player; the fifth post locked to all. Phase 2 “Testify”: Simultaneous play; all posts locked to chaos. Phase 3 “chaos”: Option to pass; all posts locked to all but chaos.) Shows advantages of Empath
+
+OptionalPD:
+  5x1x2 posts; the second post is all wall; the first, third and fourth posts are locked to all but the first three players respectively, 2-vs-chaos, Most 2-same-color-in-a-row wins, the first player starts with two Xs in reserve, the second player starts with two pentagons in reserve, chaos starts with six circles in reserve; pentagon and X remove via cover by rank. Phase 1 “Opt-in”: Single; Option to Pass; fourth and fifth posts locked; all posts locked to chaos; Draw if less than 2 pieces played at end of phase. Phase 2 “Testify”: Simultaneous play; all posts locked to chaos. Phase 3 “chaos”: Option to pass; all posts locked to all but chaos,) Shows advantages of Empath
+
+3P-BoS:
+  3 boards of 2x2x1 vertices;each player has one space locked against all other players on each board; chaos’s space is diagonal to a different non-chaos player on each board, 3-vs-chaos, Least area wins, each player (including chaos) starts with one circle in reserve. Phase 1 “Choose”: Simultaneous play; all posts locked to chaos. Phase 2 “chaos”: All posts locked to all but chaos.) Shows advantages of Empath
+
+NeedyCentipede4:
+  same as Centipede, but chaos starts with 4 circles on the second post 6 in reserve.)
+
+RichUltimatum:
+  like NeedyUltimatum, but the first player starts with 4 circles on the second post and 3 in reserve; the second player starts with 1 pentagon on the first post and 1 X in reserve; chaos starts with 5 circles on the third post, 2 on the fourth post, and 3 in reserve.)
+
+RichDictator: 
+  like RichUltimatum, but the second player has no reserves.)
+
+4P-TrolleyDilemma: 
+  4x1x4 stacks; each of the posts is locked to all but one of the players respectively; 4 Players, Most-in-a-row loses, the first player starts with 1 circle in reserve, the second player starts with 1 pentagon on the first post and 2 circles on the second, the third and fourth players start with three circles each on their respective post, pentagon reincarnates (x2) by cover. Phase 1 “Dilemma”: Single; option to pass; all post locked to all but first player. Phase 2 “Return”: All posts locked to chaos (so all returns will automatically move to exclusive posts). 
+
+3P-TrolleyDilemma:
+  6x1x5 stacks; each of the first three posts is locked to all but one of the players respectively; the last three posts are locked all but chaos, 3-vs-chaos, Most-in-a-row loses, the first player starts with 1 circle in reserve, the second player starts with 1 pentagon on the first post and 2 circles on the second, the third player starts with three circles on the third post, chaos starts with 5 circles in reserve, pentagon reincarnates (x2) by cover. Phase 1 “Dilemma”: Single; option to pass; all post locked to all but first player. Phase 2 “Return”: All posts locked to chaos (so all returns will automatically move to exclusive posts). 3 “chaos”: Option to pass; all posts locked to all but chaos.)
 
 
 Potential Schema
