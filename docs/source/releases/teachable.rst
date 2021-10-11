@@ -40,28 +40,29 @@ its personality parameters to a given rule set (tune only
 parameters set to the middle of the scale). To tune an algorithm 
 parameter:
 
-# Separate the data into “train” half and a “test” half
-# Train the current model on the train half
-# Calculate F1 for the current model using the test half
-# Develop two temporary models: one shifting the parameter up a 
-  notch and one shifting it down a notch (or just one temporary 
-  model, if you’ve already tried the other direction)
-# Train all of the temporary models on the train half
-# Calculate F1 for each temporary moel using the test half
-# If the F1 of the temporary model is higher than that of the 
-  current, then make it the current, and loop to step 4.
+#. Separate the data into “train” half and a “test” half
+#. Train the current model on the train half
+#. Calculate F1 for the current model using the test half
+#. Develop two temporary models: one shifting the parameter up a 
+   notch and one shifting it down a notch (or just one temporary 
+   model, if you’ve already tried the other direction)
+#. Train all of the temporary models on the train half
+#. Calculate F1 for each temporary moel using the test half
+#. If the F1 of the temporary model is higher than that of the 
+   current, then make it the current, and loop to step 4.
 
 Once all algorithm parameters have been tuned, train on the full 
 curriculum, then tune each personality parameter (tune only 
 parameters set to the middle of the scale):
-# Create three forks of the trained player: one with the current 
-  parameter setting, one shifting the parameter up a notch, and 
-  one shifting it down a notch (or just two forks, if you’ve 
-  already tried the other direction)
-# Have the shifted player play 100 games against the current 
-  player (continuous learning on)
-# If the shifted player ends with the higher rating, then move 
-  the current setting to match, and loop to step 1
+
+#. Create three forks of the trained player: one with the current 
+   parameter setting, one shifting the parameter up a notch, and 
+   one shifting it down a notch (or just two forks, if you’ve 
+   already tried the other direction)
+#. Have the shifted player play 100 games against the current 
+   player (continuous learning on)
+#. If the shifted player ends with the higher rating, then move 
+   the current setting to match, and loop to step 1
 
 
 Acceptance Test Plan
@@ -397,8 +398,9 @@ impulse is (1-prob(Player1 win))/(1+prob(draw)).
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 If offense is set randomly, maximum return might be achieved at 
-  impulse level of Subtle Common (27%). The maximum acceptable 
-  impulse is  (1-prob(Player2 win))/(1+prob(draw)).  
+impulse level of Subtle Common (27%). The maximum acceptable 
+impulse is  (1-prob(Player2 win))/(1+prob(draw)).  
+
 * Fallback to cooperative strategy if opponent deviates from this 
   plan or does not start near center
 * Respond to the right
@@ -470,8 +472,8 @@ the 3P-Wild-TTT Cooperative Higher-Ranked-Players-Win strategy,
 so it is more to undermine that strategy than to be used long-term. 
 If offense is set randomly, maximum return might be achieved at 
 impulse level of not Basic Common (53%). The maximum acceptable 
-impulses are  (3 - 2*odds(L) - odds(H))/(3 - 2*odds(L) - odds(M)) 
-and  (3 - 2*odds(L) - odds(M))/(3 - 2*odds(L) - odds(H)).
+impulses are  (3 - 2 odds(L) - odds(H))/(3 - 2 odds(L) - odds(M)) 
+and  (3 - 2 odds(L) - odds(M))/(3 - 2 odds(L) - odds(H)).
 
 * Fallback to cooperative strategy if any opponent deviates from 
   this plan 
@@ -491,8 +493,8 @@ but is unlikely to undermine that strategy because it changes the
 outcome only when the Lowest-Ranked player plays first. If offense 
 is set randomly, maximum return might be achieved at impulse level 
 of not Basic Common (53%). The maximum acceptable impulses are  
-(3 - 2*odds(L) - odds(H))/(3 - 2*odds(L) - odds(M)) and  
-(3 - 2*odds(L) - odds(M))/(3 - 2*odds(L) - odds(H)).
+(3 - 2 odds(L) - odds(H))/(3 - 2 odds(L) - odds(M)) and  
+(3 - 2 odds(L) - odds(M))/(3 - 2 odds(L) - odds(H)).
 
 * Fallback to cooperative strategy if any opponent deviates from 
   this plan 
