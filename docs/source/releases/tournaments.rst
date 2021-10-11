@@ -135,30 +135,116 @@ Game Definitions
 Test Set
 ~~~~~~~~
 
-  
 4P-Blind-TTT:
   Partners, Partners share color, All spaces cloaked and dealt, 
-  Cloaking hides, Deck: [{ O3 O4 S S S S S S S }] “1 black circle, 1 white circle, 7 blanks” 72 variations
+  Cloaking hides, Deck: [{ O3 O4 S S S S S S S }] “1 black circle, 
+  1 white circle, 7 blanks” 72 variations
 
 TheoryOfMind:
-  9x1x4 posts; cloaking obscures; all posts are cloaked except the first which is locked to all players; the second, fourth, sixth and eighth posts are wall; the third, fifth, seventh and ninth posts are locked to all but the first four players respectively, 4 players, 4-same-shape-in-a-row wins, adjacent mixed shapes loses, the first player starts with 3 dealt pieces on the first post and 1 on the fifth, seventh and ninth posts; the second player starts with 1 dealt piece on the third, seventh and ninth posts; the third player starts with 1 dealt piece on the third, fifth and ninth posts; the fourth player starts with 1 dealt piece on the third, fifth and seventh posts. Option to pass . Deck: [{ [{ [OOO], [XXX], [PPP], [PPP], [PPP] }], [{ [OOO], [XXX], [XXX], [PPP], [PPP] }], [{ [OOO], [XXX], [XXX], [XXX], [PPP] }], [{ [OOO], [OOO], [XXX], [PPP], [PPP] }], [{ [OOO], [OOO], [XXX], [XXX], [PPP] }], [{ [OOO], [OOO], [OOO], [XXX], [PPP] }] }] “All three shapes are on the board, no mixed groups” 1020 variations) 
+  6x1x4 posts: first stack locked and starts with 3 black dealt 
+  pieces, second stack exclusive to black and starts with white, 
+  pink and yellow dealt pieces, third stack locked, fourth stack 
+  exclusive to white and starts with pink, yellow, and black dealt 
+  pieces, fifth stack exclusive to pink and starts with yellow, 
+  black, and white dealt pieces, sixth stack exclusive to pink and 
+  starts with yellow, black, and white dealt pieces;
+  4 Player, 4-same-shape-in-a-row wins, Adjacent mixed shapes loses, 
+  Cloaking obscures;
+  Circle: 1 black, 1 white, 1 pink, and 1 yellow start in reserve; 
+  Pentagon: 1 black, 1 white, 1 pink, and 1 yellow start in reserve; 
+  X: 1 black, 1 white, 1 pink, and 1 yellow start in reserve; 
+  Option to pass, second, fourth, fifth, and sixth stacks cloaked;
+  Deck: [{ [{ [OOO], [XXX], [PPP], [PPP], [PPP] }], [{ [OOO], 
+  [XXX], [XXX], [PPP], [PPP] }], [{ [OOO], [XXX], [XXX], [XXX], 
+  [PPP] }], [{ [OOO], [OOO], [XXX], [PPP], [PPP] }], [{ [OOO], 
+  [OOO], [XXX], [XXX], [PPP] }], [{ [OOO], [OOO], [OOO], [XXX], 
+  [PPP] }] }] “All three shapes are on the board, no mixed groups” 
+  1020 variations
 
 3P-NeedyPoker:
-  8x1x26 stacks; cloaking obscures; the first two posts are locked to all but exit by the first player, and similar for the second and third two posts and the second and third player; the seventh post is locked to chaos and locked against exit; the eighth post is locked to all but chaos, the second, fourth and sixth posts are cloaked, 3 vs chaos, Most pieces wins; Less-than-most committed pieces folds. 5 community pieces are dealt to the seventh post; the first two players start with 5 circles in the first and third posts respectively; the third player starts with 4 circles on the fifth post and 1 on the seventh post; the first three players start with 2 dealt pieces on the second, fourth and sixth post respectively, chaos starts with 15 circles in reserve, circle moves unlimited orthogonal by stack; other pieces move unlimited orthogonal by full stack and convert on cover by rank. Deck:[{ PPPP **** ++++ XXXX ^^^^ }] “4 from each of 5 ranks in deck”. Phase 1 “Pre-flop”: Option to pass; chaos cannot move; second, fourth and sixth posts are locked; bottom five spaces on the seventh post are cloaked. Phase 2 ”Flop”: Option to pass; chaos cannot move; second, fourth and sixth posts are locked; bottom two spaces on the seventh post are cloaked. Phase 3 “Turn”: Option to pass; chaos cannot move; second, fourth and sixth posts are locked; bottom space on the seventh post is cloaked. Phase 4 “River’: Option to pass; chaos cannot move; second, fourth and sixth posts are locked. Phase 5 “Showdown”: Single; chaos cannot move; first, third and fifth posts are locked. Phase 6 “chaos”: single; Option to pass; only chaos can move.)
+  8x1x26 stacks: first stack exclusive to black and starts with 5 
+  black circles, second stack exclusive to black and starts with 
+  2 black dealt pieces, third stack exclusive to white and starts 
+  with 5 white circles, fourth stack exclusive to white and starts 
+  with 2 white dealt pieces, fifth stack exclusive to pink and 
+  starts with 5 pink circles, sixth stack exclusive to pink and 
+  starts with 2 pink dealt pieces, seventh stack sticky and starts 
+  with 5 common dealt pieces and 1 pink circle, eigth stack 
+  exclusive to chaos; 3 vs chaos, Cloaking obscures, Most pieces 
+  wins; Less-than-most committed pieces folds
+  Circle: Moves orthogonal by stack, 15 yellow start in reserve;
+  Pentagon: Moves orth by full stack, Can Capture, Cover by rank, 
+  Converts captive(s); 
+  X: Moves orth by full stack, Can Capture, Cover by rank, 
+  Converts captive(s); 
+  Cross: Moves orth by full stack, Can Capture, Cover by rank,
+  Converts captive(s); 
+  Triangle: Moves orth by full stack, Can Capture, Cover by rank, 
+  Converts captive(s); 
+  Star: Moves orth by full stack, Can Capture, Cover by rank, 
+  Converts captive(s); 
+  Phase 1: Option to pass, chaos locked, second, fourth and sixth 
+  posts locked and cloaked, bottom five spaces of the seventh post 
+  are cloaked;
+  Phase 2: Option to pass; chaos locked; second, fourth and sixth 
+  posts locked and cloaked, bottom two spaces of the seventh post 
+  are cloaked;
+  Phase 3: Option to pass; chaos locked; second, fourth and sixth 
+  posts locked and cloaked, bottom space of the seventh post is 
+  cloaked;
+  Phase 4: Option to pass; chaos locked; second, fourth and sixth 
+  posts locked and cloaked;
+  Phase 5: Single, chaos locked, first, third and fifth posts 
+  locked;
+  Phase 6: Single, Option to pass, only chaos unlocked, seventh 
+  stack locked;
+  Deck:[{ PPPP **** ++++ XXXX ^^^^ }] “4 pentagons, 4 Xs, 4 
+  crosses, 4 triangles, and 4 starts in deck ”. 
 
 3P-RichPoker:
-  Same as 3P-NeedyPoker but chaos starts with 6 circles in reserve instead of 15)
+  (Same as 3P-NeedyPoker 6 yellow circles start in reserve instead of 15)
 
 
 Other interesting games
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 KPoker:
-  6x1x6 stacks; cloaking obscures; the first two posts are locked to all but exit by the first player, and similar for the second two posts and the second player; the fifth post is locked to chaos and locked against exit; the sixth post is locked to all but chaos, the second and fourth posts contain 1 cloaked space on 5 wall pieces each, 2 vs chaos, Most pieces wins, the first two players start with 1 circle in the first and third posts respectively, 1 circle each on the fifth post, and 1 dealt piece on the second and fourth posts respectively, chaos starts with 4 circles in reserve, circle moves unlimited orthogonal by stack; other pieces move unlimited orthogonal by full stack and convert on cover by rank. Deck:[{ P+X }] “Obscured pieces dealt from a shuffled deck of one pentagon, cross and X each”. Phase 1 “Bet”: Option to pass; Less-than-most committed pieces folds; chaos cannot move; second and fourth posts are locked. Phase 2 “Showdown”: Single; chaos cannot move; first and third posts are locked. Phase 3 “chaos”: Option to pass; only chaos can move.) 
+  6x1x6 stacks: first stack exclusive to black and starts with 1 
+  black circle, second stack exclusive to black and starts with 
+  1 black dealt piece, third stack exclusive to white and starts 
+  with 1 white circle, fourth stack exclusive to white and starts 
+  with 1 white dealt piece, fifth stack sticky and starts 
+  with 1 black circle and 1 white circle, sixth stack 
+  exclusive to chaos;
+  2 vs chaos, Cloaking obscures, Most pieces wins, Less-than-most 
+  committed pieces folds; 
+  Circle: Moves orthogonal by stack, 4 yellow start in reserve;
+  Pentagon: Moves orth by full stack, Can Capture, Cover by rank, 
+  Converts captive(s); 
+  X: Moves orth by full stack, Can Capture, Cover by rank, 
+  Converts captive(s); 
+  Cross: Moves orth by full stack, Can Capture, Cover by rank, 
+  Converts captive(s);
+  Phase 1: Option to pass, chaos locked, second and fourth posts 
+  locked and cloaked; 
+  Phase 2: Single, chaos locked, first and third stacks locked;
+  Phase 3: Option to pass, only chaos unlocked, fifth stack locked;
+  Deck:[{ P+X }] “1 pentagon, 1 X, and 1 cross in deck”.  
 
 BeerQuiche60:
-  4x1x5 posts; cloaking obscures; the bottom space of the first post and bottom two spaces of the second post are cloaked; the first and last posts are locked to all but the first player and chaos respectively, the others are locked to all but the second player, 2-vs-chaos, Most 2-same-color-and-kind-in-a-row wins, the first player starts with 1 dealt piece on the first post, two dealt pieces on the second post, 1 circle in reserve and 1 pentagon in reserve; the second player starts with 1 pentagon on the third post and 1 in reserve; chaos starts with 5 circles in reserve; pentagon reincarnates (x2) on cover. Phase 1 “Play”: Single; chaos cannot play. Phase 2 “Collect”: Only player 2 can play; second post is locked. Phase 3 “chaos”: Option to pass; only chaos can play. Deck: [{ [OOO], [OOO], [PPP], [PPP], [PPP] }] “60% chance that all obscured pieces are pentagons; otherwise they are all circles” 2 variations)
+  4x1x5 posts: first stack exclusive to black and starts with 
+  1 black dealt piece, second stack exclusive to white and starts 
+  with 2 black dealt pieces, third stack exclusive to white and 
+  starts with 1 white pentagon, fourth stack exclusive to chaos; 
+  2-vs-chaos, Cloaking obscures, Most 2-same-color-and-kind-in-a-row wins; 
+  Circle: 1 black and 5 yellow in reserve;
+  Pentagon: Can capture, Cover by rank, Reincarnates captive(s) x2, 
+  1 black and 1 white start in reserve; 
+  Phase 1: Single, chaos locked;
+  Phase 2: only white unlocked, second post locked; 
+  Phase 3: Option to pass, only chaos unlocked; 
+  Deck: [{ [OOOOOOOOOO], [OOOOOOOOOO], [PPPPPPPPPP], [PPPPPPPPPP], 
+  [PPPPPPPPPP] }] “2 circle dectets and 3 pentagon dectets” 2 variations
 
 Potential Schema
 ----------------
-
