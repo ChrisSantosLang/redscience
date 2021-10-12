@@ -44,17 +44,17 @@ turn as many times as it takes to get a sequence of play matching
 what the explorer actually experienced. For example, if pieces were 
 dealt to cloaked spaces, then set-up will start by reshuffling and 
 dealing the deck until the pieces visible to the explorer match what 
-the explorer saw in the real game. Do not complete games that are 
-not correctly set up (and therefore do not learn them).
+the explorer saw in the real game. Do not complete any game that is 
+not correctly set up (and therefore do not learn from it).
 
 At the end of each debate, if the explorer/predictor made a 
 strategic/unstrategic prediction in their last move and the 
 win/lose/draw part of that prediction matched the outcome of the 
 debate, then assign that strategic outcome to all of their moves 
-for the debate (i.e. do not penalize strategic predictions, even 
-though they cannot be fully verified in a debate); otherwise, 
-assign the outcome of the debate (i.e. win, lose or draw) to all 
-moves before applying Continuous Learning.
+for the debate (i.e. do not penalize strategic predictions for  
+being unverifiable in a debate); otherwise, assign the outcome of 
+the debate (i.e. win, lose or draw) to all moves before applying 
+Continuous Learning to them.
 
 
 Auto-tune
@@ -414,6 +414,12 @@ Volunteer Turn-Taking Strategy
 
 * If at least one other player is Anti-social, Poorer Expert, Richer 
   Expert or Poorer, then form 3-in-a-row
+* Otherwise, block 2-in-a-row
+
+TheoryOfMind Stategy
+^^^^^^^^^^^^^^^^^^^^
+
+* If the other player is Anti-social or Random, then form 2-in-a-row
 * Otherwise, block 2-in-a-row
 
 
