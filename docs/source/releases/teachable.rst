@@ -21,15 +21,32 @@ partial_fit. For the match just completed, learn “win”, “lose” or
 “unstrategic_draw” twice, or “win”, “lose” or “draw” once 
 (assuming it was already learned once).
 
+
 Debate
 ~~~~~~
 
 Add a form of augmentation called “Debating”. Under this form of 
-augmentation, the non-human augmentor selects the moves, but it 
-plays-out the rest of each game (or until the timer runs-out) 
-against itself with the user reviewing and with “Continuous 
-Learning” on. In other words, the user influences the selected 
-moves only so far as the user defeats its own tool.
+augmentation, the non-human augmentor selects the moves (as "explorer"), 
+but it plays-out the rest of each game against one version of itself
+per other player (these versions called "debaters") with “Continuous 
+Learning” on and the user reviewing the debaters. In other words, the 
+user influences the selected moves only so far as the user defeats 
+its own tool.
+
+Each debater is given its own own private impulses. To handle 
+cloaking, maintain a record of the “imperfecting turn” of each match: 
+the earliest turn in which a piece could be cloaked to the explorer. 
+If no imperfection has occurred (e.g. in Tic-Tac-Toe), then set the 
+board for the debate at the current game state. Otherwise, set the 
+board by starting with the game state in the turn prior to 
+imperfecting and playing against the debater(s) up to the current 
+turn as many times as it takes to get a sequence of play matching 
+what the explorer actually experienced. For example, if pieces were 
+dealt to cloaked spaces, then set-up will start by reshuffling and 
+dealing the deck until the pieces visible to the explorer match what 
+the explorer saw in the real game. Do not complete games that are 
+not correctly set up (and therefore do not learn them).
+
 
 Auto-tune
 ~~~~~~~~~
