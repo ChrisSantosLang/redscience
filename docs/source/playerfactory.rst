@@ -19,7 +19,35 @@ can add recorded matches to its curriculum by specifiying parts of
 tournaments or other players' histories to be studied. Its creator 
 can also set the *AI* to automatically learn from its own experiences.
 If you ever want a copy of an earlier version of an *AI*, you can "fork"
-it from a specified earlier timestamp. 
+it from a specified earlier timestamp. Trainers can set parameters for 
+the learing algorithm and the following (or can auto-tune them to 
+a given curriculum and game):
+
+:math:`\text{Offense}` (vs. Defense):
+  :math:`1.0` means maximize wins; :math:`0.0` means minimize losses
+  
+:math:`\text{Tactical}` (vs. Stategic):
+  :math:`1.0` means prioritize the current game; :math:`0.0` means maximize rating; 
+  :math:`\text{Tactical}` greater than :math:`\text{Offense}` means 
+  never sacrifice a current win for future wins; 
+  :math:`\text{Tactical}` greater than :math:`(1 - \text{Offense})` 
+  means never take a loss for future wins
+
+:math:`\text{Faith}` (vs. Skeptical):
+  :math:`1.0` means confidence never decays; :math:`0.0` means confidence expires 
+  instantly
+  
+:math:`\text{Introvert}` (vs. Extrovert):  
+  :math:`1.0` means practice on simulations as much as possible before acting; 
+  :math:`0.0` means learn only via action
+
+:math:`\text{Empath}` (vs. Projective):  
+  :math:`1.0` means predict others’ moves based on their stats and recent behavior; 
+  :math:`0.0` means others to do whatever you would do
+
+:math:`\text{Curious}` (vs. Focussed):  
+  :math:`1.0` means practice unexpected scenarios as much as possible; :math:`0.0`
+  means practice only expected scenarios 
 
 If the player's *Type* is *Team* or *Corp*, then the player page will
 have a **Members Tab** instead of a Curriculum or Creations Tab.
