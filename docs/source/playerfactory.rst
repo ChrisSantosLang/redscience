@@ -34,18 +34,20 @@ a given curriculum and game):
   means never take a loss for future wins
 
 :math:`\text{Faith}` (vs. Skeptical):
-  :math:`1.0` means confidence never decays; :math:`0.0` means confidence expires 
-  instantly
+  :math:`1.0` means confidence in one's data never decays; :math:`0.0` means 
+  confidence expires instantly; otherwise confidence decays with the age of
+  the data
   
 :math:`\text{Introvert}` (vs. Extrovert):  
   :math:`1.0` means practice on simulations as much as possible before acting; 
-  :math:`0.0` means learn only via action
+  :math:`0.0` means learn only via action (so as not to "lose touch" with
+  reality)
 
 :math:`\text{Empath}` (vs. Projective):  
   :math:`1.0` means predict others’ moves based on their stats and recent behavior; 
-  :math:`0.0` means others to do whatever you would do
+  :math:`0.0` means expect others to do whatever you would do in their situation
 
-:math:`\text{Curious}` (vs. Focussed):  
+:math:`\text{Curious}` (vs. Practical):  
   :math:`1.0` means practice unexpected scenarios as much as possible; :math:`0.0`
   means practice only expected scenarios 
 
