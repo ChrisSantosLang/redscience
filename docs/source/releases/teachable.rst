@@ -47,6 +47,15 @@ dealing the deck until the pieces visible to the explorer match what
 the explorer saw in the real game. Do not complete games that are 
 not correctly set up (and therefore do not learn them).
 
+At the end of each debate, if the explorer/predictor made a 
+strategic/unstrategic prediction in their last move and the 
+win/lose/draw part of that prediction matched the outcome of the 
+debate, then assign that strategic outcome to all of their moves 
+for the debate (i.e. do not penalize strategic predictions, even 
+though they cannot be fully verified in a debate); otherwise, 
+assign the outcome of the debate (i.e. win, lose or draw) to all 
+moves before applying Continuous Learning.
+
 
 Auto-tune
 ~~~~~~~~~
