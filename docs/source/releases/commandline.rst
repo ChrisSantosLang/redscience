@@ -3,7 +3,7 @@
 ============================
 
 The :doc:`../curriculum` for building redscience divides the task 
-into :doc:`../releases/versions`, of which Command Line 
+into :doc:`../releases/releases`, of which Command Line 
 Tic-Tac-Toe is the first. The following plan serves as an example 
 of the kinds of plan you can expect for other versions. 
 
