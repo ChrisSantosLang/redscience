@@ -346,6 +346,52 @@ being Player3. (***The Highest-Ranked-Player-Loses Strategy below may be more st
 Same as above, but count the other player with the highest rating 
 as a defector before start
 
+
+Shopping9 Bargain-Hunter Strategy
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If the other player is Random, then count as defector before start
+
+* If the other player is most recent defector, then bid 4
+* Otherwise, bid 6
+
+Shopping9 Bargain-Giver Strategy
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If the other player is Random, then count as defector before start
+
+* If the other player is most recent defector, then bid 4
+* Otherwise, bid 3
+
+Shopping9 Caste Strategy
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+If the other player is Random, then count as defector before start
+
+* If the other player is most recent defector or Poorer, then bid 4 
+* Otherwise, bid 5
+
+Shopping9 Turn-taking Strategy
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If the other player is Anti-social, then count as defector before start
+
+* If the other player is most recent defector, Expert, or Poorer, then bid 5
+* Otherwise, bid 4
+
+Volunteer Caste Strategy
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+* If at least one other player is Richer, then form 3-in-a-row
+* Otherwise, block 2-in-a-row
+
+Volunteer Turn-Taking Strategy
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+* If at least one other player is Anti-social, Expert, or Poorer, 
+  then form 3-in-a-row
+* Otherwise, block 2-in-a-row
+
 PrisonersDilemma
 ^^^^^^^^^^^^^^^^
 
