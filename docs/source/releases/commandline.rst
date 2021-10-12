@@ -2,12 +2,27 @@
 1.0 Command Line Tic-Tac-Toe
 ============================
 
+The :doc:`../curriculum` for building redscience divides the task 
+into :doc:`../releases/versions`, of which Command Line 
+Tic-Tac-Toe is the first. The following plan serves as an example 
+of the kinds of plan you can expect for other versions. 
+
+Much of the curriculum walks students through implementing parts of 
+this plan. It is possible to code from the software architecture, 
+having never read the higher-level plans that the architecture is 
+designed to fulfill (just like it is possible to modify open source 
+code without knowing why it was built the way it was), but having
+a higher-level understanding of what you are working on can make you 
+more productive in innovation. Therefore, this is the recommended
+starting point of the curriculum.
+
 Requirements
 ------------
 
-*(Various words are underlined in this first set of requirements to 
-give a sense of what an ontology would have to include. Note that 
-it would have to include more than what is bolded here!)* 
+*(Various words are bolded in this first set of requirements to 
+give a sense of what an ontology would have to include. An 
+ontology needs to provide more than what we can expect from a 
+narrative, but there is substantial overlap.)* 
 
 Write a program that allows two **humans** (sharing the same keyboard) 
 to play **Tic-Tac-Toe** at the **command prompt**, with **options** 
