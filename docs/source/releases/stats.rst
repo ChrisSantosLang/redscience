@@ -375,9 +375,9 @@ as follows instead:
    =
     \begin{cases}
       011 \text{ Random}  & \quad\text{if } 
-	    \text{Random}_{a, m}\\
+	\text{Random}_{a, m}\\
       111 \text{ Antisocial} & \quad\text{else if } 
-        \exists b \in players_m : \text{default}_{a, b, game_m}\\ 
+        \text{default}_{a, user, game_m}\\ 
       110 \text{ Richer Novice} & \quad\text{else if } 
         \text{Richer}_{a, m} \text{ and } \text{Novice}_{a, m}\\
       101 \text{ Richer Expert} & \quad\text{else if } 
