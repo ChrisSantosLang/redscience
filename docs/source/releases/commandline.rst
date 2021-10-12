@@ -5,15 +5,15 @@
 The :doc:`../curriculum` for building redscience divides the task 
 into :doc:`../releases/releases`, of which Command Line 
 Tic-Tac-Toe is the first. The following plan serves as an example 
-of the kinds of plan you can expect for other versions. 
+of the kind of plan you can expect for other versions. 
 
 Much of the curriculum walks students through implementing parts of 
-this plan. It is possible to code from the software architecture, 
-having never read the higher-level plans that the architecture is 
+this plan. It is possible to code from the software architecture
+without reading the higher-level plans that the architecture is 
 designed to fulfill (just like it is possible to modify open source 
 code without knowing why it was built the way it was), but having
 a higher-level understanding of what you are working on can make you 
-more productive in innovation. Therefore, this is the recommended
+more productive in innovation. Therefore, *this* is the recommended
 starting point of the curriculum.
 
 Requirements
