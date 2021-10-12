@@ -19,9 +19,9 @@ can add recorded matches to its curriculum by specifiying parts of
 tournaments or other players' histories to be studied. Its creator 
 can also set the *AI* to automatically learn from its own experiences.
 If you ever want a copy of an earlier version of an *AI*, you can "fork"
-it from a specified earlier timestamp. Trainers can set parameters for 
-the learing algorithm and the following (or can auto-tune them to 
-a given curriculum and game):
+it from a specified earlier timestamp. Until saved, trainers can set 
+parameters for the learing algorithm and for the following (or can 
+auto-tune them to a given curriculum and game):
 
 :math:`\text{Offense}` (vs. Defense):
   :math:`1.0` means maximize wins; :math:`0.0` means minimize losses
@@ -35,17 +35,17 @@ a given curriculum and game):
 
 :math:`\text{Faith}` (vs. Skeptical):
   :math:`1.0` means confidence in one's data never decays; :math:`0.0` means 
-  confidence expires instantly; otherwise confidence decays with the age of
-  the data
-  
+  confidence expires instantly; otherwise confidence in data depends on its age
+    
 :math:`\text{Introvert}` (vs. Extrovert):  
   :math:`1.0` means practice on simulations as much as possible before acting; 
-  :math:`0.0` means learn only via action (so as not to "lose touch" with
-  reality)
+  :math:`0.0` means learn only via action (so as not to lose touch with
+  "reality")
 
 :math:`\text{Empath}` (vs. Projective):  
-  :math:`1.0` means predict others’ moves based on their stats and recent behavior; 
-  :math:`0.0` means expect others to do whatever you would do in their situation
+  :math:`1.0` means try to predict others’ moves based on their stats and recent 
+  behavior; :math:`0.0` means expect others to do whatever you would do in 
+  their situation
 
 :math:`\text{Curious}` (vs. Practical):  
   :math:`1.0` means practice unexpected scenarios as much as possible; :math:`0.0`
