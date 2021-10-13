@@ -5,6 +5,58 @@
 Requirements
 ------------
 
+Modify the Experimenting Bot program to allow users to benchmark 
+intelligence for facing novel situations.  Allow game creators to 
+classify each of their rule sets as either "Event", “Training 
+Course”, or "Olympics." Already existing rule sets will be events; 
+Training Courses and Olympics will be sets of events.  When 
+playing a Training Course or Olympics, the players will play one 
+event selected at random from the set. The number of players 
+required to play a training Course or Olympics will be the maximum 
+required to play any of its events; if an event for fewer players 
+is selected, players of the play group will be selected at random 
+to play it.
+
+Olympic matches (or matches of Olympic Events) cannot be 
+studied/added to curriculum, and Events that have already been 
+played by a non-human cannot be added to an Olympics. When a 
+non-human player enters an Olympic tournament or plays an Olympic 
+event, it is forked, and its fork completes the competition (then 
+is discarded). This ensures that Olympics measure generalized 
+intelligence, since all competitors must be encountering each of 
+its Events for the first time (rather than being able to 
+brute-force master them before the Olympics)
+
+To facilitate construction of good Training Courses and Olympics, 
+allow Trainers and Admins to compare each event to a list of other 
+events and to select a subset to build into a Training Course or 
+Olympics. The comparison should include a hierarchical cluster 
+analysis (permit users to view the dendrogram) and the following 
+statistics for the event and each compared event:
+
+* Cluster (CLS): ID of the cluster containing that event
+* Uniqueness (UNQ): Inverse of the number of parent nodes that 
+  event has in the cluster analysis
+* Difficulty: The average number of games required to half-learn 
+  that event from scratch
+* Discount To (%TO): How much learning the compared event will 
+  speed learning of the featured event
+* Discount From (%FROM): How much learning the features event will 
+  speed learning of the compared event
+
+To facilitate discovery of events, when users view an event, show 
+them links to similar events. For example, there may be links to 
+other events in the same cluster, or to other events which have 
+especially low "Learn From".
+
+Likewise, allow all players to see a leaderboard of the most 
+comprehensive Olympics, including the following statistics:
+
+* Comprehensiveness: Determined by having the champions of two 
+  Olympics compete against each other on both Olympics 
+* Elementality: Inverse average Discount To/From of events
+* Compactness: Inverse of number of events
+* Efficiency: Inverse of average Difficulty
 
 
 Acceptance Test Plan
@@ -80,8 +132,8 @@ Dendrogram Page
 
  .. figure:: images/Dendrogram.png
  
-   Shown as of :doc:`corps` (to anticipate the evolution of the page)
-   The dropdowns and ratings show only if launched for a Team or 
+   Shown as of :doc:`corp` (to anticipate the evolution of the page).
+   The dropdowns and scores show only if launched for a Team or 
    Corp. 
    
 * If this page is launched for a Team or Corp, then the player 
@@ -92,7 +144,6 @@ Dendrogram Page
   event.
 * Clicking on the score to the right of an event name launches the 
   Evolution page for that event with the selected Player and Score
-
 
  
 Potential Schema
