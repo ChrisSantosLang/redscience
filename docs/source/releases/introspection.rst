@@ -161,8 +161,8 @@ Research Metrics
 .. math::
   \text{EMP}_{a, g, n} = \frac{2 (affirmed actual predictions_{a, g, n})}}{
     2 (affirmed actual predictions_{a, g, n})
-    false actual predictions_{a, g, n}
-    actual without predicting_{a, g, n}}
+    + false actual predictions_{a, g, n}
+    + actual without predicting_{a, g, n}}
 
 :math:`\text{TCH}_{a, g, n}` :
   The F1 of classifier :math:`a` for predicting debate moves in game :math:`g` that will teach the explorer for the 100 moves ending with :math:`n`
@@ -170,8 +170,8 @@ Research Metrics
 .. math::
   \text{TCH}_{a, g, n} = \frac{2 (affirmed teach predictions_{a, g, n})}}{
     2 (affirmed teach predictions_{a, g, n})
-    false teach predictions_{a, g, n}
-    teach without predicting_{a, g, n}}
+    + false teach predictions_{a, g, n}
+    + teach without predicting_{a, g, n}}
 
 :math:`\text{RS}_{a, g, n}` :
   The speed with which classifier :math:`a` has conducted research on math:`g` in the 100 moves ending with :math:`n`
