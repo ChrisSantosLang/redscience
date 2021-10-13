@@ -131,9 +131,9 @@ Curious (vs Practical)
   How much the classifier recommends moving the debate with game state :math:`x`
 .. math::
   \text{dSscore}_x =  
-    & \text{Tactical} (\text{tScore}_x)
-    & + (1 - \text{Tactical}) (\text{sScore}_x) 
-    & + \text{Empath}(P(actual \lor unstrategic win \mid x))
+    & \text{Tactical} (\text{tScore}_x) \\
+    & + (1 - \text{Tactical}) (\text{sScore}_x) \\
+    & + \text{Empath}(P(actual \lor unstrategic win \mid x)) \\
     & + \text{Curious}(P(teach \lor unstrategic win \mid x))
 
 
@@ -159,26 +159,26 @@ Research Metrics
   the actual moves of other players on game :math:`g` for the 100 moves ending with :math:`n`
 
 .. math::
-  \text{EMP}_{a, g, n} = \frac{2 (affirmed actual predictions_{a, g, n})}}{
-    2 (affirmed actual predictions_{a, g, n})
-    + false actual predictions_{a, g, n}
-    + actual without predicting_{a, g, n}}
+  \text{EMP}_{a, g, n} = \frac{2 (Confirmed Actual Predictions_{a, g, n})}{
+    2 (Confirmed Actual Predictions_{a, g, n})
+    + Disconfirmed Actual Predictions_{a, g, n}
+    + Unpredicted Actual_{a, g, n}}
 
 :math:`\text{TCH}_{a, g, n}` :
   The F1 of classifier :math:`a` for predicting debate moves in game :math:`g` that will teach the explorer for the 100 moves ending with :math:`n`
 
 .. math::
-  \text{TCH}_{a, g, n} = \frac{2 (affirmed teach predictions_{a, g, n})}}{
-    2 (affirmed teach predictions_{a, g, n})
-    + false teach predictions_{a, g, n}
-    + teach without predicting_{a, g, n}}
+  \text{TCH}_{a, g, n} = \frac{2 (Confirmed Teach Oredictions_{a, g, n})}{
+    2 (Confirmed Teach Predictions_{a, g, n})
+    + Disconfirmed Teach Predictions_{a, g, n}
+    + Unpredicted Teach_{a, g, n}}
 
 :math:`\text{RS}_{a, g, n}` :
   The speed with which classifier :math:`a` has conducted research on math:`g` in the 100 moves ending with :math:`n`
 
 .. math::
   \text{RS}_{a, g, n} = \frac{100 (\text{Research}_{a, g, n})}{
-      Research time on last 100 moves} 
+      Research Time On Last 100 Moves} 
 
 
 Potential Schema
