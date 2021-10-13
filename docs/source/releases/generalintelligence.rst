@@ -27,6 +27,9 @@ intelligence, since all competitors must be encountering each of
 its Events for the first time (rather than being able to 
 brute-force master them before the Olympics)
 
+Event Comparison
+~~~~~~~~~~~~~~~~
+
 To facilitate construction of good Training Courses and Olympics, 
 allow Trainers and Admins to compare each event to a list of other 
 events and to select a subset to build into a Training Course or 
@@ -34,14 +37,14 @@ Olympics. The comparison should include a hierarchical cluster
 analysis (permit users to view the dendrogram) and the following 
 statistics for the event and each compared event:
 
-* Cluster (CLS): ID of the cluster containing that event
-* Uniqueness (UNQ): Inverse of the number of parent nodes that 
+* **Cluster (CLS)**: ID of the cluster containing that event
+* **Uniqueness (UNQ)**: Inverse of the number of parent nodes that 
   event has in the cluster analysis
-* Difficulty: The average number of games required to half-learn 
+* **Difficulty**: The average number of games required to half-learn 
   that event from scratch
-* Discount To (%TO): How much learning the compared event will 
+* **Discount To (%TO)**: How much learning the compared event will 
   speed learning of the featured event
-* Discount From (%FROM): How much learning the features event will 
+* **Discount From (%FROM)**: How much learning the features event will 
   speed learning of the compared event
 
 To facilitate discovery of events, when users view an event, show 
@@ -49,16 +52,19 @@ them links to similar events. For example, there may be links to
 other events in the same cluster, or to other events which have 
 especially low "Learn From".
 
-Likewise, allow all players to see a leaderboard of the most 
+Olympic Comparison
+~~~~~~~~~~~~~~~~~~
+
+Allow all players to see a leaderboard of the most 
 comprehensive Olympics, including the following statistics:
 
-* Comprehensiveness: Standard deviation in rankings on this Olympics
+* **Comprehensiveness**: Standard deviation in rankings on this Olympics
   by the individual AI champions of the individual events of the 
   top ten most comprehensive Olympics  
-* Elementality: Inverse average Discount To/From of events
-* Compactness: Inverse of number of events
-* Efficiency: Inverse of average event Difficulty
-* Mutability: Total usage of the progeny of the events
+* **Elementality**: Inverse average Discount To/From of events
+* **Compactness**: Inverse of number of events
+* **Efficiency**: Inverse of average event Difficulty
+* **Mutability**: Total usage of the progeny of the events
 
 
 Acceptance Test Plan
