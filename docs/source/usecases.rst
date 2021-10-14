@@ -73,6 +73,13 @@ vulnerable, so you can protect them:
   standardized test scores, or the results of genetic tests), so use 
   an account that cannot be traced to you whenever playing large numbers
   of games without AI assistance!
+  
+.. Note:: A "Personality" setting is made available in redscience only if games
+  have been identified for which different settings are optimal (see 
+  :doc:`curiculum`). If such settings reflect real human personalities, then
+  each individual human is handicapped for some situation, but having  
+  individual handicaps can strengthen human teams (like differentiated cells
+  can strengthen a body).
 
 Discover new dimensions of intelligence
 ---------------------------------------
