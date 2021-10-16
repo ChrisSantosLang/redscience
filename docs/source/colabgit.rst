@@ -1,7 +1,7 @@
-===================================
-How to Develop in Colab with GitHib
-===================================
+============================
+How to Use GitHub from Colab
+============================
 
 (Under construction)
 
-This will be a Colab workbook with scripts to accomplish basic development tasks
+This will be a Colab workbook with scripts to get and commit code
