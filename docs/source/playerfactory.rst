@@ -3,7 +3,7 @@ For Trainers: Creating AI
 =========================
 
 Any user can use any *AI*, *Team*, or *Corp* as a tool to help them
-:doc:`play <playground>`. On the :doc:`pages <player>` for such tools, 
+:doc:`play <play>`. On the :doc:`pages <player>` for such tools, 
 Trainers see a **Copy** button they can use to duplicate the tool and adjust 
 the settings on the new copy to improve it. Finding/creating the best tools 
 may be the most powerful way to raise one's :doc:`rankings <game>`.
