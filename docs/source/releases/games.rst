@@ -31,9 +31,9 @@ Option to Agree Draw
 ~~~~~~~~~~~~~~~~~~~~
 
 If a game offers the Option to Agree Draw, then a player can 
-choose "Draw" as their move. All other players (except Chaos will 
-be asked to Agree or Reject the offer; if all agree, then the 
-match with end in a draw, otherwise the original player must choose
+choose "Draw" as their move. if this move is selected and 
+all other players (except Chaos) Agree to the offer, then the 
+match ends in a draw; otherwise, the original player must choose
 a different move.  
 
 Number of Players
