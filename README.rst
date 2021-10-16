@@ -50,9 +50,10 @@ Next Steps
 redscience has not yet been released, but feel free to preview
 our plans by reading the `documentation <https://chrissantoslang-redscience.
 readthedocs.io/en/latest/index.html>`_. If you want alerts when 
-we release, you can follow out twitter acount at @redscience_ai 
-or join the 
-`redscience-announce GoogleGroup <https://groups.google.com/g/redscience-announce>`_
+we release, you can follow our twitter account at `@redscience_ai 
+<https://twitter.com/redscience_ai>`_
+or join the `redscience-announce GoogleGroup 
+<https://groups.google.com/g/redscience-announce>`_
 
 Any effective social science could be used for good or bad. For 
 the security of society, redscience is `open-source 
