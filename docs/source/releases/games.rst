@@ -444,27 +444,27 @@ Achi:
   First 3-same-color-in-a-row-orth wins
 
 Qubic-4:
-  4x4x4 squares, 32 black and 32 white start in reserve, 
+  Played on 4x4x4 squares, 32 black and 32 white start in reserve, 
   First 4-same-color-in-a-row wins, 300 seconds/turn
   
 Connect4:
-  7x1x6 stacks, 21 black and 21 white start in reserve,
+  Played on 7x1x6 stacks, 21 black and 21 white start in reserve,
   First 4-same-color-in-a-row wins
    
 3P-MostWins-3x4:
-  3x4x1 squares, 4 black, 4 white, and 4 pink start in reserve, 
+  Played on 3x4x1 squares, 4 black, 4 white, and 4 pink start in reserve, 
   3 Player, Most-same-color-in-a-row wins
   
 3P-LeastLoses-3x4:
-  3x4x1 squares, 4 black, 4 white, and 4 pink start in reserve, 
+  Played on 3x4x1 squares, 4 black, 4 white, and 4 pink start in reserve, 
   3 Player, Least-same-color-in-a-row loses
   
 Wild-TTT-6sq3143:
-  6x6x1 vertices, (3,1,1) and (4,3,1) are locked, 18 black and 
+  Played on 6x6x1 vertices, (3,1,1) and (4,3,1) are locked, 18 black and 
   18 white start in reserve, Players choose color
   
 RockPaperScissors:
-  1x1x2 stacks, Simultaneous, 
+  Played on 1x1x2 stacks, Simultaneous, 
   Circle: Can capture, Cover by rank, Converts captive(s), 
   1 black and 1 white start in reserve; 
   Pentagon: Can capture, Cover by rank, Converts captive(s), 
@@ -473,7 +473,7 @@ RockPaperScissors:
   1 black and 1 white start in reserve; 
   
 3P-9X-HideSeek: 
-  5x7x1 squares: the nine spaces from (3,3) to (5,5) are 
+  Played on 5x7x1 squares: the nine spaces from (3,3) to (5,5) are 
   exclusive to the first three players and the rest are exclusive 
   to chaos; starts with yellow pentagon in (4,6) and pink 
   circles in all remaining non-locked chaos-exclusive spaces; 
@@ -489,7 +489,7 @@ RockPaperScissors:
   Phase 2: Option to pass, same locks and cloaking.  
   
 Shopping9:
-  3x1x9 stacks: first stack exclusive to black, second stack 
+  Played on 3x1x9 stacks: first stack exclusive to black, second stack 
   exclusive to white and starts with 2 white pentagons, third 
   stack exclusive to pink; 2-vs-chaos, Cloaking hides, 
   Least pieces loses; Chaos wins if total circles > 9;
@@ -500,12 +500,12 @@ Shopping9:
   Phase 3: Option to pass, only chaos unlocked 
   
 4P-TrendSetter: 
-  1x3x1 squares, 4 Player, Simultaneous, All players lose if 
+  Played on 1x3x1 squares, 4 Player, Simultaneous, All players lose if 
   stalemate, Any piece wins, 1 black, 1 white, 1 pink, and 1 
   yellow start in reserve   
   
 3P-PublicGoods:
-  5x1x8 stacks: first stack exclusive to black and starts with 
+  Played on 5x1x8 stacks: first stack exclusive to black and starts with 
   1 black circle, second stack exclusive to white and starts with 
   2 white circles, third stack exclusive to pink and starts with 
   3 pink circles, fourth stack exclusive to chaos, fifth stack 
@@ -520,7 +520,7 @@ Shopping9:
   Phase 3: Option to pass, only chaos unlocked.
   
 NeedyTrust:
-  4x1x9 stacks: first stack exclusive to black and starts with 
+  Played on 4x1x9 stacks: first stack exclusive to black and starts with 
   2 black circles, second stack exclusive to black and white and 
   starts with 1 white X, third stack exclusive to white and starts 
   with 1 black pentagon, fourth stack exclusive to chaos and starts 
@@ -539,13 +539,13 @@ RichTrust:
   yellow circles start in reserve)
   
 3Blotto13:
-  3 boards of 2x1x13 stacks: first stack exclusive to black, 
+  Played on 3 boards of 2x1x13 stacks: first stack exclusive to black, 
   second stack exclusive to white;  Most pieces wins, Cloaking hides;
   Circle: 13 black and 13 white start in reserve;
   All spaces cloaked 
   
 KBeauty9:
-  4x1x9 stacks; first stack exclusive to black, second stack 
+  Played on 4x1x9 stacks; first stack exclusive to black, second stack 
   exclusive to white, third stack exclusive to pink, fourth stack 
   exclusive to yellow; 4 Player, Most-in-a-row wins, Overachiever(s) 
   disqualified, Cloaking hides;
@@ -556,7 +556,7 @@ KBeauty9:
   Phase 4: Option to pass, all spaces cloaked, only yellow unlocked;
 
 StagHunt:
-  4x1x3 stacks: first stack exclusive to black and starts with 1 
+  Played on 4x1x3 stacks: first stack exclusive to black and starts with 1 
   black pentagon, second stack exclusive to white and starts with 
   1 white pentagon, third stack exclusive to black and chaos, 
   fourth stack exclusive to white and chaos;
@@ -571,12 +571,12 @@ Other interesting games
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 4P-Coordination:
-  1x3x1 squares, 4 players, All players win if stalemate, Any 
+  Played on 1x3x1 squares, 4 players, All players win if stalemate, Any 
   piece loses; Circle: 1 black, 1 white, 1 pink, and 1 yellow 
   start in reserve; Simultaneous.
 
 PrisonerDilemma:
-  5x1x2 posts: first stack exclusive to black and starts with 
+  Played on 5x1x2 posts: first stack exclusive to black and starts with 
   1 black X, second stack locked, third stack is exclusive to 
   white and starts with 1 white pentagon, third stack is exclusive 
   to chaos; 2-vs-chaos, Most 2-same-color-in-a-row wins; 
@@ -589,7 +589,7 @@ PrisonerDilemma:
   Phase 2: Option to pass, only chaos unlocked.
 
 NeedyUltimatum:
-  4x1x9 stacks: first stack exclusive to black and starts with 
+  Played on 4x1x9 stacks: first stack exclusive to black and starts with 
   3 white circles and 1 white pentagon, second stack exclusive to 
   black and white, third stack exclusive to white and starts with 
   5 yellow circles, fourth stack exclusive to chaos and starts with 
@@ -604,7 +604,7 @@ NeedyUltimatum:
   Phase 3: Option to pass, only chaos unlocked. 
 
 3P-Volunteer:
-  6x1x3 stacks; first stack exclusive to black and starts with 
+  Played on 6x1x3 stacks; first stack exclusive to black and starts with 
   two black pentagons, second stack exclusive to white and 
   starts with 2 white Xs, third stack exclusive pink and starts 
   with two pink crosses, fourth stack locked to all players, 
@@ -621,7 +621,7 @@ NeedyUltimatum:
   Phase 2: Option to pass, only chaos unlocked;
 
 BoS:
-  2 boards of 2x2x1 squares: (1,1) exclusive to black on both, 
+  Played on 2 boards of 2x2x1 squares: (1,1) exclusive to black on both, 
   (1,2) exclusive to white on both, (2,1) of 1 and (2,2) of 
   2 exclusive to chaos, and remainin spaces are locked;
   2-vs-chaos, Least area wins;
@@ -630,7 +630,7 @@ BoS:
   Phase 2: Only chaos unlocked.
 
 Centipede9:
-  4x1x9 stacks: first stack exclusive to black and white, second 
+  Played on 4x1x9 stacks: first stack exclusive to black and white, second 
   stack exclusive to black, third stack exclusive to white, fourth 
   stack exclusive to chaos and starts with 3 yellow circles; 
   2-vs-chaos, Most pieces wins;
@@ -645,7 +645,7 @@ NeedyDictator:
   (Like NeedyUltimatum, but with no white X in reserve)
  
 ContractHunt:
-  4x1x3 stacks: first stack exclusive to black and white and 
+  Played on 4x1x3 stacks: first stack exclusive to black and white and 
   starts with 1 black pentagon, second stack exclusive to white, 
   third stack exclusive to black and chaos, 
   fourth stack exclusive to white and chaos;
@@ -661,7 +661,7 @@ OptionalPD:
   Same as PrisonerDilemma, but with Option to Agree Draw.
 
 ContractPD:
-  5x1x2 posts: first stack exclusive to black and starts with 
+  Played on 5x1x2 posts: first stack exclusive to black and starts with 
   1 black X, second stack locked, third stack is exclusive to 
   white, third stack is exclusive 
   to chaos; 2-vs-chaos, Most 2-same-color-in-a-row wins; 
@@ -675,7 +675,7 @@ ContractPD:
   Phase 3: Option to pass, only chaos unlocked.
 
 3P-BoS:
-  3 boards of 2x2x1 squares: (1,1) exclusive to black on all 
+  Played on 3 boards of 2x2x1 squares: (1,1) exclusive to black on all 
   three, (1,2) exclusive to white on 1 and 2, (2,2) exclusive 
   to white on 3, (2,1) exclusive to pink on 1 and 3, (2,2) 
   exclusive to pink on 2, remaining spaces exclusive to chaos;
@@ -696,7 +696,7 @@ RichDictator:
   (Like RichUltimatum, but with no white X in reserve)
 
 4P-TrolleyDilemma: 
-  4x1x4 stacks: first stack exclusive to black and starts with 
+  Played on 4x1x4 stacks: first stack exclusive to black and starts with 
   1 white pentagon, second stack exclusive to white and starts with 
   2 white circles, third stack exclusive to pink and starts with 
   3 pink circles, fourth stack exclusive to yellow and starts with 
@@ -708,7 +708,7 @@ RichDictator:
   Phase 2: No option to pass, only white unlocked 
 
 3P-TrolleyDilemma:
-  6x1x5 stacks: first stack exclusive to black and starts with 
+  Played on 6x1x5 stacks: first stack exclusive to black and starts with 
   1 white pentagon, second stack exclusive to white and starts with 
   2 white circles, third stack exclusive to pink and starts with 
   3 pink circles, fourth, fifth, and sixth stacks exclusive to 
