@@ -42,10 +42,10 @@ For example,
 Anticipate security exploits 
 ----------------------------
 
-*Suppose you were a developer assigned to deploy a new AI to the real world 
+*Suppose you were a developer assigned to deploy a new AI into the real world, 
 or a parent/teacher trying to help a new human find their place in society.*
-You's want to know in advance about any exploits to which that AI or person is 
-vulnerable, so you can protect them:
+You'd want to know in advance about any exploits to which that AI or person is 
+vulnerable:
 
 #. Build the AI in redscience or have the human 
    :doc:`establish an account <player>`. Have this player play a diverse variety
@@ -59,27 +59,27 @@ vulnerable, so you can protect them:
 #. Browse the **Favoritism Tab** to find games in which that 
    vulnerability does not manifest (i.e. games that are "safe" for the player).
    What do they have in common (and what real-world games share that commonality)?
-#. Regarding "unsafe" games, compare victims’ favoritism stats with different 
+#. Regarding "unsafe" games, compare victims’ favoritism stats under different 
    forms of :doc:`tool-use <playerfactory>`. Which forms of tool use (if any) 
-   are sufficient to neutralize the victims' handicap? Juries, news channels, 
+   neutralize the victims' handicap? Juries, news channels, 
    doctors, religious teachers, and algorithms encoded in scripture and law are 
    all examples of real-world tools that can help someone overcome a vulnerability
-   and make more effective decisions. These experiments help identify situations 
-   in which using such tools may be most wise, and forms in which they could 
-   protect with minimal interference to agency.
+   and make more effective decisions. These experiments not only help to identify 
+   situations in which it is most wise to use such tools, but also forms of tool-use 
+   which minimize loss of agency.
 
 .. Warning:: Patterns in the ways you can be defeated in various games 
   constitute private information (like personality test scores, 
   standardized test scores, or the results of genetic tests), so use 
   an account that cannot be traced to you whenever playing large numbers
-  of games without AI assistance!
+  of games without a tool!
   
-.. Note:: A "Personality" setting is made available in redscience only if games
-  have been identified for which different settings are optimal (see 
-  :doc:`curiculum`). If such settings reflect real human personalities, then
-  each individual human is handicapped for some situation, but having  
-  individual handicaps can strengthen human teams (like differentiated cells
-  can strengthen a body).
+.. Note:: "Personality" settings are made available in redscience only if games
+  have been identified for which different settings are optimal. If such 
+  settings reflect real human personalities, then
+  each individual human is vulnerable to some exploit, but individual 
+  vulnerabilities can strengthen human teams (like differentiated cells
+  can yield stronger bodies).
 
 Discover new dimensions of intelligence
 ---------------------------------------
