@@ -156,7 +156,7 @@ Dendrogram Page
 Compare Tab (for Olympics)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
- .. figure:: images/CompareOlympics.png
+ .. figure:: images/CompareOlympic.png
 
 * The table is sorted by Compehensiveness and shows the Olympics
   with the top ten highest values (plus the current Olympics if
