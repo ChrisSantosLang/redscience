@@ -79,5 +79,11 @@ with :doc:`devenvironment`.
 
    /releases/commandline
    devenvironment
+   colabgit
+   ontology
+   languages
+   debug
+   architecture
+   codecompare
    /releases/releases
 
