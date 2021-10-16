@@ -58,13 +58,11 @@ Olympic Comparison
 Allow all players to see a leaderboard of the most 
 comprehensive Olympics, including the following statistics:
 
-* **Comprehensiveness**: Standard deviation in rankings on this Olympics
-  by the individual AI champions of the individual events of the 
-  top ten most comprehensive Olympics  
+* **Comprehensiveness**: Standard deviation in skill rating on 
+  this Olympics by the individual AI champions of the individual 
+  events of the top ten most comprehensive Olympics  
 * **Elementality**: Inverse average Discount To/From of events
-* **Compactness**: Inverse of number of events
 * **Efficiency**: Inverse of average event Difficulty
-* **Mutability**: Total usage of the progeny of the events
 
 
 Acceptance Test Plan
