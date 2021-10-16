@@ -141,7 +141,7 @@ Test Set
   1 white circle, 7 blanks” 72 variations
 
 TheoryOfMind:
-  6x1x4 posts: first stack locked and starts with 3 black dealt 
+  Played on 6x1x4 posts: first stack locked and starts with 3 black dealt 
   pieces, second stack exclusive to black and starts with white, 
   pink and yellow dealt pieces, third stack locked, fourth stack 
   exclusive to white and starts with pink, yellow, and black dealt 
@@ -162,7 +162,7 @@ TheoryOfMind:
   1020 variations
 
 3P-NeedyPoker:
-  8x1x26 stacks: first stack exclusive to black and starts with 5 
+  Played on 8x1x26 stacks: first stack exclusive to black and starts with 5 
   black circles, second stack exclusive to black and starts with 
   2 black dealt pieces, third stack exclusive to white and starts 
   with 5 white circles, fourth stack exclusive to white and starts 
@@ -209,7 +209,7 @@ Other interesting games
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 KPoker:
-  6x1x6 stacks: first stack exclusive to black and starts with 1 
+  Played on 6x1x6 stacks: first stack exclusive to black and starts with 1 
   black circle, second stack exclusive to black and starts with 
   1 black dealt piece, third stack exclusive to white and starts 
   with 1 white circle, fourth stack exclusive to white and starts 
@@ -232,7 +232,7 @@ KPoker:
   Deck:[{ P+X }] “1 pentagon, 1 X, and 1 cross in deck”.  
 
 BeerQuiche60:
-  4x1x5 posts: first stack exclusive to black and starts with 
+  Played on 4x1x5 posts: first stack exclusive to black and starts with 
   1 black dealt piece, second stack exclusive to white and starts 
   with 2 black dealt pieces, third stack exclusive to white and 
   starts with 1 white pentagon, fourth stack exclusive to chaos; 
