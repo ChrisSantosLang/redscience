@@ -153,6 +153,23 @@ Dendrogram Page
 * Clicking on the score to the right of an event name launches the 
   Evolution page for that event with the selected Player and Score
 
+Compare Tab (for Olympics)
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+ .. figure:: images/CompareOlympics.png
+
+* The table is sorted by Compehensiveness and shows the Olympics
+  with the top ten highest values (plus the current Olympics if
+  not already on the list). The “Sort by this Column” buttons 
+  re-display the table sorted by the values in the associated 
+  column; if already sorted by that column, then reverse the order.
+* The “Start Comparison” button (fa-balance-scale) recalculates 
+  the values by creating a running a tournament between top 
+  individual AI champions of the events of all listed Olympics. 
+  No values will display for the current Olympics if it has never
+  been part of such a tournament.
+* The “Show Leaderboard” buttons (fa-th-list) navigate to the 
+  Leaderboad tabs of the associated Olympics.
  
 Potential Schema
 ----------------
