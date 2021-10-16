@@ -131,7 +131,7 @@ to choose:
    its turn-taking experience) and confirm that it switches to the caste
    strategy. Copy an *AI* to the turn-taking *Universe* (retaining experience) 
    and confirm that it switches to turn-taking.
-#. Create a third private *Universe* composed equal numbers of players from the  
+#. Create a third private *Universe* composed of equal numbers of players from the  
    first two *Universes*. Which norm survives a *Volunteer* :doc:`tournament <tournament>`?
    Similarly test other population ratios to find the minimum ratio for the 
    other norm to survive. 
