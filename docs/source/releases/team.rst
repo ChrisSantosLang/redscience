@@ -28,6 +28,30 @@ members displaying the users' choice of either Job Share (i.e.
 percent of last 100 games assigned to that member), Rating, 
 Accuracy, F1, or Long Game.  
 
+Worldviews
+~~~~~~~~~~
+
+At the start of each event, the system uses a global AI model to 
+select one member to be the Explorer, but it maintains its own 
+game-classification tree to support that model. A member's F1 for 
+a given node of the tree is its average F1 for all games under 
+that node weighted by the inverse of the distance of the game 
+leaf to the node. Each statistic in the specialization colormap 
+can similarly be calculated for each tree node. Revise the tree 
+after each full game, sort events in the colormap by their 
+position in the classification tree, and permit users to view the 
+dendrogram of any statistic and member. 
+
+Auto-expansion
+~~~~~~~~~~~~~~
+
+Allow users to set Teams to maintain “Observers”. If this is set, 
+whenever game/experiment outcomes are learned whichever member 
+has the largest number of observations of the event will also 
+learn the outcome (even if not serving as Explorer/Debater). If 
+the event is brand new to the team, then a brand new member will 
+be created to be the observer for that event.
+
 
 Acceptance Test Plan
 --------------------
