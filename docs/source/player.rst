@@ -24,17 +24,21 @@ change it. Your email address is visible only to yourself and to *Admins*.
   of each creation over its life. 
 * The **Stats Tab** provides buttons to graph the evolution of the
   player for various :doc:`games <game>` and to challenge the player to 
-  new matches. 
+  new :doc:`matches <play>`. 
 * The **Favoritism Tab** highlights other players who have
-  historically exhibited special relationships with the player and 
-  provides buttons to explore and document their Social Histories
+  historically exhibited special relationships with the player. It 
+  is useful to detect security vulnerabilities inherent to
+  a specific AI (or any player).
 
-As a logged-in user, you will see a **Copy** button on game and 
-player pages. If you click it on the page of a human player, you will create 
-another *Persona* for yourself, which could be in a different *Universe*.
-A player cannot change *Universe* once saved, but could be copied to a different 
-*Universe*. You could establish private scoring among a group of friends by  
-inviting them to play against a *Persona* in your own private *Universe*. 
+Logged-in users, see a **Copy** button on game and player pages. 
+You can create another *Persona* for yourself by clicking the **Copy**
+button on the page of any human player. A *Persona* can be in a 
+different *Universe*, which would give it access to play with 
+other players in that *Universe*. Inviting a human to play in 
+a non-public *Universe* automatically gives them a *Persona* in 
+that *Universe*, Thus, you could establish private scoring among 
+a group of friends by inviting them to play against a *Persona* in 
+your own private *Universe*. 
 
 .. |playerbutton| image:: releases/images/playerbutton.png
 .. |loginbutton| image:: releases/images/loginbutton.png
