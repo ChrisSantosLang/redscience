@@ -25,9 +25,10 @@ is :doc:`code <modules>`.
 
 redscience has not yet been released, but feel free to preview
 our plans by reading this documentation. If you want alerts when 
-we release, you can follow our twitter acount at @redscience_ai 
-or join the 
-`redscience-announce GoogleGroup <https://groups.google.com/g/redscience-announce>`_
+we release, you can follow our twitter acount at `@redscience_ai 
+<https://twitter.com/redscience_ai>`_
+or join the `redscience-announce GoogleGroup 
+<https://groups.google.com/g/redscience-announce>`_
 
 .. toctree::
    :maxdepth: 2
