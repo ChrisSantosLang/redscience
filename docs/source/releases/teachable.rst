@@ -526,17 +526,9 @@ is no maximum acceptable impulse because loss is expected anyway.
 * Fallback to cooperative strategy if opponent deviates from this 
   plan or does not start in center
 * Respond upper left of center
-* If opponent takes left of response, respond center of left side
-* If opponent keeps playing in the outer ring (except centers), 
-  respond by filling the center cross, starting with the outer 
-  ring
-* If opponent keeps blocking each newly created line of three, 
-  respond by occupying each diagonal of center, then above center, 
-  left of center, then upper left corner)
-* If opponent takes the space below center or right of center and 
-  you do not have rare enough impulse, then go for strategic loss 
-  (i.e. avoid those spots and avoid winning); otherwise, take one 
-  of those spaces (preventing loss)
+* If opponent offers draw and you do not have rare enough impulse,
+  then accept the draw; otherwise avoid the center cross for all
+  future moves.
 
 3P-Wild-TTT Cooperative Higher-Ranked-Players-Win Lowest-Ranked Player Play Dumb Strategy
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
