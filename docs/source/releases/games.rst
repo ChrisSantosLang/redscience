@@ -27,6 +27,15 @@ Each player of normal Tic-Tac-Toe has a distinct color of pieces in
 reserve, but some variations have all players share a single color 
 or share multiple colors. 
 
+Option to Agree Draw
+~~~~~~~~~~~~~~~~~~~~
+
+If a game offers the Option to Agree Draw, then a player can 
+choose "Draw" as their move. All other players (except Chaos will 
+be asked to Agree or Reject the offer; if all agree, then the 
+match with end in a draw, otherwise the original player must choose
+a different move.  
+
 Number of Players
 ~~~~~~~~~~~~~~~~~
 
@@ -413,7 +422,7 @@ Treblecross15:
 
 4on7sq:
   Played on 7x7x1 squares, 25 black and 24 white start in reserve,
-  First 4-same-color-in-a-row wins
+  First 4-same-color-in-a-row wins, Option to Agree Draw
   
 5on15sq: 
   Played on 15x15x1 squares, 113 black and 112 white start in 
@@ -647,6 +656,9 @@ ContractHunt:
   Phase 1: Single, only white unlocked, fourth stack locked;
   Phase 2: Simultaneous, chaos locked; 
   Phase 3: Option to pass, only chaos unlocked.
+  
+OptionalPD:
+  Same as PrisonerDilemma, but with Option to Agree Draw.
 
 ContractPD:
   5x1x2 posts: first stack exclusive to black and starts with 
