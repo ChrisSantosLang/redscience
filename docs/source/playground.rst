@@ -15,8 +15,8 @@ below it indicates the amount of time left in the current turn.
 Depending upon how you choose to 
 :doc:`augment your intelligence <playerfactory>` (if at all),
 calculations may appear on the board along with suggested
-moves and justifications. Any augmenting AI will move for you,
-if you run out of time. 
+moves and justifications. Your augmenting tool will also eliminate the
+risk of running out of time by moving in your place if necessary. 
 
 Click the board to enter/change your move(s) 
 when it is your turn. A player cannot move a placed piece if that 
