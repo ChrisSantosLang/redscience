@@ -31,15 +31,17 @@ change it. Your email address is visible only to yourself and to *Admins*.
   a specific AI (or human; yes, humans can have vulnerabilities
   too).
 
-Logged-in users, see a **Copy** button on game and player pages. 
-You can create another *Persona* for yourself by clicking the **Copy**
-button on the page of any human player. A *Persona* can be in a 
-different *Universe*, which would give it access to play with 
-other players in that *Universe*. Inviting a human to play in 
-a non-public *Universe* automatically gives them a *Persona* in 
-that *Universe*, Thus, you could establish private scoring among 
-a group of friends by inviting them to play against a *Persona* in 
-your own private *Universe*. 
+Logged-in users see a **Copy** button on game and player pages. 
+You can create another *Persona* for yourself (and assign it a *Universe*) 
+by clicking that button on the page of any human player. 
+
+A player can play only with other players from the same *Universe*, but
+each human player will automatically get a *Persona* in each *Universe*
+in which they are invited to play. Thus, you could establish 
+private scoring among a group of friends by creating a *Persona* with
+its own private *Universe*, then inviting friends to play it. 
+However, each friend you invite could invite others, so make sure
+you all agree upon how the *Universe* is to be used.
 
 .. |playerbutton| image:: releases/images/playerbutton.png
 .. |loginbutton| image:: releases/images/loginbutton.png
