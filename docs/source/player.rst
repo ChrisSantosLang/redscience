@@ -39,9 +39,9 @@ A player can play only with other players from the same *Universe*, but
 each human player will automatically get a *Persona* in each *Universe*
 in which they are invited to play. Thus, you could establish 
 private scoring among a group of friends by creating a *Persona* with
-its own private *Universe*, then inviting friends to play it. 
-However, each friend you invite could invite others, so make sure
-you all agree upon how the *Universe* is to be used.
+its own private *Universe*, then inviting friends to play with it. 
+Each human you invite could invite others, so invite only friends 
+who agree about how that *Universe* is to be used.
 
 .. |playerbutton| image:: releases/images/playerbutton.png
 .. |loginbutton| image:: releases/images/loginbutton.png
