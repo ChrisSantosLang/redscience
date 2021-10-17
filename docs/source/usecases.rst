@@ -141,8 +141,8 @@ would we be doomed to spend our real lives serving as the subjects of
 such experiments (i.e. as pawns in a war between competing systems of 
 norms)?
 
-Empower social science and computer science students to explore
----------------------------------------------------------------
+Empower students of social science and computer science
+-------------------------------------------------------
 
 *Suppose you were a social science or computer science teacher*. It's one thing
 to expose students to new ideas, but another thing to empower students to test 
