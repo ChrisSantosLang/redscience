@@ -1,7 +1,7 @@
-============================================
-How to Use the redscience Class Architecture
-============================================
+===============================================
+How to Use the redscience Software Architecture
+===============================================
 
 (Under construction)
 
-This will step students through the first few milestones of version 1.0
+This will step students through completing the first few milestones of version 1.0
