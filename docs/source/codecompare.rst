@@ -1,6 +1,6 @@
-=============================
-How to Compare Coding Options
-=============================
+====================================================
+How to Compare Coding Options (and Python refresher)
+====================================================
 
 (Under construction)
 
