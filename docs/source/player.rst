@@ -28,7 +28,8 @@ change it. Your email address is visible only to yourself and to *Admins*.
 * The **Favoritism Tab** highlights other players who have
   historically exhibited special relationships with the player. It 
   is useful to detect security vulnerabilities inherent to
-  a specific AI (or any player).
+  a specific AI (or human; yes, humans can have vulnerabilities
+  too).
 
 Logged-in users, see a **Copy** button on game and player pages. 
 You can create another *Persona* for yourself by clicking the **Copy**
