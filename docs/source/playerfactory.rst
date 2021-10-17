@@ -3,9 +3,9 @@ For Trainers: Creating AI
 =========================
 
 Any user can use any *AI*, *Team*, or *Corp* as a tool to help them
-:doc:`play <play>`. On the :doc:`pages <player>` for such tools, 
-Trainers see a **Copy** button they can use to duplicate the tool and adjust 
-the settings on the new copy to improve it. Finding/creating the best tools 
+:doc:`play <play>`, but only Trainers see a **Copy** button on the 
+:doc:`pages <player>` of each such tool to create a duplicate which 
+the Trainer can adjust (until it is saved). Finding/creating the best tools 
 may be the most powerful way to raise one's :doc:`rankings <game>`.
 
 .. image:: releases/images/CurriculumSimple.png
@@ -13,48 +13,49 @@ may be the most powerful way to raise one's :doc:`rankings <game>`.
 Many player settings, including *Type* and *Universe*, cannot be changed
 once saved. If you want to change those settings, just make a new copy! 
 
-If the player's *Type* is *AI*, then the player page will have a **Curriculum Tab** 
+If the player is an *AI*, then the player page will have a **Curriculum Tab** 
 instead of a Creations Tab. Even after an *AI* is saved, its creator
 can add recorded matches to its curriculum by specifiying parts of 
-tournaments or other players' histories to be studied. Its creator 
+tournaments or of other players' histories to be studied. Its creator 
 can also set the *AI* to automatically learn from its own experiences.
 If you ever want a copy of an earlier version of an *AI*, you can "fork"
-it from a specified earlier timestamp. Until saved, trainers can set 
-parameters for the learing algorithm and for the following (or can 
-auto-tune them to a given curriculum and game):
+it from a specified earlier timestamp. Until the *AI* is saved, its Trainer 
+can set it learning algorithm, parameters for its learing algorithm, and the 
+following (or the Trainer can set parameters to auto-tune to a given curriculum 
+or game):
 
-:math:`\text{Offense}` (vs. Defense):
+:math:`\text{Offense}` (opposite: Defense):
   :math:`1.0` means maximize wins; :math:`0.0` means minimize losses
   
-:math:`\text{Tactical}` (vs. Stategic):
-  :math:`1.0` means prioritize the current game; :math:`0.0` means maximize rating; 
+:math:`\text{Tactical}` (opposite: Stategic):
+  :math:`1.0` means prioritize the current game; :math:`0.0` means maximize rating. 
   :math:`\text{Tactical}` greater than :math:`\text{Offense}` means 
   never sacrifice a current win for future wins; 
   :math:`\text{Tactical}` greater than :math:`(1 - \text{Offense})` 
-  means never take a loss for future wins
+  means never take a loss to potentially get future wins
 
-:math:`\text{Faith}` (vs. Skeptical):
+:math:`\text{Faith}` (opposite: Skeptical):
   :math:`1.0` means confidence in one's data never decays; :math:`0.0` means 
-  confidence expires instantly; otherwise confidence in data depends on its age
+  confidence expires instantly; between :math:`0.0` and :math:`1.0`, confidence 
+  in ones data depends upon the age of that data
     
-:math:`\text{Introvert}` (vs. Extrovert):  
+:math:`\text{Introvert}` (opposite: Extrovert):  
   :math:`1.0` means practice on simulations as much as possible before acting; 
-  :math:`0.0` means learn only via action (so as not to lose touch with
-  "reality")
+  :math:`0.0` means learn only via action (so as not to become an "echo chamber")
 
-:math:`\text{Empath}` (vs. Projective):  
+:math:`\text{Empath}` (opposite: Projective):  
   :math:`1.0` means try to predict others’ moves based on their stats and recent 
-  behavior; :math:`0.0` means expect others to do whatever you would do in 
-  their situation
+  behavior; :math:`0.0` means expect others to do whatever you 
+  would do in their situation
 
-:math:`\text{Curious}` (vs. Practical):  
-  :math:`1.0` means practice unexpected scenarios as much as possible; :math:`0.0`
-  means practice only expected scenarios 
+:math:`\text{Curious}` (opposite: Practical):  
+  :math:`1.0` means to focus practice towards unpracticed scenarios; :math:`0.0`
+  means to focus practice towards expected scenarios (see :math:`\text{Empath}`) 
 
-If the player's *Type* is *Team* or *Corp*, then the player page will
-have a **Members Tab** instead of a Curriculum or Creations Tab.
-The creator can add *AI* as members, and can delete any members that have 
-become obsolete. Each individual *AI* has biases. *Teams* and *Corps* 
-leverage diversty of biases. Each regular *Team* fields its highest-ranked
-member for each event (i.e. specialists). In a *Corp*, multiple *AI* may 
-collaborate on each decision via various forms of government.
+If the player is a *Team* or *Corp*, then the player page will
+have a **Members Tab** instead of a Curriculum Tab or Creations Tab.
+Its creator can add *AI* to the members, and can delete any members that have 
+become obsolete. Each individual *AI* has biases, but *Teams* and *Corps* 
+leverage diversty of biases. Each *Team* fields a single member for each 
+event (i.e. specialists), but multiple members of a *Corp* collaborate 
+on each decision (via various forms of government).
