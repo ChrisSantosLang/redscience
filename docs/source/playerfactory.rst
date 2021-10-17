@@ -2,37 +2,41 @@
 For Trainers: Creating AI
 =========================
 
-Any user can use any *AI*, *Team*, or *Corp* as a tool to help them
-:doc:`play <play>`, but only Trainers see a **Copy** button on the 
-:doc:`pages <player>` of each such tool to create a duplicate which 
-the Trainer can adjust (until it is saved). Finding/creating the best tools 
+Any user can use any *AI*, *Team*, or *Corp* as a 
+:doc:`tool to help them play <play>`, but only Trainers see a **Copy** button on the 
+:doc:`page <player>` of each such tool to create a duplicate which 
+that Trainer can adjust (until it is saved). Finding/refining the best tools 
 may be the most powerful way to raise one's :doc:`rankings <game>`.
 
 .. image:: releases/images/CurriculumSimple.png
 
 Many player settings, including *Type* and *Universe*, cannot be changed
 once saved. If you want to change those settings, just make a new copy! 
+If you ever want a copy of an earlier version of an *AI*, you can "fork"
+it from a specified earlier timestamp. 
 
-If the player is an *AI*, then the player page will have a **Curriculum Tab** 
+*AI* players have a **Curriculum Tab** 
 instead of a Creations Tab. Even after an *AI* is saved, its creator
 can add recorded matches to its curriculum by specifiying parts of 
 tournaments or of other players' histories to be studied. Its creator 
 can also set the *AI* to automatically learn from its own experiences.
-If you ever want a copy of an earlier version of an *AI*, you can "fork"
-it from a specified earlier timestamp. Until the *AI* is saved, its Trainer 
-can set it learning algorithm, parameters for its learing algorithm, and the 
-following (or the Trainer can set parameters to auto-tune to a given curriculum 
+Until the *AI* is saved, its Trainer 
+can also set its learning algorithm, parameters for that algorithm, and the 
+following (or the Trainer can set them to auto-tune to a given curriculum 
 or game):
 
 :math:`\text{Offense}` (opposite: Defense):
-  :math:`1.0` means maximize wins; :math:`0.0` means minimize losses
+  :math:`1.0` means maximize wins (considers draw as bad as loss); 
+  :math:`0.0` means minimize losses (considers draw as good as win);
+  :math:`0.5` values draw halfway between win and loss 
   
 :math:`\text{Tactical}` (opposite: Stategic):
-  :math:`1.0` means prioritize the current game; :math:`0.0` means maximize rating. 
+  :math:`1.0` means prioritize the current game; :math:`0.0` means maximize 
+  ones own skill-rating. 
   :math:`\text{Tactical}` greater than :math:`\text{Offense}` means 
-  never sacrifice a current win for future wins; 
+  never sacrifice a current win to seek future wins; 
   :math:`\text{Tactical}` greater than :math:`(1 - \text{Offense})` 
-  means never take a loss to potentially get future wins
+  means never take a loss to seek future wins
 
 :math:`\text{Faith}` (opposite: Skeptical):
   :math:`1.0` means confidence in one's data never decays; :math:`0.0` means 
