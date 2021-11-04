@@ -138,7 +138,6 @@ to choose:
    interactions (as opposed to random selection) by running tournaments where 
    each reselection of players is composed of one player selected at random plus 
    the top-ranked player and the favorite of the top-ranked player.
-   in the reselection.
 
 If we couldn’t run these experiments to our satisfaction in redscience, 
 would we be doomed to spend our real lives serving as the subjects of 
