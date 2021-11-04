@@ -213,7 +213,6 @@ Favoritism
   the last ten matches with player :math:`b`
 
 .. math::
-   :name: win boost
    \text{win boost}_{a, b, g} = 
        \displaystyle\sum_{\substack{
          i=(n-10) \\
