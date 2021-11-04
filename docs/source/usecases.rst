@@ -84,7 +84,7 @@ vulnerable:
 Discover new dimensions of intelligence
 ---------------------------------------
 
-*Suppose you loved someone someone so much that you wanted to leave a valuable 
+*Suppose you loved someone so much that you wanted to leave a valuable 
 legacy to their children and to the generations that follow. More than build an
 empire, you want to advance the standard of quality so that any "better" 
 empire would be building on your legacy.* What legacy could be more enriching 
@@ -134,7 +134,11 @@ to choose:
 #. Create a third private *Universe* composed of equal numbers of players from the  
    first two *Universes*. Which norm survives a *Volunteer* :doc:`tournament <tournament>`?
    Similarly test other population ratios to find the minimum ratio for the 
-   other norm to survive. 
+   other norm to survive. Observe the impact of freedom to select social
+   interactions (as opposed to random selection) by running tournaments where 
+   each reselection of players is composed of one player selected at random plus 
+   the top-ranked player and the favorite of the top-ranked player.
+   in the reselection.
 
 If we couldn’t run these experiments to our satisfaction in redscience, 
 would we be doomed to spend our real lives serving as the subjects of 
