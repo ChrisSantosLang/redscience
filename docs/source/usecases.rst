@@ -87,16 +87,19 @@ Discover new dimensions of intelligence
 *Suppose you loved someone so much that you wanted to leave a valuable 
 legacy to their children and to the generations that follow. More than build an
 empire, you want to advance the standard of quality so that any "better" 
-empire would be building on your legacy.* What legacy could be more enriching 
-that granting a culture its first awareness of music, empathy, tool-use, 
-exploration or other not-yet-named dimension of intelligence? 
+empire would be building on your legacy.* What advance of quality could be more 
+enriching than the introduction of a new dimension of intelligence (e.g. 
+granting a culture its first awareness of music, empathy, tool-use, exploration 
+or other not-yet-named dimension of intelligence)? 
 
 Intelligence is measured in terms of the kinds of games which one being 
 wins over another, so every dimension of intelligence can be expressed as a 
 kind of game (e.g. games that test empathy by requiring players to collaborate
-with players of different skill-level and experience). The most comprehensive 
-:doc:`Olympics <tournament>` would test every dimension of intelligence, so creating more 
-comprehensive Olympics is like expanding the Periodic Table of the Elements:
+with players of different skill-level and/or norms). The most comprehensive 
+:doc:`Olympics <tournament>` would test every dimension of intelligence, so the 
+legacy of making the most comprehensive Olympics more comprehensive (while 
+maintaining elementality) is like the legacy of expanding the Periodic Table of 
+the Elements:
 
 #. Identify the most comprehensive Olympics via the **Comparison Tab**
 #. Use the **Comparison Tab** on the events of that Olympics to identify an 
