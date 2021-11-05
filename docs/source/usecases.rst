@@ -7,17 +7,21 @@ Benchmark social designs
 
 *Suppose you were assembling a team of humans, or an AI, or a 
 collaboration between humans and AI to play a real-world game, such as 
-stocktrading, diplomacy, policymaking, or to compete in business.*
+stocktrading, diplomacy, policymaking, to compete in business, or to 
+answer a problem or need (which may or may not adjust to your answer).*
 Previous simulations find that existing social designs retard social 
 progress `by 3 to 25 times <https://figshare.
-com/articles/dataset/Varieties_of_Elitism/7052264>`_, but how can you test
-alternatives? 
+com/articles/dataset/Varieties_of_Elitism/7052264>`_; the reason 
+why we fail to optimize may be our previous unwillingness to test 
+alternative social designs.
 
-With redscience, you can benchmark different team-sizes, personality 
+Now, with redscience, you can benchmark different team-sizes, personality 
 ratios, curriculum ratios, and collaboration techniques (e.g. elitism vs 
 pure democracy) on specific games or `to face the unexpected <Olympics>`_. 
-These may be considered pre-clinical trials to increase the success-rates
-of other tests (like testing on animal subjects before testing on humans).
+Such tests may be considered pre-clinical trials (like testing on animal 
+subjects before testing on humans). Not only are pre-clinical trials 
+better than no testing at all, but they can help avoid experiments that
+unecessarily harm people.
 
 For example,   
 
