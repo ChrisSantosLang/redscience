@@ -34,7 +34,10 @@ For example,
 #. Run an Olympic :doc:`tournament <tournament>` which includes both the 
    current champion and its modified clone. Does the modified clone 
    outperform its parent, or does the parent make the extreme personality of 
-   that team-member into a strength?
+   that team-member into a strength? If making the personality less-extreme
+   degrades performance, then we should hestitate to engage in 
+   genetic engineering (or training/discipline) aimed to make that personality 
+   less-extreme in our own children... 
 
 .. Note:: The most comprehensive Olympics will include cooperative games 
   (like the *Public Goods game*), alliance games (like *Risk*), deception 
