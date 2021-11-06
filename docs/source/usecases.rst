@@ -1,6 +1,60 @@
 Use Cases
 =========
 
+Anticipate security exploits 
+----------------------------
+
+*Suppose you were a developer assigned to deploy a new AI into the real world, 
+or a parent/teacher trying to help a new human find their place in society.*
+You'd want to know in advance about any exploits to which that AI or person is 
+vulnerable. *Or suppose you want to develop/establish your own ability (e.g. 
+to win a social position).* 
+
+Games are a time-tested method to develop/establish ability with logic and 
+planning; newer games/players can extend gams to other abilities, such as 
+social/political skills, trend-spotting/seting, an innovation. When the most 
+comprehensive Olympics is sufficiently comprehensive and its top players are 
+sufficiently skilled, playing against them will not only teach and establish 
+competence, but test for a broad range of vulnerabilities (e.g. risk aversion, 
+risk-proclivity, dogmatism, idealism, short-sightedness, long-sightedness, etc):
+
+#. Identify the most comprehensive :doc:`Olympics <tournament>` via the 
+   **Comparison Tab** and identify the reigning champions of its events via its 
+   :doc:`leaderboard <game>`. 
+#. Apply the build for the AI in redscience or have the human 
+   :doc:`establish an account <player>`. Have this player play the Olympics 
+   against its champions.
+#. Look at the player’s **Favoritism Tab** to identify events for which the player 
+   consistently performs worse against certain players than do other players of the 
+   same skill-level.
+#. Look at the favoritism stats for those opponents to find other vistims who 
+   get exploited in the same way. What do the victims have in common
+   (e.g. risk-aversion? risk-proclivity?)
+#. Browse the **Favoritism Tab** to find games in which that 
+   vulnerability does not manifest (i.e. games that are "safe" for the player you 
+   want to protect). What do they have in common (and what real-world games share 
+   that commonality)?
+#. Regarding "unsafe" games, compare victims’ favoritism stats under different 
+   forms of :doc:`tool-use <playerfactory>`. Which forms of tool use (if any) 
+   neutralize the handicap? Real-world tools used to neutralize these kinds of 
+   handicaps (a.k.a. "biases") include juries, journalistic processes, doctors, 
+   religious teachers, and algorithms encoded in scripture and law. These experiments 
+   not only help to identify situations in which it is most wise to use such tools, 
+   but also forms of tool-use which minimize loss of agency.
+
+.. Warning:: Patterns in the ways you can be defeated in various games 
+  constitute private information (like personality test scores, 
+  standardized test scores, or the results of genetic tests), so use 
+  an account that cannot be traced to you whenever playing large numbers
+  of games without a tool!
+  
+.. Note:: "Personality" settings are made available in redscience only if games
+  have been identified for which different settings are optimal. If such 
+  settings reflect real human personalities, then
+  each individual human is vulnerable to some exploit, but individual 
+  vulnerabilities can strengthen human teams (like differentiated cells
+  can yield stronger bodies).
+  
 
 Benchmark social designs
 ------------------------
@@ -23,21 +77,22 @@ subjects before testing on humans). Not only are pre-clinical trials
 better than no testing at all, but they can help avoid experiments that
 unecessarily harm people.
 
-For example,   
+When the most comprehensive Olympics is sufficiently comprehensive and 
+its top non-human players are sufficiently skilled, social engineers 
+will want to try the same team-sizes, personality ratios, curriculum 
+ratios, and collaboration techniques in the real-world. If they expect 
+that won't be optimal, they can test alternatives in redscience; for 
+example, if the top non-human champion is a team and one of its members 
+has an extreme personality the social engineers hesitate to include in 
+their own teams, the engineers (i.e. HR) could try the following:    
 
-#. Identify the most comprehensive :doc:`Olympics <tournament>` via the **Comparison Tab**, 
-   identify the top team for that Olympics via its :doc:`leaderboard <game>`, 
-   and identify an essential member of that team using its **Members Tab**.
 #. :doc:`Clone the team <playerfactory>` to create a new one, and slightly 
-   modify one dimension of the personality of the cloned essential member 
-   (e.g. make the clone less extreme). 
+   modify one dimension of the personality of the clone of the member in 
+   question (e.g. make the clone less extreme). 
 #. Run an Olympic :doc:`tournament <tournament>` which includes both the 
    current champion and its modified clone. Does the modified clone 
    outperform its parent, or does the parent make the extreme personality of 
-   that team-member into a strength? If making the personality less-extreme
-   degrades performance, then we should hestitate to engage in 
-   genetic engineering (or training/discipline) aimed to make that personality 
-   less-extreme in our own children... 
+   that team-member into a strength? 
 
 .. Note:: The most comprehensive Olympics will include cooperative games 
   (like the *Public Goods game*), alliance games (like *Risk*), deception 
@@ -46,47 +101,6 @@ For example,
   hedges against the potential for any real-world game to 
   shift in any of these directions.
 
-Anticipate security exploits 
-----------------------------
-
-*Suppose you were a developer assigned to deploy a new AI into the real world, 
-or a parent/teacher trying to help a new human find their place in society.*
-You'd want to know in advance about any exploits to which that AI or person is 
-vulnerable:
-
-#. Build the AI in redscience or have the human 
-   :doc:`establish an account <player>`. Have this player play a diverse variety
-   of :doc:`games <games>` against the reigning champions.
-#. Look at the player’s **Favoritism Tab** to identify tools that 
-   consistently perform better against that player than against other players 
-   of the same skill-level.
-#. Look at the favoritism stats for those tools to find other players whom
-   they exploit in the same way. What do the victims have in common 
-   (e.g. Risk-aversion? Risk-proclivity?)
-#. Browse the **Favoritism Tab** to find games in which that 
-   vulnerability does not manifest (i.e. games that are "safe" for the player).
-   What do they have in common (and what real-world games share that commonality)?
-#. Regarding "unsafe" games, compare victims’ favoritism stats under different 
-   forms of :doc:`tool-use <playerfactory>`. Which forms of tool use (if any) 
-   neutralize the victims' handicap? Juries, news channels, 
-   doctors, religious teachers, and algorithms encoded in scripture and law are 
-   all examples of real-world tools that can help someone overcome a vulnerability
-   and make more effective decisions. These experiments not only help to identify 
-   situations in which it is most wise to use such tools, but also forms of tool-use 
-   which minimize loss of agency.
-
-.. Warning:: Patterns in the ways you can be defeated in various games 
-  constitute private information (like personality test scores, 
-  standardized test scores, or the results of genetic tests), so use 
-  an account that cannot be traced to you whenever playing large numbers
-  of games without a tool!
-  
-.. Note:: "Personality" settings are made available in redscience only if games
-  have been identified for which different settings are optimal. If such 
-  settings reflect real human personalities, then
-  each individual human is vulnerable to some exploit, but individual 
-  vulnerabilities can strengthen human teams (like differentiated cells
-  can yield stronger bodies).
 
 Discover new dimensions of intelligence
 ---------------------------------------
