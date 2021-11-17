@@ -48,7 +48,7 @@ portion = "^2.2.0"
 toml = "^0.10.2"
 sphinx = {version = "^4", optional = true}
 pre-commit = {version = "^2.15.0", optional = true}
-black = {version = "^21.9b0", optional = true}
+black = {version = "^21.11b0", optional = true}
 mypy = {version = "^0.910", optional = true}
 isort = {version = "^5.9.3", optional = true}
 radon = {version = "^5.1.0", optional = true}
