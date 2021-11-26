@@ -5,55 +5,54 @@ Anticipate security exploits
 ----------------------------
 
 *Suppose you were a developer assigned to deploy a new AI into the real world, 
-or a parent/teacher trying to help a new human find their place in society.*
-You'd want to know in advance about any exploits to which that AI or person is 
-vulnerable. *Or suppose you want to develop/establish your own ability (e.g. 
-to win a social position).* 
+or a parent/teacher trying to help a new human find their place in society. 
+Or suppose you want to develop/establish your own ability (e.g. to win a social 
+position).* You'd want to know in advance about any exploits to which that AI 
+or person is vulnerable.
 
 Games are a time-tested method to develop/establish ability with logic and 
-planning; newer games/players can extend gams to other abilities, such as 
-social/political skills, trend-spotting/seting, an innovation. When the most 
+planning, and can do the same with other kinds of ability, such as 
+social/political skills, trend-spotting/setting, and innovation. When the most 
 comprehensive Olympics is sufficiently comprehensive and its top players are 
 sufficiently skilled, playing against them will not only teach and establish 
-competence, but test for a broad range of vulnerabilities (e.g. risk aversion, 
+competence, but also test for a broad range of vulnerabilities (e.g. risk aversion, 
 risk-proclivity, dogmatism, idealism, short-sightedness, long-sightedness, etc):
 
+#. Have the human :doc:`establish an account <player>` (if testing AI, 
+   :doc:`build it<playerfactory>` in redscience).
 #. Identify the most comprehensive :doc:`Olympics <tournament>` via the 
    **Comparison Tab** and identify the reigning champions of its events via its 
-   :doc:`leaderboard <game>`. 
-#. Apply the build for the AI in redscience or have the human 
-   :doc:`establish an account <player>`. Have this player play the Olympics 
+   :doc:`leaderboard <game>`. Have the player under investigation play the Olympics 
    against its champions.
-#. Look at the player’s **Favoritism Tab** to identify events for which the player 
-   consistently performs worse against certain players than do other players of the 
-   same skill-level.
-#. Look at the favoritism stats for those opponents to find other vistims who 
-   get exploited in the same way. What do the victims have in common
-   (e.g. risk-aversion? risk-proclivity?)
-#. Browse the **Favoritism Tab** to find games in which that 
-   vulnerability does not manifest (i.e. games that are "safe" for the player you 
-   want to protect). What do they have in common (and what real-world games share 
-   that commonality)?
-#. Regarding "unsafe" games, compare victims’ favoritism stats under different 
-   forms of :doc:`tool-use <playerfactory>`. Which forms of tool use (if any) 
-   neutralize the handicap? Real-world tools used to neutralize these kinds of 
-   handicaps (a.k.a. "biases") include juries, journalistic processes, doctors, 
-   religious teachers, and algorithms encoded in scripture and law. These experiments 
-   not only help to identify situations in which it is most wise to use such tools, 
-   but also forms of tool-use which minimize loss of agency.
+#. Look at the player’s **Favoritism Tab** to identify vulnerabilities as 
+   opponents and events for which the player under investigation consistently 
+   performs worse than do other players of the same skill-level.
+#. To understand a vulnerability, look at the favoritism stats of the expoiter to 
+   find other victims who get exploited in the same way. What do the victims have in 
+   common (e.g. risk-aversion? risk-proclivity?)
+#. To map the domain of "safety", browse the **Favoritism Tab** to find events in 
+   which no vulnerability manifests. What do such events have in common (and what 
+   real-world situations share that commonality)?
+#. To find ways to extend safety (for humans), have the player under investigation play 
+   unsafe events using the top players as :doc:`tools <playerfactory>`. Which forms of 
+   tool use neutralize the handicap (i.e. review, debate, or delegation)? In other words, 
+   how much agency can one preserve without also preserving the vulnerability? Some 
+   examples of real-world tools used to neutralize biases include consultants/advisors, 
+   juries, and the algorithms encoded in scripture, law, and business processes. 
+   Experimenting with vulnerabilites in redscience may help us minimize loss of agency 
+   to such tools.
 
 .. Warning:: Patterns in the ways you can be defeated in various games 
   constitute private information (like personality test scores, 
   standardized test scores, or the results of genetic tests), so use 
   an account that cannot be traced to you whenever playing large numbers
-  of games without a tool!
+  of games alone!
   
 .. Note:: "Personality" settings are made available in redscience only if games
-  have been identified for which different settings are optimal. If such 
-  settings reflect real human personalities, then
-  each individual human is vulnerable to some exploit, but individual 
-  vulnerabilities can strengthen human teams (like differentiated cells
-  can yield stronger bodies).
+  have been identified for which different settings are optimal. Individual humans who 
+  exhibit those traits would be vulnerable to some kind of exploit, but also have the 
+  potential to strengthen a team by protecting it against other exploits (i.e. like 
+  differentiated cells benefit a body).
   
 
 Benchmark social designs
@@ -62,44 +61,49 @@ Benchmark social designs
 *Suppose you were assembling a team of humans, or an AI, or a 
 collaboration between humans and AI to play a real-world game, such as 
 stocktrading, diplomacy, policymaking, to compete in business, or to 
-answer a problem or need (which may or may not adjust to your answer).*
-Previous simulations find that existing social designs retard social 
-progress `by 3 to 25 times <https://figshare.
-com/articles/dataset/Varieties_of_Elitism/7052264>`_; the reason 
-why we fail to optimize may be our previous unwillingness to test 
-alternative social designs.
+address a problem or need.* One approach is to try to copy whatever design is 
+currently most successful (e.g. poach from successful teams and ask the poached 
+employees to replicate what worked for them in the past). That approach might
+be called "dogma".
 
-Now, with redscience, you can benchmark different team-sizes, personality 
-ratios, curriculum ratios, and collaboration techniques (e.g. elitism vs 
-pure democracy) on specific games or `to face the unexpected <Olympics>`_. 
-Such tests may be considered pre-clinical trials (like testing on animal 
-subjects before testing on humans). Not only are pre-clinical trials 
-better than no testing at all, but they can help avoid experiments that
-unecessarily harm people.
+Dogma is sub-optimal if existing social designs are sub-optimal. Previous 
+simulations find that existing social designs retard social progress 
+`by 3 to 25 times <https://figshare.com/articles/dataset/Varieties_of_Elitism/7052264>`_. 
+This should not surprise us, since we can look back in history to find social 
+designs that are considerd barbaric today, even though they were the most 
+successful of their age. 
 
-When the most comprehensive Olympics is sufficiently comprehensive and 
-its top non-human players are sufficiently skilled, social engineers 
-will want to try the same team-sizes, personality ratios, curriculum 
-ratios, and collaboration techniques in the real-world. If they expect 
-that won't be optimal, they can test alternatives in redscience; for 
-example, if the top non-human champion is a team and one of its members 
-has an extreme personality the social engineers hesitate to include in 
-their own teams, the engineers (i.e. HR) could try the following:    
+An alternative approach--a way to escape dogma--is to test alternative 
+social designs via simulations before deploying them in real-life. 
+When the most :doc:`comprehensive Olympics <tournament>` in redscience is 
+sufficiently comprehensive and its top non-human players are sufficiently 
+skilled, the alternative approach would boil-down to building real-world teams 
+that match the team-sizes, personality ratios, curriculum ratios, and 
+collaboration techniques of those top players. 
 
-#. :doc:`Clone the team <playerfactory>` to create a new one, and slightly 
-   modify one dimension of the personality of the clone of the member in 
-   question (e.g. make the clone less extreme). 
+If the Bible were a guide for social engineering, redscience would be its 
+replacement, but, unlike the Bible, 
+redscience offers those who question its wisdom a procedure to challenge it.
+For example, if the top non-human champion is a team that included an extreme 
+personality that social engineers hesitate to include in real-world teams, the 
+engineers could challenge the wisdom of including that personality as follows:    
+
+#. :doc:`Clone <playerfactory>` the top team to create a new one, and make the 
+   objectionable personality less extreme in the cloned member. 
 #. Run an Olympic :doc:`tournament <tournament>` which includes both the 
-   current champion and its modified clone. Does the modified clone 
-   outperform its parent, or does the parent make the extreme personality of 
-   that team-member into a strength? 
+   parent and its modified clone. Does the modified clone 
+   outperform its parent? If not, are there specific events in which it does? 
+   What real-world situations match the events on which the parent outperforms 
+   the clone (i.e. what is there to appreciate about the extreme personality)?
 
 .. Note:: The most comprehensive Olympics will include cooperative games 
   (like the *Public Goods game*), alliance games (like *Risk*), deception 
   games (like *Hide and Seek*), and probabilistic games (like *Poker*), 
-  as well as traditionally competitive games (like *Chess*), so this approach 
+  as well as planning games (like *Chess*), so this approach 
   hedges against the potential for any real-world game to 
-  shift in any of these directions.
+  shift in any of these directions. If we can limit the shifting of real-world
+  games, then it may be appropriate to use Olympics other than the most 
+  comprehensive in the procedures above.
 
 
 Discover new dimensions of intelligence
@@ -107,16 +111,17 @@ Discover new dimensions of intelligence
 
 *Suppose you loved someone so much that you wanted to leave a valuable 
 legacy to their children and to the generations that follow. More than build an
-empire, you want to advance the standard of quality so that any "better" 
-empire would be building on your legacy.* What advance of quality could be more 
-enriching than the introduction of a new dimension of intelligence (e.g. 
-granting a culture its first awareness of music, empathy, tool-use, exploration 
+empire that could be replaced, you want to advance the very standard of quality 
+so that any replacement would build on your legacy.* What advance of quality 
+could be more enriching than the introduction of a new dimension of intelligence (e.g. 
+granting a culture its first awareness of empathy, tool-use, exploration 
 or other not-yet-named dimension of intelligence)? 
 
 Intelligence is measured in terms of the kinds of games which one being 
-wins over another, so every dimension of intelligence can be expressed as a 
-kind of game (e.g. games that test empathy by requiring players to collaborate
-with players of different skill-level and/or norms). The most comprehensive 
+wins over another, so each dimension of intelligence can be expressed as a 
+set of games (e.g. empathy can be expressed as games in which empathic 
+players have advantage, perhaps because those games require collaboration
+with players with different skill-level and norms). The most comprehensive 
 :doc:`Olympics <tournament>` would test every dimension of intelligence, so the 
 legacy of making the most comprehensive Olympics more comprehensive (while 
 maintaining elementality) is like the legacy of expanding the Periodic Table of 
@@ -140,9 +145,8 @@ Elevate reality above experimentation
 *Suppose our society were divided by competing systems of social norms.* For
 example, the best strategy in the *Volunteer* game depends upon prevailing 
 social norms which happen to correspond to the real-world norms of "turn-taking"
-vs "caste system" (which sometimes manifests as racial discrimination). 
-redscience might provide a better way to resolve disagreement about which norms
-to choose: 
+vs "caste system" (which sometimes manifests as racial discrimination). One way 
+to resolve the competition might be to benchmark the norms in redscience: 
 
 #. Copy the top-ranked *AI* for the *Volunteer* :doc:`game <game>` to a new 
    *Universe* (but :doc:`do not copy its curriculum <playerfactory>`). Play a 
@@ -151,27 +155,29 @@ to choose:
    *AI* in that *Universe*.
 #. Similarly create a second private *Universe* in which you train all *AI* 
    to play *Volunteer* via caste (i.e. whoever got the better deal last time 
-   gets it again). Copy in an *AI* from the turn-taking *Universe* (retaining
-   its turn-taking experience) and confirm that it switches to the caste
-   strategy. Copy an *AI* to the turn-taking *Universe* (retaining experience) 
-   and confirm that it switches to turn-taking.
+   gets it again). 
+#. Copy an *AI* from the turn-taking *Universe* to the caste *Universe* (retaining
+   its turn-taking experience), and confirm that it switches to the caste strategy. 
+#. Copy an *AI* from the caste *Universe* to the turn-taking *Universe* (retaining 
+   its caste experience) and confirm that it switches to turn-taking.
 #. Create a third private *Universe* composed of equal numbers of players from the  
    first two *Universes*. Which norm survives a *Volunteer* :doc:`tournament <tournament>`?
    Similarly test other population ratios to find the minimum ratio for the 
-   other norm to survive. Observe the impact of freedom to select social
-   interactions (as opposed to random selection) by running tournaments where 
-   each reselection of players is composed of one player selected at random plus 
-   the top-ranked player and the favorite of the top-ranked player.
+   other norm to survive. 
+#. Observe how freedom to select social situations impacts norms by running tournaments 
+   where each reselection of players is composed of a player and their favorite 
+   opponent. Repeat the experiment where each reselection is composed of two random 
+   players plus the favorite opponent of the top-ranked player.
 
 If we couldn’t run these experiments to our satisfaction in redscience, 
-would we be doomed to spend our real lives serving as the subjects of 
+would we be doomed to spend our real lives serving as the subjects in 
 such experiments (i.e. as pawns in a war between competing systems of 
 norms)?
 
 Empower students of social science and computer science
 -------------------------------------------------------
 
-*Suppose you were a social science or computer science teacher*. It's one thing
+*Suppose you were a social science teacher or computer science teacher*. It's one thing
 to expose students to new ideas, but another thing to empower students to test 
 those ideas for themselves. Although redscience is designed to be accessible at
 the secondary-education level, it is just as relevant in post-secondary education.
