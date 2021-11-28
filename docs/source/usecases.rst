@@ -82,13 +82,13 @@ that match the team-sizes, personality ratios, curriculum ratios, and
 collaboration techniques of those top players. 
 
 If scripture were a guide for social engineering, platforms like redscience 
-would be its replacement, but, unlike scripture, 
-redscience offers those who question its wisdom a procedure to challenge that
-wisdom. For example, if the top non-human champion were a team that included 
-an extreme personality that social engineers hesitated to include in real-world 
-teams (e.g. as it was once common to exclude "feminine" personalities from 
-leadership teams), the engineers could challenge the wisdom of including that 
-personality as follows:    
+would be its replacement, but, unlike scripture, redscience needn't identify 
+with any particular religion and offers those who question its wisdom a 
+procedure to challenge that wisdom. For example, if the top non-human champion 
+were a team that included an extreme personality that social engineers hesitated 
+to include in real-world teams (e.g. as some social engineers have hestitated to 
+include "feminine" personalities in certain leadership teams), the engineers 
+could challenge the wisdom of including that personality as follows:    
 
 #. :doc:`Clone <playerfactory>` the top team to create a new one, and make the 
    objectionable personality less extreme in the cloned member. 
@@ -96,15 +96,16 @@ personality as follows:
    parent and its modified clone. Does the modified clone 
    outperform its parent? If not, are there specific events in which it does? 
    What real-world situations match the events on which the parent outperforms 
-   the clone (i.e. what is there to appreciate about the extreme personality)?
+   the clone (i.e. what is there to appreciate about the personality)?
 
-This is not a claim that science will instantly discern all wisdom, 
-and therefore completely displace all other sources of wisdom; it is merely a 
+This is not a claim that science will instantly discern all wisdom 
+and completely displace all other sources of wisdom; it is merely a 
 claim that science can become useful to guide not only physical engineering 
-and medicine, but also to guide social engineering, and that platforms like 
-redscience make science as accessible as scripture. Where we previously turned 
-to scripture to validate our approaches to personality, it will become more 
-reliable to turn to platforms like redscience.
+and medicine but also to guide social engineering, and that platforms like 
+redscience make science as accessible as scripture. For example, if we 
+previously turned to scripture to validate our approaches to personality 
+differences, redscience will displace scripture in that function (something 
+scientific journals have not been efficient-enough to do).
 
 .. Note:: The most comprehensive Olympics will include cooperative games 
   (like the *Public Goods game*), alliance games (like *Risk*), deception 
