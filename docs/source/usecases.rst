@@ -7,7 +7,7 @@ Anticipate security exploits
 *Suppose you were a developer assigned to deploy a new AI into the real world, 
 or a parent/teacher trying to help a new human find their place in society. 
 Or suppose you want to develop/establish your own ability (e.g. to win a social 
-position).* You'd want to know in advance about any exploits to which that AI 
+position).* You'd need to discern any exploits to which that AI 
 or person is vulnerable.
 
 Games are a time-tested method to develop/establish ability with logic and 
