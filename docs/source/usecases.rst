@@ -32,17 +32,17 @@ risk-proclivity, dogmatism, idealism, short-sightedness, long-sightedness, etc):
    opponents and events for which the player under investigation consistently 
    performs worse than do other players of the same skill-level.
 #. To understand a vulnerability, look at the favoritism stats of the expoiter to 
-   find other victims who get exploited in the same way. What do the victims have in 
-   common (e.g. risk-aversion? risk-proclivity?)
+   find other victims who get exploited in the same way. Profile the victims as a group 
+   to identify common traits (e.g. risk-aversion? risk-proclivity?)
 #. To map the domain of "safety", browse the **Favoritism Tab** to find events in 
    which no vulnerability manifests. What do such events have in common (and what 
    real-world situations share that commonality)?
-#. To find ways to extend safety (for humans), have the player under investigation play 
-   unsafe events using the top players as :doc:`tools <playerfactory>`. Which forms of 
+#. (For humans) to find ways to extend safety, have the player under investigation play 
+   unsafe events using the top AI as :doc:`tools <playerfactory>`. Which forms of 
    tool use neutralize the handicap (i.e. review, debate, or delegation)? In other words, 
-   how much agency can one preserve without also preserving the vulnerability? Some 
-   examples of real-world tools used to neutralize biases include consultants/advisors, 
-   juries, and the algorithms encoded in scripture, law, and business processes. 
+   how much agency can one preserve without also preserving the vulnerability? In the 
+   real world, tools used in the same way as AI here include consultants/advisors, 
+   juries, the algorithms encoded in scripture, law, and business processes (etc). 
    Experimenting with vulnerabilites in redscience may help us minimize loss of agency 
    to such tools.
 
