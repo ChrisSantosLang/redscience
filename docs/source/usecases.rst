@@ -23,7 +23,11 @@ risk-proclivity, dogmatism, idealism, short-sightedness, long-sightedness, etc):
 #. Identify the most comprehensive :doc:`Olympics <tournament>` via the 
    **Comparison Tab** and identify the reigning champions of its events via its 
    :doc:`leaderboard <game>`. Have the player under investigation play the Olympics 
-   against its champions.
+   against its champions and the champions' "favorite" opponents. In cooperative games 
+   (e.g. nuclear disarmament) the "exploiter" is likely to be someone who is difficult 
+   to cooperate with (antisocial, dogmatic, unhelpfully biased), rather than a champion. 
+   They will be a "favorite" of champions because the ability to deal with exploiters 
+   sets champions apart.
 #. Look at the player’s **Favoritism Tab** to identify vulnerabilities as 
    opponents and events for which the player under investigation consistently 
    performs worse than do other players of the same skill-level.
