@@ -81,13 +81,13 @@ An alternative approach--a way to escape dogma--is to test alternative
 social designs via simulations before deploying them in real-life. 
 When the most :doc:`comprehensive Olympics <tournament>` in redscience is 
 sufficiently comprehensive and its top non-human players are sufficiently 
-skilled, the alternative approach would boil-down to building real-world teams 
-that match the team-sizes, personality ratios, curriculum ratios, and 
-collaboration techniques of those top players. 
+skilled, the alternative approach will already have been completed for you 
+and you would simply build real-world teams that match the team-sizes, personality 
+ratios, curriculum ratios, and collaboration techniques of redscience champions. 
 
 If scripture were a guide for social engineering, platforms like redscience 
 would be its replacement, but, unlike scripture, redscience needn't identify 
-with any particular religion and offers those who question its wisdom a 
+with any particular religion and it offers those who question its wisdom a 
 procedure to challenge that wisdom. For example, if the top non-human champion 
 were a team that included an extreme personality that social engineers hesitated 
 to include in real-world teams (e.g. as some social engineers have hestitated to 
@@ -106,10 +106,10 @@ This is not a claim that science will instantly discern all wisdom
 and completely displace all other sources of wisdom; it is merely a 
 claim that science can become useful to guide not only physical engineering 
 and medicine but also to guide social engineering, and that platforms like 
-redscience make science as accessible as scripture. For example, if we 
+redscience can make science as accessible as scripture. For example, if we 
 previously turned to scripture to validate our approaches to personality 
-differences, redscience will displace scripture in that function (something 
-scientific journals have not been efficient-enough to do).
+differences, redscience will displace scripture for that function (something 
+which scientific journals have not been efficient-enough to do).
 
 .. Note:: The most comprehensive Olympics will include cooperative games 
   (like the *Public Goods game*), alliance games (like *Risk*), deception 
@@ -117,7 +117,7 @@ scientific journals have not been efficient-enough to do).
   as well as planning games (like *Chess*), so this approach 
   hedges against the potential for any real-world game to 
   shift in any of these directions. If we can limit the shifting of real-world
-  games, then it may be appropriate to use Olympics other than the most 
+  games, then it may be appropriate to use Olympics that are not the most 
   comprehensive in the procedures above.
 
 
@@ -161,7 +161,7 @@ Elevate reality above experimentation
 example, the best strategy in the *Volunteer* game depends upon prevailing 
 social norms which happen to correspond to the real-world norms of "turn-taking"
 vs "caste system" (which sometimes manifests as racial discrimination). One way 
-to resolve the competition might be to benchmark the norms in redscience: 
+to resolve the real-world division might be to benchmark those norms in redscience: 
 
 #. Copy the top-ranked *AI* for the *Volunteer* :doc:`game <game>` to a new 
    *Universe* (but :doc:`do not copy its curriculum <playerfactory>`). Play a 
@@ -202,4 +202,4 @@ the secondary-education level, it is just as relevant in post-secondary educatio
 
 * A computer science teacher could assign students to `Anticipate security exploits`_
   (so they are aware of the security vulnerabilities of AI) and to 
-  `build their own redscience <curriculum>`_
+  `Build their own redscience <curriculum>`_
