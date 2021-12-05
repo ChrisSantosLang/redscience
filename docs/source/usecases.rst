@@ -88,20 +88,20 @@ successful of their age.
 
 An alternative approach--a way to escape dogma--is to test alternative 
 social designs via simulations before deploying them in real-life. 
-When the most :doc:`comprehensive Olympics <tournament>` in redscience is 
-sufficiently comprehensive and its top non-human players are sufficiently 
-skilled, the alternative approach will already have been completed for you 
-and you would simply build real-world teams that match the team-sizes, personality 
+To the extent that the most :doc:`comprehensive Olympics <tournament>` in redscience 
+is sufficiently comprehensive and its most skilled non-human players are 
+sufficiently skilled, the alternative approach has been completed already, 
+so you would simply build real-world teams that match the team-sizes, personality 
 ratios, curriculum ratios, and collaboration techniques of redscience champions. 
 
-If scripture were a guide for social engineering, platforms like redscience 
-would be its replacement, but, unlike scripture, redscience needn't identify 
-with any particular religion and it offers those who question its wisdom a 
-procedure to challenge that wisdom. For example, if the top non-human champion 
-were a team that included an extreme personality that social engineers hesitated 
-to include in real-world teams (e.g. as some social engineers have hestitated to 
-include "feminine" personalities in certain leadership teams), the engineers 
-could challenge the wisdom of including that personality as follows:    
+If scripture were a collection of best-practices for social engineering, then 
+platforms like redscience would replace scripture, but, unlike scripture, 
+redscience needn't identify with any particular religion and it offers those who 
+question its wisdom a procedure to challenge that wisdom. For example, if the top 
+non-human champion were a team that included an extreme personality which social 
+engineers hesitated to include in real-world teams (e.g. as some social engineers 
+have hestitated to include "feminine" personalities in certain leadership teams), 
+the engineers could challenge the wisdom of including that personality as follows:    
 
 #. :doc:`Clone <playerfactory>` the top team to create a new one, and make the 
    objectionable personality less extreme in the cloned member. 
@@ -111,14 +111,13 @@ could challenge the wisdom of including that personality as follows:
    What real-world situations match the events on which the parent outperforms 
    the clone (i.e. what is there to appreciate about the personality)?
 
-This is not a claim that science will instantly discern all wisdom 
-and completely displace all other sources of wisdom; it is merely a 
-claim that science can become useful to guide not only physical engineering 
-and medicine but also to guide social engineering, and that platforms like 
+Science will not instantly discern all wisdom and completely displace all 
+other sources of wisdom, but science can become useful to guide not only physical 
+engineering and medicine but also to guide social engineering, and platforms like 
 redscience can make science as accessible as scripture. For example, if we 
 previously turned to scripture to validate our approaches to personality 
 differences, redscience will displace scripture for that function (something 
-which scientific journals have not been efficient-enough to do).
+science was not previously efficient enough to do).
 
 .. Note:: The most comprehensive Olympics will include cooperative games 
   (like the *Public Goods game*), alliance games (like *Risk*), deception 
@@ -126,8 +125,8 @@ which scientific journals have not been efficient-enough to do).
   as well as planning games (like *Chess*), so this approach 
   hedges against the potential for any real-world game to 
   shift in any of these directions. If we can limit the shifting of real-world
-  games, then it may be appropriate to use Olympics that are not the most 
-  comprehensive in the procedures above.
+  games, then it may be appropriate in the procedures above to use Olympics that 
+  are not the most comprehensive.
 
 
 Discover new dimensions of intelligence
@@ -142,13 +141,13 @@ granting a culture its first awareness of empathy, tool-use, exploration
 or other not-yet-named dimension of intelligence)? 
 
 Intelligence is measured in terms of the kinds of games which one being 
-wins over another, so each dimension of intelligence can be expressed as a 
+wins more than another, so each dimension of intelligence can be expressed as a 
 set of games (e.g. empathy can be expressed as games in which empathic 
 players have advantage, perhaps because those games require collaboration
-with players with different skill-level and norms). The most comprehensive 
+with players who have different skill-levels and norms). The most comprehensive 
 :doc:`Olympics <tournament>` would test every dimension of intelligence, so the 
-legacy of making the most comprehensive Olympics more comprehensive (while 
-maintaining elementality) is like the legacy of expanding the Periodic Table of 
+legacy left by making the most comprehensive Olympics more comprehensive (while 
+maintaining elementality) is like the legacy left by expanding the Periodic Table of 
 the Elements:
 
 #. Identify the most comprehensive Olympics via the **Comparison Tab**
@@ -162,6 +161,14 @@ the Elements:
    biases even more advantageous.
 #. Use the **Comparison Tab** to confirm that swapping-in the new event makes 
    the Olympics more comprehensive.  
+   
+.. Note:: This feature caters to a niche user group, since many people are 
+  too busy establishing their security to worry about their legacy. Other game 
+  platforms might be tempted to omit this feature and provide mere 
+  escapism, self-development, or advantage in winning real-world games. 
+  "What? Discover new dimensions of intelligence? Yeah, I'll let someone else
+  worry about that..." they might say.
+  
 
 Elevate reality above experimentation
 -------------------------------------
@@ -169,8 +176,8 @@ Elevate reality above experimentation
 *Suppose our society were divided by competing systems of social norms.* For
 example, the best strategy in the *Volunteer* game depends upon prevailing 
 social norms which happen to correspond to the real-world norms of "turn-taking"
-vs "caste system" (which sometimes manifests as racial discrimination). One way 
-to resolve the real-world division might be to benchmark those norms in redscience: 
+vs "caste system" (which sometimes manifests as racial discrimination). One could 
+benchmark those norms in redscience: 
 
 #. Copy the top-ranked *AI* for the *Volunteer* :doc:`game <game>` to a new 
    *Universe* (but :doc:`do not copy its curriculum <playerfactory>`). Play a 
@@ -196,7 +203,10 @@ to resolve the real-world division might be to benchmark those norms in redscien
 If we couldn’t run these experiments to our satisfaction in redscience, 
 would we be doomed to spend our real lives serving as the subjects in 
 such experiments (i.e. as pawns in a war between competing systems of 
-norms)?
+norms)? It seems unlikely that *everyone* who runs such experiments will switch to 
+whichever norm is destined to win, but the dignity of an informed loser is at least 
+elevated compared to a loser who doesn't understand the situation.
+
 
 Empower students of social science and computer science
 -------------------------------------------------------
