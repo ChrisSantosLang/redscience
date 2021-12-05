@@ -39,27 +39,33 @@ free to skip this section if you simply want to adopt the provided
 architecture.
  
 You are about to build something, and you will master it in the process. 
-You might expect to discard your work at that point and take what you 
-have learned elsewhere. But it is also possible that you might want to 
-continue evolving what you built, maybe even transform it into something 
-with a very different purpose. Just in case that happens, the provided 
-architecture includes best practices for general development. Applying 
-these practices from the start develops good habits and would be easier 
-than trying to shift to them later.
+You might expect to discard your work at that point and take away only 
+memories. But it is also possible that you might want to continue evolving 
+what you built, maybe even transform it into something with a very 
+different purpose. Just in case that happens, the provided architecture 
+includes best practices for general development. 
+
+Note that evolving a competitor for redscience is not what we have in mind 
+by "continue evolving what you built". If you want to improve redscience, 
+then please offer a pull request to it so everyone can enjoy your 
+innovation. If your improvement is rejected, then it would be better to 
+fork redscience (and poach from its community) than to rebuild it 
+completely. If you want to customize redscience, then merely wrap it, so 
+your customized version will automatically enjoy any future improvements 
+to redscience. What we have in mind by "continue evolving what you built" 
+is to copy patterns or chunks of what you built to your next project. The 
+best kind of code to reuse is (a) code you understand (which you will, 
+since you built it), and (b) code built to last. 
 
 If you want to build software to last, you should expect it to need a 
 community to provide security updates as security vulnerabilities become 
 discovered, compatibility updates as dependencies evolve (e.g. operating 
 systems, storage systems, and browsers), and new features as user 
-expectations shift (e.g. to different devices). At first, you might be 
-the only member of your community, or every member might be an employee 
-of a single business, government or religion. Science can outlive any 
-individual human, business, government or religion, so the community to 
-maintain software that provides infrastructure for science should ideally 
-extend beyond that. 
- 
-Even if many people want to participate in a such a community, the 
-community will need the following:
+expectations shift (e.g. to different devices). At first, you might 
+be the only member of your community, or every member might be an employee 
+of a single business, government or religion, but building code to last 
+means designing it to extend beyond that. Even if many people want to 
+participate in a such a community, the community will need the following:
 
 * Development environments (including hardware), 
 * Means to transfer knowledge to new members (i.e. documentation/training), 
