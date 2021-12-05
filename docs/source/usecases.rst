@@ -5,20 +5,29 @@ Anticipate security exploits
 ----------------------------
 
 *Suppose you were a developer assigned to deploy a new AI into the real world, 
-or a parent/teacher trying to help a new human find their place in society. 
-Or suppose you want to develop/establish your own ability (e.g. to win a social 
-position).* You'd need to discern any exploits to which that AI 
-or person is vulnerable.
+or a parent or teacher preparing someone to enter society, or you were preparing 
+yourself for a career, career shift, or to be a spouse or parent.* 
+It would be malpractice not to take every reliable inexpensive opportunity to discern 
+any exploits to which that AI or person would become vulnerable upon transition. 
 
-Games are a time-tested method to develop/establish ability with logic and 
-planning, and can do the same with other kinds of ability, such as 
-social/political skills, trend-spotting/setting, and innovation. When the most 
-comprehensive Olympics is sufficiently comprehensive and its top players are 
-sufficiently skilled, playing against them will not only teach and establish 
-competence, but also test for a broad range of vulnerabilities (e.g. risk aversion, 
-risk-proclivity, dogmatism, idealism, short-sightedness, long-sightedness, etc):
+Games are a time-tested method to develop or establish ability with logic and 
+planning, and can also establish other kinds of ability, such as 
+social and political skills, trend-spotting or setting, and innovation. The concept  
+of "game" can be broad enough even to include parenting, since parents make moves, 
+moves impact outcomes, and some outcomes are preferred over others. Real world 
+parenting, stock trading, and warfare are too expensive and consequential to serve as 
+training exercises, so maybe we say we "live" these games, rather than say we "play" 
+them. However, because they *are* games, skills can help, and we should test 
+our parenting, stock trading, and warfare skills *before* "living" those games. 
 
-#. Have the human :doc:`establish an account <player>` (if testing AI, 
+When the most comprehensive Olympics is sufficiently comprehensive and its most skilled 
+players are sufficiently skilled, playing that Olympics against those players will test 
+for the full range of vulnerabilities. Note that learning is not the only way that 
+vulnerabilities can be overcome; sometimes skills are established via tools (e.g. 
+some people establish vision via glasses) or via collaboration. The purpose of a 
+security audit is to discern which tools, collaborators, or learning remain needed:
+
+#. Have the human :doc:`establish an account <player>` (or, if testing AI, 
    :doc:`build it<playerfactory>` in redscience).
 #. Identify the most comprehensive :doc:`Olympics <tournament>` via the 
    **Comparison Tab** and identify the reigning champions of its events via its 
@@ -55,8 +64,8 @@ risk-proclivity, dogmatism, idealism, short-sightedness, long-sightedness, etc):
 .. Note:: "Personality" settings are made available in redscience only if games
   have been identified for which different settings are optimal. Individual humans who 
   exhibit those traits would be vulnerable to some kind of exploit, but also have the 
-  potential to strengthen a team by protecting it against other exploits (i.e. like 
-  differentiated cells benefit a body).
+  potential to strengthen a team by protecting it against other exploits (i.e. as cell 
+  differentiation benefits a body).
   
 
 Benchmark social designs
