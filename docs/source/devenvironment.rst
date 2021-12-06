@@ -77,7 +77,7 @@ participate in a such a community, the community will need the following:
 Not only must your software be able to evolve over time, so must these 
 resources. The hardware your community will need to maintain your software 
 20 years from now might be very different from the hardware required today. 
-This is where Colab comes in. Rather than plan to buy new hardware every 
+This is where **Colab** comes in. Rather than plan to buy new hardware every 
 so often to support your software, you can develop “in the cloud” and let 
 the cloud provider handle upgrading the hardware. It is important that 
 whichever provider you choose is (1) accessible to your community, (2) 
@@ -86,7 +86,7 @@ of your development environment. Colab is accessible for free (up to
 certain limits) to anyone with a web browser (e.g. cell phone), and it 
 provides very fast GPUs. Most of the Jupyter Notebooks development 
 environment on Colab can be made available elsewhere—it provides as many 
-cells as you like in which to experiment with code—but Google added 
+cells as you like in which to experiment—but Google added 
 autocomplete and help windows that are noteworthy features.
  
 Similarly, your community 20 years from now might need new ways to 
@@ -94,7 +94,7 @@ transfer knowledge about how to maintain it. It helps that the Python
 language is relatively easy to read. Yet, the current state-of-the-art in 
 knowledge-transfer also includes providing documentation (both in code and 
 out of code). The current Python standard is to write documentation in 
-reStructuredText (RST) and build it with Sphinx (via ReadTheDocs). This 
+reStructuredText (RST) and build it with Sphinx (via **ReadTheDocs**). This 
 is not effortless--your community would need to abide documentation 
 standards and would need educators/writers to write everything beyond the 
 API--but automation saves effort on converting documentation between forms 
@@ -112,7 +112,7 @@ priorities/resolve disagreements the way it can now. Benevolent dictators
 do not last forever. Furthermore, better processes for achieving consensus 
 may evolve over time, and you will automatically benefit from those 
 innovations if you use a leading code-management system. ReadTheDocs 
-currently integrates with GitHub, BitBucket, and GitLab, of which GitHub 
+currently integrates with GitHub, BitBucket, and GitLab, of which **GitHub** 
 is currently the most popular. All three innovate processes to manage code 
 communally, including ways to report issues. One of their most important 
 innovations is the “Pull request” (or “Merge request”) which overcomes 
@@ -127,7 +127,7 @@ Finally, although code-management systems provide means to benefit from
 a community, they don’t necessarily attract that community. The ways in 
 which people form communities may change over the next 20 years, but 
 bulk-searches through “what’s out there” will likely be part of the mix. 
-PyPI is python’s standard index, so it is a natural place for a 
+**PyPI** is python’s standard index, so it is a natural place for a 
 bulk-search. Users may not need to use PyPI to install your software, 
 if they can run it “in the Cloud” via Colab, but being in the index may 
 be crucial to being discoverable. Linking to PyPI is an optional step in 
