@@ -7,26 +7,24 @@ into :doc:`../releases/releases`, of which Command Line
 Tic-Tac-Toe is the first. The following plan serves as an example 
 of the kind of plan you can expect for other versions. 
 
-Much of the curriculum walks students through implementing parts of 
-this plan. It is possible to code from the software architecture
-without reading the higher-level plans that the architecture is 
+Much of the curriculum walks students through actually implementing 
+parts of this plan. It is possible to skip to the action having never 
+read the following higher-level plans that the software architecture is 
 designed to fulfill (just like it is possible to modify open source 
 code without knowing why it was built the way it was), but having
 a higher-level understanding of what you are working on can make you 
-more productive in innovation. Therefore, *this* is the recommended
-starting point of the curriculum.
+more productive as an innovator. Therefore, it is recommended that you 
+read the following (abstract as it may be) before coding: 
 
 Requirements
 ------------
 
 *(Various words are bolded in this first set of requirements to 
-give a sense of what an ontology would have to include. An 
-ontology needs to provide more than what we can expect from a 
-narrative, but there is substantial overlap.)* 
+give a sense of what an ontology would have to include.)* 
 
 Write a program that allows two **humans** (sharing the same keyboard) 
 to play **Tic-Tac-Toe** at the **command prompt**, with **options** 
-at any point to **quit**, **undo the last move**, or 
+at any point to **quit**, to **undo the last move**, or to
 **start a new game**. Randomize the order of the **players** at the 
 beginning of each new **game**. A player cannot attempt to place 
 a **piece** from **reserves** to **coordinates** that the player knows 
