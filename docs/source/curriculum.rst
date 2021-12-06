@@ -39,7 +39,7 @@ Coding:
   Write, test, debug, and deploy the code.
 
 This curriculum assumes that you might wish only to code. You can expect 
-it to provide the completed deliverables for all other tasks. 
+the curriculum to provide the completed deliverables for all other tasks. 
 The "How to" articles in this curriculum will walk you through how to 
 use those deliverables.
 
@@ -58,10 +58,10 @@ don’t have to follow the suggestions of the pseudocode. If you have
 a better idea, please share it with us, so we can suggest it to future 
 coders.
 
-This project is divided into :doc:`/releases/releases`. Each builds upon the previous. 
-This curriculum provides Requirements, a Testing Plan, and Potential 
-Mockups for each Version. Together, these documents communicate the 
-scope of the Version.  
+This project is divided into Versions, each building upon the previous. 
+The :doc:`/releases/releases` section of this curriculum provides 
+*Requirements*, a *Testing Plan*, and *Potential Mockups* for each Version. Those 
+documents communicate the scope of the corresponding Version.  
 
 This curriculum also includes a number of "How to" articles which 
 step through the beginning of Version 1.0. The curriculum will
@@ -69,8 +69,8 @@ provide plenty of opportunity to get creative and prove your coding
 skills later, but our first priority is to make sure we are on the 
 same page, so feel free to follow the "How to" articles to the letter.
 
-Start by reviewing the Requirements, a Testing Plan, and Potential 
-Mockups for (:doc:`/releases/commandline`), then begin 
+Start by reviewing the *Requirements*, *Testing Plan*, and *Potential 
+Mockups* for (:doc:`/releases/commandline`), then begin 
 with :doc:`devenvironment`.
 
 
