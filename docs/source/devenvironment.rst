@@ -94,21 +94,22 @@ transfer knowledge about how to maintain it. It helps that the Python
 language is relatively easy to read. Yet, the current state-of-the-art in 
 knowledge-transfer also includes providing documentation (both in code and 
 out of code). The current Python standard is to write documentation in 
-reStructuredText (RST) and build it with Sphinx (via **ReadTheDocs**). This 
+reStructuredText (RST) built with Sphinx (via **ReadTheDocs**). This 
 is not effortless--your community would need to abide documentation 
-standards and would need educators/writers to write everything beyond the 
+standards and would need educators to write everything beyond the 
 API--but automation saves effort on converting documentation between forms 
 to permit browsing, searching, and printing (e.g. to html and pdf). You 
-don’t need RST to give your software a fancy website (but it would still 
+could give your software a fancy website without RST (but it would still 
 take effort), and RST can’t embed functioning Jupyter Notebooks (like it 
-can videos), but can your software survive without a searchable instruction 
-manual that automatically-updates the API sections whenever the code 
-changes (or would your coders and writers end-up at each other’s throats)? 
-Linking to ReadTheDocs is an optional step in this curriculum, but models  
-corresponding documentation standards (so that option remains viable).
+can videos), but would your coders and writersend-up at each other's throats
+if you didn't have a searchable instruction manual that automatically-updates 
+the API sections whenever the code changes? 
+Linking to ReadTheDocs is an optional step in this curriculum, but the 
+architecture models corresponding documentation standards (to keep that 
+documentation option viable).
  
 Your community 20 years from now also might not be able to set 
-priorities/resolve disagreements the way it can now. Benevolent dictators 
+priorities and resolve disagreements the way it can now. Benevolent dictators 
 do not last forever. Furthermore, better processes for achieving consensus 
 may evolve over time, and you will automatically benefit from those 
 innovations if you use a leading code-management system. ReadTheDocs 
@@ -118,7 +119,7 @@ communally, including ways to report issues. One of their most important
 innovations is the “Pull request” (or “Merge request”) which overcomes 
 natural-resistance-to-change by empowering a developer to propose a code 
 change in a way that makes it easy for others to analyze and test (even 
-automatically), try, debate, and accept. It can automatically generate 
+automatically), try, debate, and accept. GitHub can automatically generate 
 pull requests whenever dependencies upgrade and automatically inform you 
 if proposed changes would break functionality or introduce security 
 vulnerabilities.
@@ -128,8 +129,8 @@ a community, they don’t necessarily attract that community. The ways in
 which people form communities may change over the next 20 years, but 
 bulk-searches through “what’s out there” will likely be part of the mix. 
 **PyPI** is python’s standard index, so it is a natural place for a 
-bulk-search. Users may not need to use PyPI to install your software, 
-if they can run it “in the Cloud” via Colab, but being in the index may 
+bulk-search. Users may not need to use PyPI to install your software 
+if they can run it “in the Cloud” via Colab, but being indexed in PyPI may 
 be crucial to being discoverable. Linking to PyPI is an optional step in 
 this curriculum, but the package is set up to permit it.
 
@@ -154,7 +155,7 @@ repository-from-a-template>`_)
 How to Set-up Colab
 -------------------
  
-At this point, you should have your own GitHob repo for this project. 
+At this point, you should have your own GitHub repo for this project. 
 If you don't already have a Google account, follow 
 `the Google instructions <https://support.google.com/accounts/answer/27441?hl=en#>`_ 
 to get one, then move forward to How to Develop in Colab with GitHub. 
