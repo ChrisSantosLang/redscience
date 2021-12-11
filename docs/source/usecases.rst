@@ -232,4 +232,4 @@ the secondary-education level, it is just as relevant in post-secondary educatio
 
 * A computer science teacher could assign students to `Anticipate security exploits`_
   (so they are aware of the security vulnerabilities of AI) and to 
-  `Build their own redscience <curriculum>`_
+  :doc:`Build their own redscience <curriculum>`
