@@ -43,7 +43,7 @@ classifiers = [
 [tool.poetry.dependencies]
 python = ">=3.7,<3.11"
 numpy = "^1.21.2"
-matplotlib = "^3.4.3"
+matplotlib = "^3.5.2"
 portion = "^2.2.0"
 toml = "^0.10.2"
 sphinx = {version = "^4", optional = true}
