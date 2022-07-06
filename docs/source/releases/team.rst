@@ -15,8 +15,14 @@ of the game/tournament is better understood.
 
 Create a new type of player called "Team" which is a set of AI 
 players created by the creator of the Team (each AI can have 
-only one team), plus optionally the Random bot. A member's 
-chance of being selected to represent its Team in an event is 
+only one team), plus optionally the Random bot. joining a team will
+automatically append "of {team name}" to the display and comparison 
+of the the member's name, so the individual name becomes available to 
+AI that are not on a team. On the other hand, member names must be 
+unique within a team, so AI must change its name before joining a 
+team that already has a member with the same root.
+
+A member's chance of being selected to represent its Team in an event is 
 that member's squared current skill rating in that event divided 
 by the sum of all members’ squared current skill ratings in that 
 event. Do not display Curriculum for Teams, but offer an option 
