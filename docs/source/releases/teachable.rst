@@ -21,7 +21,6 @@ partial_fit. For the match just completed, learn “win”, “lose” or
 “unstrategic_draw” twice, or “win”, “lose” or “draw” once 
 (assuming it was already learned once).
 
-
 Debate
 ~~~~~~
 
@@ -54,8 +53,27 @@ debate, then assign that strategic outcome to all of their moves
 for the debate (i.e. do not penalize strategic predictions for  
 being unverifiable in a debate); otherwise, assign the outcome of 
 the debate (i.e. win, lose or draw) to all moves before applying 
-Continuous Learning to them.
+Continuous Learning to them. 
 
+In debate, if a situation arises that the user has already reviewed, 
+then automatically apply the user's previous decision, rather than 
+have the user review it again. Also skip user review if time is 
+running out (so the augementor can see how the match ends and can 
+learn from it).
+
+Suggestion
+~~~~~~~~~~
+
+Add a form of augmentation called “Suggesting.” It is like debating 
+in that the non-augmentor plays-out the rest of the game against 
+versions of itself and ultimately selects the moves, but the user 
+reviews the moves to be made, rather than review the expected moves 
+of opponents. That is, instead of challenging with potential 
+opposition, the user suggests specific moves to try. This can feel like 
+reviewing (greater user agency) so far the the user wins. If 
+the user replaces a move with high probability of winning or draw with 
+a move yielding high probability of loss or draw, then treat the user’s 
+move as a prediction of strategic loss or draw.
 
 Auto-tune
 ~~~~~~~~~
