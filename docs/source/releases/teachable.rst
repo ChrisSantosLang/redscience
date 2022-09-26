@@ -65,7 +65,7 @@ Suggestion
 ~~~~~~~~~~
 
 Add a form of augmentation called “Suggesting.” It is like debating 
-in that the non-augmentor plays-out the rest of the game against 
+in that the non-human augmentor plays-out the rest of the game against 
 versions of itself and ultimately selects the moves, but the user 
 reviews the moves to be made, rather than review the expected moves 
 of opponents. That is, instead of challenging their augmentor with 
