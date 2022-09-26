@@ -73,9 +73,12 @@ vulnerabilities, but also to appreciate and minimize the costs of mitigation.
   
 .. Note:: "Personality" settings are made available in redscience only if games
   have been identified for which different settings are optimal. Individual humans who 
-  exhibit those traits would be vulnerable to some kind of exploit, but also have the 
-  potential to strengthen a team by protecting it against other exploits (i.e. as cell 
-  differentiation benefits a body).
+  exhibit those traits would be vulnerable to some kind of exploit in some games, but 
+  would have a special knack for some other games (and the potential to protect a team
+  against exploits in those other games). In other words,
+  *the vulnerabilities you discover, will typically also be strengths* (in the right
+  context).   We frame this use-case in terms of security because safety can be so
+  important, but this use-case is much more positive than it sounds.
   
 
 Benchmark social designs
