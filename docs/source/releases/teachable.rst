@@ -68,12 +68,13 @@ Add a form of augmentation called “Suggesting.” It is like debating
 in that the non-augmentor plays-out the rest of the game against 
 versions of itself and ultimately selects the moves, but the user 
 reviews the moves to be made, rather than review the expected moves 
-of opponents. That is, instead of challenging with potential 
-opposition, the user suggests specific moves to try. This can feel like 
-reviewing (greater user agency) so far the the user wins. If 
-the user replaces a move with high probability of winning or draw with 
-a move yielding high probability of loss or draw, then treat the user’s 
-move as a prediction of strategic loss or draw.
+of opponents. That is, instead of challenging their augmentor with 
+potential opposition, the user suggests specific moves. This can feel like 
+reviewing (greater user agency)--so far as the user's suggestions win 
+(against the bot), the bot will implement those suggestions. When 
+"Suggesting", the user may also mark the intention behind their 
+suggestion as "strategic loss" or "strategic draw" and the suggestion
+will be followed if it yields that outcome. 
 
 Auto-tune
 ~~~~~~~~~
