@@ -42,7 +42,8 @@ efficient than peer-reviewed journals; they make the agenda-setting level of
 science as inexpensive and accessible as playing a video game. The speed with 
 which redscience can expose design-flaws in our inherited Blue-engineered 
 social institutions is so shocking that a warning is merited: Although ignorance 
-may cause more damage in the long-run, truth has its own sting!
+may cause more damage in the long-run, truth has its own sting! (A `design effort 
+<https://www.democracylab.org/projects/1356>`_ has begun to minimize that sting)
 
 Next Steps
 ----------
