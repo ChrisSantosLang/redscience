@@ -30,17 +30,6 @@ evolution of a system of collective knowledge which governs all
 official moves. The method for this is given in Parts 3-4 of the 
 `NUI design <https://www.democracylab.org/projects/1356>`_.  
 
-
-An alternate branch for a plan is superior to the original if it 
-has higher average(min(prob(loss))) for the strategist (averaged 
-across impulses). The Corp will store only the superior plan, so 
-any debater can change the plan being followed (and stored) by 
-proposing a superior branch. To determine which branch is 
-superior may require the creation of universes of fresh players 
-on which to compare the strategies (see 
-:ref:`elevate-reality-above-experimentation`). When learning any 
-curriculum (including its own personal experience and 
-experiments), each AI should reverse-engineer each observed 
-player’s plan and check whether that plan Pareto dominates the 
-AI’s own plan for that situation (potentially replacing its 
-own).
+To properly evolve a system of collective knowledge may require 
+the creation of universes of fresh players on which to compare the 
+strategies (see :ref:`elevate-reality-above-experimentation`).
