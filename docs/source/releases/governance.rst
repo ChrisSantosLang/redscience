@@ -23,17 +23,13 @@ them--that’s something to test...
 Formal reasoning would allow Corps to doubt hypotheses about 
 strategy until accompanied by a formal plan, much as a magician’s 
 audience can doubt their own eyes until they have a good 
-explanation. This implies a dramatically different way of playing. 
-Instead of choosing whichever move seems most promising, players 
-might end up devising and revising formal plans like those 
-described in :doc:`teachable`. It might be better to develop a way 
-to develop and store concepts like those employed there (e.g. 
-“corner”, “adjacent to”, and “unbounded incomplete 3-in-a-row”) 
-because concepts would facilitate generalization, but AI could 
-instead store plans as sets of steps, each with a parent step (or 
-game start), a criteria for whether the step qualifies (i.e. “if 
-the opponent does Y...”), and a prescription (i.e. “...then do 
-Z”). 
+explanation. This implies a dramatically different way of playing 
+where players choose whichever move seems most promising to them 
+individually only in during practice, and they contribute to the 
+evolution of a system of collective knowledge which governs all 
+official moves. The method for this is given in Parts 3-4 of the 
+`NUI design <https://www.democracylab.org/projects/1356>`_.  
+
 
 An alternate branch for a plan is superior to the original if it 
 has higher average(min(prob(loss))) for the strategist (averaged 
